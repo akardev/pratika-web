@@ -5,6 +5,9 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { siteConfig } from '@/lib/site';
 import Breadcrumb from '@/components/ui/Breadcrumb';
+import ToolCard from '@/components/ui/ToolCard';
+
+// Mevcut 9 Araç
 import IndirimHesaplama from '@/components/tools/IndirimHesaplama';
 import YuzdeHesaplama from '@/components/tools/YuzdeHesaplama';
 import YasHesaplama from '@/components/tools/YasHesaplama';
@@ -14,8 +17,50 @@ import ZamHesaplama from '@/components/tools/ZamHesaplama';
 import KarZararHesaplama from '@/components/tools/KarZararHesaplama';
 import FaizHesaplama from '@/components/tools/FaizHesaplama';
 import MaliyetHesaplama from '@/components/tools/MaliyetHesaplama';
-import ToolCard from '@/components/ui/ToolCard';
 
+// Finans & Yatırım (5)
+import KrediTaksitHesaplama from '@/components/tools/KrediTaksitHesaplama';
+import RoiHesaplama from '@/components/tools/RoiHesaplama';
+import KarPayiHesaplama from '@/components/tools/KarPayiHesaplama';
+import EnflasyonHesaplama from '@/components/tools/EnflasyonHesaplama';
+import VadeFarkiHesaplama from '@/components/tools/VadeFarkiHesaplama';
+
+// İş & Ticaret (4)
+import BasabasNoktasiHesaplama from '@/components/tools/BasabasNoktasiHesaplama';
+import KomisyonHesaplama from '@/components/tools/KomisyonHesaplama';
+import CiroHesaplama from '@/components/tools/CiroHesaplama';
+import StokDevirHiziHesaplama from '@/components/tools/StokDevirHiziHesaplama';
+
+// Matematik (6)
+import OrtalamaHesaplama from '@/components/tools/OrtalamaHesaplama';
+import AgirlikliOrtalamaHesaplama from '@/components/tools/AgirlikliOrtalamaHesaplama';
+import OranOrantiHesaplama from '@/components/tools/OranOrantiHesaplama';
+import KarekokHesaplama from '@/components/tools/KarekokHesaplama';
+import UsHesaplama from '@/components/tools/UsHesaplama';
+import EbobEkokHesaplama from '@/components/tools/EbobEkokHesaplama';
+
+// Tarih & Zaman (3)
+import TarihFarkiHesaplama from '@/components/tools/TarihFarkiHesaplama';
+import TariheGunEkleme from '@/components/tools/TariheGunEkleme';
+import IsGunuHesaplama from '@/components/tools/IsGunuHesaplama';
+
+// Dönüşümler (5)
+import UzunlukDonusturucu from '@/components/tools/UzunlukDonusturucu';
+import AgirlikDonusturucu from '@/components/tools/AgirlikDonusturucu';
+import AlanDonusturucu from '@/components/tools/AlanDonusturucu';
+import SicaklikDonusturucu from '@/components/tools/SicaklikDonusturucu';
+import VeriBirimiDonusturucu from '@/components/tools/VeriBirimiDonusturucu';
+
+// Günlük Hayat & Sağlık (4)
+import BmiHesaplama from '@/components/tools/BmiHesaplama';
+import SuIhtiyaciHesaplama from '@/components/tools/SuIhtiyaciHesaplama';
+import YakitMaliyetiHesaplama from '@/components/tools/YakitMaliyetiHesaplama';
+import ElektrikTuketimMaliyetiHesaplama from '@/components/tools/ElektrikTuketimMaliyetiHesaplama';
+
+// Maaş & Çalışma (3)
+import SaatUcretiHesaplama from '@/components/tools/SaatUcretiHesaplama';
+import FazlaMesaiHesaplama from '@/components/tools/FazlaMesaiHesaplama';
+import GunlukUcretHesaplama from '@/components/tools/GunlukUcretHesaplama';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -32,7 +77,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolvedParams = await params;
   const tool = tools.find((t) => t.slug === resolvedParams.slug);
-  
+
   if (!tool) {
     return {
       title: 'Araç Bulunamadı | Pratika',
@@ -65,7 +110,8 @@ export default async function ToolPage({ params }: Props) {
     notFound();
   }
 
-  const relatedTools = tools.filter((t) => t.id !== tool.id);
+  const relatedTools = tools.filter((t) => t.id !== tool.id && t.categoryId === tool.categoryId).slice(0, 4);
+  const fallbackRelatedTools = relatedTools.length > 0 ? relatedTools : tools.filter((t) => t.id !== tool.id).slice(0, 4);
   const relatedArticles = getArticlesByToolSlug(tool.slug);
 
   // WebApplication JSON-LD Schema
@@ -117,6 +163,7 @@ export default async function ToolPage({ params }: Props) {
       </div>
 
       <div className="mb-14">
+        {/* Mevcut 9 Araç */}
         {tool.slug === 'indirim-hesaplama' && <IndirimHesaplama />}
         {tool.slug === 'yuzde-hesaplama' && <YuzdeHesaplama />}
         {tool.slug === 'yas-hesaplama' && <YasHesaplama />}
@@ -126,8 +173,51 @@ export default async function ToolPage({ params }: Props) {
         {tool.slug === 'kar-zarar-hesaplama' && <KarZararHesaplama />}
         {tool.slug === 'faiz-hesaplama' && <FaizHesaplama />}
         {tool.slug === 'maliyet-hesaplama' && <MaliyetHesaplama />}
-      </div>
 
+        {/* Finans & Yatırım (5) */}
+        {tool.slug === 'kredi-taksit-hesaplama' && <KrediTaksitHesaplama />}
+        {tool.slug === 'roi-hesaplama' && <RoiHesaplama />}
+        {tool.slug === 'kar-payi-hesaplama' && <KarPayiHesaplama />}
+        {tool.slug === 'enflasyon-hesaplama' && <EnflasyonHesaplama />}
+        {tool.slug === 'vade-farki-hesaplama' && <VadeFarkiHesaplama />}
+
+        {/* İş & Ticaret (4) */}
+        {tool.slug === 'basabas-noktasi-hesaplama' && <BasabasNoktasiHesaplama />}
+        {tool.slug === 'komisyon-hesaplama' && <KomisyonHesaplama />}
+        {tool.slug === 'ciro-hesaplama' && <CiroHesaplama />}
+        {tool.slug === 'stok-devir-hizi-hesaplama' && <StokDevirHiziHesaplama />}
+
+        {/* Matematik (6) */}
+        {tool.slug === 'ortalama-hesaplama' && <OrtalamaHesaplama />}
+        {tool.slug === 'agirlikli-ortalama-hesaplama' && <AgirlikliOrtalamaHesaplama />}
+        {tool.slug === 'oran-oranti-hesaplama' && <OranOrantiHesaplama />}
+        {tool.slug === 'karekok-hesaplama' && <KarekokHesaplama />}
+        {tool.slug === 'us-hesaplama' && <UsHesaplama />}
+        {tool.slug === 'ebob-ekok-hesaplama' && <EbobEkokHesaplama />}
+
+        {/* Tarih & Zaman (3) */}
+        {tool.slug === 'tarih-farki-hesaplama' && <TarihFarkiHesaplama />}
+        {tool.slug === 'tarihe-gun-ekleme' && <TariheGunEkleme />}
+        {tool.slug === 'is-gunu-hesaplama' && <IsGunuHesaplama />}
+
+        {/* Dönüşümler (5) */}
+        {tool.slug === 'uzunluk-donusturucu' && <UzunlukDonusturucu />}
+        {tool.slug === 'agirlik-donusturucu' && <AgirlikDonusturucu />}
+        {tool.slug === 'alan-donusturucu' && <AlanDonusturucu />}
+        {tool.slug === 'sicaklik-donusturucu' && <SicaklikDonusturucu />}
+        {tool.slug === 'veri-birimi-donusturucu' && <VeriBirimiDonusturucu />}
+
+        {/* Günlük Hayat & Sağlık (4) */}
+        {tool.slug === 'bmi-hesaplama' && <BmiHesaplama />}
+        {tool.slug === 'su-ihtiyaci-hesaplama' && <SuIhtiyaciHesaplama />}
+        {tool.slug === 'yakit-maliyeti-hesaplama' && <YakitMaliyetiHesaplama />}
+        {tool.slug === 'elektrik-tuketim-maliyeti-hesaplama' && <ElektrikTuketimMaliyetiHesaplama />}
+
+        {/* Maaş & Çalışma (3) */}
+        {tool.slug === 'saat-ucreti-hesaplama' && <SaatUcretiHesaplama />}
+        {tool.slug === 'fazla-mesai-hesaplama' && <FazlaMesaiHesaplama />}
+        {tool.slug === 'gunluk-ucret-hesaplama' && <GunlukUcretHesaplama />}
+      </div>
 
       {/* İlgili Bilgiler (Bilgi Merkezi İçerikleri) */}
       {relatedArticles.length > 0 && (
@@ -168,13 +258,13 @@ export default async function ToolPage({ params }: Props) {
       )}
 
       {/* İlgili Araçlar */}
-      {relatedTools.length > 0 && (
+      {fallbackRelatedTools.length > 0 && (
         <div className="border-t border-border/60 pt-10 mt-10">
           <h2 className="text-lg font-bold tracking-tight text-foreground mb-4">
             İlgili Araçlar
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {relatedTools.map((rt) => (
+            {fallbackRelatedTools.map((rt) => (
               <ToolCard key={rt.id} tool={rt} />
             ))}
           </div>

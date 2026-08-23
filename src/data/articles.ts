@@ -577,8 +577,266 @@ export const articles: Article[] = [
         ]
       }
     ]
+  },
+  {
+    id: 'kredi-taksiti-nasil-hesaplanir',
+    slug: 'kredi-taksiti-nasil-hesaplanir',
+    title: 'Kredi Taksiti Nasıl Hesaplanır?',
+    description: 'Banka kredilerinde aylık eşit taksit, toplam faiz ve geri ödeme tutarı hesaplama formülleri ve örnekleri.',
+    category: 'Finans',
+    relatedToolSlug: 'kredi-taksit-hesaplama',
+    readTime: '4 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['kredi taksiti hesaplama', 'kredi faiz formülü', 'annuite taksit', 'aylık kredi ödemesi'],
+    sections: [
+      {
+        heading: 'Kredi Taksit Mantığı (Annuite)',
+        paragraphs: [
+          'Bankacılıkta tüketici, konut ve taşıt kredilerinde en yaygın yöntem eşit taksitli (annuite) geri ödeme planıdır. Her taksitte anapara ve faiz payı zamanla değişir.'
+        ],
+        formula: 'Aylık Taksit = Anapara × [ r(1+r)^n / ((1+r)^n - 1) ]'
+      }
+    ]
+  },
+  {
+    id: 'roi-nedir-ve-nasil-hesaplanir',
+    slug: 'roi-nedir-ve-nasil-hesaplanir',
+    title: 'ROI Nedir ve Nasıl Hesaplanır?',
+    description: 'Yatırımın getiri oranı (ROI) formülü, pazarlama ve ticari yatırımlarda kârlılık analizi rehberi.',
+    category: 'Finans',
+    relatedToolSlug: 'roi-hesaplama',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['roi nedir', 'roi hesaplama', 'yatırım getirisi', 'return on investment'],
+    sections: [
+      {
+        heading: 'Yatırım Getirisi Oranı',
+        paragraphs: [
+          'ROI (Return on Investment), bir yatırıma ayrılan sermayenin ne ölçüde net kâr ürettiğini yüzde cinsinden gösteren temel rasyodur.'
+        ],
+        formula: 'ROI (%) = [(Toplam Getiri - Yatırım Maliyeti) / Yatırım Maliyeti] × 100'
+      }
+    ]
+  },
+  {
+    id: 'temettu-nedir-ve-nasil-hesaplanir',
+    slug: 'temettu-nedir-ve-nasil-hesaplanir',
+    title: 'Temettü (Kâr Payı) Nedir ve Nasıl Hesaplanır?',
+    description: 'Borsa ve hisse senedi yatırımlarında nakit temettü geliri ve temettü verimi hesaplama yöntemi.',
+    category: 'Finans',
+    relatedToolSlug: 'kar-payi-hesaplama',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['temettü nedir', 'temettü hesaplama', 'kâr payı dağıtımı', 'temettü verimi'],
+    sections: [
+      {
+        heading: 'Temettü Geliri ve Verimi',
+        paragraphs: [
+          'Şirketlerin yıllık net kârlarından hissedarlarına dağıttığı nakit paydır. Temettü verimi ise dağıtılan nakdin hisse fiyatına oranıdır.'
+        ],
+        formula: 'Toplam Temettü = Hisse Adedi × Hisse Başı Net Temettü\nTemettü Verimi (%) = (Hisse Başı Temettü / Hisse Fiyatı) × 100'
+      }
+    ]
+  },
+  {
+    id: 'enflasyon-ve-satin-alma-gucu-hesaplama',
+    slug: 'enflasyon-ve-satin-alma-gucu-hesaplama',
+    title: 'Enflasyon ve Satın Alma Gücü Nasıl Hesaplanır?',
+    description: 'Enflasyonun paranın reel değerine etkisi, kümülatif enflasyon ve gelecekteki satın alma gücü formülleri.',
+    category: 'Finans',
+    relatedToolSlug: 'enflasyon-hesaplama',
+    readTime: '4 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['enflasyon hesaplama', 'satın alma gücü', 'kümülatif enflasyon', 'para değer kaybı'],
+    sections: [
+      {
+        heading: 'Enflasyonun Reel Etkisi',
+        paragraphs: [
+          'Enflasyon arttıkça aynı parayla satın alınabilen mal miktarı azalır. Kümülatif enflasyon zaman içinde bileşik faiz gibi katlanarak ilerler.'
+        ],
+        formula: 'Gelecekteki Eşdeğer Tutar = Tutar × (1 + Enflasyon / 100)^Yıl'
+      }
+    ]
+  },
+  {
+    id: 'basabas-noktasi-nedir-ve-nasil-hesaplanir',
+    slug: 'basabas-noktasi-nedir-ve-nasil-hesaplanir',
+    title: 'Başabaş Noktası Nedir ve Nasıl Hesaplanır?',
+    description: 'Sabit ve değişken giderlere göre kâra geçiş için satılması gereken başabaş ürün adedi ve ciro formülleri.',
+    category: 'İş ve Ticaret',
+    relatedToolSlug: 'basabas-noktasi-hesaplama',
+    readTime: '4 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['başabaş noktası', 'break even point', 'başabaş analizi', 'kâra geçiş noktası'],
+    sections: [
+      {
+        heading: 'Başabaş Noktası Mantığı',
+        paragraphs: [
+          'Toplam hasılatın toplam maliyetlere eşit olduğu ve kârın sıfır olduğu kritik işletme üretim hacmidir.'
+        ],
+        formula: 'Birim Katkı Payı = Satış Fiyatı - Değişken Maliyet\nBaşabaş Satış Adedi = Toplam Sabit Giderler / Birim Katkı Payı'
+      }
+    ]
+  },
+  {
+    id: 'komisyon-tutari-nasil-hesaplanir',
+    slug: 'komisyon-tutari-nasil-hesaplanir',
+    title: 'Komisyon Tutarı Nasıl Hesaplanır?',
+    description: 'E-ticaret pazaryerlerinde ve aracı kuruluşlarda oransal ve sabit komisyon hesaplama yöntemleri.',
+    category: 'İş ve Ticaret',
+    relatedToolSlug: 'komisyon-hesaplama',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['komisyon hesaplama', 'pazaryeri komisyonu', 'satıcı komisyonu', 'net hakediş'],
+    sections: [
+      {
+        heading: 'Komisyon Kesintileri',
+        paragraphs: [
+          'Platformlar satış tutarından belirli bir yüzde ve işlem ücreti keserek kalan tutarı satıcıya aktarır.'
+        ],
+        formula: 'Kesilen Komisyon = (Satış Tutarı × Komisyon Oranı / 100) + Sabit Ücret'
+      }
+    ]
+  },
+  {
+    id: 'ciro-nedir-ve-nasil-hesaplanir',
+    slug: 'ciro-nedir-ve-nasil-hesaplanir',
+    title: 'Ciro Nedir ve Nasıl Hesaplanır?',
+    description: 'İşletmelerde brüt ciro, hasılat hesaplama ve ciro ile kâr arasındaki temel farklar.',
+    category: 'İş ve Ticaret',
+    relatedToolSlug: 'ciro-hesaplama',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['ciro nedir', 'ciro hesaplama', 'hasılat hesaplama', 'brüt ciro'],
+    sections: [
+      {
+        heading: 'Ciro ve Hasılat',
+        paragraphs: [
+          'Ciro, bir işletmenin belirli bir zaman diliminde yaptığı satışlardan elde ettiği brüt para girişidir.'
+        ],
+        formula: 'Ciro = Satılan Ürün Adedi × Ortalama Satış Fiyatı'
+      }
+    ]
+  },
+  {
+    id: 'stok-devir-hizi-nedir-ve-nasil-hesaplanir',
+    slug: 'stok-devir-hizi-nedir-ve-nasil-hesaplanir',
+    title: 'Stok Devir Hızı Nedir ve Nasıl Hesaplanır?',
+    description: 'Stok devir hızı oranı, stokta kalma gün süresi ve depo verimliliği hesaplama rehberi.',
+    category: 'İş ve Ticaret',
+    relatedToolSlug: 'stok-devir-hizi-hesaplama',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['stok devir hızı', 'stok devir süresi', 'stok eritme hızı', 'envanter devri'],
+    sections: [
+      {
+        heading: 'Stok Devir Rasyosu',
+        paragraphs: [
+          'Depodaki malların yılda kaç kez satılıp yenilendiğini ve bir ürünün ortalama kaç gün stokta beklediğini gösterir.'
+        ],
+        formula: 'Stok Devir Hızı = Satılan Malın Maliyeti / Ortalama Stok\nStokta Kalma Süresi = 365 / Stok Devir Hızı'
+      }
+    ]
+  },
+  {
+    id: 'ortalama-medyan-mod-nasil-hesaplanir',
+    slug: 'ortalama-medyan-mod-nasil-hesaplanir',
+    title: 'Ortalama, Medyan ve Mod Nasıl Hesaplanır?',
+    description: 'Aritmetik ortalama, ortanca değer (medyan) ve tepe değer (mod) hesaplama yöntemleri ve farkları.',
+    category: 'Matematik',
+    relatedToolSlug: 'ortalama-hesaplama',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['ortalama hesaplama', 'medyan bulma', 'mod nedir', 'merkezi eğilim ölçüleri'],
+    sections: [
+      {
+        heading: 'İstatistikte Merkez Eğilim',
+        paragraphs: [
+          'Ortalama sayıların toplamının adede bölünmesidir. Medyan sıralanmış dizinin tam ortasındaki sayıdır. Mod ise en çok tekrar eden sayıdır.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'oran-oranti-nasil-hesaplanir',
+    slug: 'oran-oranti-nasil-hesaplanir',
+    title: 'Oran Orantı Nasıl Hesaplanır?',
+    description: 'Doğru orantı ve ters orantı formülleri, içler dışlar çarpımı ve problem çözme adımları.',
+    category: 'Matematik',
+    relatedToolSlug: 'oran-oranti-hesaplama',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['oran orantı hesaplama', 'doğru orantı', 'ters orantı', 'içler dışlar'],
+    sections: [
+      {
+        heading: 'Orantı Türleri',
+        paragraphs: [
+          'Doğru orantıda iki çokluk aynı anda artar veya azalır (X = B × C / A). Ters orantıda ise biri artarken diğeri azalır (X = A × B / C).'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'tarih-farki-nasil-hesaplanir',
+    slug: 'tarih-farki-nasil-hesaplanir',
+    title: 'İki Tarih Arasındaki Gün ve Süre Farkı Nasıl Hesaplanır?',
+    description: 'İki tarih arasındaki gün, hafta, ay, yıl ve iş günü farkını hesaplama rehberi.',
+    category: 'Zaman ve Tarih',
+    relatedToolSlug: 'tarih-farki-hesaplama',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['tarih farkı hesaplama', 'iki tarih arası gün', 'gün sayısı bulma'],
+    sections: [
+      {
+        heading: 'Tarih Farkı Hesabı',
+        paragraphs: [
+          'Miladi takvimde ay günlerinin (28, 30, 31) ve artık yılların dikkate alınmasıyla iki tarih arasındaki tam gün ve iş günü farkı bulunur.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'beden-kitle-indeksi-bmi-nedir',
+    slug: 'beden-kitle-indeksi-bmi-nedir',
+    title: 'Beden Kitle İndeksi (BMI) Nedir ve Nasıl Hesaplanır?',
+    description: 'Boy ve kiloya göre vücut kitle indeksi hesaplama, WHO kilo kategorileri ve ideal kilo aralığı.',
+    category: 'Günlük Hayat ve Sağlık',
+    relatedToolSlug: 'bmi-hesaplama',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['beden kitle indeksi', 'bmi hesaplama', 'vki formülü', 'ideal kilo'],
+    sections: [
+      {
+        heading: 'Vücut Kitle İndeksi (VKİ)',
+        paragraphs: [
+          'Dünya Sağlık Örgütü tarafından vücut ağırlığının boyun karesine bölünmesiyle hesaplanan genel sağlık ve kilo göstergesidir.'
+        ],
+        formula: 'BMI = Kilo (kg) / [Boy (m) × Boy (m)]'
+      }
+    ]
+  },
+  {
+    id: 'maas-saat-ucreti-ve-fazla-mesai-hesaplama',
+    slug: 'maas-saat-ucreti-ve-fazla-mesai-hesaplama',
+    title: 'Maaş Saat Ücreti ve Fazla Mesai Nasıl Hesaplanır?',
+    description: '4857 sayılı İş Kanununa göre 225 saat yasal böleni, saatlik ücret ve %50-%100 zamlı fazla mesai hak edişi.',
+    category: 'Maaş ve Çalışma',
+    relatedToolSlug: 'saat-ucreti-hesaplama',
+    readTime: '4 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['saat ücreti hesaplama', 'fazla mesai hesaplama', '225 saat kuralı', 'iş kanunu mesai'],
+    sections: [
+      {
+        heading: 'Yasal Saatlik Ücret ve Fazla Çalışma',
+        paragraphs: [
+          'İş Kanunu uyarınca aylık çalışma saati 225 saattir. Normal fazla çalışma saat ücretinin %50 fazlasıyla, resmi tatil çalışmaları ise %100 zamla ödenir.'
+        ],
+        formula: 'Saatlik Ücret = Aylık Maaş / 225\nNormal Fazla Mesai = Saat Ücreti × 1,5 × Mesai Saati'
+      }
+    ]
   }
 ];
+
 
 
 export function getAllArticles(): Article[] {
