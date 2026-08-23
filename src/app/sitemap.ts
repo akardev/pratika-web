@@ -27,6 +27,13 @@ export default function sitemap() {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/arac/kdv-hesaplama`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+
+    {
       url: `${baseUrl}/hakkimizda`,
       lastModified: new Date(),
       changeFrequency: 'monthly',

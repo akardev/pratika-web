@@ -36,8 +36,18 @@ export const tools: Tool[] = [
     categoryId: 'finans',
     status: 'active',
     keywords: ['yaş', 'yaş hesaplama', 'kaç yaşındayım', 'doğum günü', 'yaşım']
+  },
+  {
+    id: 'kdv-hesaplama',
+    slug: 'kdv-hesaplama',
+    title: 'KDV Hesaplama',
+    description: 'KDV dahil ve KDV hariç fiyatları, KDV tutarını kolayca hesaplayın.',
+    categoryId: 'finans',
+    status: 'active',
+    keywords: ['kdv', 'kdv hesaplama', 'kdv dahil', 'kdv hariç', 'vergi', 'katma değer vergisi', 'kdv tutarı']
   }
 ];
+
 
 
 

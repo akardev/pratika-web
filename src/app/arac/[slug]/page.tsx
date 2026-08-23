@@ -5,6 +5,7 @@ import Link from 'next/link';
 import IndirimHesaplama from '@/components/tools/IndirimHesaplama';
 import YuzdeHesaplama from '@/components/tools/YuzdeHesaplama';
 import YasHesaplama from '@/components/tools/YasHesaplama';
+import KdvHesaplama from '@/components/tools/KdvHesaplama';
 import ToolCard from '@/components/ui/ToolCard';
 
 type Props = {
@@ -39,6 +40,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: 'Yaş Hesaplama - Pratika',
       description: 'Doğum tarihinizi girerek yaşınızı yıl, ay ve gün olarak hesaplayın. Bir sonraki doğum gününüze kaç gün kaldığını kolayca öğrenin.',
+    };
+  }
+
+  if (tool.slug === 'kdv-hesaplama') {
+    return {
+      title: 'KDV Hesaplama - Pratika',
+      description: 'KDV dahil ve KDV hariç fiyatları kolayca hesaplayın. %1, %10, %20 ve özel oranlarla KDV tutarını anında öğrenin.',
     };
   }
 
@@ -79,6 +87,7 @@ export default async function ToolPage({ params }: Props) {
         {tool.slug === 'indirim-hesaplama' && <IndirimHesaplama />}
         {tool.slug === 'yuzde-hesaplama' && <YuzdeHesaplama />}
         {tool.slug === 'yas-hesaplama' && <YasHesaplama />}
+        {tool.slug === 'kdv-hesaplama' && <KdvHesaplama />}
       </div>
 
       {/* İlgili Araçlar */}
@@ -97,6 +106,7 @@ export default async function ToolPage({ params }: Props) {
     </div>
   );
 }
+
 
 
 
