@@ -32,6 +32,13 @@ export default function sitemap() {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/arac/kar-marji-hesaplama`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+
 
     {
       url: `${baseUrl}/hakkimizda`,

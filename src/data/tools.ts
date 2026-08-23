@@ -45,8 +45,18 @@ export const tools: Tool[] = [
     categoryId: 'finans',
     status: 'active',
     keywords: ['kdv', 'kdv hesaplama', 'kdv dahil', 'kdv hariç', 'vergi', 'katma değer vergisi', 'kdv tutarı']
+  },
+  {
+    id: 'kar-marji-hesaplama',
+    slug: 'kar-marji-hesaplama',
+    title: 'Kar Marjı Hesaplama',
+    description: 'Maliyet ve satış fiyatına göre kâr marjını hesaplayın veya hedef kâr marjınıza göre satış fiyatını bulun.',
+    categoryId: 'finans',
+    status: 'active',
+    keywords: ['kâr marjı', 'kar marjı', 'kâr marjı hesaplama', 'kar marjı hesaplama', 'kâr oranı hesaplama', 'satış fiyatı hesaplama', 'hedef kâr marjı', 'maliyet ve satış', 'kâr hesaplama']
   }
 ];
+
 
 
 

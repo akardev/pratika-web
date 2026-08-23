@@ -6,6 +6,7 @@ import IndirimHesaplama from '@/components/tools/IndirimHesaplama';
 import YuzdeHesaplama from '@/components/tools/YuzdeHesaplama';
 import YasHesaplama from '@/components/tools/YasHesaplama';
 import KdvHesaplama from '@/components/tools/KdvHesaplama';
+import KarMarjiHesaplama from '@/components/tools/KarMarjiHesaplama';
 import ToolCard from '@/components/ui/ToolCard';
 
 type Props = {
@@ -50,6 +51,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  if (tool.slug === 'kar-marji-hesaplama') {
+    return {
+      title: 'Kar Marjı Hesaplama - Pratika',
+      description: 'Maliyet ve satış fiyatına göre kâr marjını hesaplayın veya hedef kâr marjınıza göre satış fiyatını bulun.',
+    };
+  }
+
   return {
     title: tool.title,
     description: tool.description,
@@ -88,6 +96,7 @@ export default async function ToolPage({ params }: Props) {
         {tool.slug === 'yuzde-hesaplama' && <YuzdeHesaplama />}
         {tool.slug === 'yas-hesaplama' && <YasHesaplama />}
         {tool.slug === 'kdv-hesaplama' && <KdvHesaplama />}
+        {tool.slug === 'kar-marji-hesaplama' && <KarMarjiHesaplama />}
       </div>
 
       {/* İlgili Araçlar */}
@@ -106,6 +115,7 @@ export default async function ToolPage({ params }: Props) {
     </div>
   );
 }
+
 
 
 
