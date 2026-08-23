@@ -1,3 +1,4 @@
+import { tools } from '@/data/tools';
 import { articles } from '@/data/articles';
 
 export default function sitemap() {
@@ -20,36 +21,6 @@ export default function sitemap() {
       url: `${baseUrl}/bilgi`,
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/arac/indirim-hesaplama`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/arac/yuzde-hesaplama`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/arac/yas-hesaplama`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/arac/kdv-hesaplama`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/arac/kar-marji-hesaplama`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
     {
@@ -96,6 +67,15 @@ export default function sitemap() {
     },
   ];
 
+  const toolRoutes = tools
+    .filter((t) => t.status === 'active')
+    .map((tool) => ({
+      url: `${baseUrl}/arac/${tool.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    }));
+
   const articleRoutes = articles.map((article) => ({
     url: `${baseUrl}/bilgi/${article.slug}`,
     lastModified: new Date(),
@@ -103,10 +83,5 @@ export default function sitemap() {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...articleRoutes];
+  return [...staticRoutes, ...toolRoutes, ...articleRoutes];
 }
-
-
-
-
-

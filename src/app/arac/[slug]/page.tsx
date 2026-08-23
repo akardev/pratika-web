@@ -8,6 +8,7 @@ import YuzdeHesaplama from '@/components/tools/YuzdeHesaplama';
 import YasHesaplama from '@/components/tools/YasHesaplama';
 import KdvHesaplama from '@/components/tools/KdvHesaplama';
 import KarMarjiHesaplama from '@/components/tools/KarMarjiHesaplama';
+import ZamHesaplama from '@/components/tools/ZamHesaplama';
 import ToolCard from '@/components/ui/ToolCard';
 
 type Props = {
@@ -59,6 +60,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  if (tool.slug === 'zam-hesaplama') {
+    return {
+      title: 'Zam Hesaplama | Pratika',
+      description: 'Zam oranına göre yeni fiyatı ve zam tutarını hesaplayın. Zamlı fiyattan zam öncesi fiyatı da kolayca bulun.',
+    };
+  }
+
   return {
     title: tool.title,
     description: tool.description,
@@ -99,6 +107,7 @@ export default async function ToolPage({ params }: Props) {
         {tool.slug === 'yas-hesaplama' && <YasHesaplama />}
         {tool.slug === 'kdv-hesaplama' && <KdvHesaplama />}
         {tool.slug === 'kar-marji-hesaplama' && <KarMarjiHesaplama />}
+        {tool.slug === 'zam-hesaplama' && <ZamHesaplama />}
       </div>
 
       {/* İlgili Bilgiler (Bilgi Merkezi İçerikleri) */}
@@ -153,6 +162,7 @@ export default async function ToolPage({ params }: Props) {
     </div>
   );
 }
+
 
 
 

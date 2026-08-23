@@ -60,8 +60,18 @@ export const tools: Tool[] = [
     categoryId: 'finans',
     status: 'active',
     keywords: ['kâr marjı', 'kar marjı', 'kâr marjı hesaplama', 'kar marjı hesaplama', 'kâr oranı hesaplama', 'satış fiyatı hesaplama', 'hedef kâr marjı', 'maliyet ve satış', 'kâr hesaplama']
+  },
+  {
+    id: 'zam-hesaplama',
+    slug: 'zam-hesaplama',
+    title: 'Zam Hesaplama',
+    description: 'Bir fiyata uygulanacak zam tutarını ve zamlı yeni fiyatı hesaplayın veya zam öncesi fiyatı bulun.',
+    categoryId: 'finans',
+    status: 'active',
+    keywords: ['zam', 'zam hesaplama', 'zamlı fiyat', 'zam oranı', 'zam tutarı', 'zam öncesi fiyat', 'fiyat artışı', 'artış hesaplama']
   }
 ];
+
 
 export function getActiveCategories(): Category[] {
   const activeCategoryIds = new Set(tools.filter(t => t.status === 'active').map(t => t.categoryId));

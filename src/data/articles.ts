@@ -315,8 +315,59 @@ export const articles: Article[] = [
         note: 'Doğum gününüz henüz gelmediyse tamamladığınız yaş bir önceki yaşınızdır; gün doldurma esastır.'
       }
     ]
+  },
+  {
+    id: 'zam-nasil-hesaplanir',
+    slug: 'zam-nasil-hesaplanir',
+    title: 'Zam Nasıl Hesaplanır?',
+    description: 'Bir fiyata zam uygulama formülü, zamlı fiyat bulma, zam tutarı ve zam öncesi eski fiyatı hesaplama rehberi.',
+    category: 'Finans',
+    relatedToolSlug: 'zam-hesaplama',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['zam nasıl hesaplanır', 'zam hesaplama', 'zamlı fiyat bulma', 'ters zam hesabı', 'zam formülü'],
+    sections: [
+      {
+        heading: 'Zam Hesaplama Temelleri',
+        paragraphs: [
+          'Zam, bir malın, hizmetin veya maaşın mevcut fiyatına uygulanan oransal fiyat artışıdır.',
+          'Uygulanan zam oranı üzerinden hem ödenecek net zam tutarı hem de artış sonrasındaki yeni fiyat hesaplanır.'
+        ]
+      },
+      {
+        heading: 'Zam Hesaplama Formülü',
+        paragraphs: [
+          'Mevcut tutara zam eklemek için aşağıdaki formüller kullanılır:'
+        ],
+        formula: 'Zam Tutarı = Mevcut Fiyat × (Zam Oranı / 100)\nZamlı Yeni Fiyat = Mevcut Fiyat + Zam Tutarı'
+      },
+      {
+        heading: 'Ters Zam Hesabı (Zam Öncesi Fiyatı Bulma)',
+        paragraphs: [
+          'Zamlı fiyattan eski fiyatı bulurken doğrudan aynı yüzdeyi çıkarmak matematiksel olarak hatalıdır. Doğru yöntem bölme işlemi yapmaktır:'
+        ],
+        formula: 'Zam Öncesi Fiyat = Zamlı Fiyat / (1 + Zam Oranı / 100)\nZam Tutarı = Zamlı Fiyat - Zam Öncesi Fiyat'
+      },
+      {
+        heading: 'Örnek Hesaplama ve Ters Zam Karşılaştırması',
+        paragraphs: [
+          '10.000 TL\'lik bir fiyata %25 zam uygulandığında ve ardından ters hesap yapıldığında durum şöyledir:'
+        ],
+        example: {
+          title: '%25 Zam ve Ters Hesaplama Özeti',
+          items: [
+            { label: 'Başlangıç Fiyatı', value: '10.000,00 TL' },
+            { label: 'Zam Tutarı (%25)', value: '2.500,00 TL' },
+            { label: 'Zamlı Yeni Fiyat', value: '12.500,00 TL' },
+            { label: 'Zam Öncesi Fiyat (12.500 / 1,25)', value: '10.000,00 TL' }
+          ]
+        },
+        note: '12.500 TL\'den %25 düşülürse 9.375 TL bulunur. Bu nedenle zam öncesi fiyata ulaşmak için mutlaka bölme formülü (12.500 / 1,25) kullanılmalıdır.'
+      }
+    ]
   }
 ];
+
 
 export function getAllArticles(): Article[] {
   return articles;
