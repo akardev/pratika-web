@@ -14,8 +14,22 @@ interface SearchModalProps {
 export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [isMobileScreen, setIsMobileScreen] = useState(false);
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobileScreen(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const modalPlaceholder = isMobileScreen
+    ? 'Aracınızı arayın...'
+    : 'Aracınızı yazın (Örn: KDV, PDF, QR, yüzde, kıdem...)';
 
   // Modal açıldığında inputa odaklan
   useEffect(() => {
@@ -140,7 +154,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
               ref={inputRef}
               type="text"
               className="w-full bg-transparent text-sm sm:text-base outline-none text-foreground placeholder:text-muted-foreground"
-              placeholder="Aracınızı yazın (KDV, PDF, QR, yüzde, maliyet...)"
+              placeholder={modalPlaceholder}
               value={query}
               onChange={(e) => {
                 setQuery(e.target.value);

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { formatCurrency, formatNumber, parseTurkishNumber } from '@/lib/utils';
+import { formatCurrency, formatNumber, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
 interface MaturityDiffResult {
   cashPrice: number;
@@ -88,9 +88,9 @@ export default function VadeFarkiHesaplama() {
                   id="cashPrice"
                   placeholder="Örn: 10.000"
                   autoComplete="off"
-                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                   value={cashPriceStr}
-                  onChange={(e) => setCashPriceStr(e.target.value)}
+                  onChange={(e) => setCashPriceStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                 />
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                   TL
@@ -110,9 +110,9 @@ export default function VadeFarkiHesaplama() {
                     id="creditPrice"
                     placeholder="Örn: 11.500"
                     autoComplete="off"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                     value={creditPriceStr}
-                    onChange={(e) => setCreditPriceStr(e.target.value)}
+                    onChange={(e) => setCreditPriceStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                     TL
@@ -131,9 +131,9 @@ export default function VadeFarkiHesaplama() {
                     id="installments"
                     placeholder="6"
                     autoComplete="off"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                     value={installmentsStr}
-                    onChange={(e) => setInstallmentsStr(e.target.value)}
+                    onChange={(e) => setInstallmentsStr(sanitizeNumericInput(e.target.value, { allowDecimal: false }))}
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                     Ay

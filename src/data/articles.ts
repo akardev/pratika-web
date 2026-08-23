@@ -1202,6 +1202,183 @@ export const articles: Article[] = [
         note: 'Görselinizi seçtiğiniz sosyal medya ölçüsüne tarayıcınızda anında ve ücretsiz dönüştürmek için Pratika Sosyal Medya Görsel Boyutlandırıcı aracını kullanabilirsiniz.'
       }
     ]
+  },
+  {
+    id: 'kidem-tazminati-nasil-hesaplanir',
+    slug: 'kidem-tazminati-nasil-hesaplanir',
+    title: 'Kıdem Tazminatı Nasıl Hesaplanır?',
+    description: '1475 sayılı Kanun uyarınca kıdem tazminatı hesaplama şartları, giydirilmiş brüt ücret mantığı, yasal tavan ve kesintiler rehberi.',
+    category: 'İş & Çalışma',
+    relatedToolSlug: 'kidem-tazminati-hesaplama',
+    readTime: '4 dk okuma',
+    publishedAt: '2026-08-24',
+    keywords: ['kıdem tazminatı nasıl hesaplanır', 'kıdem tazminatı şartları', 'giydirilmiş brüt ücret', 'kıdem tavanı'],
+    sections: [
+      {
+        heading: 'Kıdem Tazminatına Hak Kazanma Şartları',
+        paragraphs: [
+          '1475 Sayılı İş Kanunu m. 14 hükmüne göre kıdem tazminatı; işçinin aynı işverene bağlı işyerlerinde en az 1 tam yıl çalışmış olması ve iş sözleşmesinin kanunda belirtilen haklı veya geçerli nedenlerle sona ermesi halinde ödenen yasal bir tazminattır.',
+          'İşverenin haksız feshi, işçinin haklı nedenle feshi (ücretin ödenmemesi, mobbing vb.), askerlik, emeklilik veya kadın işçinin evlilik tarihinden itibaren 1 yıl içinde ayrılması durumlarında kıdem tazminatı hakkı doğar.'
+        ]
+      },
+      {
+        heading: 'Kıdem Tazminatı Hesaplama Formülü',
+        paragraphs: [
+          'Çalışılan her tam yıl için 30 günlük giydirilmiş brüt ücret ödenir. 1 yıldan artan aylar ve günler oranlanarak hesaba katılır.',
+          'Kıdem tazminatından SGK primi ve Gelir Vergisi kesilmez; yalnızca binde 7,59 (%0,759) oranında Damga Vergisi kesintisi yapılır.'
+        ],
+        formula: 'Brüt Kıdem = Giydirilmiş Brüt Maaş × (Toplam Çalışma Günü / 365)\nNet Kıdem = Brüt Kıdem - (Brüt Kıdem × 0,00759)'
+      },
+      {
+        heading: 'Örnek Hesaplama',
+        paragraphs: [
+          '3 yıl 6 ay (3,5 yıl) çalışan ve aylık giydirilmiş brüt maaşı 40.000 TL olan bir çalışanın hesabı:'
+        ],
+        example: {
+          title: '3,5 Yıllık Kıdem Örneği (40.000 TL Brüt)',
+          items: [
+            { label: 'Giydirilmiş Brüt Maaş', value: '40.000,00 TL' },
+            { label: 'Çalışma Süresi', value: '3 Yıl 6 Ay (3,5 Yıl)' },
+            { label: 'Toplam Brüt Kıdem (40.000 × 3,5)', value: '140.000,00 TL' },
+            { label: 'Damga Vergisi (%0,759)', value: '-1.062,60 TL' },
+            { label: 'Ele Geçecek Net Kıdem', value: '138.937,40 TL' }
+          ]
+        },
+        note: 'Giydirilmiş brüt ücret Hazine ve Maliye Bakanlığı tarafından açıklanan Kıdem Tazminatı Tavanını aşıyorsa hesaplamada tavan tutarı esas alınır.'
+      }
+    ]
+  },
+  {
+    id: 'ihbar-sureleri-ve-ihbar-tazminati',
+    slug: 'ihbar-sureleri-ve-ihbar-tazminati',
+    title: 'İhbar Süresi ve İhbar Tazminatı Nedir?',
+    description: '4857 sayılı İş Kanunu Madde 17 kapsamındaki yasal bildirim süreleri, kademeler ve ihbar tazminatı hesaplama kuralları.',
+    category: 'İş & Çalışma',
+    relatedToolSlug: 'ihbar-tazminati-hesaplama',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-24',
+    keywords: ['ihbar tazminatı nedir', 'ihbar süresi hesaplama', 'ihbar haftaları', 'iş arama izni'],
+    sections: [
+      {
+        heading: 'İhbar Süresi ve Kademeleri Nelerdir?',
+        paragraphs: [
+          '4857 Sayılı İş Kanunu m. 17 uyarınca belirsiz süreli iş sözleşmelerinin feshinden önce karşı tarafa yazılı bildirim yapılması zorunludur. Bildirim süreleri kıdeme göre şu şekildedir:',
+          '• 6 aydan az kıdem: 2 Hafta (14 Gün)\n• 6 ay - 1,5 yıl arası kıdem: 4 Hafta (28 Gün)\n• 1,5 yıl - 3 yıl arası kıdem: 6 Hafta (42 Gün)\n• 3 yıldan fazla kıdem: 8 Hafta (56 Gün)'
+        ]
+      },
+      {
+        heading: 'İhbar Tazminatı Hesaplama ve Kesintiler',
+        paragraphs: [
+          'Bildirim süresine uymadan sözleşmeyi fesheden taraf (işçi veya işveren), karşı tarafa bu sürenin brüt ücreti tutarında ihbar tazminatı öder.',
+          'İhbar tazminatından Gelir Vergisi (kümülatif dilime göre %15-%40) ve Damga Vergisi (%0,759) kesilir. SGK primi kesilmez.'
+        ],
+        formula: 'Günlük Brüt Ücret = Aylık Brüt Maaş / 30\nBrüt İhbar = Günlük Brüt Ücret × İhbar Günü Sayısı\nNet İhbar = Brüt İhbar - (Gelir Vergisi + Damga Vergisi)'
+      },
+      {
+        heading: 'Günde 2 Saat İş Arama İzni',
+        paragraphs: [
+          'İhbar süresini çalışarak geçiren işçiye, iş saatleri içinde ve ücretinde hiçbir kesinti yapılmaksızın günde en az 2 saat yeni iş arama izni verilmesi zorunludur (4857 SK m. 27).'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'yillik-izin-hakki-ve-sureleri',
+    slug: 'yillik-izin-hakki-ve-sureleri',
+    title: 'Yıllık İzin Hakkı ve Süreleri Nasıl Hesaplanır?',
+    description: 'İş Kanunu uyarınca yıllık ücretli izin hak etme koşulları, kıdeme göre asgari izin günleri ve yaş koruma kuralları.',
+    category: 'İş & Çalışma',
+    relatedToolSlug: 'yillik-izin-hesaplama',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-24',
+    keywords: ['yıllık izin hakkı', 'kaç gün yıllık izin', 'yıllık ücretli izin', 'izin süreleri'],
+    sections: [
+      {
+        heading: 'Yıllık İzne Hak Kazanma Koşulları',
+        paragraphs: [
+          'İşçinin aynı işverene bağlı olarak işe başladığı günden itibaren, deneme süresi de dahil olmak üzere en az 1 tam yıl fiilen çalışmış olması şarttır (4857 SK m. 53).',
+          '1 yıldan az çalışan işçiler yasal yıllık ücretli izne hak kazanamaz.'
+        ]
+      },
+      {
+        heading: 'Yasal Asgari İzin Süreleri',
+        paragraphs: [
+          'Kanunda belirlenen asgari yıllık izin süreleri şunlardır:\n• 1 yıldan 5 yıla kadar (5 yıl dahil): En az 14 Gün\n• 5 yıldan fazla 15 yıldan az: En az 20 Gün\n• 15 yıl (dahil) ve daha fazla: En az 26 Gün',
+          'Önemli Kural: 18 ve daha küçük yaştaki işçiler ile 50 ve daha yukarı yaştaki işçilere verilecek yıllık ücretli izin süresi 20 günden az olamaz.'
+        ]
+      },
+      {
+        heading: 'Kullanılmayan İznin Ücrete Dönüşmesi',
+        paragraphs: [
+          'İş sözleşmesi devam ederken yıllık izinden feragat edilemez veya izin yerine ücret ödenemez. Ancak iş sözleşmesi sona erdiğinde (istifa veya çıkarılma), kullanılmayan tüm izin günlerinin ücreti son brüt maaş üzerinden nakden ödenir (4857 SK m. 59).'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'brut-maas-ile-net-maas-farki',
+    slug: 'brut-maas-ile-net-maas-farki',
+    title: 'Brüt Maaş ile Net Maaş Arasındaki Fark Nedir?',
+    description: 'Brüt ücretten net ele geçen tutara ulaşırken yapılan SGK, gelir vergisi, damga vergisi kesintileri ve asgari ücret istisnası mantığı.',
+    category: 'İş & Çalışma',
+    relatedToolSlug: 'brutten-nete-maas-hesaplama',
+    readTime: '4 dk okuma',
+    publishedAt: '2026-08-24',
+    keywords: ['brüt net maaş farkı', 'brütten nete kesintiler', 'gelir vergisi dilimleri', 'asgari ücret istisnası'],
+    sections: [
+      {
+        heading: 'Brüt Maaş ve Net Maaş Tanımları',
+        paragraphs: [
+          'Brüt Maaş: İş sözleşmesinde yazılı olan ve henüz hiçbir yasal kesinti (SGK, işsizlik, gelir vergisi, damga vergisi) yapılmamış toplam ücrettir.',
+          'Net Maaş: Tüm yasal kesintiler yapıldıktan sonra çalışanın banka hesabına fiilen yatan tutardır.'
+        ]
+      },
+      {
+        heading: 'Bordrodaki Kesinti Kalemleri',
+        paragraphs: [
+          '1. SGK İşçi Payı: Brüt maaşın %14\'ü\n2. İşsizlik Sigortası İşçi Payı: Brüt maaşın %1\'i\n3. Gelir Vergisi: (Brüt - SGK Kesintileri) matrahına uygulanan %15, %20, %27 veya %35 dilim oranı\n4. Damga Vergisi: Brüt ücret üzerinden binde 7,59 (%0,759)'
+        ]
+      },
+      {
+        heading: 'Asgari Ücret Vergi İstisnası',
+        paragraphs: [
+          '7349 sayılı Kanun ile tüm çalışanların maaşlarının asgari ücrete kadar olan kısmı Gelir Vergisi ve Damga Vergisinden muaf tutulmuştur. Bu istisna bordroda hesaplanan vergiden doğrudan düşülerek çalışanın net maaşını artırır.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'fazla-mesai-ucreti-ve-calisma-saatleri',
+    slug: 'fazla-mesai-ucreti-ve-calisma-saatleri',
+    title: 'Fazla Mesai Ücreti ve Yasal Çalışma Saatleri',
+    description: '4857 sayılı İş Kanunu Madde 41 uyarınca haftalık 45 saat çalışma sınırı, saatlik ücret hesabı ve %50 / %100 zamlı mesai oranları.',
+    category: 'İş & Çalışma',
+    relatedToolSlug: 'fazla-mesai-hesaplama',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-24',
+    keywords: ['fazla mesai ücreti', 'fazla çalışma nasıl hesaplanır', 'saatlik ücret', 'resmi tatil mesaisi'],
+    sections: [
+      {
+        heading: 'Yasal Haftalık Çalışma Süresi',
+        paragraphs: [
+          '4857 Sayılı İş Kanunu m. 63 uyarınca genel bakımdan haftalık çalışma süresi en çok 45 saattir. Haftalık 45 saati aşan her çalışma "Fazla Çalışma" (Fazla Mesai) olarak kabul edilir.'
+        ]
+      },
+      {
+        heading: 'Saatlik Ücret ve Zam Katsayıları',
+        paragraphs: [
+          'Aylık yasal çalışma saati 225 saattir (45 saat / 6 gün × 30 gün = 225 saat). Çıplak saatlik ücret `Aylık Brüt Maaş / 225` formülü ile bulunur.',
+          '• Normal Fazla Mesai: Saatlik ücretin %50 fazlası (%150 / 1.5 katsayı) olarak ödenir.\n• Ulusal Bayram ve Genel Tatil Çalışması: Çalışılan her gün için 1 tam günlük ek yevmiye (%100 zamlı) ödenir.'
+        ],
+        formula: 'Saatlik Ücret = Aylık Brüt Maaş / 225\nNormal Mesai Ücreti = Saatlik Ücret × 1,5 × Fazla Mesai Saati\nTatil Mesai Ücreti = Saatlik Ücret × 2,0 × Fazla Mesai Saati'
+      },
+      {
+        heading: 'Yıllık 270 Saat Fazla Mesai Sınırı',
+        paragraphs: [
+          'Kanun gereğince işçiye bir yılda yaptırılabilecek toplam fazla mesai süresi 270 saati aşamaz. Fazla mesai için işçinin onayının alınması esastır.'
+        ]
+      }
+    ]
   }
 ];
 

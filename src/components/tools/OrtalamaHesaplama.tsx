@@ -88,10 +88,10 @@ export default function OrtalamaHesaplama() {
               <textarea
                 id="numbers"
                 rows={4}
-                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base resize-none"
+                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono resize-none"
                 placeholder="Örn: 70, 85, 90, 65, 80"
                 value={inputStr}
-                onChange={(e) => setInputStr(e.target.value)}
+                onChange={(e) => setInputStr(e.target.value.replace(/[^0-9, .\n\r\t-]/g, ''))}
               />
             </div>
 

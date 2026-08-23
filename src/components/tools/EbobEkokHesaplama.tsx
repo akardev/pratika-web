@@ -66,9 +66,9 @@ export default function EbobEkokHesaplama() {
                 type="text"
                 id="ebobInput"
                 placeholder="Örn: 24, 36"
-                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
+                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base font-mono"
                 value={inputStr}
-                onChange={(e) => setInputStr(e.target.value)}
+                onChange={(e) => setInputStr(e.target.value.replace(/[^0-9, .\t]/g, ''))}
               />
             </div>
 

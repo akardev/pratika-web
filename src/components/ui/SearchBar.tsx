@@ -8,6 +8,7 @@ import { matchesSearchQuery, getSearchRelevanceScore } from '@/lib/search';
 
 interface SearchBarProps {
   placeholder?: string;
+  placeholderMobile?: string;
   className?: string;
   autoFocus?: boolean;
   onSelect?: () => void;
@@ -16,6 +17,7 @@ interface SearchBarProps {
 
 export default function SearchBar({
   placeholder = 'KDV, PDF, QR kod, yüzde, fotoğraf...',
+  placeholderMobile,
   className = '',
   autoFocus = false,
   onSelect,
@@ -24,9 +26,24 @@ export default function SearchBar({
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [isMobileScreen, setIsMobileScreen] = useState(false);
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Mobil ekran tespiti ile placeholder optimizasyonu
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobileScreen(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const activePlaceholder = isMobileScreen
+    ? placeholderMobile || (placeholder.includes('(') ? placeholder.split('(')[0].trim() : placeholder)
+    : placeholder;
 
   // Global Ctrl+K / Cmd+K kısayol dinleyicisi
   useEffect(() => {
@@ -147,7 +164,7 @@ export default function SearchBar({
             id={id}
             autoComplete="off"
             autoFocus={autoFocus}
-            placeholder={placeholder}
+            placeholder={activePlaceholder}
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);

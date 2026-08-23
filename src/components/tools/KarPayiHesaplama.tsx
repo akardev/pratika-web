@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { formatCurrency, formatNumber, parseTurkishNumber } from '@/lib/utils';
+import { formatCurrency, formatNumber, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
 interface DividendResult {
   shares: number;
@@ -91,9 +91,9 @@ export default function KarPayiHesaplama() {
                   id="shares"
                   placeholder="Örn: 1.000"
                   autoComplete="off"
-                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-14 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-14 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                   value={sharesStr}
-                  onChange={(e) => setSharesStr(e.target.value)}
+                  onChange={(e) => setSharesStr(sanitizeNumericInput(e.target.value, { allowDecimal: false }))}
                 />
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                   Adet
@@ -113,9 +113,9 @@ export default function KarPayiHesaplama() {
                     id="perShare"
                     placeholder="Örn: 2,50"
                     autoComplete="off"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                     value={perShareStr}
-                    onChange={(e) => setPerShareStr(e.target.value)}
+                    onChange={(e) => setPerShareStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                     TL
@@ -134,9 +134,9 @@ export default function KarPayiHesaplama() {
                     id="sharePrice"
                     placeholder="Örn: 45,00"
                     autoComplete="off"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                     value={sharePriceStr}
-                    onChange={(e) => setSharePriceStr(e.target.value)}
+                    onChange={(e) => setSharePriceStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                     TL

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { formatNumber, parseTurkishNumber } from '@/lib/utils';
+import { formatNumber, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
 type CalcType = 'percentage-of' | 'ratio' | 'increase' | 'decrease';
 
@@ -166,10 +166,10 @@ export default function YuzdeHesaplama() {
                     inputMode="decimal"
                     id="input1"
                     autoComplete="off"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                     placeholder={currentTab.input1Placeholder}
                     value={input1Str}
-                    onChange={(e) => setInput1Str(e.target.value)}
+                    onChange={(e) => setInput1Str(sanitizeNumericInput(e.target.value, { allowDecimal: true, allowNegative: true }))}
                   />
                   {currentTab.input1Suffix && (
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
@@ -189,10 +189,10 @@ export default function YuzdeHesaplama() {
                     inputMode="decimal"
                     id="input2"
                     autoComplete="off"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                     placeholder={currentTab.input2Placeholder}
                     value={input2Str}
-                    onChange={(e) => setInput2Str(e.target.value)}
+                    onChange={(e) => setInput2Str(sanitizeNumericInput(e.target.value, { allowDecimal: true, allowNegative: true }))}
                   />
                   {currentTab.input2Suffix && (
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">

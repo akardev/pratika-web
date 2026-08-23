@@ -420,7 +420,97 @@ export const tools: Tool[] = [
     keywords: ['elektrik tüketim maliyeti', 'elektrik faturası hesaplama', 'kwh tutarı', 'cihaz elektrik tüketimi', 'aylık elektrik masrafı']
   },
 
-  // --- MAAŞ & ÇALIŞMA (3) ---
+  // --- MAAŞ & ÇALIŞMA (12) ---
+  {
+    id: 'kidem-tazminati-hesaplama',
+    slug: 'kidem-tazminati-hesaplama',
+    title: 'Kıdem Tazminatı Hesaplama',
+    description: '1475 sayılı Kanun uyarınca işe giriş-çıkış tarihi, brüt maaş ve yan haklarınıza göre yasal tavan ve damga vergisi dahil net kıdem tazminatınızı hesaplayın.',
+    categoryId: 'maas',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ['kıdem tazminatı hesaplama', 'kıdem tazminatı', 'tazminat hesaplama', 'kıdem tavanı', 'işten çıkarılma tazminatı', 'tazminat ne kadar', 'kidem']
+  },
+  {
+    id: 'ihbar-tazminati-hesaplama',
+    slug: 'ihbar-tazminati-hesaplama',
+    title: 'İhbar Tazminatı Hesaplama',
+    description: '4857 sayılı İş Kanunu Madde 17 uyarınca kıdem sürenize göre bildirim haftası, gelir vergisi ve damga vergisi kesintili net ihbar tazminatınızı hesaplayın.',
+    categoryId: 'maas',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ['ihbar tazminatı hesaplama', 'ihbar tazminatı', 'ihbar süresi ücreti', 'ihbar hesaplama', 'ihbar parası']
+  },
+  {
+    id: 'kidem-ihbar-tazminati-hesaplama',
+    slug: 'kidem-ihbar-tazminati-hesaplama',
+    title: 'Kıdem ve İhbar Tazminatı Hesaplama',
+    description: 'Kıdem ve ihbar tazminatı hak edişlerinizi aynı ekranda bir arada hesaplayarak toplam net ve brüt tazminat tutarınızı öğrenin.',
+    categoryId: 'maas',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ['kıdem ihbar hesaplama', 'tazminat toplamı', 'kıdem ve ihbar', 'toplam tazminat tutarı', 'işten ayrılma tazminatı']
+  },
+  {
+    id: 'yillik-izin-hesaplama',
+    slug: 'yillik-izin-hesaplama',
+    title: 'Yıllık İzin Hesaplama',
+    description: '4857 sayılı İş Kanunu Madde 53 gereğince toplam çalışma süreniz ve yaşınıza göre hak ettiğiniz yasal asgari yıllık ücretli izin gün sayısını hesaplayın.',
+    categoryId: 'maas',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ['yıllık izin hesaplama', 'yıllık izin hakkı', 'kaç gün izin hakkım var', 'izin süresi', 'yıllık ücretli izin', 'izin günü']
+  },
+  {
+    id: 'kullanilmayan-yillik-izin-ucreti-hesaplama',
+    slug: 'kullanilmayan-yillik-izin-ucreti-hesaplama',
+    title: 'Kullanılmayan Yıllık İzin Ücreti Hesaplama',
+    description: 'İş sözleşmesi sona erdiğinde kullanılmayan yıllık izin günlerinizin son brüt maaş üzerinden SGK, vergi ve net ücret karşılığını hesaplayın.',
+    categoryId: 'maas',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ['kullanılmayan izin ücreti', 'yıllık izin parası', 'izin ücreti hesaplama', 'kalan izin parası', 'izin alacağı']
+  },
+  {
+    id: 'ihbar-suresi-hesaplama',
+    slug: 'ihbar-suresi-hesaplama',
+    title: 'İhbar Süresi Hesaplama',
+    description: 'İşe giriş ve ayrılış tarihinize göre 4857 sayılı Kanundaki 2, 4, 6 veya 8 haftalık yasal bildirim sürenizi ve sözleşme bitiş tarihinizi hesaplayın.',
+    categoryId: 'maas',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ['ihbar süresi hesaplama', 'ihbar süresi kaç gün', 'bildirim süresi', 'kaç hafta ihbar', 'ihbar süresi kaç hafta']
+  },
+  {
+    id: 'netten-brute-maas-hesaplama',
+    slug: 'netten-brute-maas-hesaplama',
+    title: 'Netten Brüte Maaş Hesaplama',
+    description: 'Elinize geçen net maaştan SGK, işsizlik primi, vergi dilimleri ve asgari ücret vergi istisnası dahil gereken brüt maaşı ve işveren maliyetini hesaplayın.',
+    categoryId: 'maas',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ['netten brüte maaş hesaplama', 'netten brüte', 'net maaşı brüte çevirme', 'brüt maaş bulma', 'netten brüte bordro']
+  },
+  {
+    id: 'brutten-nete-maas-hesaplama',
+    slug: 'brutten-nete-maas-hesaplama',
+    title: 'Brütten Nete Maaş Hesaplama',
+    description: 'Aylık brüt maaşınızdan SGK işçi primi, işsizlik primi, gelir vergisi, damga vergisi ve asgari ücret istisnası düşülerek net maaşınızı hesaplayın.',
+    categoryId: 'maas',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ['brütten nete maaş hesaplama', 'brütten nete', 'brüt maaş nete çevirme', 'net maaş hesaplama', 'maaş bordrosu hesaplama']
+  },
+  {
+    id: 'ise-giris-cikis-suresi-hesaplama',
+    slug: 'ise-giris-cikis-suresi-hesaplama',
+    title: 'İşe Giriş / Çıkış Süresi Hesaplama',
+    description: 'İşe giriş ve işten ayrılış tarihleriniz arasındaki toplam çalışma süresini yıl, ay, gün ve toplam hafta olarak hesaplayın.',
+    categoryId: 'zaman',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ['işe giriş çıkış süresi', 'çalışma süresi hesaplama', 'kıdem süresi hesaplama', 'hizmet süresi', 'ne kadar çalıştım']
+  },
   {
     id: 'saat-ucreti-hesaplama',
     slug: 'saat-ucreti-hesaplama',

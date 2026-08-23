@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { formatCurrency, formatNumber, parseTurkishNumber } from '@/lib/utils';
+import { formatCurrency, formatNumber, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
 interface RoiResult {
   cost: number;
@@ -72,9 +72,9 @@ export default function RoiHesaplama() {
                   id="cost"
                   placeholder="Örn: 50.000"
                   autoComplete="off"
-                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                   value={costStr}
-                  onChange={(e) => setCostStr(e.target.value)}
+                  onChange={(e) => setCostStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                 />
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                   TL
@@ -93,9 +93,9 @@ export default function RoiHesaplama() {
                   id="revenue"
                   placeholder="Örn: 75.000"
                   autoComplete="off"
-                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                   value={revenueStr}
-                  onChange={(e) => setRevenueStr(e.target.value)}
+                  onChange={(e) => setRevenueStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                 />
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                   TL

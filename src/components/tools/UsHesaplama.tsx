@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { formatNumber, parseTurkishNumber } from '@/lib/utils';
+import { formatNumber, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
 export default function UsHesaplama() {
   const [baseStr, setBaseStr] = useState<string>('2');
@@ -55,9 +55,9 @@ export default function UsHesaplama() {
                 inputMode="decimal"
                 id="base"
                 placeholder="Örn: 2"
-                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
+                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base font-mono"
                 value={baseStr}
-                onChange={(e) => setBaseStr(e.target.value)}
+                onChange={(e) => setBaseStr(sanitizeNumericInput(e.target.value, { allowDecimal: true, allowNegative: true }))}
               />
             </div>
 
@@ -70,9 +70,9 @@ export default function UsHesaplama() {
                 inputMode="decimal"
                 id="exp"
                 placeholder="Örn: 8"
-                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
+                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base font-mono"
                 value={expStr}
-                onChange={(e) => setExpStr(e.target.value)}
+                onChange={(e) => setExpStr(sanitizeNumericInput(e.target.value, { allowDecimal: true, allowNegative: true }))}
               />
             </div>
 

@@ -180,9 +180,9 @@ export default function PdfBol() {
                 type="text"
                 id="range-input"
                 value={rangeInput}
-                onChange={(e) => setRangeInput(e.target.value)}
+                onChange={(e) => setRangeInput(e.target.value.replace(/[^0-9, -]/g, ''))}
                 placeholder="Örnek: 1-3, 5, 8-10"
-                className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground text-sm font-mono font-medium focus:outline-none focus:ring-2 focus:ring-primary"
               />
               <p className="text-xs text-muted-foreground">
                 Virgülle ayırarak tekil sayfaları veya tire (-) ile sayfa aralıklarını belirtebilirsiniz.

@@ -83,4 +83,12 @@ body {
   background: #94a3b8;
 }
 
+/* Global input placeholder standard: prevent text overlap on narrow screens */
+input::placeholder,
+textarea::placeholder {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 

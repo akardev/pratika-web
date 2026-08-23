@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { formatNumber, parseTurkishNumber } from '@/lib/utils';
+import { formatNumber, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
 export default function OranOrantiHesaplama() {
   const [type, setType] = useState<'direct' | 'inverse'>('direct');
@@ -92,9 +92,9 @@ export default function OranOrantiHesaplama() {
                   inputMode="decimal"
                   id="a"
                   placeholder="Örn: 10"
-                  className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
+                  className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base font-mono"
                   value={aStr}
-                  onChange={(e) => setAStr(e.target.value)}
+                  onChange={(e) => setAStr(sanitizeNumericInput(e.target.value, { allowDecimal: true, allowNegative: true }))}
                 />
               </div>
 
@@ -107,9 +107,9 @@ export default function OranOrantiHesaplama() {
                   inputMode="decimal"
                   id="b"
                   placeholder="Örn: 50"
-                  className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
+                  className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base font-mono"
                   value={bStr}
-                  onChange={(e) => setBStr(e.target.value)}
+                  onChange={(e) => setBStr(sanitizeNumericInput(e.target.value, { allowDecimal: true, allowNegative: true }))}
                 />
               </div>
             </div>
@@ -123,9 +123,9 @@ export default function OranOrantiHesaplama() {
                 inputMode="decimal"
                 id="c"
                 placeholder="Örn: 30"
-                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
+                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base font-mono"
                 value={cStr}
-                onChange={(e) => setCStr(e.target.value)}
+                onChange={(e) => setCStr(sanitizeNumericInput(e.target.value, { allowDecimal: true, allowNegative: true }))}
               />
             </div>
 

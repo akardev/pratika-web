@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { formatNumber, parseTurkishNumber } from '@/lib/utils';
+import { formatNumber, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
 export default function SicaklikDonusturucu() {
   const [valStr, setValStr] = useState<string>('25');
@@ -34,9 +34,9 @@ export default function SicaklikDonusturucu() {
               inputMode="decimal"
               id="tempVal"
               placeholder="Örn: 25"
-              className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
+              className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base font-mono"
               value={valStr}
-              onChange={(e) => setValStr(e.target.value)}
+              onChange={(e) => setValStr(sanitizeNumericInput(e.target.value, { allowDecimal: true, allowNegative: true }))}
             />
           </div>
 

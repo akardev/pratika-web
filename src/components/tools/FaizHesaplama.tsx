@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { formatCurrency, formatNumber, parseTurkishNumber } from '@/lib/utils';
+import { formatCurrency, formatNumber, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
 type InterestType = 'simple' | 'compound';
 type DurationUnit = 'year' | 'month';
@@ -186,9 +186,9 @@ export default function FaizHesaplama() {
                   id="principal"
                   placeholder="Örn: 10.000,00"
                   autoComplete="off"
-                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                   value={principalStr}
-                  onChange={(e) => setPrincipalStr(e.target.value)}
+                  onChange={(e) => setPrincipalStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                 />
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                   TL
@@ -208,9 +208,9 @@ export default function FaizHesaplama() {
                   id="rate"
                   placeholder="Örn: 20"
                   autoComplete="off"
-                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                   value={rateStr}
-                  onChange={(e) => setRateStr(e.target.value)}
+                  onChange={(e) => setRateStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                 />
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                   %
@@ -230,9 +230,9 @@ export default function FaizHesaplama() {
                   id="duration"
                   placeholder="Örn: 1"
                   autoComplete="off"
-                  className="flex-1 rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                  className="flex-1 rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                   value={durationStr}
-                  onChange={(e) => setDurationStr(e.target.value)}
+                  onChange={(e) => setDurationStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                 />
                 <select
                   value={durationUnit}

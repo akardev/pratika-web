@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { formatCurrency, parseTurkishNumber } from '@/lib/utils';
+import { formatCurrency, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
 interface CostResult {
   unitPurchasePrice: number;
@@ -146,9 +146,9 @@ export default function MaliyetHesaplama() {
                     id="unitPurchasePrice"
                     placeholder="Örn: 600,00"
                     autoComplete="off"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                     value={unitPurchasePriceStr}
-                    onChange={(e) => setUnitPurchasePriceStr(e.target.value)}
+                    onChange={(e) => setUnitPurchasePriceStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                     TL
@@ -167,9 +167,9 @@ export default function MaliyetHesaplama() {
                     id="quantity"
                     placeholder="1"
                     autoComplete="off"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-14 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-14 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                     value={quantityStr}
-                    onChange={(e) => setQuantityStr(e.target.value)}
+                    onChange={(e) => setQuantityStr(sanitizeNumericInput(e.target.value, { allowDecimal: false }))}
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                     Adet
@@ -191,9 +191,9 @@ export default function MaliyetHesaplama() {
                     id="shippingCost"
                     placeholder="Örn: 15,00"
                     autoComplete="off"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                     value={shippingCostStr}
-                    onChange={(e) => setShippingCostStr(e.target.value)}
+                    onChange={(e) => setShippingCostStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                     TL
@@ -212,9 +212,9 @@ export default function MaliyetHesaplama() {
                     id="commissionCost"
                     placeholder="Örn: 250,00"
                     autoComplete="off"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                     value={commissionCostStr}
-                    onChange={(e) => setCommissionCostStr(e.target.value)}
+                    onChange={(e) => setCommissionCostStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                     TL
@@ -235,9 +235,9 @@ export default function MaliyetHesaplama() {
                   id="otherCost"
                   placeholder="Örn: 34,00"
                   autoComplete="off"
-                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                   value={otherCostStr}
-                  onChange={(e) => setOtherCostStr(e.target.value)}
+                  onChange={(e) => setOtherCostStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                 />
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                   TL

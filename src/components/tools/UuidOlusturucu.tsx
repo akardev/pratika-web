@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, useSyncExternalStore } from 'react';
+import { sanitizeNumericInput } from '@/lib/utils';
 
 const emptySubscribe = () => () => {};
 const getClientSnapshot = () => true;
@@ -104,13 +105,16 @@ export default function UuidOlusturucu() {
               Üretilecek Adet (1 - 50)
             </label>
             <input
-              type="number"
+              type="text"
+              inputMode="numeric"
               id="uuid-count"
-              min={1}
-              max={50}
               value={count}
-              onChange={(e) => handleCountChange(parseInt(e.target.value) || 1)}
-              className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm font-medium"
+              onChange={(e) => {
+                const cleaned = sanitizeNumericInput(e.target.value, { allowDecimal: false });
+                const num = parseInt(cleaned) || 1;
+                handleCountChange(Math.max(1, Math.min(num, 50)));
+              }}
+              className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground font-mono focus:outline-none focus:ring-2 focus:ring-primary text-sm font-medium"
             />
           </div>
 

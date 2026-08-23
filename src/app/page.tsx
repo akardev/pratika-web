@@ -65,9 +65,9 @@ export default function Home() {
     },
   };
 
-  // Kullanıcı Niyetine Dayalı Hızlı Başlangıç Etiketleri (Farklı kullanım türlerinin dengeli karması)
+  // Kullanıcı Niyetine Dayalı Hızlı Başlangıç Etiketleri (Gerçek ve popüler araçlara doğrudan bağlantı)
   const intentTags = [
-    { label: 'Dolar & Euro', query: 'dolar' },
+    { label: 'Yakıt Maliyeti', query: 'yakıt' },
     { label: 'PDF Dönüştür', query: 'pdf' },
     { label: 'QR Kod Oluştur', query: 'qr' },
     { label: 'KDV Hesapla', query: 'kdv' },
@@ -177,7 +177,10 @@ export default function Home() {
           </p>
 
           <div className="mb-4 sm:mb-5">
-            <SearchBar placeholder="Ne yapmak istiyorsun? (Örn: PDF dönüştür, QR kod oluştur, yaşımı hesapla...)" />
+            <SearchBar
+              placeholder="Ne yapmak istiyorsun? (Örn: PDF, QR kod, KDV, yakıt...)"
+              placeholderMobile="Ne yapmak istiyorsun?"
+            />
           </div>
 
           {/* Doğal Niyet Etiketleri */}

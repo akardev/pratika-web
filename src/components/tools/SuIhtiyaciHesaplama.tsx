@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { formatNumber, parseTurkishNumber } from '@/lib/utils';
+import { formatNumber, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
 export default function SuIhtiyaciHesaplama() {
   const [weightStr, setWeightStr] = useState<string>('70');
@@ -51,9 +51,9 @@ export default function SuIhtiyaciHesaplama() {
                 inputMode="decimal"
                 id="w"
                 placeholder="Örn: 70"
-                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
+                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base font-mono"
                 value={weightStr}
-                onChange={(e) => setWeightStr(e.target.value)}
+                onChange={(e) => setWeightStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
               />
             </div>
 

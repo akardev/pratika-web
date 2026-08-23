@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { formatNumber, parseTurkishNumber } from '@/lib/utils';
+import { formatNumber, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
 const TO_BYTES: Record<string, number> = {
   B: 1,
@@ -42,9 +42,9 @@ export default function VeriBirimiDonusturucu() {
               inputMode="decimal"
               id="dataVal"
               placeholder="Örn: 10"
-              className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
+              className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base font-mono"
               value={valStr}
-              onChange={(e) => setValStr(e.target.value)}
+              onChange={(e) => setValStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
             />
           </div>
 

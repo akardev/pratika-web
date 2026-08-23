@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { formatNumber } from '@/lib/utils';
+import DatePicker from '@/components/ui/DatePicker';
 
 interface AgeResult {
   years: number;
@@ -20,83 +21,31 @@ const MONTH_NAMES = [
 ];
 
 export default function YasHesaplama() {
-  const [birthDateStr, setBirthDateStr] = useState<string>('');
+  const [birthDateStr, setBirthDateStr] = useState<string>('1998-05-15');
   const [result, setResult] = useState<AgeResult | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const datePickerRef = useRef<HTMLInputElement>(null);
-
-  const handleDateInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const rawDigits = e.target.value.replace(/\D/g, '').slice(0, 8);
-    let formatted = '';
-    if (rawDigits.length > 0) {
-      formatted = rawDigits.slice(0, 2);
-      if (rawDigits.length >= 3) {
-        formatted += '.' + rawDigits.slice(2, 4);
-      }
-      if (rawDigits.length >= 5) {
-        formatted += '.' + rawDigits.slice(4, 8);
-      }
-    }
-    setBirthDateStr(formatted);
-  };
-
-  const handleDatePickerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value; // "YYYY-MM-DD"
-    if (val) {
-      const parts = val.split('-');
-      if (parts.length === 3) {
-        setBirthDateStr(`${parts[2]}.${parts[1]}.${parts[0]}`);
-        setError(null);
-      }
-    }
-  };
-
-  const openDatePicker = () => {
-    if (datePickerRef.current) {
-      if ('showPicker' in HTMLInputElement.prototype) {
-        try {
-          datePickerRef.current.showPicker();
-        } catch {
-          datePickerRef.current.focus();
-        }
-      } else {
-        datePickerRef.current.focus();
-      }
-    }
-  };
 
   const calculateAge = (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     setResult(null);
 
-    if (!birthDateStr.trim()) {
-      setError('Doğum tarihinizi girin.');
+    if (!birthDateStr) {
+      setError('Lütfen doğum tarihinizi girin.');
       return;
     }
 
-    const parts = birthDateStr.split(/[./-]/);
-    if (parts.length !== 3 || parts[2].length !== 4) {
-      setError('Lütfen doğum tarihinizi GG.AA.YYYY formatında girin.');
+    const parts = birthDateStr.split('-');
+    if (parts.length !== 3) {
+      setError('Lütfen geçerli bir doğum tarihi girin.');
       return;
     }
 
-    const birthDay = parseInt(parts[0], 10);
+    const birthYear = parseInt(parts[0], 10);
     const birthMonth = parseInt(parts[1], 10);
-    const birthYear = parseInt(parts[2], 10);
+    const birthDay = parseInt(parts[2], 10);
 
     if (isNaN(birthDay) || isNaN(birthMonth) || isNaN(birthYear) || birthYear < 1900) {
-      setError('Geçerli bir tarih girin.');
-      return;
-    }
-
-    if (birthMonth < 1 || birthMonth > 12) {
-      setError('Geçerli bir tarih girin.');
-      return;
-    }
-
-    const maxDaysInMonth = new Date(birthYear, birthMonth, 0).getDate();
-    if (birthDay < 1 || birthDay > maxDaysInMonth) {
       setError('Geçerli bir tarih girin.');
       return;
     }
@@ -112,7 +61,7 @@ export default function YasHesaplama() {
       (birthYear === currentYear && birthMonth > currentMonth) ||
       (birthYear === currentYear && birthMonth === currentMonth && birthDay > currentDay)
     ) {
-      setError('Doğum tarihi gelecekte olamaz.');
+      setError('Doğum tarihi bugünden sonraki bir tarih olamaz.');
       return;
     }
 
@@ -181,53 +130,16 @@ export default function YasHesaplama() {
       <div className="bg-card rounded-xl border border-border/60 p-6 sm:p-8 shadow-sm mb-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Sol Kolon: Form */}
-          <form onSubmit={calculateAge} noValidate className="space-y-6">
-            <div>
-              <label htmlFor="birthdate" className="block text-sm font-medium mb-2 text-foreground">
-                Doğum Tarihiniz <span className="text-destructive">*</span>
-              </label>
-              <div className="relative flex items-center">
-                <input
-                  type="text"
-                  inputMode="numeric"
-                  id="birthdate"
-                  placeholder="Örn: 28.08.1999"
-                  maxLength={10}
-                  autoComplete="off"
-                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-11 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all tracking-wider text-base"
-                  value={birthDateStr}
-                  onChange={handleDateInputChange}
-                />
-                <button
-                  type="button"
-                  onClick={openDatePicker}
-                  className="absolute right-2.5 p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
-                  aria-label="Takvimden tarih seç"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={1.75}
-                  >
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                    <line x1="16" y1="2" x2="16" y2="6" />
-                    <line x1="8" y1="2" x2="8" y2="6" />
-                    <line x1="3" y1="10" x2="21" y2="10" />
-                  </svg>
-                </button>
-                <input
-                  ref={datePickerRef}
-                  type="date"
-                  tabIndex={-1}
-                  aria-hidden="true"
-                  className="sr-only"
-                  onChange={handleDatePickerChange}
-                />
-              </div>
-            </div>
+          <form onSubmit={calculateAge} noValidate className="space-y-4">
+            <DatePicker
+              id="birthdate"
+              label="Doğum Tarihiniz"
+              required
+              value={birthDateStr}
+              onChange={setBirthDateStr}
+              placeholder="15.05.1998"
+              helperText="Tarihi GG.AA.YYYY olarak yazabilir veya takvimden seçebilirsiniz."
+            />
 
             {error && (
               <div className="p-3 bg-destructive/10 text-destructive text-sm rounded-lg border border-destructive/20">
@@ -237,9 +149,9 @@ export default function YasHesaplama() {
 
             <button
               type="submit"
-              className="w-full h-12 bg-primary text-primary-foreground text-base font-bold rounded-xl shadow-sm hover:bg-primary/90 hover:shadow active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              className="w-full h-12 bg-primary text-primary-foreground text-base font-bold rounded-xl shadow-sm hover:bg-primary/90 hover:shadow active:scale-[0.98] transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
-              Hesapla
+              Yaşımı Hesapla
             </button>
           </form>
 
@@ -252,7 +164,7 @@ export default function YasHesaplama() {
                 </h3>
 
                 <div className="flex flex-col items-center justify-center mb-3">
-                  <span className="font-extrabold text-3xl sm:text-4xl text-primary tracking-tight">
+                  <span className="font-extrabold text-3xl sm:text-4xl text-primary tracking-tight font-mono">
                     {result.years} yaşındasınız
                   </span>
                   <span className="text-sm font-medium text-muted-foreground mt-1">
@@ -263,14 +175,14 @@ export default function YasHesaplama() {
                 <div className="border-t border-border/60 pt-4 space-y-2 text-xs sm:text-sm">
                   <div className="flex justify-between items-center py-1">
                     <span className="text-muted-foreground">Doğum Tarihi:</span>
-                    <span className="font-semibold text-foreground">{result.birthDateFormatted}</span>
+                    <span className="font-semibold text-foreground font-mono">{result.birthDateFormatted}</span>
                   </div>
 
                   <div className="flex justify-between items-center py-1">
                     <span className="text-muted-foreground">Sonraki Doğum Günü:</span>
                     <span className="font-semibold text-foreground">
                       {result.isBirthdayToday ? (
-                        <span className="text-primary font-bold">Bugün doğum gününüz!</span>
+                        <span className="text-primary font-bold">Bugün doğum gününüz! 🎂</span>
                       ) : (
                         <span>{result.nextBirthdayFormatted} ({result.daysUntilNextBirthday} gün kaldı)</span>
                       )}
@@ -279,13 +191,13 @@ export default function YasHesaplama() {
 
                   <div className="flex justify-between items-center py-1">
                     <span className="text-muted-foreground">Toplam Yaşanan Gün:</span>
-                    <span className="font-semibold text-foreground">{formatNumber(result.totalDaysLived)} gün</span>
+                    <span className="font-semibold text-foreground font-mono">{formatNumber(result.totalDaysLived)} gün</span>
                   </div>
                 </div>
               </div>
             ) : (
               <div className="hidden lg:flex h-full min-h-[170px] flex-col items-center justify-center rounded-xl border border-dashed border-border/80 p-6 text-center text-muted-foreground">
-                <p className="text-sm font-medium text-foreground">Doğum tarihinizi seçip &ldquo;Hesapla&rdquo; butonuna basın.</p>
+                <p className="text-sm font-medium text-foreground">Doğum tarihinizi seçip &ldquo;Yaşımı Hesapla&rdquo; butonuna basın.</p>
                 <p className="text-xs text-muted-foreground mt-1">Yaşınız, detaylı süre ve sonraki doğum gününüz burada görüntülenecektir.</p>
               </div>
             )}
@@ -349,4 +261,3 @@ export default function YasHesaplama() {
     </div>
   );
 }
-

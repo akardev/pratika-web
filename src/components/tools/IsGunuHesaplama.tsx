@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { formatNumber } from '@/lib/utils';
+import DatePicker from '@/components/ui/DatePicker';
 
 export default function IsGunuHesaplama() {
   const [startDateStr, setStartDateStr] = useState<string>('2026-09-01');
@@ -17,12 +18,12 @@ export default function IsGunuHesaplama() {
     setResult(null);
 
     if (!startDateStr || !endDateStr) {
-      setError('Lütfen başlangıç ve bitiş tarihlerini seçin.');
+      setError('Lütfen başlangıç ve bitiş tarihlerini seçin veya yazın.');
       return;
     }
 
-    const d1 = new Date(startDateStr);
-    const d2 = new Date(endDateStr);
+    const d1 = new Date(startDateStr + 'T00:00:00');
+    const d2 = new Date(endDateStr + 'T00:00:00');
 
     if (isNaN(d1.getTime()) || isNaN(d2.getTime())) {
       setError('Geçerli tarihler seçin.');
@@ -56,31 +57,23 @@ export default function IsGunuHesaplama() {
       <div className="bg-card rounded-xl border border-border/60 p-6 sm:p-8 shadow-sm mb-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <form onSubmit={handleCalculate} noValidate className="space-y-4">
-            <div>
-              <label htmlFor="start" className="block text-sm font-medium mb-2 text-foreground">
-                Başlangıç Tarihi <span className="text-destructive">*</span>
-              </label>
-              <input
-                type="date"
-                id="start"
-                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
-                value={startDateStr}
-                onChange={(e) => setStartDateStr(e.target.value)}
-              />
-            </div>
+            <DatePicker
+              id="start"
+              label="Başlangıç Tarihi"
+              required
+              value={startDateStr}
+              onChange={setStartDateStr}
+              placeholder="01.09.2026"
+            />
 
-            <div>
-              <label htmlFor="end" className="block text-sm font-medium mb-2 text-foreground">
-                Bitiş Tarihi <span className="text-destructive">*</span>
-              </label>
-              <input
-                type="date"
-                id="end"
-                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
-                value={endDateStr}
-                onChange={(e) => setEndDateStr(e.target.value)}
-              />
-            </div>
+            <DatePicker
+              id="end"
+              label="Bitiş Tarihi"
+              required
+              value={endDateStr}
+              onChange={setEndDateStr}
+              placeholder="30.09.2026"
+            />
 
             <div className="flex items-center gap-2 pt-1">
               <input
@@ -88,9 +81,9 @@ export default function IsGunuHesaplama() {
                 id="satCheck"
                 checked={includeSaturday}
                 onChange={(e) => setIncludeSaturday(e.target.checked)}
-                className="w-4 h-4 rounded border-border text-primary focus:ring-primary"
+                className="w-4 h-4 rounded border-border text-primary focus:ring-primary cursor-pointer"
               />
-              <label htmlFor="satCheck" className="text-sm font-medium text-foreground cursor-pointer">
+              <label htmlFor="satCheck" className="text-xs sm:text-sm font-medium text-foreground cursor-pointer select-none">
                 Cumartesi günlerini de iş günü say (6 günlük çalışma haftası)
               </label>
             </div>
@@ -103,7 +96,7 @@ export default function IsGunuHesaplama() {
 
             <button
               type="submit"
-              className="w-full h-12 mt-2 bg-primary text-primary-foreground text-base font-bold rounded-xl shadow-sm hover:bg-primary/90 hover:shadow active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              className="w-full h-12 mt-2 bg-primary text-primary-foreground text-base font-bold rounded-xl shadow-sm hover:bg-primary/90 hover:shadow active:scale-[0.98] transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
               İş Günü Sayısını Hesapla
             </button>
@@ -118,10 +111,10 @@ export default function IsGunuHesaplama() {
 
                 <div className="flex flex-col items-center justify-center mb-3 text-center">
                   <span className="text-xs text-muted-foreground mb-0.5">Net Çalışma / İş Günü</span>
-                  <span className="font-extrabold text-3xl sm:text-4xl text-primary tracking-tight">
+                  <span className="font-extrabold text-3xl sm:text-4xl text-primary tracking-tight font-mono">
                     {formatNumber(result.workDays)} İş Günü
                   </span>
-                  <span className="text-xs font-semibold text-foreground mt-1 bg-background px-2.5 py-1 rounded-md border border-border/80">
+                  <span className="text-xs font-semibold text-foreground mt-1 bg-background px-2.5 py-1 rounded-md border border-border/80 font-mono">
                     Toplam {result.totalDays} Takvim Günü
                   </span>
                 </div>
@@ -129,7 +122,7 @@ export default function IsGunuHesaplama() {
                 <div className="border-t border-border/60 pt-3 space-y-1.5 text-xs sm:text-sm">
                   <div className="flex justify-between items-center py-0.5">
                     <span className="text-muted-foreground">Hafta Tatili / Dinlenme Günleri:</span>
-                    <span className="font-semibold text-foreground">{result.offDays} Gün</span>
+                    <span className="font-semibold text-foreground font-mono">{result.offDays} Gün</span>
                   </div>
                 </div>
               </div>

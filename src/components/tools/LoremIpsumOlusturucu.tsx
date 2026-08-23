@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { sanitizeNumericInput } from '@/lib/utils';
 
 const LOREM_WORDS = [
   'lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur', 'adipiscing', 'elit', 'sed', 'do',
@@ -148,13 +149,16 @@ export default function LoremIpsumOlusturucu() {
               Adet (1 - 50)
             </label>
             <input
-              type="number"
+              type="text"
+              inputMode="numeric"
               id="lorem-count"
-              min={1}
-              max={50}
               value={count}
-              onChange={(e) => handleCountChange(parseInt(e.target.value) || 1)}
-              className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm font-medium"
+              onChange={(e) => {
+                const cleaned = sanitizeNumericInput(e.target.value, { allowDecimal: false });
+                const num = parseInt(cleaned) || 1;
+                handleCountChange(Math.max(1, Math.min(num, 50)));
+              }}
+              className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground font-mono focus:outline-none focus:ring-2 focus:ring-primary text-sm font-medium"
             />
           </div>
 

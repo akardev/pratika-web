@@ -124,7 +124,7 @@ export default function RenkDonusturucu() {
                 <input
                   type="text"
                   value={hexInput}
-                  onChange={(e) => setHexInput(e.target.value)}
+                  onChange={(e) => setHexInput(e.target.value.replace(/[^0-9a-fA-F#]/g, '').slice(0, 7))}
                   placeholder="#2563EB"
                   className="w-full rounded-xl border border-border bg-background px-4 py-3 font-mono text-base text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 />

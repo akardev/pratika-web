@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { formatCurrency, formatNumber, parseTurkishNumber } from '@/lib/utils';
+import { formatCurrency, formatNumber, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
 export default function YakitMaliyetiHesaplama() {
   const [distanceStr, setDistanceStr] = useState<string>('450');
@@ -77,8 +77,8 @@ export default function YakitMaliyetiHesaplama() {
                   id="distance-input"
                   placeholder="Örn: 450"
                   value={distanceStr}
-                  onChange={(e) => setDistanceStr(e.target.value)}
-                  className="w-full h-11 sm:h-12 rounded-xl border border-border bg-background px-4 pr-14 text-sm sm:text-base font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                  onChange={(e) => setDistanceStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
+                  className="w-full h-11 sm:h-12 rounded-xl border border-border bg-background px-4 pr-14 text-sm sm:text-base font-mono font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                 />
                 <span className="absolute right-4 pointer-events-none select-none text-xs sm:text-sm font-semibold text-muted-foreground">
                   km
@@ -99,8 +99,8 @@ export default function YakitMaliyetiHesaplama() {
                     id="consumption-input"
                     placeholder="Örn: 6.5"
                     value={consumptionStr}
-                    onChange={(e) => setConsumptionStr(e.target.value)}
-                    className="w-full h-11 sm:h-12 rounded-xl border border-border bg-background px-4 pr-24 text-sm sm:text-base font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    onChange={(e) => setConsumptionStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
+                    className="w-full h-11 sm:h-12 rounded-xl border border-border bg-background px-4 pr-24 text-sm sm:text-base font-mono font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                   />
                   <span className="absolute right-4 pointer-events-none select-none text-xs sm:text-sm font-semibold text-muted-foreground">
                     L/100 km
@@ -119,8 +119,8 @@ export default function YakitMaliyetiHesaplama() {
                     id="price-input"
                     placeholder="Örn: 45.00"
                     value={priceStr}
-                    onChange={(e) => setPriceStr(e.target.value)}
-                    className="w-full h-11 sm:h-12 rounded-xl border border-border bg-background px-4 pr-12 text-sm sm:text-base font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    onChange={(e) => setPriceStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
+                    className="w-full h-11 sm:h-12 rounded-xl border border-border bg-background px-4 pr-12 text-sm sm:text-base font-mono font-medium text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                   />
                   <span className="absolute right-4 pointer-events-none select-none text-xs sm:text-sm font-semibold text-muted-foreground">
                     TL

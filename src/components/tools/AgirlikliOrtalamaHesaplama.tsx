@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { formatNumber, parseTurkishNumber } from '@/lib/utils';
+import { formatNumber, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
 interface Row {
   id: string;
@@ -31,7 +31,8 @@ export default function AgirlikliOrtalamaHesaplama() {
   };
 
   const updateRow = (id: string, field: 'value' | 'weight', val: string) => {
-    setRows(rows.map((r) => (r.id === id ? { ...r, [field]: val } : r)));
+    const sanitized = sanitizeNumericInput(val, { allowDecimal: true });
+    setRows(rows.map((r) => (r.id === id ? { ...r, [field]: sanitized } : r)));
   };
 
   const handleCalculate = (e: React.FormEvent) => {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { formatNumber, parseTurkishNumber } from '@/lib/utils';
+import { formatNumber, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
 export default function KarekokHesaplama() {
   const [numberStr, setNumberStr] = useState<string>('144');
@@ -67,9 +67,9 @@ export default function KarekokHesaplama() {
                 inputMode="decimal"
                 id="num"
                 placeholder="Örn: 144"
-                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
+                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base font-mono"
                 value={numberStr}
-                onChange={(e) => setNumberStr(e.target.value)}
+                onChange={(e) => setNumberStr(sanitizeNumericInput(e.target.value, { allowDecimal: true, allowNegative: true }))}
               />
             </div>
 
@@ -105,9 +105,9 @@ export default function KarekokHesaplama() {
                 inputMode="numeric"
                 id="degree"
                 placeholder="2"
-                className="w-full rounded-lg border border-border bg-background px-4 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+                className="w-full rounded-lg border border-border bg-background px-4 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm font-mono"
                 value={degreeStr}
-                onChange={(e) => setDegreeStr(e.target.value)}
+                onChange={(e) => setDegreeStr(sanitizeNumericInput(e.target.value, { allowDecimal: false }))}
               />
             </div>
 

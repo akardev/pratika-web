@@ -57,7 +57,16 @@ import SuIhtiyaciHesaplama from '@/components/tools/SuIhtiyaciHesaplama';
 import YakitMaliyetiHesaplama from '@/components/tools/YakitMaliyetiHesaplama';
 import ElektrikTuketimMaliyetiHesaplama from '@/components/tools/ElektrikTuketimMaliyetiHesaplama';
 
-// Maaş & Çalışma (3)
+// Maaş & Çalışma (12)
+import KidemTazminatiHesaplama from '@/components/tools/KidemTazminatiHesaplama';
+import IhbarTazminatiHesaplama from '@/components/tools/IhbarTazminatiHesaplama';
+import KidemIhbarHesaplama from '@/components/tools/KidemIhbarHesaplama';
+import YillikIzinHesaplama from '@/components/tools/YillikIzinHesaplama';
+import KullanilmayanIzinUcretiHesaplama from '@/components/tools/KullanilmayanIzinUcretiHesaplama';
+import IhbarSuresiHesaplama from '@/components/tools/IhbarSuresiHesaplama';
+import NettenBruteMaasHesaplama from '@/components/tools/NettenBruteMaasHesaplama';
+import BruttenNeteMaasHesaplama from '@/components/tools/BruttenNeteMaasHesaplama';
+import IseGirisCikisSuresiHesaplama from '@/components/tools/IseGirisCikisSuresiHesaplama';
 import SaatUcretiHesaplama from '@/components/tools/SaatUcretiHesaplama';
 import FazlaMesaiHesaplama from '@/components/tools/FazlaMesaiHesaplama';
 import GunlukUcretHesaplama from '@/components/tools/GunlukUcretHesaplama';
@@ -256,7 +265,16 @@ export default async function ToolPage({ params }: Props) {
         {tool.slug === 'yakit-maliyeti-hesaplama' && <YakitMaliyetiHesaplama />}
         {tool.slug === 'elektrik-tuketim-maliyeti-hesaplama' && <ElektrikTuketimMaliyetiHesaplama />}
 
-        {/* Maaş & Çalışma (3) */}
+        {/* Maaş & Çalışma (12) */}
+        {tool.slug === 'kidem-tazminati-hesaplama' && <KidemTazminatiHesaplama />}
+        {tool.slug === 'ihbar-tazminati-hesaplama' && <IhbarTazminatiHesaplama />}
+        {tool.slug === 'kidem-ihbar-tazminati-hesaplama' && <KidemIhbarHesaplama />}
+        {tool.slug === 'yillik-izin-hesaplama' && <YillikIzinHesaplama />}
+        {tool.slug === 'kullanilmayan-yillik-izin-ucreti-hesaplama' && <KullanilmayanIzinUcretiHesaplama />}
+        {tool.slug === 'ihbar-suresi-hesaplama' && <IhbarSuresiHesaplama />}
+        {tool.slug === 'netten-brute-maas-hesaplama' && <NettenBruteMaasHesaplama />}
+        {tool.slug === 'brutten-nete-maas-hesaplama' && <BruttenNeteMaasHesaplama />}
+        {tool.slug === 'ise-giris-cikis-suresi-hesaplama' && <IseGirisCikisSuresiHesaplama />}
         {tool.slug === 'saat-ucreti-hesaplama' && <SaatUcretiHesaplama />}
         {tool.slug === 'fazla-mesai-hesaplama' && <FazlaMesaiHesaplama />}
         {tool.slug === 'gunluk-ucret-hesaplama' && <GunlukUcretHesaplama />}

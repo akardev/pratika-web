@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { formatNumber } from '@/lib/utils';
+import DatePicker from '@/components/ui/DatePicker';
 
 interface DateDiffResult {
   totalDays: number;
@@ -16,7 +17,7 @@ interface DateDiffResult {
 
 export default function TarihFarkiHesaplama() {
   const [startDateStr, setStartDateStr] = useState<string>('2026-01-01');
-  const [endDateStr, setEndDateStr] = useState<string>('2026-08-23');
+  const [endDateStr, setEndDateStr] = useState<string>('2026-08-24');
   const [result, setResult] = useState<DateDiffResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -26,12 +27,12 @@ export default function TarihFarkiHesaplama() {
     setResult(null);
 
     if (!startDateStr || !endDateStr) {
-      setError('Lütfen her iki tarihi de seçin.');
+      setError('Lütfen her iki tarihi de seçin veya yazın.');
       return;
     }
 
-    const d1 = new Date(startDateStr);
-    const d2 = new Date(endDateStr);
+    const d1 = new Date(startDateStr + 'T00:00:00');
+    const d2 = new Date(endDateStr + 'T00:00:00');
 
     if (isNaN(d1.getTime()) || isNaN(d2.getTime())) {
       setError('Geçerli tarihler seçin.');
@@ -93,31 +94,23 @@ export default function TarihFarkiHesaplama() {
       <div className="bg-card rounded-xl border border-border/60 p-6 sm:p-8 shadow-sm mb-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <form onSubmit={handleCalculate} noValidate className="space-y-4">
-            <div>
-              <label htmlFor="startDate" className="block text-sm font-medium mb-2 text-foreground">
-                Başlangıç Tarihi <span className="text-destructive">*</span>
-              </label>
-              <input
-                type="date"
-                id="startDate"
-                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
-                value={startDateStr}
-                onChange={(e) => setStartDateStr(e.target.value)}
-              />
-            </div>
+            <DatePicker
+              id="startDate"
+              label="Başlangıç Tarihi"
+              required
+              value={startDateStr}
+              onChange={setStartDateStr}
+              placeholder="01.01.2026"
+            />
 
-            <div>
-              <label htmlFor="endDate" className="block text-sm font-medium mb-2 text-foreground">
-                Bitiş Tarihi <span className="text-destructive">*</span>
-              </label>
-              <input
-                type="date"
-                id="endDate"
-                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
-                value={endDateStr}
-                onChange={(e) => setEndDateStr(e.target.value)}
-              />
-            </div>
+            <DatePicker
+              id="endDate"
+              label="Bitiş Tarihi"
+              required
+              value={endDateStr}
+              onChange={setEndDateStr}
+              placeholder="24.08.2026"
+            />
 
             {error && (
               <div className="p-3 bg-destructive/10 text-destructive text-sm rounded-lg border border-destructive/20">
@@ -127,7 +120,7 @@ export default function TarihFarkiHesaplama() {
 
             <button
               type="submit"
-              className="w-full h-12 mt-2 bg-primary text-primary-foreground text-base font-bold rounded-xl shadow-sm hover:bg-primary/90 hover:shadow active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              className="w-full h-12 mt-2 bg-primary text-primary-foreground text-base font-bold rounded-xl shadow-sm hover:bg-primary/90 hover:shadow active:scale-[0.98] transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
               Tarih Farkını Hesapla
             </button>
@@ -142,10 +135,10 @@ export default function TarihFarkiHesaplama() {
 
                 <div className="flex flex-col items-center justify-center mb-3 text-center">
                   <span className="text-xs text-muted-foreground mb-0.5">Toplam Gün Sayısı</span>
-                  <span className="font-extrabold text-3xl sm:text-4xl text-primary tracking-tight">
+                  <span className="font-extrabold text-3xl sm:text-4xl text-primary tracking-tight font-mono">
                     {formatNumber(result.totalDays)} Gün
                   </span>
-                  <span className="text-xs font-semibold text-foreground mt-1 bg-background px-2.5 py-1 rounded-md border border-border/80">
+                  <span className="text-xs font-semibold text-foreground mt-1 bg-background px-2.5 py-1 rounded-md border border-border/80 font-mono">
                     {result.years > 0 ? `${result.years} Yıl ` : ''}{result.months > 0 ? `${result.months} Ay ` : ''}{result.days} Gün
                   </span>
                 </div>
@@ -153,21 +146,21 @@ export default function TarihFarkiHesaplama() {
                 <div className="border-t border-border/60 pt-3 space-y-1.5 text-xs sm:text-sm">
                   <div className="flex justify-between items-center py-0.5">
                     <span className="text-muted-foreground">Hafta Sayısı:</span>
-                    <span className="font-semibold text-foreground">{formatNumber(result.totalWeeks)} Hafta</span>
+                    <span className="font-semibold text-foreground font-mono">{formatNumber(result.totalWeeks)} Hafta</span>
                   </div>
                   <div className="flex justify-between items-center py-0.5">
                     <span className="text-muted-foreground">Net İş Günü (Pzt-Cum):</span>
-                    <span className="font-semibold text-foreground">{formatNumber(result.workDays)} Gün</span>
+                    <span className="font-semibold text-foreground font-mono">{formatNumber(result.workDays)} Gün</span>
                   </div>
                   <div className="flex justify-between items-center py-0.5">
                     <span className="text-muted-foreground">Hafta Sonu Günleri:</span>
-                    <span className="font-semibold text-foreground">{formatNumber(result.weekendDays)} Gün</span>
+                    <span className="font-semibold text-foreground font-mono">{formatNumber(result.weekendDays)} Gün</span>
                   </div>
                 </div>
               </div>
             ) : (
               <div className="hidden lg:flex h-full min-h-[260px] flex-col items-center justify-center rounded-xl border border-dashed border-border/80 p-6 text-center text-muted-foreground">
-                <p className="text-sm font-medium text-foreground">İki tarih seçip farkı hesaplayın.</p>
+                <p className="text-sm font-medium text-foreground">İki tarih seçip veya yazıp farkı hesaplayın.</p>
               </div>
             )}
           </div>

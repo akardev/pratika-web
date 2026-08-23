@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { formatCurrency, formatNumber, parseTurkishNumber } from '@/lib/utils';
+import { formatCurrency, formatNumber, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
 interface BreakEvenResult {
   fixedCosts: number;
@@ -95,9 +95,9 @@ export default function BasabasNoktasiHesaplama() {
                   id="fixedCosts"
                   placeholder="Örn: 50.000"
                   autoComplete="off"
-                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                  className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                   value={fixedCostsStr}
-                  onChange={(e) => setFixedCostsStr(e.target.value)}
+                  onChange={(e) => setFixedCostsStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                 />
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                   TL
@@ -117,9 +117,9 @@ export default function BasabasNoktasiHesaplama() {
                     id="salePrice"
                     placeholder="Örn: 500"
                     autoComplete="off"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                     value={salePriceStr}
-                    onChange={(e) => setSalePriceStr(e.target.value)}
+                    onChange={(e) => setSalePriceStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                     TL
@@ -138,9 +138,9 @@ export default function BasabasNoktasiHesaplama() {
                     id="variableCost"
                     placeholder="Örn: 200"
                     autoComplete="off"
-                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base font-mono"
                     value={variableCostStr}
-                    onChange={(e) => setVariableCostStr(e.target.value)}
+                    onChange={(e) => setVariableCostStr(sanitizeNumericInput(e.target.value, { allowDecimal: true }))}
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                     TL

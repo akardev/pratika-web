@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { parseTurkishNumber } from '@/lib/utils';
+import { parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
+import DatePicker from '@/components/ui/DatePicker';
 
 export default function TariheGunEkleme() {
-  const [baseDateStr, setBaseDateStr] = useState<string>('2026-08-23');
+  const [baseDateStr, setBaseDateStr] = useState<string>('2026-08-24');
   const [amountStr, setAmountStr] = useState<string>('30');
   const [unit, setUnit] = useState<'days' | 'weeks' | 'months' | 'years'>('days');
   const [operation, setOperation] = useState<'add' | 'subtract'>('add');
@@ -19,7 +20,7 @@ export default function TariheGunEkleme() {
     setTargetDateStr(null);
 
     if (!baseDateStr) {
-      setError('Lütfen bir başlangıç tarihi seçin.');
+      setError('Lütfen bir başlangıç tarihi seçin veya yazın.');
       return;
     }
 
@@ -34,7 +35,7 @@ export default function TariheGunEkleme() {
       return;
     }
 
-    const d = new Date(baseDateStr);
+    const d = new Date(baseDateStr + 'T00:00:00');
     if (isNaN(d.getTime())) {
       setError('Geçerli bir tarih seçin.');
       return;
@@ -65,7 +66,7 @@ export default function TariheGunEkleme() {
               <button
                 type="button"
                 onClick={() => setOperation('add')}
-                className={`py-2 text-xs font-semibold rounded-lg transition-all ${
+                className={`py-2 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
                   operation === 'add'
                     ? 'bg-card text-foreground shadow-xs border border-border/80'
                     : 'text-muted-foreground hover:text-foreground'
@@ -76,7 +77,7 @@ export default function TariheGunEkleme() {
               <button
                 type="button"
                 onClick={() => setOperation('subtract')}
-                className={`py-2 text-xs font-semibold rounded-lg transition-all ${
+                className={`py-2 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
                   operation === 'subtract'
                     ? 'bg-card text-foreground shadow-xs border border-border/80'
                     : 'text-muted-foreground hover:text-foreground'
@@ -86,22 +87,18 @@ export default function TariheGunEkleme() {
               </button>
             </div>
 
-            <div>
-              <label htmlFor="baseDate" className="block text-sm font-medium mb-2 text-foreground">
-                Başlangıç Tarihi <span className="text-destructive">*</span>
-              </label>
-              <input
-                type="date"
-                id="baseDate"
-                className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
-                value={baseDateStr}
-                onChange={(e) => setBaseDateStr(e.target.value)}
-              />
-            </div>
+            <DatePicker
+              id="baseDate"
+              label="Başlangıç Tarihi"
+              required
+              value={baseDateStr}
+              onChange={setBaseDateStr}
+              placeholder="24.08.2026"
+            />
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label htmlFor="amount" className="block text-sm font-medium mb-2 text-foreground">
+                <label htmlFor="amount" className="block text-xs font-semibold mb-1.5 text-foreground">
                   Miktar <span className="text-destructive">*</span>
                 </label>
                 <input
@@ -109,19 +106,19 @@ export default function TariheGunEkleme() {
                   inputMode="numeric"
                   id="amount"
                   placeholder="30"
-                  className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
+                  className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-foreground font-mono text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                   value={amountStr}
-                  onChange={(e) => setAmountStr(e.target.value)}
+                  onChange={(e) => setAmountStr(sanitizeNumericInput(e.target.value, { allowDecimal: false }))}
                 />
               </div>
 
               <div>
-                <label htmlFor="unit" className="block text-sm font-medium mb-2 text-foreground">
+                <label htmlFor="unit" className="block text-xs font-semibold mb-1.5 text-foreground">
                   Birim
                 </label>
                 <select
                   id="unit"
-                  className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
+                  className="w-full rounded-lg border border-border bg-background px-3.5 py-2.5 text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
                   value={unit}
                   onChange={(e) => setUnit(e.target.value as 'days' | 'weeks' | 'months' | 'years')}
                 >
@@ -141,7 +138,7 @@ export default function TariheGunEkleme() {
 
             <button
               type="submit"
-              className="w-full h-12 mt-2 bg-primary text-primary-foreground text-base font-bold rounded-xl shadow-sm hover:bg-primary/90 hover:shadow active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              className="w-full h-12 mt-2 bg-primary text-primary-foreground text-base font-bold rounded-xl shadow-sm hover:bg-primary/90 hover:shadow active:scale-[0.98] transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             >
               Hedef Tarihi Hesapla
             </button>
@@ -156,7 +153,7 @@ export default function TariheGunEkleme() {
 
                 <div className="flex flex-col items-center justify-center mb-3 text-center">
                   <span className="text-xs text-muted-foreground mb-0.5">{targetDayName}</span>
-                  <span className="font-extrabold text-3xl sm:text-4xl text-primary tracking-tight">
+                  <span className="font-extrabold text-3xl sm:text-4xl text-primary tracking-tight font-mono">
                     {targetDateStr}
                   </span>
                 </div>

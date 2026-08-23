@@ -42,4 +42,52 @@ export function parseTurkishNumber(input: string): number {
   return parseFloat(trimmed);
 }
 
+/**
+ * Sayısal input girdilerini filtreler; harf, geçersiz sembol ve karakterleri engeller.
+ * Ondalık (nokta/virgül) ve eksi işaretini yapılandırmaya göre korur.
+ */
+export function sanitizeNumericInput(
+  raw: string,
+  options?: { allowDecimal?: boolean; allowNegative?: boolean }
+): string {
+  if (!raw) return '';
+  const { allowDecimal = true, allowNegative = false } = options || {};
+  let val = raw;
+
+  // 1. Negatif işaretini sadece en başta koru
+  const isNegative = allowNegative && val.startsWith('-');
+  val = val.replace(/-/g, '');
+
+  if (!allowDecimal) {
+    // Sadece rakamlar
+    val = val.replace(/\D/g, '');
+  } else {
+    // Yalnızca rakam, nokta ve virgül
+    val = val.replace(/[^0-9.,]/g, '');
+
+    // Birden fazla nokta/virgül olmasını engelle (ilk karşılaşılanı koru, sonrakileri sil)
+    let seenDecimal = false;
+    let result = '';
+    for (let i = 0; i < val.length; i++) {
+      const char = val[i];
+      if (char === '.' || char === ',') {
+        if (!seenDecimal) {
+          seenDecimal = true;
+          result += char;
+        }
+      } else {
+        result += char;
+      }
+    }
+    val = result;
+  }
+
+  if (isNegative && val) {
+    val = '-' + val;
+  }
+
+  return val;
+}
+
+
 
