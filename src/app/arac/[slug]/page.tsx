@@ -10,6 +10,7 @@ import KdvHesaplama from '@/components/tools/KdvHesaplama';
 import KarMarjiHesaplama from '@/components/tools/KarMarjiHesaplama';
 import ZamHesaplama from '@/components/tools/ZamHesaplama';
 import KarZararHesaplama from '@/components/tools/KarZararHesaplama';
+import FaizHesaplama from '@/components/tools/FaizHesaplama';
 import ToolCard from '@/components/ui/ToolCard';
 
 type Props = {
@@ -75,6 +76,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  if (tool.slug === 'faiz-hesaplama') {
+    return {
+      title: 'Faiz Hesaplama | Pratika',
+      description: 'Anapara, faiz oranı ve süreye göre basit veya bileşik faiz tutarını ve toplam getiriyi hesaplayın.',
+    };
+  }
+
   return {
     title: tool.title,
     description: tool.description,
@@ -117,6 +125,7 @@ export default async function ToolPage({ params }: Props) {
         {tool.slug === 'kar-marji-hesaplama' && <KarMarjiHesaplama />}
         {tool.slug === 'zam-hesaplama' && <ZamHesaplama />}
         {tool.slug === 'kar-zarar-hesaplama' && <KarZararHesaplama />}
+        {tool.slug === 'faiz-hesaplama' && <FaizHesaplama />}
       </div>
 
       {/* İlgili Bilgiler (Bilgi Merkezi İçerikleri) */}
@@ -171,6 +180,7 @@ export default async function ToolPage({ params }: Props) {
     </div>
   );
 }
+
 
 
 

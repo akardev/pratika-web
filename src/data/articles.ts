@@ -413,8 +413,105 @@ export const articles: Article[] = [
         }
       }
     ]
+  },
+  {
+    id: 'basit-faiz-nasil-hesaplanir',
+    slug: 'basit-faiz-nasil-hesaplanir',
+    title: 'Basit Faiz Nasıl Hesaplanır?',
+    description: 'Anapara, faiz oranı ve süreye göre basit faiz tutarı ve toplam getiri hesaplama yöntemleri ve örnekleri.',
+    category: 'Finans',
+    relatedToolSlug: 'faiz-hesaplama',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['basit faiz nasıl hesaplanır', 'basit faiz hesaplama', 'basit faiz formülü', 'faiz getirisi', 'anapara faizi'],
+    sections: [
+      {
+        heading: 'Basit Faiz Nedir?',
+        paragraphs: [
+          'Basit faiz, anaparanın vade boyunca sabit kaldığı ve her dönem yalnızca başlangıç tutarı üzerinden getiri üretildiği faiz hesaplama yöntemidir.',
+          'Kazanılan faiz anaparaya ilave edilmez; bu nedenle getiri vade süresiyle doğru orantılı olarak doğrusal artar.'
+        ]
+      },
+      {
+        heading: 'Basit Faiz Formülü',
+        paragraphs: [
+          'Yıllık faiz oranına göre faiz tutarı ve vade sonu toplam tutar formülü:'
+        ],
+        formula: 'Faiz Tutarı = Anapara × (Yıllık Faiz Oranı / 100) × Süre (Yıl)\nToplam Tutar = Anapara + Faiz Tutarı'
+      },
+      {
+        heading: 'Aylık Vadeler İçin Hesaplama',
+        paragraphs: [
+          'Süre ay olarak verildiğinde, ay sayısı 12\'ye bölünerek yıl karşılığı bulunur. Örneğin 6 ay = 6/12 = 0,5 yıldır.'
+        ],
+        formula: 'Aylık Faiz = Anapara × (Faiz Oranı / 100) × (Ay Sayısı / 12)'
+      },
+      {
+        heading: 'Örnek Hesaplamalar',
+        paragraphs: [
+          '10.000 TL anapara ve %20 yıllık faiz oranı ile:'
+        ],
+        example: {
+          title: '10.000 TL ve %20 Yıllık Faiz Örnekleri',
+          items: [
+            { label: '1 Yıllık Faiz Tutarı', value: '2.000,00 TL' },
+            { label: '1 Yıl Sonu Toplam', value: '12.000,00 TL' },
+            { label: '6 Aylık Faiz Tutarı', value: '1.000,00 TL' },
+            { label: '6 Ay Sonu Toplam', value: '11.000,00 TL' }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    id: 'bilesik-faiz-nedir-ve-nasil-hesaplanir',
+    slug: 'bilesik-faiz-nedir-ve-nasil-hesaplanir',
+    title: 'Bileşik Faiz Nedir ve Nasıl Hesaplanır?',
+    description: 'Bileşik faiz hesaplama formülü, bileşikleşme sıklığı mantığı, anapara büyümesi ve basit faiz ile farkları.',
+    category: 'Finans',
+    relatedToolSlug: 'faiz-hesaplama',
+    readTime: '4 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['bilesik faiz nedir', 'bileşik faiz hesaplama', 'bileşik faiz formülü', 'faizin faizi', 'aylık bileşik faiz'],
+    sections: [
+      {
+        heading: 'Bileşik Faiz Kavramı (Kartopu Etkisi)',
+        paragraphs: [
+          'Bileşik faiz, her dönem kazanılan faiz tutarının anaparaya eklenmesi ve sonraki dönemin faizinin bu büyüyen yeni tutar üzerinden hesaplanmasıdır.',
+          'Halk arasında "faizin faizi" olarak bilinen bu mekanizma, uzun vadelerde basit faize kıyasla çok daha yüksek getiri sağlar.'
+        ]
+      },
+      {
+        heading: 'Bileşik Faiz Formülü',
+        paragraphs: [
+          'Bileşik faizde vade sonu toplam birikim tutarı formülü:'
+        ],
+        formula: 'Toplam Tutar (A) = Anapara (P) × (1 + r / n)^(n × t)\nFaiz Tutarı = Toplam Tutar - Anapara'
+      },
+      {
+        heading: 'Formüldeki Değişkenler',
+        paragraphs: [
+          'P: Başlangıç Anaparası, r: Yıllık Faiz Oranı (ondalık olarak %20 için 0,20), n: Yıldaki bileşikleşme sayısı (Aylık için 12, 3 Aylık için 4, Yıllık için 1), t: Yıl cinsinden vade.'
+        ]
+      },
+      {
+        heading: 'Örnek Hesaplama (Basit vs Bileşik)',
+        paragraphs: [
+          '10.000 TL anapara, %10 faiz oranı ve 2 yıl vade durumunda:'
+        ],
+        example: {
+          title: '10.000 TL / %10 Oran / 2 Yıl Karşılaştırması',
+          items: [
+            { label: 'Basit Faiz Toplamı', value: '12.000,00 TL (2.000 TL Faiz)' },
+            { label: 'Bileşik Faiz Toplamı (Yıllık)', value: '12.100,00 TL (2.100 TL Faiz)' },
+            { label: 'Bileşik Faiz Farkı', value: '+100,00 TL Ek Kazanç' }
+          ]
+        }
+      }
+    ]
   }
 ];
+
 
 
 

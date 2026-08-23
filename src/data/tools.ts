@@ -78,8 +78,18 @@ export const tools: Tool[] = [
     categoryId: 'finans',
     status: 'active',
     keywords: ['kar zarar', 'kâr zarar', 'kar zarar hesaplama', 'kâr zarar hesaplama', 'kar hesaplama', 'zarar hesaplama', 'kâr hesaplama', 'satış karı', 'maliyet karı', 'kazanç hesaplama']
+  },
+  {
+    id: 'faiz-hesaplama',
+    slug: 'faiz-hesaplama',
+    title: 'Faiz Hesaplama',
+    description: 'Anapara, faiz oranı ve süreye göre basit veya bileşik faiz tutarını ve toplam getiriyi hesaplayın.',
+    categoryId: 'finans',
+    status: 'active',
+    keywords: ['faiz', 'faiz hesaplama', 'basit faiz', 'basit faiz hesaplama', 'bileşik faiz', 'bileşik faiz hesaplama', 'faiz tutarı', 'faiz oranı', 'faiz hesaplama aracı', 'mevduat faizi']
   }
 ];
+
 
 
 
