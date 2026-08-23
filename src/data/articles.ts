@@ -5,7 +5,7 @@ export const articles: Article[] = [
     id: 'kdv-nasil-hesaplanir',
     slug: 'kdv-nasil-hesaplanir',
     title: 'KDV Nasıl Hesaplanır?',
-    description: 'KDV tutarını ve KDV dahil satış fiyatını hesaplama yöntemleri, formülleri ve pratik örnekleri.',
+    description: 'KDV tutarını ve KDV dahil satış fiyatını hesaplama yöntemleri, formülleri, güncel oranlar ve pratik örnekler.',
     category: 'Finans',
     relatedToolSlug: 'kdv-hesaplama',
     readTime: '3 dk okuma',
@@ -24,7 +24,7 @@ export const articles: Article[] = [
         paragraphs: [
           'KDV hariç tutardan KDV tutarını ve KDV dahil toplam tutarı bulmak için aşağıdaki formüller kullanılır:'
         ],
-        formula: 'KDV Tutarı = Vergisiz Tutar × (KDV Oranı / 100)\nKDV Dahil Fiyat = Vergisiz Tutar + KDV Tutarı'
+        formula: 'KDV Tutarı = Vergisiz Tutar × (KDV Oranı / 100)\nKDV Dahil Fiyat = Vergisiz Tutar + KDV Tutarı\nPratik Formül: KDV Dahil = Vergisiz Tutar × (1 + KDV Oranı / 100)'
       },
       {
         heading: 'Örnek Hesaplama',
@@ -40,7 +40,7 @@ export const articles: Article[] = [
             { label: 'KDV Dahil Toplam', value: '1.200,00 TL' }
           ]
         },
-        note: 'Pratik ipucu: %20 KDV dahil tutarı tek işlemde bulmak için vergisiz tutarı doğrudan 1,20 ile çarpabilirsiniz.'
+        note: 'Yasal oranlar (%1, %10, %20) mevzuat değişiklikleri veya sektörel istisnalara göre dönemsel olarak güncellenebilir.'
       }
     ]
   },
@@ -205,6 +205,13 @@ export const articles: Article[] = [
         formula: 'İndirim Tutarı = Orijinal Fiyat × (İndirim Oranı / 100)\nİndirimli Fiyat = Orijinal Fiyat - İndirim Tutarı'
       },
       {
+        heading: 'Art Arda İndirimler Neden Toplanmaz?',
+        paragraphs: [
+          'Mağazalarda sıkça görülen "%50 + %20 İndirim" kampanyaları doğrudan %70 indirim anlamına gelmez. İkinci indirim, ilk indirim düşüldükten sonra kalan ara fiyat üzerinden uygulanır.',
+          'Örneğin 100 TL\'lik üründe: Önce %50 indirimle 50 TL\'ye düşer; ardından 50 TL\'nin %20\'si olan 10 TL düşülür ve ödenecek tutar 40 TL (net %60 indirim) olur.'
+        ]
+      },
+      {
         heading: 'Örnek Hesaplama',
         paragraphs: [
           '500 TL etiket fiyatına sahip bir üründe %30 indirim uygulandığında:'
@@ -237,7 +244,7 @@ export const articles: Article[] = [
         heading: 'Yüzde Hesaplama Yöntemleri',
         paragraphs: [
           'Yüzde, yüz eşit parçaya bölünen bir bütünün belirli bir parçasını gösteren matematiksel bir orandır.',
-          'Günlük hayatta en sık karşılaşılan üç temel yüzde işlemi şunlardır: Bir sayının yüzdesini bulma, bir sayının diğerine oranını bulma ve yüzde artış/azalış hesaplama.'
+          'Günlük hayatta en sık karşılaşılan dört temel yüzde işlemi şunlardır: Bir sayının yüzdesini bulma, bir sayının diğerine oranını bulma, yüzde artış ve yüzde azalış hesaplama.'
         ]
       },
       {
@@ -511,9 +518,6 @@ export const articles: Article[] = [
     ]
   }
 ];
-
-
-
 
 export function getAllArticles(): Article[] {
   return articles;

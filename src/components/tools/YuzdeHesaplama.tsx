@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { formatNumber } from '@/lib/utils';
+import { formatNumber, parseTurkishNumber } from '@/lib/utils';
 
 type CalcType = 'percentage-of' | 'ratio' | 'increase' | 'decrease';
 
@@ -31,7 +31,7 @@ const TABS: TabOption[] = [
     label: 'Yüzde oranı',
     input1Label: 'İlk Sayı',
     input1Placeholder: 'Örn: 50',
-    input2Label: 'İkinci Sayı',
+    input2Label: 'İkinci Sayı (Toplam)',
     input2Placeholder: 'Örn: 200',
   },
   {
@@ -54,8 +54,8 @@ const TABS: TabOption[] = [
 
 export default function YuzdeHesaplama() {
   const [activeTab, setActiveTab] = useState<CalcType>('percentage-of');
-  const [input1, setInput1] = useState<string>('');
-  const [input2, setInput2] = useState<string>('');
+  const [input1Str, setInput1Str] = useState<string>('');
+  const [input2Str, setInput2Str] = useState<string>('');
   const [result, setResult] = useState<{ value: string; summary: string; title: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -65,8 +65,8 @@ export default function YuzdeHesaplama() {
     setActiveTab(tabId);
     setError(null);
     setResult(null);
-    setInput1('');
-    setInput2('');
+    setInput1Str('');
+    setInput2Str('');
   };
 
   const handleCalculate = (e: React.FormEvent) => {
@@ -74,11 +74,16 @@ export default function YuzdeHesaplama() {
     setError(null);
     setResult(null);
 
-    const val1 = parseFloat(input1.replace(',', '.'));
-    const val2 = parseFloat(input2.replace(',', '.'));
+    if (!input1Str.trim() || !input2Str.trim()) {
+      setError('Lütfen her iki alanı da doldurun.');
+      return;
+    }
+
+    const val1 = parseTurkishNumber(input1Str);
+    const val2 = parseTurkishNumber(input2Str);
 
     if (isNaN(val1) || isNaN(val2)) {
-      setError('Lütfen her iki alana da geçerli bir sayı giriniz.');
+      setError('Lütfen geçerli sayılar girin.');
       return;
     }
 
@@ -91,7 +96,7 @@ export default function YuzdeHesaplama() {
       });
     } else if (activeTab === 'ratio') {
       if (val2 === 0) {
-        setError('İkinci sayı 0 olamaz.');
+        setError('İkinci sayı (bölünen) 0 olamaz.');
         return;
       }
       const calculated = (val1 / val2) * 100;
@@ -107,7 +112,7 @@ export default function YuzdeHesaplama() {
       }
       const calculated = ((val2 - val1) / val1) * 100;
       setResult({
-        title: 'Yüzde Değişim',
+        title: 'Yüzde Değişim (Artış)',
         value: `%${formatNumber(calculated)} artış`,
         summary: `${formatNumber(val1)} değerinden ${formatNumber(val2)} değerine %${formatNumber(calculated)} artış gerçekleşmiştir.`,
       });
@@ -118,7 +123,7 @@ export default function YuzdeHesaplama() {
       }
       const calculated = ((val1 - val2) / val1) * 100;
       setResult({
-        title: 'Yüzde Değişim',
+        title: 'Yüzde Değişim (Azalış)',
         value: `%${formatNumber(calculated)} azalış`,
         summary: `${formatNumber(val1)} değerinden ${formatNumber(val2)} değerine %${formatNumber(calculated)} azalış gerçekleşmiştir.`,
       });
@@ -149,25 +154,25 @@ export default function YuzdeHesaplama() {
       <div className="bg-card rounded-xl border border-border/60 p-6 sm:p-8 shadow-sm mb-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           {/* Sol Kolon: Form */}
-          <form onSubmit={handleCalculate} className="flex flex-col justify-between space-y-5">
+          <form onSubmit={handleCalculate} noValidate className="flex flex-col justify-between space-y-5">
             <div className="space-y-5">
               <div>
-                <label htmlFor="input1" className="block text-sm font-medium mb-2">
+                <label htmlFor="input1" className="block text-sm font-medium mb-2 text-foreground">
                   {currentTab.input1Label} <span className="text-destructive">*</span>
                 </label>
                 <div className="relative">
                   <input
-                    type="number"
+                    type="text"
+                    inputMode="decimal"
                     id="input1"
-                    step="any"
-                    required
-                    className="w-full rounded-lg border bg-background px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    autoComplete="off"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
                     placeholder={currentTab.input1Placeholder}
-                    value={input1}
-                    onChange={(e) => setInput1(e.target.value)}
+                    value={input1Str}
+                    onChange={(e) => setInput1Str(e.target.value)}
                   />
                   {currentTab.input1Suffix && (
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                       {currentTab.input1Suffix}
                     </div>
                   )}
@@ -175,22 +180,22 @@ export default function YuzdeHesaplama() {
               </div>
 
               <div>
-                <label htmlFor="input2" className="block text-sm font-medium mb-2">
+                <label htmlFor="input2" className="block text-sm font-medium mb-2 text-foreground">
                   {currentTab.input2Label} <span className="text-destructive">*</span>
                 </label>
                 <div className="relative">
                   <input
-                    type="number"
+                    type="text"
+                    inputMode="decimal"
                     id="input2"
-                    step="any"
-                    required
-                    className="w-full rounded-lg border bg-background px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                    autoComplete="off"
+                    className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-base"
                     placeholder={currentTab.input2Placeholder}
-                    value={input2}
-                    onChange={(e) => setInput2(e.target.value)}
+                    value={input2Str}
+                    onChange={(e) => setInput2Str(e.target.value)}
                   />
                   {currentTab.input2Suffix && (
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground font-medium">
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">
                       {currentTab.input2Suffix}
                     </div>
                   )}
@@ -220,21 +225,21 @@ export default function YuzdeHesaplama() {
                   Hesaplama Sonucu
                 </h3>
 
-                <div className="flex flex-col items-center justify-center mb-4">
-                  <span className="text-muted-foreground font-medium mb-1 text-sm">{result.title}</span>
+                <div className="flex flex-col items-center justify-center mb-4 text-center">
+                  <span className="text-muted-foreground font-medium mb-1 text-xs sm:text-sm">{result.title}</span>
                   <span className="font-extrabold text-3xl sm:text-4xl text-primary tracking-tight">
                     {result.value}
                   </span>
                 </div>
 
                 <div className="border-t border-border/60 pt-4 text-center">
-                  <p className="text-sm text-foreground font-medium">
+                  <p className="text-xs sm:text-sm text-foreground font-medium">
                     {result.summary}
                   </p>
                 </div>
               </div>
             ) : (
-              <div className="hidden lg:flex h-full min-h-[260px] flex-col items-center justify-center rounded-xl border border-dashed border-border/80 p-6 text-center text-muted-foreground">
+              <div className="hidden lg:flex h-full min-h-[220px] flex-col items-center justify-center rounded-xl border border-dashed border-border/80 p-6 text-center text-muted-foreground">
                 <p className="text-sm font-medium text-foreground">Değerleri girip &ldquo;Hesapla&rdquo; butonuna basın.</p>
                 <p className="text-xs text-muted-foreground mt-1">Yüzde hesaplama sonucunuz ve açıklaması burada görüntülenecektir.</p>
               </div>
@@ -247,40 +252,40 @@ export default function YuzdeHesaplama() {
       <div className="prose prose-slate max-w-none">
         <h2 className="text-2xl font-bold mb-4 text-foreground">Yüzde Nasıl Hesaplanır?</h2>
         <p className="mb-6 text-muted-foreground">
-          Yüzde hesaplamaları, bir miktarın 100 eşit parçaya bölünmüş oranını ifade eder. 
+          Yüzde hesaplamaları, bir büyüklüğün 100 eşit parçaya bölünmüş oranını ifade eder. 
           Günlük hayatta, ticarette ve finansta en sık kullanılan 4 temel yüzde hesaplama yöntemi ve formülleri aşağıdadır:
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
           <div className="bg-muted/30 p-5 rounded-xl border border-border/60">
             <h3 className="text-base font-semibold mb-2 text-foreground">1. Bir Sayının Yüzdesi</h3>
-            <p className="font-mono text-xs text-primary mb-2">Formül: Sayı × Yüzde / 100</p>
+            <p className="font-mono text-xs text-primary mb-2">Formül: (Sayı &times; Yüzde) / 100</p>
             <p className="text-sm text-muted-foreground">
-              Örnek: 500 sayısının %20&apos;si = 500 × (20 / 100) = <strong>100</strong>
+              Örnek: 500 sayısının %20&apos;si = 500 &times; (20 / 100) = <strong>100</strong>
             </p>
           </div>
 
           <div className="bg-muted/30 p-5 rounded-xl border border-border/60">
             <h3 className="text-base font-semibold mb-2 text-foreground">2. Yüzde Oranı (A, B&apos;nin yüzde kaçı?)</h3>
-            <p className="font-mono text-xs text-primary mb-2">Formül: (İlk Sayı / İkinci Sayı) × 100</p>
+            <p className="font-mono text-xs text-primary mb-2">Formül: (İlk Sayı / Toplam Sayı) &times; 100</p>
             <p className="text-sm text-muted-foreground">
-              Örnek: 50 sayısı 200&apos;ün = (50 / 200) × 100 = <strong>%25</strong>&apos;idir.
+              Örnek: 50 sayısı 200&apos;ün = (50 / 200) &times; 100 = <strong>%25</strong>&apos;idir.
             </p>
           </div>
 
           <div className="bg-muted/30 p-5 rounded-xl border border-border/60">
             <h3 className="text-base font-semibold mb-2 text-foreground">3. Yüzde Artış</h3>
-            <p className="font-mono text-xs text-primary mb-2">Formül: ((Yeni Değer - Eski Değer) / Eski Değer) × 100</p>
+            <p className="font-mono text-xs text-primary mb-2">Formül: ((Yeni - Eski) / Eski) &times; 100</p>
             <p className="text-sm text-muted-foreground">
-              Örnek: 500&apos;den 600&apos;e değişim = ((600 - 500) / 500) × 100 = <strong>%20 artış</strong>
+              Örnek: 500&apos;den 600&apos;e = ((600 - 500) / 500) &times; 100 = <strong>%20 artış</strong>
             </p>
           </div>
 
           <div className="bg-muted/30 p-5 rounded-xl border border-border/60">
             <h3 className="text-base font-semibold mb-2 text-foreground">4. Yüzde Azalış</h3>
-            <p className="font-mono text-xs text-primary mb-2">Formül: ((Eski Değer - Yeni Değer) / Eski Değer) × 100</p>
+            <p className="font-mono text-xs text-primary mb-2">Formül: ((Eski - Yeni) / Eski) &times; 100</p>
             <p className="text-sm text-muted-foreground">
-              Örnek: 600&apos;den 500&apos;e değişim = ((600 - 500) / 600) × 100 = <strong>%16,67 azalış</strong>
+              Örnek: 600&apos;den 500&apos;e = ((600 - 500) / 600) &times; 100 = <strong>%16,67 azalış</strong>
             </p>
           </div>
         </div>
@@ -291,31 +296,42 @@ export default function YuzdeHesaplama() {
           <div>
             <h4 className="font-semibold text-lg text-foreground">Yüzde nasıl hesaplanır?</h4>
             <p className="text-muted-foreground mt-2">
-              Bir sayının istenen yüzdesini bulmak için sayıyı yüzde oranı ile çarpıp 100&apos;e bölmeniz yeterlidir. Örneğin 200 sayısının %15&apos;i 200 × 15 / 100 = 30&apos;dur.
+              Bir sayının istenen yüzdesini bulmak için sayıyı yüzde oranı ile çarpıp 100&apos;e bölmeniz yeterlidir. Örneğin 200 sayısının %15&apos;i 200 &times; 15 / 100 = 30&apos;dur.
             </p>
           </div>
+
           <div>
             <h4 className="font-semibold text-lg text-foreground">Bir sayının diğer sayının yüzde kaçı olduğu nasıl bulunur?</h4>
             <p className="text-muted-foreground mt-2">
-              İlk sayıyı ikinci sayıya (toplam sayıya) bölüp sonucu 100 ile çarparak yüzde oranına ulaşırsınız.
+              İlk sayıyı ikinci sayıya (toplam sayıya) bölüp sonucu 100 ile çarparak yüzde oranına ulaşırsınız. Örneğin 30 / 120 &times; 100 = %25.
             </p>
           </div>
+
           <div>
             <h4 className="font-semibold text-lg text-foreground">Yüzde artış nasıl hesaplanır?</h4>
             <p className="text-muted-foreground mt-2">
-              Yeni değerden eski değeri çıkarıp oluşan farkı eski değere bölün ve 100 ile çarpın.
+              Yeni değerden eski değeri çıkarıp oluşan farkı ilk (eski) değere bölün ve 100 ile çarpın. Formül: ((Yeni - Eski) / Eski) &times; 100.
             </p>
           </div>
+
           <div>
             <h4 className="font-semibold text-lg text-foreground">Yüzde azalış nasıl hesaplanır?</h4>
             <p className="text-muted-foreground mt-2">
-              Eski değerden yeni değeri çıkarıp aradaki farkı ilk (eski) değere bölerek 100 ile çarptığınızda azalış oranını bulursunuz.
+              Eski değerden yeni değeri çıkarıp aradaki farkı ilk değere bölerek 100 ile çarptığınızda azalış oranını bulursunuz.
             </p>
           </div>
+
           <div>
-            <h4 className="font-semibold text-lg text-foreground">%20 nasıl pratik hesaplanır?</h4>
+            <h4 className="font-semibold text-lg text-foreground">%10, %20 ve %25 nasıl pratik hesaplanır?</h4>
             <p className="text-muted-foreground mt-2">
-              Bir sayının %20&apos;sini zihinden bulmanın en pratik yolu o sayıyı direkt 5&apos;e bölmektir (beşte biri).
+              %10 için sayının sonundan bir sıfır silin (veya 10&apos;a bölün); %20 için sayıyı 5&apos;e bölün; %25 için sayıyı 4&apos;e bölün (çeyreği).
+            </p>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-lg text-foreground">Yüzde değişim ile yüzde fark aynı mıdır?</h4>
+            <p className="text-muted-foreground mt-2">
+              Yüzde değişim zamana bağlı başlangıç değerini (eski değeri) baz alırken; yüzde fark genellikle iki ayrı değer arasındaki bağıl farkı ifade eder.
             </p>
           </div>
         </div>

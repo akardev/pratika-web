@@ -229,7 +229,7 @@ export default function KdvHesaplama() {
 
                 <div className="flex flex-col items-center justify-center mb-4">
                   <span className="text-xs text-muted-foreground mb-1">
-                    {result.mode === 'haric-to-dahil' ? 'KDV Dahil Toplam' : 'KDV Hariç Net Tutar'}
+                    {result.mode === 'haric-to-dahil' ? 'KDV Dahil Toplam Tutar' : 'KDV Hariç Net Tutar'}
                   </span>
                   <span className="font-extrabold text-3xl sm:text-4xl text-primary tracking-tight">
                     {result.mode === 'haric-to-dahil'
@@ -240,7 +240,7 @@ export default function KdvHesaplama() {
 
                 <div className="border-t border-border/60 pt-4 space-y-2 text-xs sm:text-sm">
                   <div className="flex justify-between items-center py-1">
-                    <span className="text-muted-foreground">KDV Hariç:</span>
+                    <span className="text-muted-foreground">KDV Hariç Tutar:</span>
                     <span className="font-semibold text-foreground">{formatCurrency(result.kdvHaric)}</span>
                   </div>
 
@@ -250,13 +250,13 @@ export default function KdvHesaplama() {
                   </div>
 
                   <div className="flex justify-between items-center py-1">
-                    <span className="text-muted-foreground">KDV Tutarı:</span>
+                    <span className="text-muted-foreground">Hesaplanan KDV:</span>
                     <span className="font-semibold text-foreground">{formatCurrency(result.kdvAmount)}</span>
                   </div>
 
                   <div className="flex justify-between items-center py-1 border-t border-border/40 pt-2">
-                    <span className="font-medium text-foreground">KDV Dahil:</span>
-                    <span className="font-bold text-foreground">{formatCurrency(result.kdvDahil)}</span>
+                    <span className="font-medium text-foreground">KDV Dahil Tutar:</span>
+                    <span className="font-bold text-foreground text-sm sm:text-base">{formatCurrency(result.kdvDahil)}</span>
                   </div>
                 </div>
               </div>
@@ -274,28 +274,28 @@ export default function KdvHesaplama() {
       <div className="prose prose-slate max-w-none">
         <h2 className="text-2xl font-bold mb-4 text-foreground">KDV Nasıl Hesaplanır?</h2>
         <p className="mb-4 text-muted-foreground">
-          Katma Değer Vergisi (KDV), mal ve hizmet teslimlerinde uygulanan tüketim vergisidir. 
+          Katma Değer Vergisi (KDV), tüketim harcamaları üzerinden alınan dolaylı bir vergidir. 
           Hesaplama işlemi fiyata KDV ekleme (KDV Hariçten KDV Dahile) veya fiyattan KDV ayırma (KDV Dahilden KDV Harice) şeklinde iki farklı yöntemle yapılır.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           <div className="bg-muted/30 p-5 rounded-xl border border-border/60">
-            <h3 className="text-base font-semibold mb-2 text-foreground">1. KDV Hariçten KDV Dahile:</h3>
+            <h3 className="text-base font-semibold mb-2 text-foreground">1. KDV Ekleme (KDV Hariçten Dahile):</h3>
             <p className="text-xs text-muted-foreground mb-2">
-              <strong>Formül:</strong> KDV Dahil = KDV Hariç Tutar &times; (1 + KDV Oranı / 100)
+              <strong>Formül:</strong> KDV Dahil = KDV Hariç &times; (1 + KDV Oranı / 100)
             </p>
             <p className="text-xs text-muted-foreground">
-              <strong>Örnek:</strong> 1.000 TL KDV hariç ürünün %20 KDV dahil fiyatı <strong>1.200,00 TL</strong> (KDV Tutarı: 200,00 TL) olur.
+              <strong>Örnek:</strong> 1.000 TL KDV hariç tutarın %20 KDV dahil fiyatı: 1.000 &times; 1,20 = <strong>1.200,00 TL</strong> (KDV: 200,00 TL).
             </p>
           </div>
 
           <div className="bg-muted/30 p-5 rounded-xl border border-border/60">
-            <h3 className="text-base font-semibold mb-2 text-foreground">2. KDV Dahilden KDV Harice:</h3>
+            <h3 className="text-base font-semibold mb-2 text-foreground">2. KDV Ayırma (KDV Dahilden Harice):</h3>
             <p className="text-xs text-muted-foreground mb-2">
-              <strong>Formül:</strong> KDV Hariç = KDV Dahil Tutar / (1 + KDV Oranı / 100)
+              <strong>Formül:</strong> KDV Hariç = KDV Dahil / (1 + KDV Oranı / 100)
             </p>
             <p className="text-xs text-muted-foreground">
-              <strong>Örnek:</strong> 1.200 TL KDV dahil ürünün %20 KDV hariç fiyatı <strong>1.000,00 TL</strong> (KDV Tutarı: 200,00 TL) olur.
+              <strong>Örnek:</strong> 1.200 TL KDV dahil tutarın %20 KDV hariç fiyatı: 1.200 / 1,20 = <strong>1.000,00 TL</strong> (KDV: 200,00 TL).
             </p>
           </div>
         </div>
@@ -306,35 +306,49 @@ export default function KdvHesaplama() {
           <div>
             <h4 className="font-semibold text-lg text-foreground">KDV nasıl hesaplanır?</h4>
             <p className="text-muted-foreground mt-2">
-              KDV tutarını bulmak için vergisiz tutar ile geçerli KDV oranı çarpılıp 100&apos;e bölünür. Bulunan vergi tutarı net fiyata eklenerek KDV dahil toplam tutar elde edilir.
+              KDV tutarını bulmak için vergisiz (net) tutar geçerli KDV oranı ile çarpılıp 100&apos;e bölünür. Bulunan vergi tutarı net fiyata eklenerek KDV dahil toplam satış fiyatı elde edilir.
             </p>
           </div>
 
           <div>
             <h4 className="font-semibold text-lg text-foreground">KDV dahil fiyattan KDV nasıl çıkarılır?</h4>
             <p className="text-muted-foreground mt-2">
-              KDV dahil fiyatı (1 + KDV Oranı / 100) değerine bölerek KDV hariç fiyata ulaşabilirsiniz. Örneğin %20 KDV dahil fiyat 1,20&apos;ye bölünür.
+              KDV dahil fiyatı (1 + KDV Oranı / 100) bölenine bölerek net KDV hariç fiyata ulaşabilirsiniz. Örneğin %20 KDV dahil tutar 1,20&apos;ye; %10 KDV dahil tutar 1,10&apos;a; %1 KDV dahil tutar ise 1,01&apos;e bölünür.
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold text-lg text-foreground">KDV hariç fiyat nasıl hesaplanır?</h4>
+            <h4 className="font-semibold text-lg text-foreground">1.000 TL&apos;nin %20 KDV&apos;si ne kadardır?</h4>
             <p className="text-muted-foreground mt-2">
-              KDV hariç fiyat, ürünün vergisiz ana bedelidir. KDV dahil tutardan KDV tutarı düşülerek veya formül ile bölünerek hesaplanır.
+              1.000 TL KDV hariç tutarın %20 KDV&apos;si 200 TL&apos;dir; KDV dahil toplam tutar 1.200 TL olur. 1.000 TL KDV dahil tutarın içindeki %20 KDV ise yaklaşık 166,67 TL&apos;dir (Net: 833,33 TL).
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold text-lg text-foreground">KDV oranı nasıl seçilir?</h4>
+            <h4 className="font-semibold text-lg text-foreground">KDV dahil ve KDV hariç arasındaki fark nedir?</h4>
             <p className="text-muted-foreground mt-2">
-              Türkiye&apos;de genel olarak %1 (temel gıda vb.), %10 (konaklama, tekstil vb.) ve %20 (genel standart oran) KDV oranları uygulanmaktadır. Aracımız üzerinden hazır oranları seçebilir veya özel oran girebilirsiniz.
+              KDV hariç fiyat ürünün veya hizmetin vergisiz ana bedelidir. KDV dahil fiyat ise bu bedele yasal katma değer vergisinin eklenmiş nihai tüketici satış fiyatıdır.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-lg text-foreground">Türkiye&apos;de geçerli KDV oranları nelerdir?</h4>
+            <p className="text-muted-foreground mt-2">
+              Mevzuata göre genel olarak %1 (temel gıda, tohum vb.), %10 (gıda ürünleri, konaklama, tekstil vb.) ve %20 (genel standart KDV oranı) uygulanmaktadır. Yasal düzenlemelerle oranlar dönemsel olarak güncellenebilir.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-lg text-foreground">KDV ayırırken neden doğrudan yüzde çıkarılmaz?</h4>
+            <p className="text-muted-foreground mt-2">
+              Çünkü KDV tutarı küçük olan vergisiz matrah üzerinden hesaplanmıştır. 1.200 TL&apos;den doğrudan %20 (240 TL) çıkarırsanız 960 TL kalır ve bu matematiksel olarak hatalıdır. Doğru yöntem 1,20&apos;ye bölmektir.
             </p>
           </div>
 
           <div>
             <h4 className="font-semibold text-lg text-foreground">KDV tutarı nasıl bulunur?</h4>
             <p className="text-muted-foreground mt-2">
-              KDV tutarı, KDV dahil toplam fiyat ile KDV hariç net fiyat arasındaki farktır.
+              KDV tutarı, KDV dahil toplam tutardan KDV hariç net tutar çıkarılarak bulunur (KDV Tutarı = KDV Dahil - KDV Hariç).
             </p>
           </div>
         </div>
