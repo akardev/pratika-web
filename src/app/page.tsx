@@ -1,46 +1,51 @@
 import SearchBar from '@/components/ui/SearchBar';
-import CategoryCard from '@/components/ui/CategoryCard';
-import ToolCard from '@/components/ui/ToolCard';
-import { categories, tools } from '@/data/tools';
+import Link from 'next/link';
+import { tools } from '@/data/tools';
 
 export default function Home() {
-  const popularTools = tools.slice(0, 4); // Show top 4 tools as popular
-
   return (
     <div className="flex flex-col flex-1">
       {/* Hero Section */}
-      <section className="bg-muted/30 py-20 px-4 sm:px-6 lg:px-8 border-b">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground mb-6">
-            Aradığın sonucu saniyeler içinde bul.
+      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-3xl text-center">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-4">
+            Pratika
           </h1>
-          <p className="text-lg sm:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-            Pratika, finans, eğitim, teknoloji ve günlük hayatta ihtiyaç duyduğunuz tüm hesaplama ve dönüşüm araçlarını tek bir yerde sunar.
+          <p className="text-base sm:text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+            İhtiyacınız olan hesaplamaları hızlı ve kolayca yapın.
           </p>
           
           <SearchBar />
         </div>
       </section>
 
-      {/* Categories Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto">
-          <h2 className="text-2xl font-bold tracking-tight mb-8">Kategoriler</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {categories.map((category) => (
-              <CategoryCard key={category.id} category={category} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Popular Tools Section */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/10 border-t">
-        <div className="container mx-auto">
-          <h2 className="text-2xl font-bold tracking-tight mb-8">Popüler Araçlar</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {popularTools.map((tool) => (
-              <ToolCard key={tool.id} tool={tool} />
+      {/* Available Tools Section */}
+      <section className="pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
+            Mevcut Araçlar
+          </h2>
+          <div className="grid grid-cols-1 gap-4">
+            {tools.map((tool) => (
+              <Link
+                key={tool.id}
+                href={`/arac/${tool.slug}`}
+                className="group block p-6 rounded-xl border border-border/60 bg-card hover:border-primary/40 hover:shadow-sm transition-all"
+              >
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-semibold text-lg text-foreground group-hover:text-primary transition-colors">
+                      {tool.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      {tool.description}
+                    </p>
+                  </div>
+                  <span className="text-sm font-medium text-primary shrink-0 ml-4 group-hover:translate-x-0.5 transition-transform">
+                    Araca Git &rarr;
+                  </span>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -48,3 +53,4 @@ export default function Home() {
     </div>
   );
 }
+

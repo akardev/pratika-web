@@ -37,7 +37,7 @@ export default function SearchBar() {
           className="peer h-full w-full outline-none text-base bg-transparent pr-4"
           type="text"
           id="search"
-          placeholder="Hangi aracı arıyorsunuz? (Örn: KDV hesaplama)"
+          placeholder="Hangi aracı arıyorsunuz? (Örn: İndirim hesaplama)"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />

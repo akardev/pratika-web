@@ -36,8 +36,7 @@ export default async function CategoryPage({ params }: Props) {
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="mb-10">
-        <h1 className="text-3xl font-bold tracking-tight mb-4 flex items-center gap-3">
-          <span className="text-4xl">{category.icon}</span>
+        <h1 className="text-3xl font-bold tracking-tight mb-4">
           {category.title}
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl">

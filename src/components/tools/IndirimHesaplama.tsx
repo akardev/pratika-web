@@ -38,7 +38,7 @@ export default function IndirimHesaplama() {
 
   return (
     <div className="w-full">
-      <div className="bg-card rounded-2xl border p-6 sm:p-8 shadow-sm mb-12">
+      <div className="bg-card rounded-xl border border-border/60 p-6 sm:p-8 shadow-sm mb-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           {/* Sol Kolon: Form */}
           <form onSubmit={calculateDiscount} className="flex flex-col justify-between space-y-5">
@@ -103,7 +103,7 @@ export default function IndirimHesaplama() {
           {/* Sağ Kolon: Sonuç Paneli */}
           <div className="flex flex-col justify-center">
             {result ? (
-              <div className="h-full flex flex-col justify-center p-6 bg-muted/30 rounded-xl border border-primary/20 shadow-sm animate-in fade-in zoom-in-95 duration-200">
+              <div className="h-full flex flex-col justify-center p-6 bg-muted/20 rounded-xl border border-border shadow-sm animate-in fade-in zoom-in-95 duration-200">
                 <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-4 text-center">
                   Hesaplama Sonucu
                 </h3>
@@ -115,7 +115,7 @@ export default function IndirimHesaplama() {
                   </span>
                 </div>
 
-                <div className="flex flex-col items-center justify-center mb-5 pb-4 border-b border-border">
+                <div className="flex flex-col items-center justify-center mb-5 pb-4 border-b border-border/60">
                   <span className="text-muted-foreground font-medium mb-1 text-xs sm:text-sm">İndirim Tutarı</span>
                   <span className="font-bold text-xl sm:text-2xl text-destructive">
                     {formatCurrency(result.discountAmount)}
@@ -138,9 +138,8 @@ export default function IndirimHesaplama() {
                 </div>
               </div>
             ) : (
-              <div className="hidden lg:flex h-full min-h-[260px] flex-col items-center justify-center rounded-xl border border-dashed border-border p-6 text-center text-muted-foreground">
-                <span className="text-3xl mb-3">🏷️</span>
-                <p className="text-sm font-medium">Değerleri girip &ldquo;Hesapla&rdquo; butonuna basın.</p>
+              <div className="hidden lg:flex h-full min-h-[260px] flex-col items-center justify-center rounded-xl border border-dashed border-border/80 p-6 text-center text-muted-foreground">
+                <p className="text-sm font-medium text-foreground">Değerleri girip &ldquo;Hesapla&rdquo; butonuna basın.</p>
                 <p className="text-xs text-muted-foreground mt-1">İndirimli fiyat ve tasarruf tutarınız burada görüntülenecektir.</p>
               </div>
             )}
@@ -152,7 +151,7 @@ export default function IndirimHesaplama() {
         <h2 className="text-2xl font-bold mb-4">İndirim Nasıl Hesaplanır?</h2>
         <p className="mb-4">
           Bir ürünün indirimli fiyatını bulmak için öncelikle indirim tutarını hesaplamalısınız. 
-          İndirim tutarı, ürünün normal fiyatının indirim yüzdesi ile çarpılıp 100'e bölünmesiyle bulunur.
+          İndirim tutarı, ürünün normal fiyatının indirim yüzdesi ile çarpılıp 100&apos;e bölünmesiyle bulunur.
         </p>
         <div className="bg-muted/50 p-6 rounded-lg mb-8 border">
           <p className="font-mono text-sm mb-2 text-muted-foreground">Formül:</p>
@@ -174,13 +173,13 @@ export default function IndirimHesaplama() {
           <div>
             <h4 className="font-semibold text-lg">İndirim nasıl hesaplanır?</h4>
             <p className="text-muted-foreground mt-2">
-              Ürünün normal fiyatını, indirim oranı ile çarpıp 100'e bölerek indirim tutarını bulabilirsiniz. Daha sonra bu tutarı normal fiyattan çıkararak indirimli fiyata ulaşırsınız.
+              Ürünün normal fiyatını, indirim oranı ile çarpıp 100&apos;e bölerek indirim tutarını bulabilirsiniz. Daha sonra bu tutarı normal fiyattan çıkararak indirimli fiyata ulaşırsınız.
             </p>
           </div>
           <div>
             <h4 className="font-semibold text-lg">%20 indirim nasıl hesaplanır?</h4>
             <p className="text-muted-foreground mt-2">
-              Bir fiyatın %20'sini bulmak için fiyatı 20 ile çarpıp 100'e bölebilirsiniz. Pratik olarak, fiyatı 5'e bölerek de %20'sini (beşte birini) hızlıca bulabilirsiniz.
+              Bir fiyatın %20&apos;sini bulmak için fiyatı 20 ile çarpıp 100&apos;e bölebilirsiniz. Pratik olarak, fiyatı 5&apos;e bölerek de %20&apos;sini (beşte birini) hızlıca bulabilirsiniz.
             </p>
           </div>
           <div>
@@ -192,7 +191,7 @@ export default function IndirimHesaplama() {
           <div>
             <h4 className="font-semibold text-lg">İndirim tutarı nasıl hesaplanır?</h4>
             <p className="text-muted-foreground mt-2">
-              Sadece ne kadar kâr ettiğinizi (tasarruf ettiğinizi) görmek istiyorsanız, fiyatı indirim yüzdesi ile çarpıp 100'e bölmeniz yeterlidir. Bu size direkt indirim tutarını verir.
+              Sadece ne kadar kâr ettiğinizi (tasarruf ettiğinizi) görmek istiyorsanız, fiyatı indirim yüzdesi ile çarpıp 100&apos;e bölmeniz yeterlidir. Bu size direkt indirim tutarını verir.
             </p>
           </div>
         </div>

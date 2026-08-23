@@ -8,24 +8,21 @@ interface ToolCardProps {
 export default function ToolCard({ tool }: ToolCardProps) {
   return (
     <Link href={`/arac/${tool.slug}`} className="group block h-full">
-      <div className="h-full rounded-2xl border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/50 flex flex-col">
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-xl text-primary group-hover:scale-110 transition-transform">
-            {tool.icon}
-          </div>
-          {tool.status === 'coming-soon' && (
-            <span className="inline-flex items-center rounded-full bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground">
-              Yakında
-            </span>
-          )}
+      <div className="h-full rounded-xl border border-border/60 bg-card p-6 shadow-sm transition-all hover:border-primary/40 hover:shadow flex flex-col justify-between">
+        <div>
+          <h3 className="mb-2 font-semibold tracking-tight text-lg text-foreground group-hover:text-primary transition-colors">
+            {tool.title}
+          </h3>
+          <p className="text-sm text-muted-foreground line-clamp-2">
+            {tool.description}
+          </p>
         </div>
-        <h3 className="mb-2 font-semibold tracking-tight text-lg group-hover:text-primary transition-colors">
-          {tool.title}
-        </h3>
-        <p className="text-sm text-muted-foreground line-clamp-2 mt-auto">
-          {tool.description}
-        </p>
+        <div className="mt-4 flex items-center text-xs font-medium text-primary">
+          <span>Araca Git</span>
+          <span className="ml-1 group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+        </div>
       </div>
     </Link>
   );
 }
+
