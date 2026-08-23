@@ -21,12 +21,17 @@ export default function Footer() {
             {/* ARAÇLAR */}
             <div>
               <h3 className="font-semibold text-foreground uppercase tracking-wider mb-2.5">
-                Araçlar
+                Araçlar & Bilgi
               </h3>
               <ul className="space-y-1.5 text-muted-foreground">
                 <li>
                   <Link href="/araclar" className="hover:text-foreground transition-colors">
                     Tüm Araçlar
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/bilgi" className="hover:text-foreground transition-colors">
+                    Bilgi Merkezi
                   </Link>
                 </li>
               </ul>

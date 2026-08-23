@@ -14,6 +14,9 @@ export default function Header() {
             <Link href="/araclar" className="text-muted-foreground transition-colors hover:text-foreground">
               Araçlar
             </Link>
+            <Link href="/bilgi" className="text-muted-foreground transition-colors hover:text-foreground">
+              Bilgi Merkezi
+            </Link>
           </nav>
         </div>
       </div>

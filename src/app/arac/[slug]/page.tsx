@@ -1,4 +1,5 @@
 import { tools } from '@/data/tools';
+import { getArticlesByToolSlug } from '@/data/articles';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -73,12 +74,13 @@ export default async function ToolPage({ params }: Props) {
   }
 
   const relatedTools = tools.filter((t) => t.id !== tool.id);
+  const relatedArticles = getArticlesByToolSlug(tool.slug);
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 max-w-4xl">
       <div className="mb-8">
         <Link 
-          href="/"
+          href="/araclar"
           className="text-xs font-medium text-muted-foreground hover:text-foreground mb-4 inline-block transition-colors"
         >
           &larr; Tüm Araçlar
@@ -99,6 +101,42 @@ export default async function ToolPage({ params }: Props) {
         {tool.slug === 'kar-marji-hesaplama' && <KarMarjiHesaplama />}
       </div>
 
+      {/* İlgili Bilgiler (Bilgi Merkezi İçerikleri) */}
+      {relatedArticles.length > 0 && (
+        <div className="border-t border-border/60 pt-10 mt-10">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-bold tracking-tight text-foreground">
+              İlgili Bilgiler
+            </h2>
+            <Link
+              href="/bilgi"
+              className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+            >
+              Bilgi Merkezi &rarr;
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {relatedArticles.map((ra) => (
+              <Link
+                key={ra.id}
+                href={`/bilgi/${ra.slug}`}
+                className="group block p-5 rounded-xl border border-border/60 bg-card hover:border-primary/40 hover:shadow-xs transition-all"
+              >
+                <span className="text-xs font-semibold text-primary mb-1 block">
+                  {ra.category}
+                </span>
+                <h3 className="font-semibold text-base text-foreground group-hover:text-primary transition-colors mb-1">
+                  {ra.title}
+                </h3>
+                <p className="text-xs text-muted-foreground line-clamp-2">
+                  {ra.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* İlgili Araçlar */}
       {relatedTools.length > 0 && (
         <div className="border-t border-border/60 pt-10 mt-10">
@@ -115,6 +153,7 @@ export default async function ToolPage({ params }: Props) {
     </div>
   );
 }
+
 
 
 
