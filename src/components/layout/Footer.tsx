@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Logo from '@/components/ui/Logo';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -9,9 +10,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-8 sm:gap-12 mb-8">
           {/* Sol: Pratika & Açıklama */}
           <div className="max-w-xs space-y-2">
-            <Link href="/" className="text-lg font-bold tracking-tight text-foreground">
-              Pratika
-            </Link>
+            <Logo variant="wordmark" />
             <p className="text-xs text-muted-foreground leading-relaxed">
               İhtiyacınız olan hesaplamaları hızlı, sade ve güvenilir şekilde yapın.
             </p>
@@ -26,7 +25,7 @@ export default function Footer() {
               </h3>
               <ul className="space-y-1.5 text-muted-foreground">
                 <li>
-                  <Link href="/" className="hover:text-foreground transition-colors">
+                  <Link href="/araclar" className="hover:text-foreground transition-colors">
                     Tüm Araçlar
                   </Link>
                 </li>

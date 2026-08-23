@@ -33,11 +33,11 @@ export default function SearchBar() {
   return (
     <div className="relative w-full max-w-2xl mx-auto">
       <form onSubmit={handleSubmit} className="relative">
-        <div className="relative flex items-center w-full h-14 rounded-full border border-border/80 bg-card shadow-xs hover:shadow-sm transition-all focus-within:ring-2 focus-within:ring-primary focus-within:border-transparent overflow-hidden">
-          <div className="grid place-items-center h-full w-14 text-muted-foreground">
+        <div className="relative flex items-center w-full h-12 sm:h-14 rounded-full border border-border/80 bg-card shadow-xs hover:shadow-sm transition-all focus-within:ring-2 focus-within:ring-primary focus-within:border-transparent overflow-hidden">
+          <div className="grid place-items-center h-full w-11 sm:w-14 text-muted-foreground shrink-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-4 w-4 sm:h-5 sm:w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -52,11 +52,11 @@ export default function SearchBar() {
           </div>
 
           <input
-            className="peer h-full w-full outline-none text-base bg-transparent pr-4 text-foreground placeholder:text-muted-foreground"
+            className="peer h-full w-full outline-none text-sm sm:text-base bg-transparent pr-4 text-foreground placeholder:text-muted-foreground"
             type="text"
             id="search"
             autoComplete="off"
-            placeholder="Hangi aracı arıyorsunuz? (Örn: İndirim, Yüzde)"
+            placeholder="Hangi aracı arıyorsunuz?"
             value={query}
             onChange={(e) => {
               setQuery(e.target.value);
@@ -67,7 +67,7 @@ export default function SearchBar() {
           
           <button 
             type="submit" 
-            className="h-10 px-6 mr-2 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors hidden sm:block"
+            className="h-10 px-5 mr-2 rounded-full bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors hidden sm:block shrink-0"
           >
             Bul
           </button>

@@ -4,8 +4,14 @@ export const categories: Category[] = [
   {
     id: 'finans',
     slug: 'finans',
-    title: 'Finans ve Hesaplama',
-    description: 'Finansal ve matematiksel hesaplama araçları.',
+    title: 'Finans',
+    description: 'Finansal, ticari ve matematiksel hesaplama araçları.',
+  },
+  {
+    id: 'zaman',
+    slug: 'zaman',
+    title: 'Zaman ve Tarih',
+    description: 'Tarih, yaş ve zaman hesaplama araçları.',
   }
 ];
 
@@ -33,7 +39,7 @@ export const tools: Tool[] = [
     slug: 'yas-hesaplama',
     title: 'Yaş Hesaplama',
     description: 'Doğum tarihinizi girerek yaşınızı yıl, ay ve gün olarak hesaplayın.',
-    categoryId: 'finans',
+    categoryId: 'zaman',
     status: 'active',
     keywords: ['yaş', 'yaş hesaplama', 'kaç yaşındayım', 'doğum günü', 'yaşım']
   },
@@ -56,6 +62,20 @@ export const tools: Tool[] = [
     keywords: ['kâr marjı', 'kar marjı', 'kâr marjı hesaplama', 'kar marjı hesaplama', 'kâr oranı hesaplama', 'satış fiyatı hesaplama', 'hedef kâr marjı', 'maliyet ve satış', 'kâr hesaplama']
   }
 ];
+
+export function getActiveCategories(): Category[] {
+  const activeCategoryIds = new Set(tools.filter(t => t.status === 'active').map(t => t.categoryId));
+  return categories.filter(c => activeCategoryIds.has(c.id));
+}
+
+export function getCategoryById(id: string): Category | undefined {
+  return categories.find(c => c.id === id);
+}
+
+export function getFeaturedTools(limit = 4): Tool[] {
+  return tools.filter(t => t.status === 'active').slice(0, limit);
+}
+
 
 
 

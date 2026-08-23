@@ -3,15 +3,17 @@ import Link from 'next/link';
 import { tools } from '@/data/tools';
 
 export default function Home() {
+  const activeTools = tools.filter((t) => t.status === 'active');
+
   return (
     <div className="flex flex-col flex-1">
       {/* Hero Section */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+      <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-3xl text-center">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-4">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-3">
             Pratika
           </h1>
-          <p className="text-base sm:text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+          <p className="text-base text-muted-foreground mb-6 sm:mb-8 max-w-xl mx-auto">
             İhtiyacınız olan hesaplamaları hızlı ve kolayca yapın.
           </p>
           
@@ -20,13 +22,22 @@ export default function Home() {
       </section>
 
       {/* Available Tools Section */}
-      <section className="pb-20 px-4 sm:px-6 lg:px-8">
+      <section className="pb-16 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto max-w-3xl">
-          <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">
-            Mevcut Araçlar
-          </h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+              Mevcut Araçlar
+            </h2>
+            <Link
+              href="/araclar"
+              className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+            >
+              Tüm Araçlar &rarr;
+            </Link>
+          </div>
+
           <div className="grid grid-cols-1 gap-4">
-            {tools.map((tool) => (
+            {activeTools.map((tool) => (
               <Link
                 key={tool.id}
                 href={`/arac/${tool.slug}`}
@@ -53,4 +64,7 @@ export default function Home() {
     </div>
   );
 }
+
+
+
 
