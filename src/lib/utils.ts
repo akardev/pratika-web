@@ -6,3 +6,11 @@ export function formatCurrency(value: number): string {
   
   return `${formattedNumber} TL`;
 }
+
+export function formatNumber(value: number, maxDecimals = 2): string {
+  return new Intl.NumberFormat('tr-TR', {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: maxDecimals,
+  }).format(value);
+}
+
