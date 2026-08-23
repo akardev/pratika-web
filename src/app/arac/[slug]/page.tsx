@@ -9,6 +9,7 @@ import YasHesaplama from '@/components/tools/YasHesaplama';
 import KdvHesaplama from '@/components/tools/KdvHesaplama';
 import KarMarjiHesaplama from '@/components/tools/KarMarjiHesaplama';
 import ZamHesaplama from '@/components/tools/ZamHesaplama';
+import KarZararHesaplama from '@/components/tools/KarZararHesaplama';
 import ToolCard from '@/components/ui/ToolCard';
 
 type Props = {
@@ -67,6 +68,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  if (tool.slug === 'kar-zarar-hesaplama') {
+    return {
+      title: 'Kâr / Zarar Hesaplama | Pratika',
+      description: 'Maliyet ve satış fiyatına göre kârınızı, zararınızı ve kâr/zarar oranınızı hesaplayın.',
+    };
+  }
+
   return {
     title: tool.title,
     description: tool.description,
@@ -108,6 +116,7 @@ export default async function ToolPage({ params }: Props) {
         {tool.slug === 'kdv-hesaplama' && <KdvHesaplama />}
         {tool.slug === 'kar-marji-hesaplama' && <KarMarjiHesaplama />}
         {tool.slug === 'zam-hesaplama' && <ZamHesaplama />}
+        {tool.slug === 'kar-zarar-hesaplama' && <KarZararHesaplama />}
       </div>
 
       {/* İlgili Bilgiler (Bilgi Merkezi İçerikleri) */}
@@ -162,6 +171,7 @@ export default async function ToolPage({ params }: Props) {
     </div>
   );
 }
+
 
 
 

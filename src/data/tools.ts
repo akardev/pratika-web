@@ -69,8 +69,18 @@ export const tools: Tool[] = [
     categoryId: 'finans',
     status: 'active',
     keywords: ['zam', 'zam hesaplama', 'zamlı fiyat', 'zam oranı', 'zam tutarı', 'zam öncesi fiyat', 'fiyat artışı', 'artış hesaplama']
+  },
+  {
+    id: 'kar-zarar-hesaplama',
+    slug: 'kar-zarar-hesaplama',
+    title: 'Kâr / Zarar Hesaplama',
+    description: 'Maliyet ve satış fiyatına göre kârınızı veya zararınızı ve kâr/zarar oranınızı hesaplayın.',
+    categoryId: 'finans',
+    status: 'active',
+    keywords: ['kar zarar', 'kâr zarar', 'kar zarar hesaplama', 'kâr zarar hesaplama', 'kar hesaplama', 'zarar hesaplama', 'kâr hesaplama', 'satış karı', 'maliyet karı', 'kazanç hesaplama']
   }
 ];
+
 
 
 export function getActiveCategories(): Category[] {

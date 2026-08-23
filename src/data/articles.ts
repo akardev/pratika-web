@@ -365,8 +365,57 @@ export const articles: Article[] = [
         note: '12.500 TL\'den %25 düşülürse 9.375 TL bulunur. Bu nedenle zam öncesi fiyata ulaşmak için mutlaka bölme formülü (12.500 / 1,25) kullanılmalıdır.'
       }
     ]
+  },
+  {
+    id: 'kar-ve-zarar-nasil-hesaplanir',
+    slug: 'kar-ve-zarar-nasil-hesaplanir',
+    title: 'Kâr ve Zarar Nasıl Hesaplanır?',
+    description: 'Maliyet ve satış fiyatına göre net kâr veya zarar tutarını bulma, kâr/zarar oranı hesaplama ve kâr marjı ile farkı.',
+    category: 'Finans',
+    relatedToolSlug: 'kar-zarar-hesaplama',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['kar ve zarar nasıl hesaplanır', 'kâr zarar hesaplama', 'net kâr bulma', 'zarar hesaplama', 'kâr oranı'],
+    sections: [
+      {
+        heading: 'Kâr ve Zarar Mantığı',
+        paragraphs: [
+          'Ticari işlemlerde veya ürün satışlarında ortaya çıkan net kazanç veya kayıp, satış fiyatı ile ürünün toplam maliyeti arasındaki farkla belirlenir.',
+          'Satış fiyatı maliyetten yüksekse kâr, düşükse zarar elde edilmiş olur.'
+        ]
+      },
+      {
+        heading: 'Kâr ve Zarar Formülleri',
+        paragraphs: [
+          'Net fark ve maliyet üzerinden kâr/zarar oranı şu formüllerle bulunur:'
+        ],
+        formula: 'Net Kâr/Zarar = Satış Fiyatı - Maliyet\nKâr/Zarar Oranı (%) = [(Satış Fiyatı - Maliyet) / Maliyet] × 100'
+      },
+      {
+        heading: 'Kâr/Zarar Oranı ile Kâr Marjı Farkı',
+        paragraphs: [
+          'Kâr/zarar oranı hesaplanırken elde edilen kâr "maliyete" bölünür. Kâr marjı hesaplanırken ise elde edilen kâr "satış fiyatına" bölünür.',
+          'Örneğin 800 TL maliyetli ürün 1.000 TL\'ye satıldığında: 200 TL kâr elde edilir. Maliyete göre Kâr Oranı %25, Satışa göre Kâr Marjı %20\'dir.'
+        ]
+      },
+      {
+        heading: 'Örnek Hesaplama',
+        paragraphs: [
+          'Farklı senaryolarda kâr ve zarar sonuçları:'
+        ],
+        example: {
+          title: 'Kâr ve Zarar Örnekleri',
+          items: [
+            { label: '800 TL Maliyet / 1.000 TL Satış', value: '+200 TL Kâr (%25 Oran)' },
+            { label: '1.000 TL Maliyet / 800 TL Satış', value: '-200 TL Zarar (-%20 Oran)' },
+            { label: '1.000 TL Maliyet / 1.000 TL Satış', value: '0 TL (Başabaş)' }
+          ]
+        }
+      }
+    ]
   }
 ];
+
 
 
 export function getAllArticles(): Article[] {
