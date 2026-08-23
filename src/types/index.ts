@@ -6,12 +6,24 @@ export interface Category {
   icon?: string;
 }
 
+export type ToolType =
+  | 'calculator'
+  | 'converter'
+  | 'generator'
+  | 'checker'
+  | 'formatter'
+  | 'developer'
+  | 'media'
+  | 'text'
+  | 'other';
+
 export interface Tool {
   id: string;
   slug: string;
   title: string;
   description: string;
   categoryId: string;
+  toolType?: ToolType;
   icon?: string;
   status: 'active' | 'coming-soon' | 'maintenance';
   keywords?: string[];

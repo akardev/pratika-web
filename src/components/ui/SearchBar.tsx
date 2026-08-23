@@ -4,6 +4,7 @@ import { useState, useMemo, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { tools, categories } from '@/data/tools';
+import { matchesSearchQuery } from '@/lib/search';
 
 interface SearchBarProps {
   placeholder?: string;
@@ -20,15 +21,20 @@ export default function SearchBar({
   const containerRef = useRef<HTMLDivElement>(null);
 
   const filteredTools = useMemo(() => {
-    const trimmed = query.trim().toLocaleLowerCase('tr-TR');
-    if (!trimmed) return [];
-    return tools.filter(
-      (tool) =>
-        tool.title.toLocaleLowerCase('tr-TR').includes(trimmed) ||
-        tool.description.toLocaleLowerCase('tr-TR').includes(trimmed) ||
-        tool.slug.toLocaleLowerCase('tr-TR').includes(trimmed) ||
-        tool.keywords?.some((k) => k.toLocaleLowerCase('tr-TR').includes(trimmed))
-    );
+    if (!query.trim()) return [];
+    return tools.filter((tool) => {
+      if (tool.status !== 'active') return false;
+      const category = categories.find((c) => c.id === tool.categoryId);
+      const searchTargets = [
+        tool.title,
+        tool.description,
+        tool.slug,
+        category?.title,
+        category?.slug,
+        ...(tool.keywords || []),
+      ];
+      return matchesSearchQuery(searchTargets, query);
+    });
   }, [query]);
 
   // Click outside listener

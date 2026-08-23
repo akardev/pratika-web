@@ -48,8 +48,7 @@ export default function Logo({
         alt="Pratika"
         width={width}
         height={height}
-        className={`h-auto object-contain select-none ${className}`}
-        style={{ height: `${height}px`, width: 'auto' }}
+        className={`w-auto h-auto object-contain select-none ${className}`}
         priority
       />
     );
