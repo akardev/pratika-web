@@ -1,8 +1,11 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Pratika | İletişim',
+  title: 'İletişim | Pratika',
   description: 'Pratika ile iletişime geçin. Görüş, öneri, araç talebi veya hata bildirimlerinizi bizimle paylaşın.',
+  alternates: {
+    canonical: '/iletisim',
+  },
 };
 
 export default function IletisimPage() {

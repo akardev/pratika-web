@@ -1,8 +1,9 @@
-import { tools } from '@/data/tools';
+import { tools, categories } from '@/data/tools';
 import { articles } from '@/data/articles';
+import { siteConfig } from '@/lib/site';
 
 export default function sitemap() {
-  const baseUrl = 'https://pratika.com';
+  const baseUrl = siteConfig.url;
 
   const staticRoutes = [
     {
@@ -67,6 +68,13 @@ export default function sitemap() {
     },
   ];
 
+  const categoryRoutes = categories.map((cat) => ({
+    url: `${baseUrl}/kategori/${cat.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+
   const toolRoutes = tools
     .filter((t) => t.status === 'active')
     .map((tool) => ({
@@ -83,5 +91,6 @@ export default function sitemap() {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...toolRoutes, ...articleRoutes];
+  return [...staticRoutes, ...categoryRoutes, ...toolRoutes, ...articleRoutes];
 }
+

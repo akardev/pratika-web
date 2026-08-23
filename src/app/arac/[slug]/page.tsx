@@ -3,6 +3,8 @@ import { getArticlesByToolSlug } from '@/data/articles';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { siteConfig } from '@/lib/site';
+import Breadcrumb from '@/components/ui/Breadcrumb';
 import IndirimHesaplama from '@/components/tools/IndirimHesaplama';
 import YuzdeHesaplama from '@/components/tools/YuzdeHesaplama';
 import YasHesaplama from '@/components/tools/YasHesaplama';
@@ -17,75 +19,39 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export async function generateStaticParams() {
+  return tools
+    .filter((t) => t.status === 'active')
+    .map((tool) => ({
+      slug: tool.slug,
+    }));
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolvedParams = await params;
   const tool = tools.find((t) => t.slug === resolvedParams.slug);
   
   if (!tool) {
     return {
-      title: 'Araç Bulunamadı',
+      title: 'Araç Bulunamadı | Pratika',
     };
   }
 
-  if (tool.slug === 'indirim-hesaplama') {
-    return {
-      title: 'İndirim Hesaplama - Pratika',
-      description: 'Ürün fiyatı ve indirim oranını girerek indirim tutarını ve indirimli fiyatı hızlıca hesaplayın.',
-    };
-  }
-
-  if (tool.slug === 'yuzde-hesaplama') {
-    return {
-      title: 'Yüzde Hesaplama - Pratika',
-      description: 'Yüzde hesaplama, yüzde artış ve azalış hesaplama işlemlerini hızlı ve kolayca yapın.',
-    };
-  }
-
-  if (tool.slug === 'yas-hesaplama') {
-    return {
-      title: 'Yaş Hesaplama - Pratika',
-      description: 'Doğum tarihinizi girerek yaşınızı yıl, ay ve gün olarak hesaplayın. Bir sonraki doğum gününüze kaç gün kaldığını kolayca öğrenin.',
-    };
-  }
-
-  if (tool.slug === 'kdv-hesaplama') {
-    return {
-      title: 'KDV Hesaplama - Pratika',
-      description: 'KDV dahil ve KDV hariç fiyatları kolayca hesaplayın. %1, %10, %20 ve özel oranlarla KDV tutarını anında öğrenin.',
-    };
-  }
-
-  if (tool.slug === 'kar-marji-hesaplama') {
-    return {
-      title: 'Kar Marjı Hesaplama - Pratika',
-      description: 'Maliyet ve satış fiyatına göre kâr marjını hesaplayın veya hedef kâr marjınıza göre satış fiyatını bulun.',
-    };
-  }
-
-  if (tool.slug === 'zam-hesaplama') {
-    return {
-      title: 'Zam Hesaplama | Pratika',
-      description: 'Zam oranına göre yeni fiyatı ve zam tutarını hesaplayın. Zamlı fiyattan zam öncesi fiyatı da kolayca bulun.',
-    };
-  }
-
-  if (tool.slug === 'kar-zarar-hesaplama') {
-    return {
-      title: 'Kâr / Zarar Hesaplama | Pratika',
-      description: 'Maliyet ve satış fiyatına göre kârınızı, zararınızı ve kâr/zarar oranınızı hesaplayın.',
-    };
-  }
-
-  if (tool.slug === 'faiz-hesaplama') {
-    return {
-      title: 'Faiz Hesaplama | Pratika',
-      description: 'Anapara, faiz oranı ve süreye göre basit veya bileşik faiz tutarını ve toplam getiriyi hesaplayın.',
-    };
-  }
+  const title = `${tool.title} | Pratika`;
+  const description = tool.description;
 
   return {
-    title: tool.title,
-    description: tool.description,
+    title,
+    description,
+    alternates: {
+      canonical: `/arac/${tool.slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${siteConfig.url}/arac/${tool.slug}`,
+      type: 'website',
+    },
   };
 }
 
@@ -100,15 +66,46 @@ export default async function ToolPage({ params }: Props) {
   const relatedTools = tools.filter((t) => t.id !== tool.id);
   const relatedArticles = getArticlesByToolSlug(tool.slug);
 
+  // WebApplication JSON-LD Schema
+  const webAppSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: tool.title,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'All',
+    browserRequirements: 'Requires JavaScript',
+    url: `${siteConfig.url}/arac/${tool.slug}`,
+    description: tool.description,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'TRY',
+    },
+    provider: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  };
+
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 max-w-4xl">
-      <div className="mb-8">
-        <Link 
-          href="/araclar"
-          className="text-xs font-medium text-muted-foreground hover:text-foreground mb-4 inline-block transition-colors"
-        >
-          &larr; Tüm Araçlar
-        </Link>
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-4xl">
+      {/* JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }}
+      />
+
+      {/* Breadcrumb */}
+      <Breadcrumb
+        items={[
+          { label: 'Araçlar', href: '/araclar' },
+          { label: tool.title },
+        ]}
+      />
+
+      {/* Başlık Alanı */}
+      <div className="mb-8 border-b border-border/60 pb-6">
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground mb-2">
           {tool.title}
         </h1>
@@ -138,6 +135,7 @@ export default async function ToolPage({ params }: Props) {
             <Link
               href="/bilgi"
               className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors"
+              aria-label="Tüm Bilgi Merkezi içeriklerini gör"
             >
               Bilgi Merkezi &rarr;
             </Link>
@@ -148,6 +146,7 @@ export default async function ToolPage({ params }: Props) {
                 key={ra.id}
                 href={`/bilgi/${ra.slug}`}
                 className="group block p-5 rounded-xl border border-border/60 bg-card hover:border-primary/40 hover:shadow-xs transition-all"
+                aria-label={`${ra.title} bilgi içeriğini oku`}
               >
                 <span className="text-xs font-semibold text-primary mb-1 block">
                   {ra.category}
@@ -180,12 +179,3 @@ export default async function ToolPage({ params }: Props) {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-

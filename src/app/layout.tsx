@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { siteConfig } from "@/lib/site";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -10,42 +11,96 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: "Pratika | Modern Araçlar ve Hesaplama Platformu",
     template: "%s | Pratika",
   },
-  description: "Günlük hayatınızı kolaylaştıran modern araçlar ve hesaplama platformu. Aradığınız sonucu saniyeler içinde bulun.",
+  description: siteConfig.description,
+  applicationName: "Pratika",
+  authors: [{ name: "akardev" }],
+  creator: "akardev",
+  publisher: "Pratika",
+  formatDetection: {
+    telephone: false,
+  },
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
-    locale: "tr_TR",
-    url: "https://pratika.com",
-    siteName: "Pratika",
+    locale: siteConfig.locale,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     title: "Pratika | Modern Araçlar ve Hesaplama Platformu",
-    description: "Günlük hayatınızı kolaylaştıran modern araçlar ve hesaplama platformu. Aradığınız sonucu saniyeler içinde bulun.",
+    description: siteConfig.description,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 588,
+        height: 164,
+        alt: "Pratika Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Pratika | Modern Araçlar ve Hesaplama Platformu",
-    description: "Günlük hayatınızı kolaylaştıran modern araçlar ve hesaplama platformu. Aradığınız sonucu saniyeler içinde bulun.",
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/brand/pratika-icon.png",
+    shortcut: "/brand/pratika-icon.png",
+    apple: "/brand/pratika-icon.png",
   },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  themeColor: "#0A1D37",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // WebSite Structured Data (Schema.org)
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    inLanguage: "tr-TR",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${siteConfig.url}/araclar?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
     <html
       lang="tr"
       className={`${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
         <Header />
         <main className="flex-1 flex flex-col">
           {children}

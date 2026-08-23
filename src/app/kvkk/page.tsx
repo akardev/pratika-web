@@ -1,8 +1,11 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Pratika | KVKK Aydınlatma Metni',
+  title: 'KVKK Aydınlatma Metni | Pratika',
   description: 'Pratika 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamındaki aydınlatma metni.',
+  alternates: {
+    canonical: '/kvkk',
+  },
 };
 
 export default function KvkkPage() {

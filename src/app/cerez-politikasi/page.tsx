@@ -1,8 +1,11 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Pratika | Çerez Politikası',
+  title: 'Çerez Politikası | Pratika',
   description: 'Pratika Çerez Politikası. Web sitemizde kullanılan çerezler ve bunların kullanım amaçları hakkında bilgilendirme.',
+  alternates: {
+    canonical: '/cerez-politikasi',
+  },
 };
 
 export default function CerezPolitikasiPage() {

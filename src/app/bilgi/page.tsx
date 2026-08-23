@@ -3,7 +3,10 @@ import KnowledgeList from '@/components/knowledge/KnowledgeList';
 
 export const metadata: Metadata = {
   title: 'Bilgi Merkezi | Pratika',
-  description: 'Hesaplamalar, finans ve günlük konular hakkında anlaşılır ve pratik bilgiler.',
+  description: 'Hesaplamalar, finans ve günlük konular hakkında anlaşılır, formüllü ve pratik rehber içerikleri.',
+  alternates: {
+    canonical: '/bilgi',
+  },
 };
 
 export default function BilgiMerkeziPage() {

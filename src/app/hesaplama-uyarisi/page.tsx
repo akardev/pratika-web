@@ -1,8 +1,11 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Pratika | Hesaplama Araçları Hakkında',
+  title: 'Hesaplama Araçları Hakkında | Pratika',
   description: 'Pratika hesaplama araçlarının kullanım amacı, doğruluk standartları ve yasal bilgilendirme notları.',
+  alternates: {
+    canonical: '/hesaplama-uyarisi',
+  },
 };
 
 export default function HesaplamaUyarisiPage() {

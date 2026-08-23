@@ -3,6 +3,8 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { articles, getArticleBySlug } from '@/data/articles';
 import { tools } from '@/data/tools';
+import { siteConfig } from '@/lib/site';
+import Breadcrumb from '@/components/ui/Breadcrumb';
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -27,6 +29,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${article.title} | Pratika`,
     description: article.description,
+    alternates: {
+      canonical: `/bilgi/${article.slug}`,
+    },
+    openGraph: {
+      title: `${article.title} | Pratika`,
+      description: article.description,
+      url: `${siteConfig.url}/bilgi/${article.slug}`,
+      type: 'article',
+      publishedTime: article.publishedAt,
+    },
   };
 }
 
@@ -46,17 +58,44 @@ export default async function ArticlePage({ params }: Props) {
     .filter((a) => a.id !== article.id)
     .slice(0, 2);
 
+  // Article JSON-LD Schema
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.description,
+    datePublished: article.publishedAt || '2026-08-23',
+    inLanguage: 'tr-TR',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${siteConfig.url}/bilgi/${article.slug}`,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteConfig.url}/brand/pratika-logo.png`,
+      },
+    },
+  };
+
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 max-w-3xl">
-      {/* Geri Bağlantısı */}
-      <div className="mb-6">
-        <Link
-          href="/bilgi"
-          className="text-xs font-medium text-muted-foreground hover:text-foreground inline-flex items-center gap-1 transition-colors"
-        >
-          &larr; Bilgi Merkezi
-        </Link>
-      </div>
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-3xl">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+
+      {/* Breadcrumb Navigasyonu */}
+      <Breadcrumb
+        items={[
+          { label: 'Bilgi Merkezi', href: '/bilgi' },
+          { label: article.title },
+        ]}
+      />
 
       {/* Makale Başlık Alanı */}
       <header className="mb-8 border-b border-border/60 pb-8">
@@ -93,6 +132,7 @@ export default async function ArticlePage({ params }: Props) {
           <Link
             href={`/arac/${relatedTool.slug}`}
             className="inline-flex items-center justify-center shrink-0 px-4 py-2 text-xs font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-xs"
+            aria-label={`${relatedTool.title} hesaplama aracını kullan`}
           >
             {relatedTool.title} &rarr;
           </Link>
@@ -167,6 +207,7 @@ export default async function ArticlePage({ params }: Props) {
           <Link
             href={`/arac/${relatedTool.slug}`}
             className="w-full sm:w-auto text-center px-5 py-2.5 text-xs font-bold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-xs shrink-0"
+            aria-label={`${relatedTool.title} aracına git ve hesapla`}
           >
             {relatedTool.title} Aracı &rarr;
           </Link>

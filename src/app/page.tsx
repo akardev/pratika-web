@@ -1,6 +1,15 @@
+import { Metadata } from 'next';
 import SearchBar from '@/components/ui/SearchBar';
 import Link from 'next/link';
 import { tools } from '@/data/tools';
+
+export const metadata: Metadata = {
+  title: 'Pratika | Hızlı ve Güvenilir Online Hesaplama Araçları',
+  description: 'İhtiyacınız olan finans, vergi, kâr/zarar, faiz, indirim ve tarih hesaplamalarını hızlı, kolay ve doğru şekilde yapın.',
+  alternates: {
+    canonical: '/',
+  },
+};
 
 export default function Home() {
   const activeTools = tools.filter((t) => t.status === 'active');

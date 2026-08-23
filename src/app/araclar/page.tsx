@@ -2,8 +2,11 @@ import { Metadata } from 'next';
 import ToolsCatalog from '@/components/tools/ToolsCatalog';
 
 export const metadata: Metadata = {
-  title: 'Araçlar | Pratika',
-  description: "Pratika'daki tüm hesaplama ve online araçları keşfedin.",
+  title: 'Tüm Hesaplama Araçları | Pratika',
+  description: "Pratika'daki tüm finans, vergi, kâr/zarar, faiz, indirim ve tarih hesaplama araçlarını keşfedin.",
+  alternates: {
+    canonical: '/araclar',
+  },
 };
 
 export default function AraclarPage() {
