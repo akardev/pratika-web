@@ -834,6 +834,85 @@ export const articles: Article[] = [
         formula: 'Saatlik Ücret = Aylık Maaş / 225\nNormal Fazla Mesai = Saat Ücreti × 1,5 × Mesai Saati'
       }
     ]
+  },
+  {
+    id: 'json-nedir-ve-nasil-formatlanir',
+    slug: 'json-nedir-ve-nasil-formatlanir',
+    title: 'JSON Nedir ve Nasıl Formatlanır?',
+    description: 'JSON (JavaScript Object Notation) veri yapısı, kullanım alanları, beautify, minify ve doğrulama rehberi.',
+    category: 'Developer ve Kodlama',
+    relatedToolSlug: 'json-formatlayici',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['json nedir', 'json formatlama', 'json beautifier', 'json validator', 'json yapısı'],
+    sections: [
+      {
+        heading: 'JSON Veri Formatı',
+        paragraphs: [
+          'JSON (JavaScript Object Notation), insanlar tarafından kolayca okunabilen ve makineler tarafından hızla ayrıştırılabilen hafif bir veri değişim formatıdır.',
+          'Web API\'leri, veritabanları ve modern yazılım mimarilerinde veri iletimi için küresel standart olarak kullanılır.'
+        ]
+      },
+      {
+        heading: 'Beautify (Güzelleştirme) ve Minify (Sıkıştırma)',
+        paragraphs: [
+          'Güzelleştirme (Beautify), tek satır halindeki JSON dizgesine 2 veya 4 boşluklu hiyerarşik girintiler ekleyerek okunabilirliği artırır.',
+          'Sıkıştırma (Minify) ise tüm boşluk ve satır sonlarını temizleyerek dosya boyutunu düşürür ve ağ transfer hızını optimize eder.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'seo-uyumlu-url-slug-nasil-olusturulur',
+    slug: 'seo-uyumlu-url-slug-nasil-olusturulur',
+    title: 'SEO Uyumlu URL (Slug) Nasıl Oluşturulur?',
+    description: 'Arama motoru optimizasyonunda temiz URL yapısının önemi, Türkçe karakter dönüşümü ve en iyi slug kuralları.',
+    category: 'Metin Araçları',
+    relatedToolSlug: 'slug-olusturucu',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['seo slug nedir', 'url slug oluşturma', 'seo dostu url', 'temiz link yapısı'],
+    sections: [
+      {
+        heading: 'URL Slug Nedir?',
+        paragraphs: [
+          'Slug, bir web sayfasının adresinin (URL) son bölümünde yer alan ve sayfa içeriğini hem kullanıcılara hem de arama motorlarına açıkça anlatan okunabilir metin parçasıdır.'
+        ]
+      },
+      {
+        heading: 'En İyi SEO Slug Kuralları',
+        paragraphs: [
+          'Kelimeleri ayırmak için alt çizgi (_) yerine tire (-) kullanılmalıdır.',
+          'Türkçe ve özel karakterler standart ASCII karşılıklarına dönüştürülmeli (ö -> o, ş -> s vb.), tüm harfler küçük olmalı ve gereksiz bağlaçlar (ve, ile, için) temizlenmelidir.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'guclu-ve-guvenli-sifre-nasil-olusturulur',
+    slug: 'guclu-ve-guvenli-sifre-nasil-olusturulur',
+    title: 'Güçlü ve Güvenli Şifre Nasıl Oluşturulur?',
+    description: 'Kaba kuvvet (brute-force) saldırılarına karşı kırılması imkansız şifre oluşturma taktikleri ve entropi ilkeleri.',
+    category: 'Güvenlik ve Utility',
+    relatedToolSlug: 'guvenli-sifre-olusturucu',
+    readTime: '4 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['güvenli şifre oluşturma', 'güçlü parola kriterleri', 'şifre güvenliği', 'brute force koruma'],
+    sections: [
+      {
+        heading: 'Güçlü Bir Şifrenin Kriterleri',
+        paragraphs: [
+          'Güvenli bir parola en az 14-16 karakter uzunluğunda olmalı; büyük harf, küçük harf, rakam ve özel sembollerin dengeli bir karışımını içermelidir.',
+          'Doğum tarihi, isim veya sıralı harfler gibi tahmin edilebilir kişisel verilerden kesinlikle kaçınılmalıdır.'
+        ]
+      },
+      {
+        heading: 'Kriptografik Rastgelelik ve Parola Yöneticileri',
+        paragraphs: [
+          'Tarayıcı tabanlı güvenli şifre üreteçleri, Web Crypto API donanım entropisini kullanarak tamamen tahmin edilemez dizgeler üretir. Her hesap için benzersiz bir şifre kullanmak veri sızıntılarına karşı en etkili kalkandır.'
+        ]
+      }
+    ]
   }
 ];
 

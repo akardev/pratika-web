@@ -62,6 +62,28 @@ import SaatUcretiHesaplama from '@/components/tools/SaatUcretiHesaplama';
 import FazlaMesaiHesaplama from '@/components/tools/FazlaMesaiHesaplama';
 import GunlukUcretHesaplama from '@/components/tools/GunlukUcretHesaplama';
 
+// Metin Araçları (4)
+import KelimeSayaci from '@/components/tools/KelimeSayaci';
+import BuyukKucukHarfDonusturucu from '@/components/tools/BuyukKucukHarfDonusturucu';
+import SlugOlusturucu from '@/components/tools/SlugOlusturucu';
+import LoremIpsumOlusturucu from '@/components/tools/LoremIpsumOlusturucu';
+
+// Developer & Kodlama (4)
+import JsonFormatlayici from '@/components/tools/JsonFormatlayici';
+import Base64Donusturucu from '@/components/tools/Base64Donusturucu';
+import UrlEncodeDecode from '@/components/tools/UrlEncodeDecode';
+import UuidOlusturucu from '@/components/tools/UuidOlusturucu';
+
+// Tasarım ve Renk (2)
+import QrKodOlusturucu from '@/components/tools/QrKodOlusturucu';
+import RenkDonusturucu from '@/components/tools/RenkDonusturucu';
+
+// Güvenlik ve Utility (1)
+import GuvenliSifreOlusturucu from '@/components/tools/GuvenliSifreOlusturucu';
+
+// Görsel ve Medya (1)
+import SosyalMedyaGorselBoyutlari from '@/components/tools/SosyalMedyaGorselBoyutlari';
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -217,6 +239,28 @@ export default async function ToolPage({ params }: Props) {
         {tool.slug === 'saat-ucreti-hesaplama' && <SaatUcretiHesaplama />}
         {tool.slug === 'fazla-mesai-hesaplama' && <FazlaMesaiHesaplama />}
         {tool.slug === 'gunluk-ucret-hesaplama' && <GunlukUcretHesaplama />}
+
+        {/* Metin Araçları (4) */}
+        {tool.slug === 'kelime-sayaci' && <KelimeSayaci />}
+        {tool.slug === 'buyuk-kucuk-harf-donusturucu' && <BuyukKucukHarfDonusturucu />}
+        {tool.slug === 'slug-olusturucu' && <SlugOlusturucu />}
+        {tool.slug === 'lorem-ipsum-olusturucu' && <LoremIpsumOlusturucu />}
+
+        {/* Developer & Kodlama (4) */}
+        {tool.slug === 'json-formatlayici' && <JsonFormatlayici />}
+        {tool.slug === 'base64-donusturucu' && <Base64Donusturucu />}
+        {tool.slug === 'url-encode-decode' && <UrlEncodeDecode />}
+        {tool.slug === 'uuid-olusturucu' && <UuidOlusturucu />}
+
+        {/* Tasarım ve Renk (2) */}
+        {tool.slug === 'qr-kod-olusturucu' && <QrKodOlusturucu />}
+        {tool.slug === 'renk-donusturucu' && <RenkDonusturucu />}
+
+        {/* Güvenlik ve Utility (1) */}
+        {tool.slug === 'guvenli-sifre-olusturucu' && <GuvenliSifreOlusturucu />}
+
+        {/* Görsel ve Medya (1) */}
+        {tool.slug === 'sosyal-medya-gorsel-boyutlari' && <SosyalMedyaGorselBoyutlari />}
       </div>
 
       {/* İlgili Bilgiler (Bilgi Merkezi İçerikleri) */}

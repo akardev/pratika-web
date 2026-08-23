@@ -42,6 +42,36 @@ export const categories: Category[] = [
     slug: 'maas',
     title: 'Maaş ve Çalışma',
     description: 'Saatlik ücret, fazla mesai ve günlük yasal kazanç hesaplama araçları.',
+  },
+  {
+    id: 'metin',
+    slug: 'metin',
+    title: 'Metin Araçları',
+    description: 'Kelime sayacı, harf dönüştürücü, lorem ipsum ve metin biçimlendirme araçları.',
+  },
+  {
+    id: 'yazilim',
+    slug: 'yazilim',
+    title: 'Developer ve Kodlama',
+    description: 'JSON formatlayıcı, Base64, URL encode/decode ve geliştirici yardımcı araçları.',
+  },
+  {
+    id: 'tasarim',
+    slug: 'tasarim',
+    title: 'Tasarım ve Renk',
+    description: 'QR kod oluşturucu, HEX/RGB renk dönüştürücü ve tasarım yardımcıları.',
+  },
+  {
+    id: 'gorsel',
+    slug: 'gorsel',
+    title: 'Görsel ve Medya',
+    description: 'Sosyal medya görsel boyutları, piksel rehberleri ve görsel araçları.',
+  },
+  {
+    id: 'guvenlik',
+    slug: 'guvenlik',
+    title: 'Güvenlik ve Utility',
+    description: 'Kriptografik güvenli şifre oluşturucu ve dijital gizlilik araçları.',
   }
 ];
 
@@ -411,6 +441,136 @@ export const tools: Tool[] = [
     categoryId: 'maas',
     status: 'active',
     keywords: ['günlük ücret hesaplama', 'günlük yevmiye', 'günlük maaş', 'yevmiye hesaplama', 'günlük kazanç']
+  },
+
+  // --- METİN ARAÇLARI (4) ---
+  {
+    id: 'kelime-sayaci',
+    slug: 'kelime-sayaci',
+    title: 'Kelime ve Karakter Sayacı',
+    description: 'Metninizdeki kelime, boşluklu/boşluksuz karakter, cümle, paragraf sayısı ve tahmini okuma süresini anında analiz edin.',
+    categoryId: 'metin',
+    toolType: 'text',
+    status: 'active',
+    keywords: ['kelime sayacı', 'karakter sayacı', 'harf sayısı hesaplama', 'kelime sayısı', 'cümle sayacı', 'okuma süresi', 'metin istatistiği']
+  },
+  {
+    id: 'buyuk-kucuk-harf-donusturucu',
+    slug: 'buyuk-kucuk-harf-donusturucu',
+    title: 'Büyük Küçük Harf Dönüştürücü',
+    description: 'Türkçe İ/ı karakterlerine tam uyumlu olarak metinleri BÜYÜK HARF, küçük harf, Başlık Düzeni ve Cümle Düzenine çevirin.',
+    categoryId: 'metin',
+    toolType: 'text',
+    status: 'active',
+    keywords: ['büyük küçük harf dönüştürücü', 'büyük harfe çevirme', 'küçük harfe çevirme', 'başlık harf düzeni', 'türkçe harf çevirme', 'case converter']
+  },
+  {
+    id: 'slug-olusturucu',
+    slug: 'slug-olusturucu',
+    title: 'SEO Slug Oluşturucu',
+    description: 'Başlık ve metinleri Türkçe karakterlerden arındırıp SEO ve URL dostu temiz link slug dizgelerine dönüştürün.',
+    categoryId: 'metin',
+    toolType: 'text',
+    status: 'active',
+    keywords: ['slug oluşturucu', 'seo slug generator', 'url dostu link', 'türkçe karakter temizleme', 'link oluşturucu', 'url converter']
+  },
+  {
+    id: 'lorem-ipsum-olusturucu',
+    slug: 'lorem-ipsum-olusturucu',
+    title: 'Lorem Ipsum Oluşturucu',
+    description: 'Tasarım, web ve arayüz prototipleriniz için özel paragraf, cümle veya kelime sayısına göre hazır taslak metin üretin.',
+    categoryId: 'metin',
+    toolType: 'text',
+    status: 'active',
+    keywords: ['lorem ipsum oluşturucu', 'lorem ipsum üretici', 'dummy text generator', 'taslak metin', 'örnek metin oluşturma']
+  },
+
+  // --- DEVELOPER & KODLAMA ARAÇLARI (4) ---
+  {
+    id: 'json-formatlayici',
+    slug: 'json-formatlayici',
+    title: 'JSON Formatlayıcı ve Doğrulayıcı',
+    description: 'JSON verilerinizi tek tıkla güzelleştirin (beautify), sıkıştırın (minify) ve sözdizimi hatalarını anında doğrulayın.',
+    categoryId: 'yazilim',
+    toolType: 'developer',
+    status: 'active',
+    keywords: ['json formatlayıcı', 'json beautifier', 'json validator', 'json düzenleyici', 'json minify', 'json format']
+  },
+  {
+    id: 'base64-donusturucu',
+    slug: 'base64-donusturucu',
+    title: 'Base64 Metin Dönüştürücü',
+    description: 'Metinlerinizi ve UTF-8 karakterlerinizi tarayıcınızda güvenle Base64 formatına kodlayın (encode) veya çözün (decode).',
+    categoryId: 'yazilim',
+    toolType: 'developer',
+    status: 'active',
+    keywords: ['base64 dönüştürücü', 'base64 encode', 'base64 decode', 'base64 çevirici', 'base64 kodlama']
+  },
+  {
+    id: 'url-encode-decode',
+    slug: 'url-encode-decode',
+    title: 'URL Encode / Decode',
+    description: 'URL parametrelerini ve özel karakterleri güvenli web formatına kodlayın ya da kodlanmış URL dizgelerini orijinal haline çözün.',
+    categoryId: 'yazilim',
+    toolType: 'developer',
+    status: 'active',
+    keywords: ['url encode', 'url decode', 'url dönüştürücü', 'url encoder decoder', 'url karakter kodlama']
+  },
+  {
+    id: 'uuid-olusturucu',
+    slug: 'uuid-olusturucu',
+    title: 'UUID v4 Oluşturucu',
+    description: 'RFC 4122 standardına uygun benzersiz rastgele UUID v4 (GUID) anahtarları üretin ve tek tıkla toplu olarak kopyalayın.',
+    categoryId: 'yazilim',
+    toolType: 'developer',
+    status: 'active',
+    keywords: ['uuid oluşturucu', 'guid generator', 'uuid v4', 'rastgele id üretici', 'unique id generator']
+  },
+
+  // --- TASARIM VE RENK ARAÇLARI (2) ---
+  {
+    id: 'qr-kod-olusturucu',
+    slug: 'qr-kod-olusturucu',
+    title: 'QR Kod Oluşturucu',
+    description: 'Web sitesi linki, düz metin, telefon, e-posta veya Wi-Fi erişimi için anında yüksek çözünürlüklü QR kod üretin ve indirin.',
+    categoryId: 'tasarim',
+    toolType: 'generator',
+    status: 'active',
+    keywords: ['qr kod oluşturucu', 'qr code generator', 'karekod yapma', 'qr kod üret', 'wifi qr kod']
+  },
+  {
+    id: 'renk-donusturucu',
+    slug: 'renk-donusturucu',
+    title: 'Renk Kodu Dönüştürücü',
+    description: 'HEX, RGB, HSL ve CMYK renk kodları arasında anında karşılıklı dönüşüm yapın, renk paletini önizleyin ve değerleri kopyalayın.',
+    categoryId: 'tasarim',
+    toolType: 'converter',
+    status: 'active',
+    keywords: ['renk dönüştürücü', 'hex to rgb', 'rgb to hex', 'hsl to rgb', 'renk kodu bulucu', 'cmyk dönüştürücü', 'color converter']
+  },
+
+  // --- GÜVENLİK VE UTILITY (1) ---
+  {
+    id: 'guvenli-sifre-olusturucu',
+    slug: 'guvenli-sifre-olusturucu',
+    title: 'Güvenli Şifre Oluşturucu',
+    description: 'Kriptografik olarak güçlü Web Crypto API kullanarak harf, rakam ve özel simgelerle kırılması zor rastgele şifreler üretin.',
+    categoryId: 'guvenlik',
+    toolType: 'generator',
+    status: 'active',
+    keywords: ['güvenli şifre oluşturucu', 'rastgele şifre üretici', 'güçlü parola oluştur', 'şifre yapma', 'password generator']
+  },
+
+  // --- GÖRSEL VE MEDYA (1) ---
+  {
+    id: 'sosyal-medya-gorsel-boyutlari',
+    slug: 'sosyal-medya-gorsel-boyutlari',
+    title: 'Sosyal Medya Görsel Boyutları Rehberi',
+    description: 'Instagram, YouTube, X/Twitter, LinkedIn, TikTok ve Facebook için güncel gönderi, story, kapak ve profil görseli piksel boyutları.',
+    categoryId: 'gorsel',
+    toolType: 'utility',
+    status: 'active',
+    keywords: ['sosyal medya görsel boyutları', 'instagram post boyutu', 'youtube thumbnail boyutu', 'tiktok video boyutu', 'linkedin banner boyutu', 'story piksel ölçüleri']
   }
 ];
 

@@ -15,6 +15,12 @@ export type ToolType =
   | 'developer'
   | 'media'
   | 'text'
+  | 'utility'
+  | 'pdf'
+  | 'image'
+  | 'social'
+  | 'web'
+  | 'design'
   | 'other';
 
 export interface Tool {
