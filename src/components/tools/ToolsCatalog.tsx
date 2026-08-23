@@ -1,11 +1,20 @@
 'use client';
 
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
-import { tools, getActiveCategories, getCategoryById } from '@/data/tools';
-import { matchesSearchQuery } from '@/lib/search';
+import {
+  tools,
+  categories,
+  getActiveCategories,
+  getPopularTools,
+  POPULAR_SEARCH_TAGS,
+  getToolsByCategoryId,
+} from '@/data/tools';
+import { matchesSearchQuery, getSearchRelevanceScore } from '@/lib/search';
+
 import ToolCard from '@/components/ui/ToolCard';
-import { Tool } from '@/types';
+import CategoryCard from '@/components/ui/CategoryCard';
+import { Tool, Category } from '@/types';
 
 type SortOption = 'recommended' | 'az' | 'za';
 
@@ -13,6 +22,8 @@ export default function ToolsCatalog() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const catalogListRef = useRef<HTMLDivElement>(null);
 
   // URL query parametrelerinden başlangıç state'lerini al
   const initialCategory = searchParams.get('kategori') || 'all';
@@ -22,6 +33,19 @@ export default function ToolsCatalog() {
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [sortOption, setSortOption] = useState<SortOption>(initialSort);
+
+  // Global Ctrl+K / Cmd+K kısayolu ile hero arama inputuna odaklan
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+        searchInputRef.current?.select();
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // URL query parametrelerini güncelle (sayfa yenilenmeden)
   const updateUrlParams = useCallback(
@@ -40,21 +64,31 @@ export default function ToolsCatalog() {
 
       const queryString = params.toString();
       const newUrl = queryString ? `${pathname}?${queryString}` : pathname;
-      
-      // router.replace ile scroll zıplaması olmadan URL güncelle
       window.history.replaceState(null, '', newUrl);
     },
     [pathname]
   );
 
-  const handleCategoryChange = (categoryId: string) => {
+  const handleCategoryChange = (categoryId: string, scrollToList = false) => {
     setSelectedCategory(categoryId);
     updateUrlParams(categoryId, searchQuery, sortOption);
+    if (scrollToList && catalogListRef.current) {
+      catalogListRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   const handleSearchChange = (value: string) => {
     setSearchQuery(value);
     updateUrlParams(selectedCategory, value, sortOption);
+  };
+
+  const handlePopularTagClick = (queryText: string) => {
+    setSearchQuery(queryText);
+    setSelectedCategory('all');
+    updateUrlParams('all', queryText, sortOption);
+    if (catalogListRef.current) {
+      catalogListRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   const handleSortChange = (newSort: SortOption) => {
@@ -70,7 +104,15 @@ export default function ToolsCatalog() {
   };
 
   // Aktif kategoriler
-  const categories = useMemo(() => getActiveCategories(), []);
+  const activeCategories = useMemo(() => getActiveCategories(), []);
+
+  // Popüler 8 araç
+  const popularTools = useMemo(() => getPopularTools(), []);
+
+  // Toplam aktif araç sayısı
+  const totalActiveToolsCount = useMemo(() => {
+    return tools.filter((t) => t.status === 'active').length;
+  }, []);
 
   // Filtreleme mantığı
   const filteredTools = useMemo(() => {
@@ -84,7 +126,7 @@ export default function ToolsCatalog() {
 
       // Arama Filtresi (Türkçe ve normalleştirilmiş toleranslı)
       if (searchQuery.trim()) {
-        const category = getCategoryById(tool.categoryId);
+        const category = categories.find((c) => c.id === tool.categoryId);
         const searchTargets = [
           tool.title,
           tool.description,
@@ -112,192 +154,326 @@ export default function ToolsCatalog() {
         return list.sort((a, b) => b.title.localeCompare(a.title, 'tr-TR'));
       case 'recommended':
       default:
-        // Doğal katalog sırası
+        if (searchQuery.trim()) {
+          return list.sort((a, b) => {
+            const scoreA = getSearchRelevanceScore(a, searchQuery);
+            const scoreB = getSearchRelevanceScore(b, searchQuery);
+            return scoreB - scoreA;
+          });
+        }
         return list;
     }
-  }, [filteredTools, sortOption]);
+  }, [filteredTools, sortOption, searchQuery]);
 
-  // Toplam aktif araç sayısı
-  const totalActiveToolsCount = useMemo(() => {
-    return tools.filter((t) => t.status === 'active').length;
-  }, []);
 
-  // Filtre uygulanmış mı kontrolü
   const isFiltered = selectedCategory !== 'all' || searchQuery.trim().length > 0;
+  const isSearchActive = searchQuery.trim().length > 0;
 
-  // Dinamik sonuç metni
-  const getResultCountText = () => {
-    const count = sortedTools.length;
-    if (!isFiltered) {
-      return `${count} araç listeleniyor`;
-    }
-    if (count === 1) {
-      return '1 araç bulundu';
-    }
-    return `${count} araç bulundu`;
-  };
+  // Seçili kategori bilgisi
+  const currentCategoryObj = useMemo(() => {
+    if (selectedCategory === 'all') return null;
+    return categories.find((c) => c.id === selectedCategory);
+  }, [selectedCategory]);
 
   return (
-    <div className="w-full space-y-6 sm:space-y-8">
-      {/* 1. ARAMA ALANI */}
-      <div className="relative w-full max-w-2xl mx-auto">
-        <div className="relative flex items-center w-full h-12 sm:h-14 rounded-2xl border border-border/80 bg-card shadow-xs hover:border-primary/40 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all overflow-hidden">
-          <div className="grid place-items-center h-full w-12 sm:w-14 text-muted-foreground shrink-0">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 sm:h-5 sm:w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </div>
-
-          <input
-            type="text"
-            id="catalog-search"
-            aria-label="Aracınızı veya yapmak istediğiniz işlemi arayın"
-            autoComplete="off"
-            placeholder="Aracınızı veya yapmak istediğiniz işlemi arayın..."
-            value={searchQuery}
-            onChange={(e) => handleSearchChange(e.target.value)}
-            className="h-full w-full outline-none text-sm sm:text-base bg-transparent pr-4 text-foreground placeholder:text-muted-foreground"
-          />
-
-          {searchQuery && (
-            <button
-              type="button"
-              onClick={() => handleSearchChange('')}
-              className="mr-3 px-2.5 py-1 rounded-lg bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors text-xs font-semibold shrink-0"
-              aria-label="Aramayı Temizle"
-            >
-              Temizle
-            </button>
-          )}
+    <div className="w-full space-y-12 sm:space-y-16">
+      {/* ============================================================ */}
+      {/* 1. HERO & SEARCH ALANI                                      */}
+      {/* ============================================================ */}
+      <section className="text-center pt-2 sm:pt-4">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-muted text-muted-foreground border border-border/60 mb-4">
+          <span>Pratika Araç Kataloğu</span>
         </div>
-      </div>
 
-      {/* 2. KATEGORİ FİLTRELERİ */}
-      <div className="w-full">
-        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
-          {/* Tümü Butonu */}
-          <button
-            type="button"
-            onClick={() => handleCategoryChange('all')}
-            className={`px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-full transition-all shrink-0 ${
-              selectedCategory === 'all'
-                ? 'bg-primary text-primary-foreground shadow-xs'
-                : 'bg-card text-muted-foreground border border-border/70 hover:text-foreground hover:bg-muted/40'
-            }`}
-          >
-            Tümü ({totalActiveToolsCount})
-          </button>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-3">
+          İhtiyacınız olan aracı bulun.
+        </h1>
 
-          {/* Kategori Butonları */}
-          {categories.map((cat) => {
-            const count = tools.filter((t) => t.status === 'active' && t.categoryId === cat.id).length;
-            const isSelected = selectedCategory === cat.id;
+        <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
+          Hesaplama, dönüştürme ve günlük işler için pratik, hızlı ve güvenilir dijital araçlar.
+        </p>
 
-            return (
-              <button
-                key={cat.id}
-                type="button"
-                onClick={() => handleCategoryChange(cat.id)}
-                className={`px-3.5 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium rounded-full transition-all shrink-0 ${
-                  isSelected
-                    ? 'bg-primary text-primary-foreground shadow-xs'
-                    : 'bg-card text-muted-foreground border border-border/70 hover:text-foreground hover:bg-muted/40'
-                }`}
+        {/* BÜYÜK ARAMA ALANI */}
+        <div className="relative w-full max-w-2xl mx-auto mb-4">
+          <div className="relative flex items-center w-full h-13 sm:h-14 rounded-xl border border-border bg-card shadow-xs hover:border-foreground/30 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+            <div className="grid place-items-center h-full w-12 sm:w-14 text-muted-foreground shrink-0">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
               >
-                {cat.title} ({count})
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+
+            <input
+              ref={searchInputRef}
+              type="text"
+              id="hero-catalog-search"
+              aria-label="Katalogda arama yapın"
+              autoComplete="off"
+              placeholder="KDV, PDF, QR kod, yüzde, fotoğraf..."
+              value={searchQuery}
+              onChange={(e) => handleSearchChange(e.target.value)}
+              className="h-full w-full outline-none text-sm sm:text-base bg-transparent pr-3 text-foreground placeholder:text-muted-foreground"
+            />
+
+            {searchQuery ? (
+              <button
+                type="button"
+                onClick={() => handleSearchChange('')}
+                className="mr-3 px-2 py-1 rounded-md bg-muted text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors text-xs font-semibold shrink-0"
+                aria-label="Aramayı Temizle"
+              >
+                Temizle
               </button>
-            );
-          })}
-        </div>
-      </div>
+            ) : (
+              <div className="hidden sm:flex items-center gap-0.5 mr-3.5 px-2 py-0.5 rounded border border-border/80 bg-muted/60 text-[11px] font-mono font-medium text-muted-foreground select-none pointer-events-none shrink-0">
+                <span>⌘K / Ctrl K</span>
+              </div>
 
-      {/* 3. SONUÇ SAYISI VE SIRALAMA ÇUBUĞU */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-2 pb-1 border-b border-border/50">
-        <div className="flex items-center gap-2">
-          <span className="text-xs sm:text-sm font-semibold text-foreground">
-            {getResultCountText()}
-          </span>
-          {isFiltered && (
+            )}
+          </div>
+        </div>
+
+        {/* POPÜLER ARAMA HIZLI BAĞLANTILARI */}
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 text-xs text-muted-foreground max-w-2xl mx-auto pt-1">
+          <span className="font-semibold text-foreground/80 mr-1">Popüler:</span>
+          {POPULAR_SEARCH_TAGS.map((tag) => (
             <button
+              key={tag.label}
               type="button"
-              onClick={handleResetFilters}
-              className="text-xs text-primary hover:underline font-medium"
+              onClick={() => handlePopularTagClick(tag.query)}
+              className={`px-2.5 py-1 rounded-lg border text-xs font-medium transition-colors cursor-pointer ${
+                searchQuery.toLowerCase() === tag.query.toLowerCase()
+                  ? 'bg-foreground text-background border-foreground font-semibold'
+                  : 'bg-card border-border/80 text-muted-foreground hover:border-foreground/40 hover:text-foreground'
+              }`}
             >
-              (Filtreleri Temizle)
+              {tag.label}
             </button>
-          )}
-        </div>
-
-        {/* Sıralama Seçenekleri */}
-        <div className="flex items-center gap-2 self-end sm:self-auto">
-          <label htmlFor="catalog-sort" className="text-xs text-muted-foreground font-medium">
-            Sırala:
-          </label>
-          <select
-            id="catalog-sort"
-            value={sortOption}
-            onChange={(e) => handleSortChange(e.target.value as SortOption)}
-            className="text-xs font-medium bg-card border border-border/80 text-foreground rounded-lg px-2.5 py-1.5 outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all cursor-pointer"
-          >
-            <option value="recommended">Önerilen</option>
-            <option value="az">Alfabetik (A-Z)</option>
-            <option value="za">Alfabetik (Z-A)</option>
-          </select>
-        </div>
-      </div>
-
-      {/* 4. ARAÇ LİSTESİ VEYA EMPTY STATE */}
-      {sortedTools.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-          {sortedTools.map((tool: Tool) => (
-            <ToolCard key={tool.id} tool={tool} />
           ))}
         </div>
-      ) : (
-        /* 5. EMPTY STATE */
-        <div className="p-8 sm:p-14 text-center rounded-2xl border border-dashed border-border/80 bg-card/40 my-6">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-muted text-muted-foreground mb-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={1.5}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
+      </section>
+
+      {/* ============================================================ */}
+      {/* 2. KATEGORİLER GRİDİ (DISCOVER VİTRİNİ)                      */}
+      {/* Sadece arama yapılmıyorken ve tümü seçiliyken gösterilir     */}
+      {/* ============================================================ */}
+      {!isSearchActive && selectedCategory === 'all' && (
+        <section className="space-y-6 pt-2">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-border/60 pb-3">
+            <div>
+              <span className="text-xs font-semibold text-primary uppercase tracking-wider block mb-1">
+                Kapsamlı Rehber
+              </span>
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+                Kategorilere Göre Keşfedin
+              </h2>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              {activeCategories.length} kategori, {totalActiveToolsCount} aktif araç
+            </p>
           </div>
-          <h2 className="text-base sm:text-lg font-semibold text-foreground mb-1">
-            Aradığınız aracı bulamadık.
-          </h2>
-          <p className="text-xs sm:text-sm text-muted-foreground max-w-md mx-auto mb-6">
-            Farklı bir kelime deneyin veya kategorilere göz atın.
-          </p>
-          <button
-            type="button"
-            onClick={handleResetFilters}
-            className="inline-flex items-center px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-xs"
-          >
-            Tüm Araçları Göster
-          </button>
-        </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {activeCategories.map((cat: Category) => (
+              <CategoryCard
+                key={cat.id}
+                category={cat}
+                onClick={() => handleCategoryChange(cat.id, true)}
+                customHref={`/araclar?kategori=${cat.id}`}
+              />
+            ))}
+          </div>
+        </section>
       )}
+
+      {/* ============================================================ */}
+      {/* 3. ÖNE ÇIKAN / POPÜLER ARAÇLAR                               */}
+      {/* Sadece filtre uygulanmamışken gösterilir                     */}
+      {/* ============================================================ */}
+      {!isFiltered && (
+        <section className="space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-border/60 pb-3">
+            <div>
+              <span className="text-xs font-semibold text-primary uppercase tracking-wider block mb-1">
+                Hızlı Erişim
+              </span>
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+                En Çok Kullanılan Araçlar
+              </h2>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Sık kullanılan popüler araçlar
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {popularTools.map((tool: Tool) => (
+              <ToolCard key={tool.id} tool={tool} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ============================================================ */}
+      {/* 4. TÜM ARAÇLAR (KATALOG & FİLTRELEME ALANI)                  */}
+      {/* ============================================================ */}
+      <section ref={catalogListRef} className="space-y-6 pt-4">
+        {/* Katalog Başlık & Kontrol Çubuğu */}
+        <div className="flex flex-col gap-4 border-b border-border/70 pb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground flex items-center gap-2.5">
+                <span>
+                  {currentCategoryObj ? `${currentCategoryObj.title} Araçları` : 'Tüm Araçlar'}
+                </span>
+                <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border/60">
+                  {sortedTools.length}
+                </span>
+              </h2>
+              {currentCategoryObj && (
+                <p className="text-xs text-muted-foreground mt-1">
+                  {currentCategoryObj.description}
+                </p>
+              )}
+            </div>
+
+            {/* Sağ Alan: Sıralama & Filtre Temizleme */}
+            <div className="flex items-center gap-3 self-end sm:self-auto">
+              {isFiltered && (
+                <button
+                  type="button"
+                  onClick={handleResetFilters}
+                  className="text-xs text-primary hover:underline font-semibold"
+                >
+                  Filtreleri Temizle
+                </button>
+              )}
+
+              <div className="flex items-center gap-1.5">
+                <label htmlFor="catalog-sort-select" className="text-xs text-muted-foreground font-medium">
+                  Sırala:
+                </label>
+                <select
+                  id="catalog-sort-select"
+                  value={sortOption}
+                  onChange={(e) => handleSortChange(e.target.value as SortOption)}
+                  className="text-xs font-medium bg-card border border-border text-foreground rounded-lg px-2.5 py-1.5 outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all cursor-pointer"
+                >
+                  <option value="recommended">Önerilen Sıralama</option>
+                  <option value="az">İsim (A-Z)</option>
+                  <option value="za">İsim (Z-A)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* KATEGORİ SEÇİCİ BARI (Kompakt, Ekranı Boğmayan Scrollable & Dropdown Hibrit Tasarım) */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+            {/* Tümü Butonu */}
+            <button
+              type="button"
+              onClick={() => handleCategoryChange('all')}
+              className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap shrink-0 ${
+                selectedCategory === 'all'
+                  ? 'bg-foreground text-background font-semibold'
+                  : 'bg-card text-muted-foreground border border-border hover:text-foreground hover:border-foreground/30'
+              }`}
+            >
+              Tümü ({totalActiveToolsCount})
+            </button>
+
+            {/* Kategori Butonları */}
+            {activeCategories.map((cat: Category) => {
+              const count = getToolsByCategoryId(cat.id).length;
+              const isSelected = selectedCategory === cat.id;
+
+              return (
+                <button
+                  key={cat.id}
+                  type="button"
+                  onClick={() => handleCategoryChange(cat.id)}
+                  className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap shrink-0 ${
+                    isSelected
+                      ? 'bg-foreground text-background font-semibold'
+                      : 'bg-card text-muted-foreground border border-border hover:text-foreground hover:border-foreground/30'
+                  }`}
+                >
+                  {cat.title} ({count})
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ARAÇ KARTLARI GRİDİ VEYA EMPTY STATE */}
+        {sortedTools.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {sortedTools.map((tool: Tool) => (
+              <ToolCard key={tool.id} tool={tool} />
+            ))}
+          </div>
+        ) : (
+          /* EMPTY STATE */
+          <div className="p-8 sm:p-14 text-center rounded-2xl border border-dashed border-border bg-card/60 my-6">
+            <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-muted text-muted-foreground mb-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={1.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+            <h3 className="text-base sm:text-lg font-semibold text-foreground mb-1">
+              Aradığınız kriterlere uygun araç bulunamadı.
+            </h3>
+            <p className="text-xs sm:text-sm text-muted-foreground max-w-md mx-auto mb-6 leading-relaxed">
+              Farklı bir arama terimi deneyebilir, yazım hatalarını kontrol edebilir veya tüm kategorilere göz atabilirsiniz.
+            </p>
+            <div className="flex flex-wrap justify-center gap-2">
+              <button
+                type="button"
+                onClick={handleResetFilters}
+                className="inline-flex items-center px-4 py-2 text-xs font-semibold rounded-lg bg-foreground text-background hover:bg-foreground/90 transition-all"
+              >
+                Tüm Araçları Göster
+              </button>
+              <button
+                type="button"
+                onClick={() => handlePopularTagClick('kdv')}
+                className="inline-flex items-center px-3 py-2 text-xs font-medium rounded-lg bg-card border border-border text-foreground hover:bg-muted transition-all"
+              >
+                KDV Hesaplama
+              </button>
+              <button
+                type="button"
+                onClick={() => handlePopularTagClick('pdf')}
+                className="inline-flex items-center px-3 py-2 text-xs font-medium rounded-lg bg-card border border-border text-foreground hover:bg-muted transition-all"
+              >
+                PDF Araçları
+              </button>
+            </div>
+          </div>
+        )}
+      </section>
     </div>
   );
 }
+

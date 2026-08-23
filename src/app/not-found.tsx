@@ -26,7 +26,7 @@ export default function NotFound() {
       <div className="flex flex-col sm:flex-row items-center gap-3 w-full justify-center">
         <Link
           href="/"
-          className="w-full sm:w-auto px-5 py-2.5 text-xs font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-xs"
+          className="w-full sm:w-auto px-5 py-2.5 text-xs font-semibold rounded-lg bg-foreground text-background hover:bg-foreground/90 transition-all shadow-xs"
         >
           Ana Sayfaya Dön
         </Link>
@@ -43,6 +43,7 @@ export default function NotFound() {
           Bilgi Merkezi
         </Link>
       </div>
+
     </div>
   );
 }

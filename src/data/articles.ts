@@ -913,8 +913,238 @@ export const articles: Article[] = [
         ]
       }
     ]
+  },
+  {
+    id: 'pdf-nasil-birlestirilir',
+    slug: 'pdf-nasil-birlestirilir',
+    title: 'PDF Dosyaları Nasıl Birleştirilir?',
+    description: 'Birden fazla bağımsız PDF belgesini tek bir dosyada güvenle birleştirme adımları, sayfa sıralaması ve dikkat edilmesi gerekenler.',
+    category: 'PDF ve Dosya',
+    relatedToolSlug: 'pdf-birlestir',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['pdf birleştirme', 'pdf nasıl birleştirilir', 'pdf dosyalarını birleştir', 'merge pdf rehberi'],
+    sections: [
+      {
+        heading: 'PDF Birleştirme Neden Gereklidir?',
+        paragraphs: [
+          'İş başvurularında CV ve sertifikaları tek bir dosyada toplamak, resmi kurumlara gönderilen çok parçalı evrakları düzenlemek veya rapor eklerini tek bir belgede sunmak için PDF birleştirme işlemine sıklıkla ihtiyaç duyulur.',
+          'Birden fazla PDF belgesini e-posta ile tek tek göndermek yerine tek bir derli toplu PDF halinde iletmek hem profesyonel bir görünüm sağlar hem de karşı tarafın belgeleri eksiksiz incelemesini kolaylaştırır.'
+        ]
+      },
+      {
+        heading: 'Adım Adım PDF Birleştirme',
+        paragraphs: [
+          '1. Birleştirmek istediğiniz PDF dosyalarını Pratika PDF Birleştirici alanına sürükleyin veya dosya seçici ile yükleyin.',
+          '2. Dosya listesindeki yukarı/aşağı ok butonlarını kullanarak belgelerin nihai PDF içindeki sıralamasını belirleyin.',
+          '3. "PDF’leri Birleştir" butonuna tıklayın. Birleştirilmiş yeni dosyanız anında tarayıcınızda oluşturulup indirilmeye hazır hale gelir.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'pdf-nasil-bolunur-ve-sayfalar-nasil-ayrilir',
+    slug: 'pdf-nasil-bolunur-ve-sayfalar-nasil-ayrilir',
+    title: 'PDF Nasıl Bölünür ve Belirli Sayfalar Nasıl Ayrılır?',
+    description: 'Çok sayfalı büyük PDF belgelerinden belirli sayfaları ayırma yöntemleri, sayfa aralığı yazım kuralları ve pratik çözümler.',
+    category: 'PDF ve Dosya',
+    relatedToolSlug: 'pdf-bol',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['pdf bölme', 'pdf nasıl bölünür', 'pdf sayfa ayırma', 'split pdf rehberi'],
+    sections: [
+      {
+        heading: 'PDF Bölme Mantığı',
+        paragraphs: [
+          'Bazen onlarca sayfalık bir sözleşmenin veya e-kitabın yalnızca 2-3 sayfasına ihtiyaç duyarsınız. Tüm belgeyi paylaşmak yerine yalnızca ilgili sayfaları bölüp ayırmak hem dosya boyutunu küçültür hem de gizlilik sağlar.'
+        ]
+      },
+      {
+        heading: 'Sayfa Aralıklarını Belirleme',
+        paragraphs: [
+          'Sayfa numaralarını virgülle ayırarak tekil sayfaları (örneğin 1, 4, 9), tire işareti ile de ardışık sayfa bloklarını (örneğin 3-7) ifade edebilirsiniz.',
+          'Pratika PDF Bölücü, orijinal dosyanızı değiştirmeden yalnızca istediğiniz sayfalardan yepyeni bir PDF oluşturur.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'pdf-sayfasi-nasil-silinir',
+    slug: 'pdf-sayfasi-nasil-silinir',
+    title: 'PDF Sayfası Nasıl Silinir ve Temizlenir?',
+    description: 'PDF belgelerindeki boş, gereksiz veya hatalı sayfaları kolayca çıkarma ve temizleme rehberi.',
+    category: 'PDF ve Dosya',
+    relatedToolSlug: 'pdf-sayfa-sil',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['pdf sayfa silme', 'pdf sayfası nasıl silinir', 'pdf boş sayfa sil', 'delete pdf pages'],
+    sections: [
+      {
+        heading: 'İstenmeyen Sayfaları Çıkarma',
+        paragraphs: [
+          'Tarama işlemlerinde sıklıkla araya boş sayfalar karışır veya çift taraflı baskı taramalarında arka kapak gibi gereksiz sayfalar yer alır.',
+          'Pratika PDF Sayfa Silici ile belgenizdeki tüm sayfaları ızgara düzeninde görerek silmek istediklerinizi tek tıkla işaretleyebilir ve saniyeler içinde temiz bir kopya elde edebilirsiniz.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'jpg-ve-png-gorselleri-pdf-yapma',
+    slug: 'jpg-ve-png-gorselleri-pdf-yapma',
+    title: 'JPG ve PNG Görselleri PDF’e Dönüştürme',
+    description: 'Fotoğrafları, faturaları ve belgeleri tek bir A4 PDF dosyasında birleştirme rehberi ve sayfa ayarları.',
+    category: 'PDF ve Dosya',
+    relatedToolSlug: 'gorselleri-pdf-yap',
+    readTime: '3 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['jpg to pdf', 'fotoğrafı pdf yapma', 'resmi pdf yap', 'png to pdf rehberi'],
+    sections: [
+      {
+        heading: 'Görselleri Neden PDF Formatına Çevirmeliyiz?',
+        paragraphs: [
+          'Fotoğraf formatları (JPG, PNG) farklı cihazlarda farklı boyutlarda görüntülenebilir. Belgeleri PDF formatına dönüştürmek, evrakların tüm yazıcılarda ve ekranlarda standart A4 veya orijinal sayfa ölçülerinde açılmasını garanti eder.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'pdf-islemlerinde-tarayici-tabanli-guvenlik',
+    slug: 'pdf-islemlerinde-tarayici-tabanli-guvenlik',
+    title: 'Online PDF İşlemlerinde Güvenlik ve Gizlilik',
+    description: 'Hassas evrakların sunucuya yüklenmeden tarayıcı içinde (Client-Side) işlenmesinin önemi ve avantajları.',
+    category: 'PDF ve Dosya',
+    relatedToolSlug: 'pdf-birlestir',
+    readTime: '4 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['pdf güvenliği', 'güvenli pdf birleştirme', 'client side pdf', 'dosya gizliliği'],
+    sections: [
+      {
+        heading: 'Geleneksel Online Araçların Gizlilik Riski',
+        paragraphs: [
+          'Pek çok geleneksel çevrimiçi dosya dönüştürücü, belgelerinizi önce kendi uzak sunucularına yükler, orada işler ve ardından indirme linki sunar. Bu durum sözleşmeler, kimlik fotokopileri veya finansal dekontlar gibi hassas veriler için gizlilik riski doğurabilir.'
+        ]
+      },
+      {
+        heading: 'Pratika’nın %100 İstemci Taraflı (Client-Side) Mimarisi',
+        paragraphs: [
+          'Pratika PDF ve Dosya Araçları, modern JavaScript ve WebAssembly teknolojileriyle doğrudan bilgisayarınızın veya telefonunuzun tarayıcısında çalışır. Dosyalarınız cihazınızın dışına asla çıkmaz, hiçbir sunucuya yüklenmez ve üçüncü taraflarla paylaşılmaz.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'jpg-pdf-nasil-donusturulur',
+    slug: 'jpg-pdf-nasil-donusturulur',
+    title: 'JPG Dosyaları PDF’e Nasıl Dönüştürülür?',
+    description: 'Fotoğrafları, faturaları ve taranmış evrakları kalite kaybı yaşamadan tek bir A4 PDF dosyasında birleştirme ve dönüştürme rehberi.',
+    category: 'PDF ve Dosya',
+    relatedToolSlug: 'jpg-pdf-donusturucu',
+    readTime: '4 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['jpg pdf dönüştürme', 'jpg to pdf nasıl yapılır', 'resmi pdf yapma', 'fotoğrafı pdf yapma', 'jpg pdf çevirici rehberi'],
+    sections: [
+      {
+        heading: 'JPG ve PDF Formatları Arasındaki Farklar',
+        paragraphs: [
+          'JPG (Joint Photographic Experts Group), dijital fotoğrafları ve rasterize edilmiş görselleri sıkıştırarak küçük dosya boyutunda saklamak için tasarlanmış popüler bir resim formatıdır.',
+          'PDF (Portable Document Format) ise metin, vektör grafikler ve raster görselleri bir arada barındıran; açıldığı her cihazda, işletim sisteminde ve yazıcıda sayfa düzeninin, fontların ve boyutların milimetrik olarak aynı kalmasını garanti eden evrensel bir belge standardıdır.'
+        ]
+      },
+      {
+        heading: 'Görselleri Neden PDF Formatına Çevirmeliyiz?',
+        paragraphs: [
+          '1. Tek Dosyada Toplama: 10 ayrı fotoğrafı e-posta ile tek tek göndermek yerine hepsini sıralı sayfalar halinde tek bir PDF dosyasında iletmek çok daha profesyoneldir.',
+          '2. Yazdırma Standartı: Resimler fotoğraf yazıcılarında farklı kenar boşluklarıyla basılabilirken, A4 formatındaki bir PDF her yazıcıda tam ölçüsünde çıkar.',
+          '3. Resmi Başvurular: Vize, iş başvurusu, bankacılık ve kamu portalları evrak yüklemelerinde çoğunlukla yalnızca PDF formatını kabul eder.'
+        ]
+      },
+      {
+        heading: 'A4 Sayfaya Görsel Yerleştirme ve Aspect Ratio (En-Boy Oranı)',
+        paragraphs: [
+          'Görseller PDF sayfasına aktarılırken en sık yapılan hata, resmin sayfa boyutuna zorlanarak uzatılması (ezilmesi) veya kenarlarının kırpılmasıdır.',
+          'Pratika JPG PDF Dönüştürücü, orijinal görselin en-boy oranını (aspect ratio) tam olarak korur. Resim, sayfa içerisine ve seçilen kenar boşluklarına göre maksimum ölçekte, ortalanmış olarak yerleştirilir.'
+        ]
+      },
+      {
+        heading: 'Adım Adım JPG → PDF Dönüştürme',
+        paragraphs: [
+          '1. Birleştirmek istediğiniz JPG, JPEG veya PNG görsellerini Pratika yükleme alanına sürükleyin.',
+          '2. Liste üzerinden yukarı ve aşağı ok butonlarıyla sayfa sırasını belirleyin.',
+          '3. Sayfa boyutunu (A4, A5 veya Görsel Boyutu) ve kenar boşluğunu seçin.',
+          '4. "PDF’i Oluştur ve İndir" butonuna tıklayın. Belgeniz anında cihazınızda üretilir.'
+        ]
+      },
+      {
+        heading: 'Dosya Güvenliği ve Yerel (Client-Side) Gizlilik',
+        paragraphs: [
+          'Pasaport fotokopileri, sözleşmeler ve banka dekontları gibi kişisel veriler içeren görsellerinizin güvenliği son derece kritiktir.',
+          'Pratika, hiçbir görselinizi uzak sunuculara göndermez. Tüm dönüşüm işlemi tarayıcınızın kendi bellek ve işlemci gücüyle cihazınızda tamamlanır.'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'metin-pdfe-nasil-donusturulur',
+    slug: 'metin-pdfe-nasil-donusturulur',
+    title: "Metin PDF'e Nasıl Dönüştürülür?",
+    description: 'Yazı ve metinlerinizi tarayıcı üzerinde A4, A5 ve Letter formatında PDF dosyasına dönüştürme rehberi, yazı tipi ve sayfa ayarları.',
+    category: 'PDF & Dosya',
+    relatedToolSlug: 'metni-pdf-donusturucu',
+    readTime: '4 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['metin pdf dönüştürme', 'yazıyı pdf yapma', 'text to pdf', 'online pdf oluşturucu', 'telefonda metni pdf yapma'],
+    sections: [
+      {
+        heading: "Metni PDF'e Dönüştürme Nedir?",
+        paragraphs: [
+          "Metni PDF'e dönüştürme, kopyaladığınız veya sıfırdan yazdığınız düz yazıların sayfa yapısı, kenar boşlukları ve tipografisi sabitlenmiş evrensel bir PDF belgesine çevrilmesidir.",
+          "Düz metin (.txt) dosyaları açıldıkları cihazın yazı tipine ve ekran boyutuna göre değişkenlik gösterirken, PDF formatı belgenin her ekranda ve yazıcı çıktısında tam olarak aynı görünmesini sağlar."
+        ]
+      },
+      {
+        heading: "Metin Neden PDF Formatına Dönüştürülür?",
+        paragraphs: [
+          "1. Sabit Sayfa Düzeni: Belgenin kenar boşlukları, satır yükseklikleri ve sayfa geçişleri kilitlenir; cihazlar arası biçim bozulması yaşanmaz.",
+          "2. Resmi Paylaşım Kolaylığı: Raporlar, sözleşme taslakları, dilekçeler ve ödevler kurumsal ortamlarda standart olarak PDF formatında talep edilir.",
+          "3. Yazdırma Uyumluluğu: A4, A5 veya Letter boyutlarında standartlaşmış bir PDF, ofis veya ev yazıcılarında kayma olmadan tam ölçüsünde basılır.",
+          "4. Güvenlik ve Bütünlük: Metin üzerinde yanlışlıkla yapılacak değişikliklerin önüne geçilir."
+        ]
+      },
+      {
+        heading: 'Telefonda ve Bilgisayarda Metin PDF’e Nasıl Çevrilir?',
+        paragraphs: [
+          '1. Metninizi Hazırlayın: Dönüştürmek istediğiniz yazıyı kopyalayın veya doğrudan Pratika metin alanına yazın.',
+          '2. Sayfa ve Tipografi Ayarlarını Seçin: İhtiyacınıza göre sayfa boyutunu (A4, A5, Letter), yönünü (Dikey, Yatay), yazı tipini ve boyutunu belirleyin.',
+          '3. Önizlemeyi Kontrol Edin: Sayfa yerleşimini ve tahmini sayfa sayısını sağdaki önizleme kutusundan inceleyin.',
+          '4. İndirin: "PDF Oluştur ve İndir" butonuna dokunarak dosyanızı saniyeler içinde cihazınıza kaydedin.'
+        ]
+      },
+      {
+        heading: 'Sayfa Boyutu, Yazı Tipi ve Kenar Boşluklarının Önemi',
+        paragraphs: [
+          'Sayfa Boyutu: Resmi yazışmalar, faturalar ve dilekçeler için Türkiye standardı A4 (210 × 297 mm) boyutudur. Küçük notlar için A5 veya uluslararası dokümanlar için Letter tercih edilebilir.',
+          'Yazı Tipi (Font): Modern ve kolay okunan dokümanlar için Arial (Sans-serif), edebi ve resmi belgeler için Georgia (Serif), kod ve teknik metinler için Courier New (Monospace) önerilir.',
+          'Yazı Boyutu: Standart bir A4 belgede 12 pt veya 14 pt yazı boyutu en ideal okunabilirliği sunar.'
+        ]
+      },
+      {
+        heading: 'Türkçe Karakterler PDF’te Neden Bozulabilir?',
+        paragraphs: [
+          'Birçok eski veya standart PDF kütüphanesi yalnızca İngilizce ASCII / Latin-1 karakter setini destekler. Bu nedenle "ç, Ç, ğ, Ğ, ı, İ, ö, Ö, ş, Ş, ü, Ü" gibi Türkçe karakterler "?" veya anlamsız semboller olarak basılabilir.',
+          'Pratika Metni PDF’e Dönüştürücü aracı, Türkçe karakterleri tam destekleyen Unicode font motoru (Latin-Extended) kullanır. Bu sayede yazınızdaki tüm Türkçe harfler eksiksiz ve kusursuz şekilde PDF belgenize işlenir.'
+        ]
+      },
+      {
+        heading: 'Tarayıcı Tabanlı Gizlilik ve Veri Güvenliği',
+        paragraphs: [
+          'Yazdığınız özel notlar, sözleşme taslakları veya kişisel bilgileriniz hiçbir uzak sunucuya aktarılmaz.',
+          'PDF oluşturma işleminin tamamı tarayıcınızın kendi işlemci gücüyle cihazınızda (client-side) gerçekleşir, tam gizlilik ve güvenlik sağlanır.'
+        ]
+      }
+    ]
   }
 ];
+
 
 
 

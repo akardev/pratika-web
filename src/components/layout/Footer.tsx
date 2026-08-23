@@ -5,28 +5,28 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border/60 bg-muted/10">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl py-8 sm:py-10">
-        <div className="flex flex-col md:flex-row justify-between items-start gap-8 sm:gap-12 mb-8">
+    <footer className="border-t border-border/80 bg-card mt-auto">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl py-10 sm:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
           {/* Sol: Pratika & Açıklama */}
-          <div className="max-w-xs space-y-2">
+          <div className="md:col-span-1 space-y-3">
             <Logo variant="wordmark" />
             <p className="text-xs text-muted-foreground leading-relaxed">
-              İhtiyacınız olan hesaplamaları hızlı, sade ve güvenilir şekilde yapın.
+              Hesaplama, dönüştürme ve günlük dijital işlemler için hızlı, sade ve güvenilir araçlar platformu.
             </p>
           </div>
 
           {/* Sağ: Link Grupları */}
-          <div className="flex flex-wrap gap-8 sm:gap-12 text-xs">
+          <div className="md:col-span-3 grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 text-xs">
             {/* ARAÇLAR */}
             <div>
-              <h3 className="font-semibold text-foreground uppercase tracking-wider mb-2.5">
-                Araçlar & Bilgi
+              <h3 className="font-semibold text-foreground tracking-tight mb-3">
+                Araçlar & Rehberler
               </h3>
-              <ul className="space-y-1.5 text-muted-foreground">
+              <ul className="space-y-2 text-muted-foreground">
                 <li>
                   <Link href="/araclar" className="hover:text-foreground transition-colors">
-                    Tüm Araçlar
+                    Tüm Araçlar Kataloğu
                   </Link>
                 </li>
                 <li>
@@ -34,15 +34,30 @@ export default function Footer() {
                     Bilgi Merkezi
                   </Link>
                 </li>
+                <li>
+                  <Link href="/arac/kdv-hesaplama" className="hover:text-foreground transition-colors">
+                    KDV Hesaplama
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/arac/pdf-jpg-donusturucu" className="hover:text-foreground transition-colors">
+                    PDF → JPG Dönüştürücü
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/arac/qr-kod-olusturucu" className="hover:text-foreground transition-colors">
+                    QR Kod Oluşturucu
+                  </Link>
+                </li>
               </ul>
             </div>
 
             {/* KURUMSAL */}
             <div>
-              <h3 className="font-semibold text-foreground uppercase tracking-wider mb-2.5">
+              <h3 className="font-semibold text-foreground tracking-tight mb-3">
                 Kurumsal
               </h3>
-              <ul className="space-y-1.5 text-muted-foreground">
+              <ul className="space-y-2 text-muted-foreground">
                 <li>
                   <Link href="/hakkimizda" className="hover:text-foreground transition-colors">
                     Hakkımızda
@@ -58,10 +73,10 @@ export default function Footer() {
 
             {/* YASAL */}
             <div>
-              <h3 className="font-semibold text-foreground uppercase tracking-wider mb-2.5">
-                Yasal
+              <h3 className="font-semibold text-foreground tracking-tight mb-3">
+                Yasal & Şartlar
               </h3>
-              <ul className="space-y-1.5 text-muted-foreground">
+              <ul className="space-y-2 text-muted-foreground">
                 <li>
                   <Link href="/gizlilik" className="hover:text-foreground transition-colors">
                     Gizlilik Politikası
@@ -84,7 +99,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link href="/hesaplama-uyarisi" className="hover:text-foreground transition-colors">
-                    Hesaplama Araçları Hakkında
+                    Hesaplama Araçları Bildirimi
                   </Link>
                 </li>
               </ul>
@@ -93,16 +108,17 @@ export default function Footer() {
         </div>
 
         {/* Alt Çubuk */}
-        <div className="pt-6 border-t border-border/60 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-muted-foreground">
+        <div className="pt-6 border-t border-border/60 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-muted-foreground">
           <p>© {currentYear} Pratika. Tüm hakları saklıdır.</p>
           <p className="text-xs text-muted-foreground/80">
-            <a href="#" className="hover:text-foreground transition-colors">akardev</a> tarafından geliştirilmiştir.
+            Kullanıcı odaklı dijital araç ekosistemi.
           </p>
         </div>
       </div>
     </footer>
   );
 }
+
 
 
 

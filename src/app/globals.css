@@ -2,13 +2,14 @@
 
 :root {
   --background: #f8fafc;
-  --foreground: #0f172a;
+  --foreground: #090d16;
   
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #090d16;
   
-  --primary: #2563eb;
+  --primary: #1e40af;
   --primary-foreground: #ffffff;
+  --primary-hover: #1d4ed8;
   
   --secondary: #f1f5f9;
   --secondary-foreground: #0f172a;
@@ -23,6 +24,7 @@
   --destructive-foreground: #ffffff;
   
   --border: #e2e8f0;
+  --border-subtle: #f1f5f9;
   --input: #e2e8f0;
   --ring: #2563eb;
 }
@@ -49,8 +51,36 @@
   --font-sans: var(--font-inter);
 }
 
+::selection {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
 

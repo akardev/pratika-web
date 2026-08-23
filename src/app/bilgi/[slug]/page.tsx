@@ -82,7 +82,7 @@ export default async function ArticlePage({ params }: Props) {
   };
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 max-w-3xl">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 max-w-4xl">
       {/* JSON-LD Structured Data */}
       <script
         type="application/ld+json"
@@ -98,9 +98,9 @@ export default async function ArticlePage({ params }: Props) {
       />
 
       {/* Makale Başlık Alanı */}
-      <header className="mb-8 border-b border-border/60 pb-8">
+      <header className="mt-4 mb-8 border-b border-border/70 pb-8">
         <div className="flex items-center gap-2.5 mb-3">
-          <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-primary/10 text-primary">
+          <span className="text-xs font-semibold px-2.5 py-0.5 rounded-md bg-primary/10 text-primary border border-primary/20">
             {article.category}
           </span>
           {article.readTime && (
@@ -120,24 +120,25 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* İlgili Araç Üst Banner'ı (Varsa) */}
       {relatedTool && (
-        <div className="mb-8 p-4 sm:p-5 rounded-xl border border-primary/20 bg-primary/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="mb-10 p-5 rounded-xl border border-border bg-muted/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-1">
-              Pratik Hesaplama Aracı
+            <p className="text-[11px] font-bold uppercase tracking-wider text-primary mb-1">
+              Pratika Hesaplama Aracı
             </p>
-            <p className="text-sm text-foreground font-medium">
-              Bu hesaplamayı doğrudan Pratika&apos;nın <strong>{relatedTool.title}</strong> aracıyla anında yapabilirsiniz.
+            <p className="text-xs sm:text-sm text-foreground font-medium">
+              Bu formülü elle hesaplamak yerine doğrudan <strong>{relatedTool.title}</strong> aracıyla anında sonuca ulaşabilirsiniz.
             </p>
           </div>
           <Link
             href={`/arac/${relatedTool.slug}`}
-            className="inline-flex items-center justify-center shrink-0 px-4 py-2 text-xs font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-all shadow-xs"
+            className="inline-flex items-center justify-center shrink-0 px-4 py-2 text-xs font-semibold rounded-lg bg-foreground text-background hover:bg-foreground/90 transition-all shadow-xs"
             aria-label={`${relatedTool.title} hesaplama aracını kullan`}
           >
             {relatedTool.title} &rarr;
           </Link>
         </div>
       )}
+
 
       {/* Makale Bölümleri */}
       <div className="space-y-8 text-foreground">

@@ -84,6 +84,18 @@ import GuvenliSifreOlusturucu from '@/components/tools/GuvenliSifreOlusturucu';
 // Görsel ve Medya (1)
 import SosyalMedyaGorselBoyutlari from '@/components/tools/SosyalMedyaGorselBoyutlari';
 
+// PDF ve Dosya Araçları (9)
+import PdfBirlestir from '@/components/tools/PdfBirlestir';
+import PdfBol from '@/components/tools/PdfBol';
+import PdfSayfaSil from '@/components/tools/PdfSayfaSil';
+import PdfSayfaDondur from '@/components/tools/PdfSayfaDondur';
+import GorselleriPdfYap from '@/components/tools/GorselleriPdfYap';
+import JpgPdfDonusturucu from '@/components/tools/JpgPdfDonusturucu';
+import PdfSayfaCikar from '@/components/tools/PdfSayfaCikar';
+import PdfJpgDonusturucu from '@/components/tools/PdfJpgDonusturucu';
+import MetniPdfDonusturucu from '@/components/tools/MetniPdfDonusturucu';
+
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -175,11 +187,14 @@ export default async function ToolPage({ params }: Props) {
       />
 
       {/* Başlık Alanı */}
-      <div className="mb-8 border-b border-border/60 pb-6">
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground mb-2">
+      <div className="mt-4 mb-8 border-b border-border/70 pb-6">
+        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-muted text-muted-foreground border border-border/60 mb-2.5">
+          <span>{tool.toolType === 'pdf' ? 'PDF & Dosya Aracı' : 'Ücretsiz Hesaplama'}</span>
+        </div>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground mb-2">
           {tool.title}
         </h1>
-        <p className="text-base text-muted-foreground">
+        <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
           {tool.description}
         </p>
       </div>
@@ -187,6 +202,7 @@ export default async function ToolPage({ params }: Props) {
       <div className="mb-14">
         {/* Mevcut 9 Araç */}
         {tool.slug === 'indirim-hesaplama' && <IndirimHesaplama />}
+
         {tool.slug === 'yuzde-hesaplama' && <YuzdeHesaplama />}
         {tool.slug === 'yas-hesaplama' && <YasHesaplama />}
         {tool.slug === 'kdv-hesaplama' && <KdvHesaplama />}
@@ -261,7 +277,19 @@ export default async function ToolPage({ params }: Props) {
 
         {/* Görsel ve Medya (1) */}
         {tool.slug === 'sosyal-medya-gorsel-boyutlari' && <SosyalMedyaGorselBoyutlari />}
+
+        {/* PDF ve Dosya Araçları (9) */}
+        {tool.slug === 'pdf-birlestir' && <PdfBirlestir />}
+        {tool.slug === 'pdf-bol' && <PdfBol />}
+        {tool.slug === 'pdf-sayfa-sil' && <PdfSayfaSil />}
+        {tool.slug === 'pdf-sayfa-dondur' && <PdfSayfaDondur />}
+        {tool.slug === 'jpg-pdf-donusturucu' && <JpgPdfDonusturucu />}
+        {tool.slug === 'gorselleri-pdf-yap' && <GorselleriPdfYap />}
+        {tool.slug === 'pdf-sayfa-cikar' && <PdfSayfaCikar />}
+        {tool.slug === 'pdf-jpg-donusturucu' && <PdfJpgDonusturucu />}
+        {tool.slug === 'metni-pdf-donusturucu' && <MetniPdfDonusturucu />}
       </div>
+
 
       {/* İlgili Bilgiler (Bilgi Merkezi İçerikleri) */}
       {relatedArticles.length > 0 && (

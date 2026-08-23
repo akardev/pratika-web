@@ -72,6 +72,12 @@ export const categories: Category[] = [
     slug: 'guvenlik',
     title: 'Güvenlik ve Utility',
     description: 'Kriptografik güvenli şifre oluşturucu ve dijital gizlilik araçları.',
+  },
+  {
+    id: 'pdf',
+    slug: 'pdf',
+    title: 'PDF ve Dosya Araçları',
+    description: 'Tarayıcınızda %100 güvenli ve gizli PDF birleştirme, bölme, sayfa silme, döndürme ve dönüştürme araçları.',
   }
 ];
 
@@ -571,8 +577,102 @@ export const tools: Tool[] = [
     toolType: 'utility',
     status: 'active',
     keywords: ['sosyal medya görsel boyutları', 'instagram post boyutu', 'youtube thumbnail boyutu', 'tiktok video boyutu', 'linkedin banner boyutu', 'story piksel ölçüleri']
+  },
+
+  // --- PDF VE DOSYA ARAÇLARI (7) ---
+  {
+    id: 'pdf-birlestir',
+    slug: 'pdf-birlestir',
+    title: 'PDF Birleştirici',
+    description: 'Birden fazla PDF belgesini sırasını dilediğiniz gibi belirleyerek tarayıcınızda %100 gizli ve güvenli şekilde tek bir PDF olarak birleştirin.',
+    categoryId: 'pdf',
+    toolType: 'pdf',
+    status: 'active',
+    keywords: ['pdf birleştir', 'pdf birleştirme', 'pdf birleştirici', 'merge pdf', 'pdf ekleme', 'pdf dosyalarını birleştir']
+  },
+  {
+    id: 'pdf-bol',
+    slug: 'pdf-bol',
+    title: 'PDF Bölücü',
+    description: 'Çok sayfalı PDF belgelerinden belirli sayfaları veya sayfa aralıklarını (ör. 1-3, 5, 8-10) ayırıp yeni bir PDF olarak kaydedin.',
+    categoryId: 'pdf',
+    toolType: 'pdf',
+    status: 'active',
+    keywords: ['pdf böl', 'pdf bölme', 'pdf bölücü', 'split pdf', 'pdf sayfalarını ayırma', 'pdf aralık bölme']
+  },
+  {
+    id: 'pdf-sayfa-sil',
+    slug: 'pdf-sayfa-sil',
+    title: 'PDF Sayfa Silici',
+    description: 'PDF belgenizdeki istenmeyen, boş veya hatalı sayfaları görsel ızgara üzerinden seçerek tek tıkla silin ve yeni dosyanızı indirin.',
+    categoryId: 'pdf',
+    toolType: 'pdf',
+    status: 'active',
+    keywords: ['pdf sayfa sil', 'pdf sayfa silme', 'pdf sayfa silici', 'delete pdf pages', 'pdf sayfa kaldırma']
+  },
+  {
+    id: 'pdf-sayfa-dondur',
+    slug: 'pdf-sayfa-dondur',
+    title: 'PDF Sayfa Döndürücü',
+    description: 'Yan veya ters duran PDF sayfalarını 90°, 180° veya 270° açıyla tek tek ya da topluca kalıcı olarak döndürün.',
+    categoryId: 'pdf',
+    toolType: 'pdf',
+    status: 'active',
+    keywords: ['pdf sayfa döndür', 'pdf döndürme', 'rotate pdf', 'pdf çevirme', 'pdf sayfa yönü değiştir']
+  },
+  {
+    id: 'jpg-pdf-donusturucu',
+    slug: 'jpg-pdf-donusturucu',
+    title: 'JPG PDF Dönüştürücü',
+    description: 'JPG ve PNG görsellerinizi ücretsiz olarak tek PDF dosyasına dönüştürün. Dosyalarınızı tarayıcınızda yerel olarak işleyin ve PDF’inizi hemen indirin.',
+    categoryId: 'pdf',
+    toolType: 'pdf',
+    status: 'active',
+    keywords: ['jpg pdf dönüştürücü', 'jpg to pdf', 'jpg pdf yapma', 'resmi pdf yap', 'fotoğrafı pdf yap', 'png to pdf', 'görselleri pdf yap']
+  },
+  {
+    id: 'gorselleri-pdf-yap',
+    slug: 'gorselleri-pdf-yap',
+    title: 'Görselleri PDF Yap',
+    description: 'Fotoğraf, taranmış evrak ve dekontlarınızı (JPG, PNG, WEBP) sıralayıp A4 veya özel sayfa boyutlarında tek bir PDF dosyasına çevirin.',
+    categoryId: 'pdf',
+    toolType: 'pdf',
+    status: 'active',
+    keywords: ['jpg to pdf', 'görselleri pdf yap', 'png to pdf', 'resmi pdf yapma', 'fotoğrafı pdf yap', 'image to pdf']
+  },
+  {
+    id: 'pdf-sayfa-cikar',
+    slug: 'pdf-sayfa-cikar',
+    title: 'PDF Sayfa Çıkarıcı',
+    description: 'Büyük PDF dosyalarından yalnızca ihtiyacınız olan sayfaları seçerek yeni ve bağımsız bir PDF belgesi oluşturun.',
+    categoryId: 'pdf',
+    toolType: 'pdf',
+    status: 'active',
+    keywords: ['pdf sayfa çıkar', 'pdf sayfa çıkarma', 'extract pdf pages', 'pdf sayfa ayıklama', 'pdf sayfa alma']
+  },
+  {
+    id: 'pdf-jpg-donusturucu',
+    slug: 'pdf-jpg-donusturucu',
+    title: 'PDF → JPG Görsel Dönüştürücü',
+    description: 'PDF sayfalarınızı tarayıcınızın grafik motoruyla yüksek çözünürlüklü JPEG formatındaki görsellere dönüştürün ve anında indirin.',
+    categoryId: 'pdf',
+    toolType: 'pdf',
+    status: 'active',
+    keywords: ['pdf to jpg', 'pdf jpg dönüştürücü', 'pdf resme çevirme', 'pdf to image', 'pdf jpg yapma']
+  },
+  {
+    id: 'metni-pdf-donusturucu',
+    slug: 'metni-pdf-donusturucu',
+    title: "Metni PDF'e Dönüştür",
+    description: 'Yazdığınız veya yapıştırdığınız metni hızlıca PDF dosyasına dönüştürün.',
+    categoryId: 'pdf',
+    toolType: 'pdf',
+    status: 'active',
+    keywords: ['metni pdf e dönüştür', 'metin pdf', 'pdf oluştur', 'yazıyı pdf yap', 'yazıyı pdf e çevir', 'metni pdf e çevir', 'text to pdf', 'txt pdf', 'pdf yap', 'yazıdan pdf', 'metin belgesi pdf', 'metin dönüştürme', 'metin pdf dönüştürücü', 'yazıyı pdf e donustur']
   }
 ];
+
+
 
 export function getActiveCategories(): Category[] {
   const activeCategoryIds = new Set(tools.filter(t => t.status === 'active').map(t => t.categoryId));
@@ -583,6 +683,50 @@ export function getCategoryById(id: string): Category | undefined {
   return categories.find(c => c.id === id);
 }
 
-export function getFeaturedTools(limit = 6): Tool[] {
-  return tools.filter(t => t.status === 'active').slice(0, limit);
+export function getToolsByCategoryId(categoryId: string): Tool[] {
+  return tools.filter(t => t.categoryId === categoryId && t.status === 'active');
 }
+
+export function getCategorySampleTools(categoryId: string, limit = 4): string[] {
+  return tools
+    .filter(t => t.categoryId === categoryId && t.status === 'active')
+    .slice(0, limit)
+    .map(t => t.title.replace(/ Hesaplama| Dönüştürücü| Oluşturucu/gi, ''));
+}
+
+export function getPopularTools(): Tool[] {
+  const popularSlugs = [
+    'kdv-hesaplama',
+    'yuzde-hesaplama',
+    'maliyet-hesaplama',
+    'pdf-jpg-donusturucu',
+    'qr-kod-olusturucu',
+    'kar-marji-hesaplama',
+    'yakit-maliyeti-hesaplama',
+    'guvenli-sifre-olusturucu',
+  ];
+
+  return popularSlugs
+    .map(slug => tools.find(t => t.slug === slug))
+    .filter((t): t is Tool => Boolean(t && t.status === 'active'));
+}
+
+export function getFeaturedTools(limit = 8): Tool[] {
+  const popular = getPopularTools();
+  if (popular.length >= limit) return popular.slice(0, limit);
+  const remaining = tools.filter(t => t.status === 'active' && !popular.some(p => p.id === t.id));
+  return [...popular, ...remaining].slice(0, limit);
+}
+
+export const POPULAR_SEARCH_TAGS = [
+  { label: 'KDV', query: 'kdv' },
+  { label: 'PDF → JPG', query: 'pdf jpg' },
+  { label: 'QR Kod', query: 'qr' },
+  { label: 'Yüzde', query: 'yüzde' },
+  { label: 'Maliyet', query: 'maliyet' },
+  { label: 'Yakıt', query: 'yakıt' },
+  { label: 'Şifre', query: 'şifre' },
+  { label: 'Kredi', query: 'kredi' },
+  { label: 'JSON', query: 'json' },
+];
+

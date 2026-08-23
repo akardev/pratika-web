@@ -11,13 +11,16 @@ export const metadata: Metadata = {
 
 export default function BilgiMerkeziPage() {
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 max-w-4xl">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 max-w-5xl">
       <div className="text-center max-w-2xl mx-auto mb-10">
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-muted text-muted-foreground border border-border/60 mb-3">
+          <span>Pratika Rehberleri</span>
+        </div>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-3">
           Bilgi Merkezi
         </h1>
-        <p className="text-base text-muted-foreground">
-          Hesaplamalar, finans ve günlük konular hakkında anlaşılır ve pratik bilgiler.
+        <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+          Hesaplamalar, finans, iş ve günlük konular hakkında anlaşılır, formüllü ve pratik rehberler.
         </p>
       </div>
 
@@ -25,3 +28,4 @@ export default function BilgiMerkeziPage() {
     </div>
   );
 }
+
