@@ -13,7 +13,9 @@ import KarMarjiHesaplama from '@/components/tools/KarMarjiHesaplama';
 import ZamHesaplama from '@/components/tools/ZamHesaplama';
 import KarZararHesaplama from '@/components/tools/KarZararHesaplama';
 import FaizHesaplama from '@/components/tools/FaizHesaplama';
+import MaliyetHesaplama from '@/components/tools/MaliyetHesaplama';
 import ToolCard from '@/components/ui/ToolCard';
+
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -123,7 +125,9 @@ export default async function ToolPage({ params }: Props) {
         {tool.slug === 'zam-hesaplama' && <ZamHesaplama />}
         {tool.slug === 'kar-zarar-hesaplama' && <KarZararHesaplama />}
         {tool.slug === 'faiz-hesaplama' && <FaizHesaplama />}
+        {tool.slug === 'maliyet-hesaplama' && <MaliyetHesaplama />}
       </div>
+
 
       {/* İlgili Bilgiler (Bilgi Merkezi İçerikleri) */}
       {relatedArticles.length > 0 && (

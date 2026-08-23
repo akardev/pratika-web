@@ -87,8 +87,19 @@ export const tools: Tool[] = [
     categoryId: 'finans',
     status: 'active',
     keywords: ['faiz', 'faiz hesaplama', 'basit faiz', 'basit faiz hesaplama', 'bileşik faiz', 'bileşik faiz hesaplama', 'faiz tutarı', 'faiz oranı', 'faiz hesaplama aracı', 'mevduat faizi']
+  },
+  {
+    id: 'maliyet-hesaplama',
+    slug: 'maliyet-hesaplama',
+    title: 'Maliyet Hesaplama',
+    description: 'Birim alış fiyatı ve ek giderleri kullanarak toplam ve birim maliyeti hesaplayın.',
+    categoryId: 'finans',
+    status: 'active',
+    keywords: ['maliyet', 'maliyet hesaplama', 'ürün maliyeti', 'birim maliyet', 'gerçek maliyet', 'toplam maliyet', 'alış maliyeti', 'ürün maliyeti hesaplama']
   }
+
 ];
+
 
 
 

@@ -516,8 +516,70 @@ export const articles: Article[] = [
         }
       }
     ]
+  },
+  {
+    id: 'maliyet-nedir-ve-nasil-hesaplanir',
+    slug: 'maliyet-nedir-ve-nasil-hesaplanir',
+    title: 'Maliyet Nedir ve Nasıl Hesaplanır?',
+    description: 'Ürün ve hizmetlerde toplam maliyet ve birim maliyet hesaplama formülleri, kargo, komisyon ve ek giderlerin maliyete etkisi.',
+    category: 'Finans',
+    relatedToolSlug: 'maliyet-hesaplama',
+    readTime: '4 dk okuma',
+    publishedAt: '2026-08-23',
+    keywords: ['maliyet nedir', 'maliyet nasıl hesaplanır', 'birim maliyet hesaplama', 'toplam maliyet', 'ürün maliyeti'],
+    sections: [
+      {
+        heading: 'Maliyet Kavramı ve Birim Alış Fiyatı ile Farkı',
+        paragraphs: [
+          'Maliyet, bir mal veya hizmetin üretilmesi, tedarik edilmesi ve satışa hazır hale getirilmesi için yapılan tüm parasal harcamaların toplamıdır.',
+          'Ticarette sıkça yapılan en temel hata, tedarikçiye ödenen "birim alış fiyatını" doğrudan nihai maliyet kabul etmektir. Bir ürünün gerçek birim maliyeti; alış bedeline eklenen nakliye, kargo, platform komisyonu, ambalaj ve operasyonel giderlerin ürün adedine paylaştırılmasıyla belirlenir.'
+        ]
+      },
+      {
+        heading: 'Toplam Maliyet ve Birim Maliyet Formülleri',
+        paragraphs: [
+          'Bir ürünün veya toplu ürün partisinin maliyetini bulmak için şu formüller uygulanır:'
+        ],
+        formula: 'Toplam Alış Maliyeti = Birim Alış Fiyatı × Ürün Adedi\nToplam Maliyet = Toplam Alış Maliyeti + Kargo + Komisyon + Diğer Giderler\nBirim Maliyet = Toplam Maliyet / Ürün Adedi'
+      },
+      {
+        heading: 'Kargo, Komisyon ve Diğer Giderlerin Önemi',
+        paragraphs: [
+          'Kargo Ücreti: Ürünün depoya gelişi veya müşteriye ulaştırılması için satıcı tarafından karşılanan taşıma bedelidir.',
+          'Pazaryeri Komisyonu: E-ticaret platformlarının veya sanal POS aracı kurumlarının işlem başına kestiği hizmet bedelidir.',
+          'Diğer Giderler: Paketleme malzemeleri, etiketleme ve doğrudan ürünle ilişkili diğer operasyonel masraflardır.'
+        ]
+      },
+      {
+        heading: 'Gerçek Örnek Hesaplama (10 Adet E-Ticaret Ürünü)',
+        paragraphs: [
+          'Birim alış fiyatı 600 TL olan 10 adet ürün için yapılan harcama kalemleri ve maliyet dökümü:'
+        ],
+        example: {
+          title: '10 Adet Ürün İçin Maliyet Dökümü',
+          items: [
+            { label: 'Birim Alış Fiyatı', value: '600,00 TL' },
+            { label: 'Ürün Adedi', value: '10 Adet' },
+            { label: 'Toplam Alış Maliyeti (600 × 10)', value: '6.000,00 TL' },
+            { label: 'Kargo ve Nakliye', value: '15,00 TL' },
+            { label: 'Pazaryeri Komisyonu', value: '250,00 TL' },
+            { label: 'Diğer Giderler (Ambalaj vb.)', value: '34,00 TL' },
+            { label: 'Toplam Maliyet', value: '6.299,00 TL' },
+            { label: 'Birim Maliyet (6.299 / 10)', value: '629,90 TL / adet' }
+          ]
+        },
+        note: 'Eğer birim maliyet hesaplanırken ek giderler hesaba katılmasaydı, adet başına düşen 29,90 TL\'lik masraf gözden kaçarak kârlılığı eritebilirdi.'
+      },
+      {
+        heading: 'Maliyetten Kârlılığa Geçiş',
+        paragraphs: [
+          'Gerçek birim maliyetinizi kesin olarak belirledikten sonra, satmayı planladığınız fiyat üzerinden net kazancınızı görmek için Pratika Kâr / Zarar Hesaplama veya hedeflediğiniz kâr marjını tutturmak için Kar Marjı Hesaplama araçlarını kullanabilirsiniz.'
+        ]
+      }
+    ]
   }
 ];
+
 
 export function getAllArticles(): Article[] {
   return articles;
