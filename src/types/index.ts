@@ -14,4 +14,6 @@ export interface Tool {
   categoryId: string;
   icon?: string;
   status: 'active' | 'coming-soon' | 'maintenance';
+  keywords?: string[];
 }
+

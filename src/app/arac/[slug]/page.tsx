@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import IndirimHesaplama from '@/components/tools/IndirimHesaplama';
 import YuzdeHesaplama from '@/components/tools/YuzdeHesaplama';
+import YasHesaplama from '@/components/tools/YasHesaplama';
 import ToolCard from '@/components/ui/ToolCard';
 
 type Props = {
@@ -31,6 +32,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
       title: 'Yüzde Hesaplama - Pratika',
       description: 'Yüzde hesaplama, yüzde artış ve azalış hesaplama işlemlerini hızlı ve kolayca yapın.',
+    };
+  }
+
+  if (tool.slug === 'yas-hesaplama') {
+    return {
+      title: 'Yaş Hesaplama - Pratika',
+      description: 'Doğum tarihinizi girerek yaşınızı yıl, ay ve gün olarak hesaplayın. Bir sonraki doğum gününüze kaç gün kaldığını kolayca öğrenin.',
     };
   }
 
@@ -70,6 +78,7 @@ export default async function ToolPage({ params }: Props) {
       <div className="mb-14">
         {tool.slug === 'indirim-hesaplama' && <IndirimHesaplama />}
         {tool.slug === 'yuzde-hesaplama' && <YuzdeHesaplama />}
+        {tool.slug === 'yas-hesaplama' && <YasHesaplama />}
       </div>
 
       {/* İlgili Araçlar */}
@@ -88,5 +97,6 @@ export default async function ToolPage({ params }: Props) {
     </div>
   );
 }
+
 
 

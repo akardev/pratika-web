@@ -16,7 +16,8 @@ export const tools: Tool[] = [
     title: 'İndirim Hesaplama',
     description: 'Bir ürünün indirimli fiyatını ve indirim tutarını hızlıca hesaplayın.',
     categoryId: 'finans',
-    status: 'active'
+    status: 'active',
+    keywords: ['indirim', 'fiyat', 'iskonto', 'tasarruf']
   },
   {
     id: 'yuzde-hesaplama',
@@ -24,8 +25,19 @@ export const tools: Tool[] = [
     title: 'Yüzde Hesaplama',
     description: 'Yüzde hesaplama, yüzde artış ve azalış hesaplama işlemlerini hızlı ve kolayca yapın.',
     categoryId: 'finans',
-    status: 'active'
+    status: 'active',
+    keywords: ['yüzde', 'oran', 'yüzde artış', 'yüzde azalış', 'yüzdesi']
+  },
+  {
+    id: 'yas-hesaplama',
+    slug: 'yas-hesaplama',
+    title: 'Yaş Hesaplama',
+    description: 'Doğum tarihinizi girerek yaşınızı yıl, ay ve gün olarak hesaplayın.',
+    categoryId: 'finans',
+    status: 'active',
+    keywords: ['yaş', 'yaş hesaplama', 'kaç yaşındayım', 'doğum günü', 'yaşım']
   }
 ];
+
 
 

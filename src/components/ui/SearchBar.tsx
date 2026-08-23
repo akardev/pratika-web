@@ -17,7 +17,8 @@ export default function SearchBar() {
       (tool) =>
         tool.title.toLocaleLowerCase('tr-TR').includes(trimmed) ||
         tool.description.toLocaleLowerCase('tr-TR').includes(trimmed) ||
-        tool.slug.toLocaleLowerCase('tr-TR').includes(trimmed)
+        tool.slug.toLocaleLowerCase('tr-TR').includes(trimmed) ||
+        tool.keywords?.some((k) => k.toLocaleLowerCase('tr-TR').includes(trimmed))
     );
   }, [query]);
 
