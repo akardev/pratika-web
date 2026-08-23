@@ -76,7 +76,7 @@ export default function Header() {
                 type="button"
                 onClick={() => setSearchModalOpen(true)}
                 className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 text-xs text-muted-foreground bg-muted/60 hover:bg-muted hover:text-foreground border border-border/60 rounded-lg transition-colors cursor-pointer"
-                aria-label="Araç arama modalını aç"
+                aria-label="Arama modalını aç (⌘K)"
               >
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path
@@ -86,7 +86,7 @@ export default function Header() {
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                   />
                 </svg>
-                <span>Araç Ara...</span>
+                <span>Ne arıyorsun?</span>
                 <kbd className="text-[10px] font-mono px-1 py-0.5 bg-card border border-border/80 rounded text-muted-foreground">
                   ⌘K
                 </kbd>

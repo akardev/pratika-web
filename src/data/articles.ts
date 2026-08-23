@@ -1142,6 +1142,66 @@ export const articles: Article[] = [
         ]
       }
     ]
+  },
+  {
+    id: 'sosyal-medya-gorsel-boyutlari-rehberi',
+    slug: 'sosyal-medya-gorsel-boyutlari',
+    title: 'Sosyal Medya Görsel Boyutları: Instagram, YouTube, TikTok ve Diğer Platformlar',
+    description: 'Instagram, YouTube, TikTok, LinkedIn ve X için güncel görsel ölçüleri, en boy oranları ve görsel kalitesini koruma rehberi.',
+    category: 'Görsel ve Medya',
+    relatedToolSlug: 'sosyal-medya-gorsel-boyutlandirici',
+    readTime: '5 dk okuma',
+    publishedAt: '2026-08-24',
+    keywords: [
+      'sosyal medya görsel boyutları',
+      'instagram gönderi boyutu',
+      'instagram story reels boyutu',
+      'youtube thumbnail boyutu',
+      'tiktok video boyutu',
+      'linkedin görsel ölçüleri',
+      'twitter kapak boyutu',
+      'görsel boyutlandırma'
+    ],
+    sections: [
+      {
+        heading: 'Sosyal Medyada Doğru Görsel Boyutunun Önemi',
+        paragraphs: [
+          'Sosyal medya algoritmaları ve mobil arayüzler, paylaşılan içeriklerin belirli en-boy oranlarına (aspect ratio) ve piksel ölçülerine tam olarak uymasını bekler. Yanlış boyutta yüklenen görseller platformlar tarafından otomatik olarak kırpılır veya sıkıştırılır; bu da bulanıklığa, metinlerin kesilmesine ve etkileşim kaybına yol açar.',
+          'Görsellerinizi paylaşmadan önce platformun önerdiği kesin piksel ölçülerine getirmek, içeriğinizin hem masaüstünde hem de mobil cihazlarda en net ve profesyonel kalitede görünmesini sağlar.'
+        ]
+      },
+      {
+        heading: 'Instagram Görsel Boyutları ve Formatları',
+        paragraphs: [
+          'Instagram akışında en çok tercih edilen format 1080 × 1350 piksel (4:5 dikey) ölçüsüdür. Dikey format, kullanıcının telefon ekranında maksimum alanı kaplayarak dikkat çekme oranını artırır.',
+          'Instagram için standart ölçüler şunlardır:\n• Dikey Gönderi (Portrait): 1080 × 1350 px (4:5 oran)\n• Kare Gönderi (Square): 1080 × 1080 px (1:1 oran)\n• Yatay Gönderi (Landscape): 1080 × 566 px (1.91:1 oran)\n• Hikaye ve Reels (Story & Reels): 1080 × 1920 px (9:16 oran)\n• Profil Fotoğrafı: 320 × 320 px (1:1 daire kırpma)'
+        ]
+      },
+      {
+        heading: 'YouTube Küçük Resim (Thumbnail) ve Kapak Ölçüleri',
+        paragraphs: [
+          'YouTube videolarında tıklanma oranını (CTR) belirleyen en kritik unsur küçük resimdir (Thumbnail). 1280 × 720 piksel (16:9) ölçüsü standarttır ve maksimum dosya boyutu 2 MB olmalıdır.',
+          'YouTube kanal kapak bannerı için 2560 × 1440 piksel önerilir. Ancak mobil, tablet ve TV gibi farklı ekranlarda güvenli alan merkezdeki 1235 × 338 pikseldir; logo ve kanal sloganınızı bu merkez alana yerleştirmelisiniz.'
+        ]
+      },
+      {
+        heading: 'TikTok, LinkedIn ve X (Twitter) Ölçüleri',
+        paragraphs: [
+          'TikTok: Tam ekran dikey video ve hikayeler için 1080 × 1920 piksel (9:16 oran) kullanılır. Profil resmi için en az 200 × 200 piksel önerilir.',
+          'LinkedIn: Bağlantı ve gönderi görselleri için 1200 × 627 piksel (1.91:1) veya 1080 × 1080 piksel (1:1) kullanılır. Kişisel profil kapak görseli 1584 × 396 piksel, şirket kapak görseli ise 1128 × 191 pikseldir.',
+          'X (Twitter): Akış tweet görselleri için 1200 × 675 piksel (16:9), profil üst header kapağı için 1500 × 500 piksel (3:1 oran) standarttır.'
+        ]
+      },
+      {
+        heading: 'JPG, PNG ve WebP: Hangi Formatı Seçmelisiniz?',
+        paragraphs: [
+          '• JPG (JPEG): Fotoğraflar ve karmaşık renk geçişleri içeren görseller için idealdir. Küçük dosya boyutu ile hızlı yükleme sunar.',
+          '• PNG: Şeffaf arka plan gerektiren logolar, ikonlar ve keskin metin içeren tasarımlar için kayıpsız (lossless) en iyi seçenektir.',
+          '• WebP: Modern web standardı olup JPG ve PNG kalitesini %30 daha küçük dosya boyutunda sağlayarak hızlı yükleme avantajı sunar.'
+        ],
+        note: 'Görselinizi seçtiğiniz sosyal medya ölçüsüne tarayıcınızda anında ve ücretsiz dönüştürmek için Pratika Sosyal Medya Görsel Boyutlandırıcı aracını kullanabilirsiniz.'
+      }
+    ]
   }
 ];
 

@@ -60,6 +60,12 @@ const SYNONYM_MAP: Record<string, string[]> = {
   cevir: ['donustur', 'donusturucu', 'yap'],
   cevirme: ['donustur', 'donusturucu', 'yap'],
   donustur: ['cevir', 'yap'],
+  boyutlandir: ['boyutlandirma', 'boyutlandirici', 'kirpma', 'olcek', 'resizer', 'resize', 'boyut'],
+  boyut: ['boyutlandir', 'olcu', 'piksel', 'resolution'],
+  kirp: ['kirpma', 'crop', 'kesme', 'boyutlandir'],
+  thumbnail: ['kapak', 'kucuk resim', 'youtube'],
+  reels: ['story', 'hikaye', 'instagram', 'tiktok', 'video'],
+  story: ['reels', 'hikaye', 'durum', 'instagram'],
 };
 
 

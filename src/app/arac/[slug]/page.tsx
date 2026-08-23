@@ -82,7 +82,7 @@ import RenkDonusturucu from '@/components/tools/RenkDonusturucu';
 import GuvenliSifreOlusturucu from '@/components/tools/GuvenliSifreOlusturucu';
 
 // Görsel ve Medya (1)
-import SosyalMedyaGorselBoyutlari from '@/components/tools/SosyalMedyaGorselBoyutlari';
+import SosyalMedyaGorselBoyutlandirici from '@/components/tools/SosyalMedyaGorselBoyutlandirici';
 
 // PDF ve Dosya Araçları (9)
 import PdfBirlestir from '@/components/tools/PdfBirlestir';
@@ -118,8 +118,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const title = `${tool.title} | Pratika`;
-  const description = tool.description;
+  const isSocialMediaResizer = tool.slug === 'sosyal-medya-gorsel-boyutlandirici';
+  const title = isSocialMediaResizer
+    ? 'Sosyal Medya Görsel Boyutlandırıcı | Instagram, YouTube ve TikTok | Pratika'
+    : `${tool.title} | Pratika`;
+  const description = isSocialMediaResizer
+    ? 'Instagram, YouTube, TikTok, LinkedIn ve X için görsellerinizi doğru ölçülere ücretsiz olarak uyarlayın. Görselinizi yükleyin, formatı seçin ve indirin.'
+    : tool.description;
 
   return {
     title,
@@ -276,7 +281,9 @@ export default async function ToolPage({ params }: Props) {
         {tool.slug === 'guvenli-sifre-olusturucu' && <GuvenliSifreOlusturucu />}
 
         {/* Görsel ve Medya (1) */}
-        {tool.slug === 'sosyal-medya-gorsel-boyutlari' && <SosyalMedyaGorselBoyutlari />}
+        {(tool.slug === 'sosyal-medya-gorsel-boyutlandirici' || tool.slug === 'sosyal-medya-gorsel-boyutlari') && (
+          <SosyalMedyaGorselBoyutlandirici />
+        )}
 
         {/* PDF ve Dosya Araçları (9) */}
         {tool.slug === 'pdf-birlestir' && <PdfBirlestir />}

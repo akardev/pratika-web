@@ -569,14 +569,31 @@ export const tools: Tool[] = [
 
   // --- GÖRSEL VE MEDYA (1) ---
   {
-    id: 'sosyal-medya-gorsel-boyutlari',
-    slug: 'sosyal-medya-gorsel-boyutlari',
-    title: 'Sosyal Medya Görsel Boyutları Rehberi',
-    description: 'Instagram, YouTube, X/Twitter, LinkedIn, TikTok ve Facebook için güncel gönderi, story, kapak ve profil görseli piksel boyutları.',
+    id: 'sosyal-medya-gorsel-boyutlandirici',
+    slug: 'sosyal-medya-gorsel-boyutlandirici',
+    title: 'Sosyal Medya Görsel Boyutlandırıcı',
+    description: 'Instagram, YouTube, TikTok, LinkedIn ve X için görsellerinizi doğru ölçülere kolayca uyarlayın.',
     categoryId: 'gorsel',
-    toolType: 'utility',
+    toolType: 'media',
     status: 'active',
-    keywords: ['sosyal medya görsel boyutları', 'instagram post boyutu', 'youtube thumbnail boyutu', 'tiktok video boyutu', 'linkedin banner boyutu', 'story piksel ölçüleri']
+    keywords: [
+      'sosyal medya görsel boyutlandırıcı',
+      'sosyal medya görsel boyutları',
+      'görsel boyutlandır',
+      'fotoğraf boyutlandır',
+      'resim boyutlandır',
+      'instagram boyut',
+      'instagram görsel',
+      'instagram fotoğraf boyutu',
+      'story boyutu',
+      'reels boyutu',
+      'youtube thumbnail',
+      'youtube kapak',
+      'tiktok boyutu',
+      'sosyal medya görsel',
+      'resim kırpma',
+      'görsel ölçekleme'
+    ]
   },
 
   // --- PDF VE DOSYA ARAÇLARI (7) ---
