@@ -6,10 +6,10 @@ import type { BusinessData, CategoryData, ProductData } from './PanelDashboardOv
 import {
   createProductAction,
   deleteProductAction,
-  generateSingleItemAiTranslationAction,
   toggleProductStatusAction,
   updateProductAction,
 } from '@/app/panel/actions';
+import PanelProductAiTranslateModal from './PanelProductAiTranslateModal';
 import styles from './panel.module.css';
 
 export default function PanelMenuManager({
@@ -28,7 +28,7 @@ export default function PanelMenuManager({
   const [editingProduct, setEditingProduct] = useState<ProductData | null>(null);
   const [loading, setLoading] = useState(false);
   const [feedbackMsg, setFeedbackMsg] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
-  const [aiTranslatingId, setAiTranslatingId] = useState<string | null>(null);
+  const [aiModalProduct, setAiModalProduct] = useState<ProductData | null>(null);
 
   // Add modal image state
   const [addImagePreview, setAddImagePreview] = useState<string>('');
@@ -42,18 +42,6 @@ export default function PanelMenuManager({
   const showFeedback = (type: 'success' | 'error', text: string) => {
     setFeedbackMsg({ type, text });
     setTimeout(() => setFeedbackMsg(null), 3500);
-  };
-
-  const handleAiTranslateProduct = async (product: ProductData) => {
-    setAiTranslatingId(product.id);
-    const res = await generateSingleItemAiTranslationAction(business.id, 'product', product.id);
-    setAiTranslatingId(null);
-
-    if (res.error) {
-      showFeedback('error', res.error);
-    } else {
-      showFeedback('success', res.message || `✓ "${product.name}" için AI çeviri önerileri hazırlandı.`);
-    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, mode: 'add' | 'edit') => {
@@ -287,12 +275,11 @@ export default function PanelMenuManager({
                           </button>
                           <button
                             type="button"
-                            disabled={aiTranslatingId === product.id}
-                            onClick={() => handleAiTranslateProduct(product)}
+                            onClick={() => setAiModalProduct(product)}
                             className={`${styles.iconBtn} bg-blue-50 text-blue-700 hover:bg-blue-100 border-blue-200`}
-                            title="Bu ürün için İngilizce, Almanca ve Rusça AI çeviri önerisi oluştur"
+                            title="Bu ürün için yapay zeka ile çeviri oluştur"
                           >
-                            {aiTranslatingId === product.id ? '⏳ Çevriliyor...' : '✨ AI ile Çevir'}
+                            ✨ AI ile Çevir
                           </button>
                           <button
                             type="button"
@@ -569,6 +556,23 @@ export default function PanelMenuManager({
             </form>
           </div>
         </div>
+      )}
+
+      {/* PRODUCT AI TRANSLATE MODAL */}
+      {aiModalProduct && (
+        <PanelProductAiTranslateModal
+          businessId={business.id}
+          product={aiModalProduct}
+          existingTranslations={[]}
+          onClose={() => setAiModalProduct(null)}
+          onSuccess={() => {
+            setFeedbackMsg({
+              type: 'success',
+              text: `✓ "${aiModalProduct.name}" için AI çeviri önerisi oluşturuldu. "Menü Dilleri" sekmesinde onaylayabilirsiniz.`,
+            });
+            setTimeout(() => setFeedbackMsg(null), 5000);
+          }}
+        />
       )}
     </div>
   );

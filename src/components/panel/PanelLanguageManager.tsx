@@ -11,6 +11,7 @@ import {
   rejectAllAiTranslationsAction,
   saveTranslationAction,
 } from '@/app/panel/actions';
+import PanelProductAiTranslateModal from './PanelProductAiTranslateModal';
 import styles from './panel.module.css';
 
 export interface TranslationRecord {
@@ -72,6 +73,7 @@ export default function PanelLanguageManager({
   const [actionLoadingKey, setActionLoadingKey] = useState<string | null>(null);
 
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error' | 'info'; text: string } | null>(null);
+  const [singleAiModalProduct, setSingleAiModalProduct] = useState<ProductData | null>(null);
 
   // Load translations from server
   const loadTranslations = useCallback(async () => {
@@ -1114,6 +1116,20 @@ export default function PanelLanguageManager({
                 {selectedItemType === 'product' ? activeProduct?.description : activeCategory?.description}
               </p>
             )}
+
+            {selectedItemType === 'product' && activeProduct && (
+              <div className="mt-2.5 pt-2 border-t border-slate-200 flex items-center justify-between">
+                <span className="text-[11px] text-slate-500">Yapay zeka ile hızlı çeviri oluşturun:</span>
+                <button
+                  type="button"
+                  onClick={() => setSingleAiModalProduct(activeProduct)}
+                  className="inline-flex items-center gap-1.5 rounded-lg bg-blue-50 border border-blue-200 px-2.5 py-1 text-xs font-bold text-blue-700 hover:bg-blue-100 transition"
+                >
+                  <span>✨</span>
+                  <span>Bu Ürünü AI ile Çevir</span>
+                </button>
+              </div>
+            )}
           </div>
 
           <div className={styles.formGroup}>
@@ -1158,6 +1174,24 @@ export default function PanelLanguageManager({
           </div>
         </form>
       </div>
+
+      {/* SINGLE PRODUCT AI TRANSLATE MODAL */}
+      {singleAiModalProduct && (
+        <PanelProductAiTranslateModal
+          businessId={business.id}
+          product={singleAiModalProduct}
+          existingTranslations={prodTranslations.filter((t) => t.product_id === singleAiModalProduct.id)}
+          onClose={() => setSingleAiModalProduct(null)}
+          onSuccess={() => {
+            loadTranslations();
+            setFeedback({
+              type: 'success',
+              text: `✓ "${singleAiModalProduct.name}" için AI çeviri önerileri hazırlandı! "Bekleyen AI Çevirileri" listesinden onaylayabilirsiniz.`,
+            });
+            setTimeout(() => setFeedback(null), 5000);
+          }}
+        />
+      )}
     </div>
   );
 }

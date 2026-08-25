@@ -269,6 +269,17 @@ export async function createCategoryAction(businessId: string, menuId: string, f
     return { error: 'Kategori adı zorunludur.' }
   }
 
+  // Plan limit enforcement
+  const { getBusinessPlanTier, validatePlanFeature } = await import('@/lib/plan-limits');
+  const { count: currentCatCount } = await supabase
+    .from('categories')
+    .select('*', { count: 'exact', head: true })
+    .eq('business_id', businessId);
+  const planCheck = validatePlanFeature(getBusinessPlanTier(), 'add_category', { currentCount: currentCatCount || 0 });
+  if (!planCheck.allowed) {
+    return { error: planCheck.reason };
+  }
+
   let targetMenuId = menuId
   if (!targetMenuId) {
     const { data: defaultMenu } = await supabase
@@ -380,6 +391,17 @@ export async function createProductAction(businessId: string, menuId: string, fo
   const price = parseFloat(priceRaw.replace(',', '.'))
   if (isNaN(price) || price < 0) {
     return { error: 'Geçersiz fiyat formatı.' }
+  }
+
+  // Plan limit enforcement
+  const { getBusinessPlanTier, validatePlanFeature } = await import('@/lib/plan-limits');
+  const { count: currentProdCount } = await supabase
+    .from('products')
+    .select('*', { count: 'exact', head: true })
+    .eq('business_id', businessId);
+  const planCheck = validatePlanFeature(getBusinessPlanTier(), 'add_product', { currentCount: currentProdCount || 0 });
+  if (!planCheck.allowed) {
+    return { error: planCheck.reason };
   }
 
   let targetMenuId = menuId
@@ -1268,7 +1290,14 @@ export async function updateMenuThemeAction(businessId: string, theme: string, m
 
   const { parseBusinessSettings, encodeBusinessDescriptionWithSettings } = await import('@/lib/business-settings')
   const { sanitizeThemeId } = await import('@/lib/themes/registry')
+  const { getBusinessPlanTier, validatePlanFeature } = await import('@/lib/plan-limits')
   const validTheme = sanitizeThemeId(theme)
+
+  const planCheck = validatePlanFeature(getBusinessPlanTier(), 'select_theme', { themeId: validTheme })
+  if (!planCheck.allowed) {
+    return { error: planCheck.reason }
+  }
+
   const currentSettings = parseBusinessSettings(business)
 
   const encodedDescription = encodeBusinessDescriptionWithSettings(currentSettings.descriptionText, {

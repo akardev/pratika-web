@@ -2,23 +2,24 @@ import type { Metadata } from 'next';
 import QrLandingPage from '@/components/qr-landing/QrLandingPage';
 
 export const metadata: Metadata = {
-  title: 'Pratika QR Menü | Kolay ve Akıllı Dijital Menü Yönetimi',
+  title: 'QR Menü Sistemi | Dijital Menü ve AI Destekli Çeviri | Pratika',
   description:
-    'Domain gerektirmez, dakikalar içinde hazır. Fiyatlarınızı ve ürünlerinizi QR kodunuzu değiştirmeden tek panelden anında güncelleyin.',
+    'Restoran, kafe ve oteller için profesyonel QR menü sistemi. Menülerinizi tek panelden yönetin, fiyatları anında güncelleyin ve AI destekli çeviri ile müşterilerinize farklı dillerde ulaşın.',
   keywords: [
     'qr menü',
     'dijital menü',
     'karekod menü',
     'restoran menüsü',
     'kafe qr menü',
+    'ai çeviri qr menü',
     'çok dilli qr menü',
     'pratika qr',
   ],
   alternates: { canonical: '/qr-menu' },
   openGraph: {
-    title: 'Pratika QR Menü | Kolay ve Akıllı Dijital Menü Yönetimi',
+    title: 'QR Menü Sistemi | Dijital Menü ve AI Destekli Çeviri | Pratika',
     description:
-      'Menünüzü bir kez oluşturun, güncellemesi saniyeler sürsün. Domain satın almadan, QR kodunuzu yeniden bastırmadan menünüzü yönetin.',
+      'Restoran, kafe ve oteller için profesyonel QR menü sistemi. Fiyatlarınızı ve ürünlerinizi QR kodunuzu değiştirmeden tek panelden anında güncelleyin.',
     url: 'https://pratika.com/qr-menu',
     siteName: 'Pratika',
     locale: 'tr_TR',
@@ -26,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Pratika QR Menü | Kolay ve Akıllı Dijital Menü Yönetimi',
+    title: 'QR Menü Sistemi | Dijital Menü ve AI Destekli Çeviri | Pratika',
     description:
-      'Menünüzü bir kez oluşturun, güncellemesi saniyeler sürsün. Domain gerektirmez, QR kodunuz hep aynı kalır.',
+      'Menünüzü tek panelden yönetin, fiyatları anında güncelleyin. QR kodunuz hep sabit kalır.',
   },
 };
 
