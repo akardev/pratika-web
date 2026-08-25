@@ -9,6 +9,7 @@ import styles from './admin.module.css';
 interface AdminLayoutClientProps {
   adminEmail: string;
   pendingRequestsCount?: number;
+  isAdmin?: boolean;
   children: React.ReactNode;
 }
 
@@ -19,6 +20,11 @@ export default function AdminLayoutClient({
 }: AdminLayoutClientProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Standalone pages (login, unauthorized) render without sidebar
+  if (pathname === '/admin/login' || pathname === '/admin/unauthorized') {
+    return <>{children}</>;
+  }
 
   // Compute breadcrumb title
   let sectionTitle = 'Genel Bakış';

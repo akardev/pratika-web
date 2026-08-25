@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { adminLogoutAction } from '@/app/admin/actions';
 import styles from './admin.module.css';
 
 interface AdminSidebarProps {
@@ -89,11 +90,15 @@ export default function AdminSidebar({ adminEmail, pendingRequestsCount = 0 }: A
             <span>🏢</span>
             <span>Müşteri Paneli</span>
           </Link>
-          <form action="/login?mode=logout" method="GET">
-            <Link href="/login" className={`${styles.footerBtn} text-red-400 hover:text-red-300`}>
+          <form action={adminLogoutAction}>
+            <button
+              type="submit"
+              className={`${styles.footerBtn} w-full text-left text-red-400 hover:text-red-300 cursor-pointer`}
+              title="Yönetici oturumunu kapat"
+            >
               <span>🚪</span>
               <span>Çıkış Yap</span>
-            </Link>
+            </button>
           </form>
         </div>
       </div>

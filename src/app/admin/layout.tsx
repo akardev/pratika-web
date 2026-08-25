@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { requireAdmin, getAdminDashboardData } from '@/lib/admin';
+import { createClient } from '@/lib/supabase/server';
+import { checkIsAdmin, getAdminDashboardData } from '@/lib/admin';
 import AdminLayoutClient from '@/components/admin/AdminLayoutClient';
 
 export const metadata: Metadata = {
@@ -12,13 +13,28 @@ export default async function AdminRootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { user } = await requireAdmin();
-  const stats = await getAdminDashboardData();
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const isAdmin = checkIsAdmin(user);
+
+  let pendingRequestsCount = 0;
+  if (isAdmin) {
+    try {
+      const stats = await getAdminDashboardData();
+      pendingRequestsCount = stats.pendingRequests;
+    } catch {
+      pendingRequestsCount = 0;
+    }
+  }
 
   return (
     <AdminLayoutClient
-      adminEmail={user.email}
-      pendingRequestsCount={stats.pendingRequests}
+      adminEmail={user?.email || ''}
+      pendingRequestsCount={pendingRequestsCount}
+      isAdmin={isAdmin}
     >
       {children}
     </AdminLayoutClient>

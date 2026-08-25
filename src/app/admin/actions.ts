@@ -63,3 +63,45 @@ export async function updateBusinessStatusByAdminAction(
   revalidatePath(`/admin/businesses/${businessId}`);
   return { success: true, message: `✓ Menü durumu ${isMenuActive ? 'Aktif (Yayında)' : 'Pasif (Gizli)'} olarak güncellendi.` };
 }
+
+export async function adminLoginAction(formData: FormData) {
+  const { checkIsAdmin } = await import('@/lib/admin');
+  const { redirect } = await import('next/navigation');
+
+  const email = (formData.get('email') as string)?.trim();
+  const password = formData.get('password') as string;
+  const redirectTo = (formData.get('redirectTo') as string) || '/admin';
+
+  if (!email || !password) {
+    return { error: 'Lütfen yönetici e-posta ve şifrenizi girin.' };
+  }
+
+  const supabase = await createClient();
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    return { error: 'E-posta adresi veya şifre hatalı.' };
+  }
+
+  // Verify Admin authorization
+  if (!checkIsAdmin(data.user)) {
+    // If authenticated user is NOT an admin, sign out immediately to protect admin space
+    await supabase.auth.signOut();
+    return { error: 'Bu hesabın Pratika Yönetici (Admin) yetkisi bulunmamaktadır.' };
+  }
+
+  revalidatePath('/', 'layout');
+  redirect(redirectTo);
+}
+
+export async function adminLogoutAction() {
+  const { redirect } = await import('next/navigation');
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+  revalidatePath('/', 'layout');
+  redirect('/admin/login');
+}

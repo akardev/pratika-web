@@ -57,11 +57,11 @@ export async function requireAdmin(): Promise<{ user: { id: string; email: strin
   } = await supabase.auth.getUser();
 
   if (!user) {
-    redirect('/login?redirect=/admin');
+    redirect('/admin/login?redirect=/admin');
   }
 
   if (!checkIsAdmin(user)) {
-    redirect('/panel?error=unauthorized_admin');
+    redirect('/admin/unauthorized');
   }
 
   return {
