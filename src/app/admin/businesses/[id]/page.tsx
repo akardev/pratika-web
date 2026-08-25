@@ -255,8 +255,8 @@ export default async function AdminBusinessDetailPage({ params }: BusinessDetail
                 </tr>
               </thead>
               <tbody>
-                {products.map((p) => {
-                  const cat = categories.find((c) => c.id === p.category_id);
+                {products.map((p: { id: string; name: string; price: number; is_active: boolean; description?: string; category_id?: string }) => {
+                  const cat = categories.find((c: { id: string; name: string }) => c.id === p.category_id);
                   return (
                     <tr key={p.id}>
                       <td>

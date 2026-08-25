@@ -141,19 +141,19 @@ export interface AdminDashboardStats {
  * Fetches all users from Supabase (Auth + Profiles + Businesses) and builds full User <-> Business relation.
  */
 export async function getAllAdminUsers(): Promise<AdminUserRecord[]> {
-  const supabase = await createClient();
+  const adminDb = getAdminSupabaseClient();
 
-  // 1. Fetch businesses
-  const { data: businesses } = await supabase
+  // 1. Fetch businesses using admin DB client to bypass per-user RLS
+  const { data: businesses } = await adminDb
     .from('businesses')
     .select('*')
     .order('created_at', { ascending: false });
   const allBusinesses = businesses || [];
 
   // 2. Fetch menus, products, categories
-  const { data: menus } = await supabase.from('menus').select('id, business_id, is_active');
-  const { data: products } = await supabase.from('products').select('id, business_id');
-  const { data: categories } = await supabase.from('categories').select('id, business_id');
+  const { data: menus } = await adminDb.from('menus').select('id, business_id, is_active');
+  const { data: products } = await adminDb.from('products').select('id, business_id');
+  const { data: categories } = await adminDb.from('categories').select('id, business_id');
 
   const allMenus = menus || [];
   const allProducts = products || [];
@@ -162,7 +162,7 @@ export async function getAllAdminUsers(): Promise<AdminUserRecord[]> {
   // 3. Fetch profiles if table exists
   let profiles: Array<{ id: string; email?: string; full_name?: string; role?: string; status?: string; created_at?: string; last_sign_in_at?: string }> = [];
   try {
-    const { data: profData } = await supabase.from('profiles').select('*');
+    const { data: profData } = await adminDb.from('profiles').select('*');
     if (profData) {
       profiles = profData;
     }
@@ -176,8 +176,7 @@ export async function getAllAdminUsers(): Promise<AdminUserRecord[]> {
 
   if (serviceKey) {
     try {
-      const adminClient = getAdminSupabaseClient();
-      const { data: authList } = await adminClient.auth.admin.listUsers();
+      const { data: authList } = await adminDb.auth.admin.listUsers();
       if (authList?.users) {
         for (const u of authList.users) {
           authUsersMap.set(u.id, {
@@ -313,26 +312,26 @@ export async function getAllAdminUsers(): Promise<AdminUserRecord[]> {
  * Aggregates platform statistics for the Admin Dashboard from real Supabase tables.
  */
 export async function getAdminDashboardData(): Promise<AdminDashboardStats> {
-  const supabase = await createClient();
+  const adminDb = getAdminSupabaseClient();
   const allUsers = await getAllAdminUsers();
 
   // 1. Fetch businesses & menus
-  const { data: businesses } = await supabase.from('businesses').select('*');
+  const { data: businesses } = await adminDb.from('businesses').select('*');
   const allBusinesses = businesses || [];
 
-  const { data: menus } = await supabase.from('menus').select('id, business_id, is_active');
+  const { data: menus } = await adminDb.from('menus').select('id, business_id, is_active');
   const allMenus = menus || [];
 
-  const { data: products } = await supabase.from('products').select('id');
+  const { data: products } = await adminDb.from('products').select('id');
   const allProducts = products || [];
 
-  const { data: categories } = await supabase.from('categories').select('id');
+  const { data: categories } = await adminDb.from('categories').select('id');
   const allCategories = categories || [];
 
   // 2. Fetch pending contact requests
   let pendingRequests = 0;
   try {
-    const { count } = await supabase
+    const { count } = await adminDb
       .from('contact_requests')
       .select('*', { count: 'exact', head: true })
       .in('status', ['new', 'in_review']);
@@ -344,9 +343,10 @@ export async function getAdminDashboardData(): Promise<AdminDashboardStats> {
   // Count trials
   let activeTrials = 0;
   let expiredTrials = 0;
+
   allBusinesses.forEach((b) => {
-    const t = calculateTrialInfo(b.created_at);
-    if (t.isExpired) {
+    const trial = calculateTrialInfo(b.created_at);
+    if (trial.isExpired) {
       expiredTrials++;
     } else {
       activeTrials++;
@@ -433,16 +433,16 @@ export interface AdminBusinessListItem {
  * Fetches businesses list for /admin/businesses and /admin/subscriptions.
  */
 export async function getAdminBusinessesList(params?: { search?: string; filter?: string }): Promise<AdminBusinessListItem[]> {
-  const supabase = await createClient();
+  const adminDb = getAdminSupabaseClient();
 
-  const { data: businesses } = await supabase
+  const { data: businesses } = await adminDb
     .from('businesses')
     .select('*')
     .order('created_at', { ascending: false });
 
-  const { data: menus } = await supabase.from('menus').select('id, business_id, is_active');
-  const { data: products } = await supabase.from('products').select('id, business_id');
-  const { data: categories } = await supabase.from('categories').select('id, business_id');
+  const { data: menus } = await adminDb.from('menus').select('id, business_id, is_active');
+  const { data: products } = await adminDb.from('products').select('id, business_id');
+  const { data: categories } = await adminDb.from('categories').select('id, business_id');
 
   const allBusinesses = businesses || [];
   const allMenus = menus || [];
@@ -502,7 +502,7 @@ export async function getAdminBusinessesList(params?: { search?: string; filter?
  * Fetches single customer details by userId or businessId.
  */
 export async function getAdminCustomerDetail(targetId: string) {
-  const supabase = await createClient();
+  const adminDb = getAdminSupabaseClient();
   const allUsers = await getAllAdminUsers();
 
   // Find user by userId or by owning business ID
@@ -513,7 +513,7 @@ export async function getAdminCustomerDetail(targetId: string) {
 
   if (!user) {
     // If not found in user map, try single query from businesses
-    const { data: bList } = await supabase.from('businesses').select('*').eq('id', targetId);
+    const { data: bList } = await adminDb.from('businesses').select('*').eq('id', targetId);
     if (bList && bList.length > 0) {
       const b = bList[0];
       user = allUsers.find((u) => u.id === b.user_id);
@@ -539,7 +539,7 @@ export async function getAdminCustomerDetail(targetId: string) {
     };
   }
 
-  const { data: fullBusiness } = await supabase
+  const { data: fullBusiness } = await adminDb
     .from('businesses')
     .select('*')
     .eq('id', primaryBusinessSummary.id)
@@ -547,33 +547,33 @@ export async function getAdminCustomerDetail(targetId: string) {
 
   const settings = parseBusinessSettings(fullBusiness || {});
 
-  const { data: menu } = await supabase
+  const { data: menu } = await adminDb
     .from('menus')
     .select('*')
     .eq('business_id', primaryBusinessSummary.id)
     .maybeSingle();
 
-  const { data: categories } = await supabase
+  const { data: categories } = await adminDb
     .from('categories')
     .select('*')
     .eq('business_id', primaryBusinessSummary.id)
     .order('position', { ascending: true });
 
-  const { data: products } = await supabase
+  const { data: products } = await adminDb
     .from('products')
     .select('*')
     .eq('business_id', primaryBusinessSummary.id)
     .order('position', { ascending: true });
 
-  const catIds = (categories || []).map((c) => c.id);
-  const prodIds = (products || []).map((p) => p.id);
+  const catIds = (categories || []).map((c: { id: string }) => c.id);
+  const prodIds = (products || []).map((p: { id: string }) => p.id);
 
   const { data: catTrans } = catIds.length > 0
-    ? await supabase.from('category_translations').select('*').in('category_id', catIds)
+    ? await adminDb.from('category_translations').select('*').in('category_id', catIds)
     : { data: [] };
 
   const { data: prodTrans } = prodIds.length > 0
-    ? await supabase.from('product_translations').select('*').in('product_id', prodIds)
+    ? await adminDb.from('product_translations').select('*').in('product_id', prodIds)
     : { data: [] };
 
   const trial = calculateTrialInfo(fullBusiness?.created_at || user.createdAt);
