@@ -10,11 +10,13 @@ export default function SiteChrome({ children }: { children: React.ReactNode }) 
   // Exclude standalone app screens from main website header & footer:
   // - Public customer QR menu (/m/..., /qr/...)
   // - SaaS merchant panel (/panel)
+  // - SaaS admin center (/admin)
   // - Auth login screen (/login)
   // - Interactive QR demo (/demo/qr-menu)
   if (
     pathname === '/login' ||
     pathname.startsWith('/panel') ||
+    pathname.startsWith('/admin') ||
     pathname.startsWith('/m/') ||
     pathname.startsWith('/qr/') ||
     pathname === '/demo/qr-menu'

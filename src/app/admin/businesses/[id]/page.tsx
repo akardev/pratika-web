@@ -15,11 +15,13 @@ export default async function AdminBusinessDetailPage({ params }: BusinessDetail
 
   const data = await getAdminCustomerDetail(id);
 
-  if (!data) {
+  if (!data || !data.business) {
     notFound();
   }
 
-  const { business, menu, categories, products, productTranslations, trial } = data;
+  const { business, menu, categories, products, productTranslations } = data;
+  const { calculateTrialInfo } = await import('@/lib/trial');
+  const trial = data.trial || calculateTrialInfo(business.created_at);
 
   const isMenuActive = menu ? menu.is_active : true;
   const businessLetter = (business.name[0] || 'P').toUpperCase();

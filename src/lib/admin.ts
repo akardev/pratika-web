@@ -1,7 +1,25 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
+import { createClient as createSupabaseAdmin } from '@supabase/supabase-js';
 import { calculateTrialInfo, type TrialInfo } from '@/lib/trial';
 import { parseBusinessSettings } from '@/lib/business-settings';
+
+/**
+ * Creates a Supabase Admin client with service role key if available, or falls back to anon key.
+ * This runs ONLY on the server.
+ */
+export function getAdminSupabaseClient() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '';
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || '';
+
+  if (serviceKey) {
+    return createSupabaseAdmin(url, serviceKey, {
+      auth: { autoRefreshToken: false, persistSession: false },
+    });
+  }
+  return createSupabaseAdmin(url, anonKey);
+}
 
 /**
  * Checks if a given Supabase Auth User object has administrator privileges.
@@ -48,7 +66,7 @@ export function checkIsAdmin(user: { id: string; email?: string | null; user_met
 
 /**
  * Server-side guard that ensures the caller is an authenticated admin.
- * Redirects non-admins to /panel or /login.
+ * Redirects non-admins to /admin/login or /admin/unauthorized.
  */
 export async function requireAdmin(): Promise<{ user: { id: string; email: string; user_metadata?: Record<string, unknown> } }> {
   const supabase = await createClient();
@@ -73,37 +91,222 @@ export async function requireAdmin(): Promise<{ user: { id: string; email: strin
   };
 }
 
+export interface AdminUserBusinessSummary {
+  id: string;
+  name: string;
+  slug: string;
+  businessType: string;
+  phone: string | null;
+  city: string | null;
+  logoUrl: string | null;
+  theme: string;
+  menuActive: boolean;
+  productCount: number;
+  categoryCount: number;
+  translationCount: number;
+  trial: TrialInfo;
+  createdAt: string;
+}
+
+export interface AdminUserRecord {
+  id: string; // auth.user id
+  email: string;
+  fullName: string;
+  role: 'admin' | 'customer';
+  status: 'active' | 'suspended';
+  createdAt: string;
+  lastSignInAt: string | null;
+  businesses: AdminUserBusinessSummary[];
+  primaryBusiness: AdminUserBusinessSummary | null;
+}
+
 export interface AdminDashboardStats {
-  totalCustomers: number;
+  totalUsers: number;
+  adminCount: number;
+  usersWithBusiness: number;
+  usersWithoutBusiness: number;
   activeBusinesses: number;
   totalBusinesses: number;
-  trialCustomers: number;
+  activeTrials: number;
+  expiredTrials: number;
   paidCustomers: number;
   activeMenus: number;
   totalProducts: number;
   totalCategories: number;
   pendingRequests: number;
-  recentBusinesses: AdminBusinessSummary[];
+  recentUsers: AdminUserRecord[];
 }
 
-export interface AdminBusinessSummary {
-  id: string;
-  userId: string;
-  name: string;
-  slug: string;
-  businessType: string;
-  phone: string | null;
-  address: string | null;
-  city: string | null;
-  instagram: string | null;
-  logoUrl: string | null;
-  theme: string;
-  createdAt: string;
-  menuActive: boolean;
-  productCount: number;
-  categoryCount: number;
-  trial: TrialInfo;
-  userEmail?: string;
+/**
+ * Fetches all users from Supabase (Auth + Profiles + Businesses) and builds full User <-> Business relation.
+ */
+export async function getAllAdminUsers(): Promise<AdminUserRecord[]> {
+  const supabase = await createClient();
+
+  // 1. Fetch businesses
+  const { data: businesses } = await supabase
+    .from('businesses')
+    .select('*')
+    .order('created_at', { ascending: false });
+  const allBusinesses = businesses || [];
+
+  // 2. Fetch menus, products, categories
+  const { data: menus } = await supabase.from('menus').select('id, business_id, is_active');
+  const { data: products } = await supabase.from('products').select('id, business_id');
+  const { data: categories } = await supabase.from('categories').select('id, business_id');
+
+  const allMenus = menus || [];
+  const allProducts = products || [];
+  const allCategories = categories || [];
+
+  // 3. Fetch profiles if table exists
+  let profiles: Array<{ id: string; email?: string; full_name?: string; role?: string; status?: string; created_at?: string; last_sign_in_at?: string }> = [];
+  try {
+    const { data: profData } = await supabase.from('profiles').select('*');
+    if (profData) {
+      profiles = profData;
+    }
+  } catch {
+    profiles = [];
+  }
+
+  // 4. Try fetching Supabase Auth users via Admin client if service key exists
+  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const authUsersMap = new Map<string, { id: string; email?: string; user_metadata?: Record<string, unknown>; created_at: string; last_sign_in_at?: string | null }>();
+
+  if (serviceKey) {
+    try {
+      const adminClient = getAdminSupabaseClient();
+      const { data: authList } = await adminClient.auth.admin.listUsers();
+      if (authList?.users) {
+        for (const u of authList.users) {
+          authUsersMap.set(u.id, {
+            id: u.id,
+            email: u.email,
+            user_metadata: u.user_metadata,
+            created_at: u.created_at,
+            last_sign_in_at: u.last_sign_in_at,
+          });
+        }
+      }
+    } catch (e) {
+      console.warn('Auth admin listUsers fallback:', e);
+    }
+  }
+
+  // Unified Map of Users by userId
+  const userMap = new Map<string, AdminUserRecord>();
+
+  // Helper to add or merge a user
+  const registerUser = (id: string, email: string, fullName: string, roleInput?: string, createdAt?: string, lastSignIn?: string | null) => {
+    if (!id) return;
+    const existing = userMap.get(id);
+
+    const emailNorm = email || existing?.email || '';
+    const isAdminRole = checkIsAdmin({ id, email: emailNorm, user_metadata: { role: roleInput } });
+    const finalRole: 'admin' | 'customer' = isAdminRole ? 'admin' : (roleInput === 'admin' ? 'admin' : 'customer');
+
+    if (existing) {
+      if (email && !existing.email) existing.email = email;
+      if (fullName && !existing.fullName) existing.fullName = fullName;
+      if (roleInput) existing.role = finalRole;
+      if (lastSignIn) existing.lastSignInAt = lastSignIn;
+      return;
+    }
+
+    userMap.set(id, {
+      id,
+      email: emailNorm,
+      fullName: fullName || emailNorm.split('@')[0] || 'Kullanıcı',
+      role: finalRole,
+      status: 'active',
+      createdAt: createdAt || new Date().toISOString(),
+      lastSignInAt: lastSignIn || null,
+      businesses: [],
+      primaryBusiness: null,
+    });
+  };
+
+  // Populate from Auth users map
+  authUsersMap.forEach((u) => {
+    registerUser(
+      u.id,
+      u.email || '',
+      (u.user_metadata?.full_name as string) || '',
+      (u.user_metadata?.role as string) || undefined,
+      u.created_at,
+      u.last_sign_in_at
+    );
+  });
+
+  // Populate from profiles table
+  profiles.forEach((p) => {
+    registerUser(
+      p.id,
+      p.email || '',
+      p.full_name || '',
+      p.role,
+      p.created_at,
+      p.last_sign_in_at
+    );
+  });
+
+  // Populate from businesses table (guarantees business owners exist even before triggers)
+  allBusinesses.forEach((b) => {
+    if (b.user_id) {
+      registerUser(
+        b.user_id,
+        '', // Email will be inferred or resolved
+        b.name || '',
+        'customer',
+        b.created_at
+      );
+    }
+  });
+
+  // Associate businesses with users
+  allBusinesses.forEach((b) => {
+    const userId = b.user_id;
+    if (!userId) return;
+
+    const user = userMap.get(userId);
+    if (!user) return;
+
+    const settings = parseBusinessSettings(b);
+    const linkedMenu = allMenus.find((m) => m.business_id === b.id);
+    const prodCount = allProducts.filter((p) => p.business_id === b.id).length;
+    const catCount = allCategories.filter((c) => c.business_id === b.id).length;
+    const trial = calculateTrialInfo(b.created_at);
+
+    const bSummary: AdminUserBusinessSummary = {
+      id: b.id,
+      name: b.name,
+      slug: b.slug,
+      businessType: b.business_type || 'Kafe',
+      phone: b.phone || null,
+      city: b.address || null,
+      logoUrl: b.logo_url || null,
+      theme: settings.menu_theme,
+      menuActive: linkedMenu ? linkedMenu.is_active : true,
+      productCount: prodCount,
+      categoryCount: catCount,
+      translationCount: 0,
+      trial,
+      createdAt: b.created_at,
+    };
+
+    user.businesses.push(bSummary);
+    if (!user.primaryBusiness) {
+      user.primaryBusiness = bSummary;
+    }
+  });
+
+  // Convert map to sorted array (newest first)
+  const userList = Array.from(userMap.values()).sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+
+  return userList;
 }
 
 /**
@@ -111,27 +314,22 @@ export interface AdminBusinessSummary {
  */
 export async function getAdminDashboardData(): Promise<AdminDashboardStats> {
   const supabase = await createClient();
+  const allUsers = await getAllAdminUsers();
 
-  // 1. Fetch all businesses
-  const { data: businesses } = await supabase
-    .from('businesses')
-    .select('*')
-    .order('created_at', { ascending: false });
-
+  // 1. Fetch businesses & menus
+  const { data: businesses } = await supabase.from('businesses').select('*');
   const allBusinesses = businesses || [];
 
-  // 2. Fetch all menus
   const { data: menus } = await supabase.from('menus').select('id, business_id, is_active');
   const allMenus = menus || [];
 
-  // 3. Fetch all products & categories
-  const { data: products } = await supabase.from('products').select('id, business_id, is_active');
+  const { data: products } = await supabase.from('products').select('id');
   const allProducts = products || [];
 
-  const { data: categories } = await supabase.from('categories').select('id, business_id');
+  const { data: categories } = await supabase.from('categories').select('id');
   const allCategories = categories || [];
 
-  // 4. Fetch pending contact requests (if table exists)
+  // 2. Fetch pending contact requests
   let pendingRequests = 0;
   try {
     const { count } = await supabase
@@ -143,66 +341,98 @@ export async function getAdminDashboardData(): Promise<AdminDashboardStats> {
     pendingRequests = 0;
   }
 
-  // Calculate unique customer user IDs
-  const distinctUserIds = new Set<string>();
-  allBusinesses.forEach((b) => {
-    if (b.user_id) distinctUserIds.add(b.user_id);
-  });
-
-  // Calculate trials vs expired
-  let trialCount = 0;
+  // Count trials
+  let activeTrials = 0;
+  let expiredTrials = 0;
   allBusinesses.forEach((b) => {
     const t = calculateTrialInfo(b.created_at);
-    if (!t.isExpired) trialCount++;
+    if (t.isExpired) {
+      expiredTrials++;
+    } else {
+      activeTrials++;
+    }
   });
 
+  const adminCount = allUsers.filter((u) => u.role === 'admin').length;
+  const usersWithBusiness = allUsers.filter((u) => u.businesses.length > 0).length;
+  const usersWithoutBusiness = allUsers.filter((u) => u.businesses.length === 0).length;
   const activeMenusCount = allMenus.filter((m) => m.is_active).length;
 
-  const recentSummaries: AdminBusinessSummary[] = allBusinesses.slice(0, 10).map((b) => {
-    const settings = parseBusinessSettings(b);
-    const linkedMenu = allMenus.find((m) => m.business_id === b.id);
-    const prodCount = allProducts.filter((p) => p.business_id === b.id).length;
-    const catCount = allCategories.filter((c) => c.business_id === b.id).length;
-    const trial = calculateTrialInfo(b.created_at);
-
-    return {
-      id: b.id,
-      userId: b.user_id,
-      name: b.name,
-      slug: b.slug,
-      businessType: b.business_type || 'Kafe',
-      phone: b.phone || null,
-      address: b.address || null,
-      city: b.address || null,
-      instagram: b.instagram || null,
-      logoUrl: b.logo_url || null,
-      theme: settings.menu_theme,
-      createdAt: b.created_at,
-      menuActive: linkedMenu ? linkedMenu.is_active : true,
-      productCount: prodCount,
-      categoryCount: catCount,
-      trial,
-    };
-  });
-
   return {
-    totalCustomers: distinctUserIds.size,
+    totalUsers: allUsers.length,
+    adminCount,
+    usersWithBusiness,
+    usersWithoutBusiness,
     activeBusinesses: allBusinesses.length,
     totalBusinesses: allBusinesses.length,
-    trialCustomers: trialCount,
-    paidCustomers: 0, // Real honest count (no payment gateway attached yet)
+    activeTrials,
+    expiredTrials,
+    paidCustomers: 0,
     activeMenus: activeMenusCount,
     totalProducts: allProducts.length,
     totalCategories: allCategories.length,
     pendingRequests,
-    recentBusinesses: recentSummaries,
+    recentUsers: allUsers.slice(0, 10),
   };
 }
 
 /**
- * Fetches the full list of customers and their associated businesses.
+ * Fetches filtered and searched users list for /admin/customers.
  */
-export async function getAdminCustomersList(params?: { search?: string; filter?: string }): Promise<AdminBusinessSummary[]> {
+export async function getAdminCustomersList(params?: { search?: string; filter?: string }): Promise<AdminUserRecord[]> {
+  let list = await getAllAdminUsers();
+
+  // Search filter
+  if (params?.search) {
+    const q = params.search.toLowerCase().trim();
+    list = list.filter(
+      (u) =>
+        u.fullName.toLowerCase().includes(q) ||
+        u.email.toLowerCase().includes(q) ||
+        u.id.toLowerCase().includes(q) ||
+        u.businesses.some((b) => b.name.toLowerCase().includes(q) || b.slug.toLowerCase().includes(q))
+    );
+  }
+
+  // Tab filter
+  if (params?.filter) {
+    if (params.filter === 'admin') {
+      list = list.filter((u) => u.role === 'admin');
+    } else if (params.filter === 'customer') {
+      list = list.filter((u) => u.role === 'customer');
+    } else if (params.filter === 'with_business') {
+      list = list.filter((u) => u.businesses.length > 0);
+    } else if (params.filter === 'no_business') {
+      list = list.filter((u) => u.businesses.length === 0);
+    } else if (params.filter === 'active') {
+      list = list.filter((u) => u.status === 'active');
+    }
+  }
+
+  return list;
+}
+
+export interface AdminBusinessListItem {
+  id: string;
+  userId: string;
+  name: string;
+  slug: string;
+  businessType: string;
+  phone: string | null;
+  city: string | null;
+  logoUrl: string | null;
+  theme: string;
+  menuActive: boolean;
+  productCount: number;
+  categoryCount: number;
+  trial: TrialInfo;
+  createdAt: string;
+}
+
+/**
+ * Fetches businesses list for /admin/businesses and /admin/subscriptions.
+ */
+export async function getAdminBusinessesList(params?: { search?: string; filter?: string }): Promise<AdminBusinessListItem[]> {
   const supabase = await createClient();
 
   const { data: businesses } = await supabase
@@ -219,7 +449,7 @@ export async function getAdminCustomersList(params?: { search?: string; filter?:
   const allProducts = products || [];
   const allCategories = categories || [];
 
-  let list: AdminBusinessSummary[] = allBusinesses.map((b) => {
+  let list: AdminBusinessListItem[] = allBusinesses.map((b) => {
     const settings = parseBusinessSettings(b);
     const linkedMenu = allMenus.find((m) => m.business_id === b.id);
     const prodCount = allProducts.filter((p) => p.business_id === b.id).length;
@@ -233,40 +463,35 @@ export async function getAdminCustomersList(params?: { search?: string; filter?:
       slug: b.slug,
       businessType: b.business_type || 'Kafe',
       phone: b.phone || null,
-      address: b.address || null,
       city: b.address || null,
-      instagram: b.instagram || null,
       logoUrl: b.logo_url || null,
       theme: settings.menu_theme,
-      createdAt: b.created_at,
       menuActive: linkedMenu ? linkedMenu.is_active : true,
       productCount: prodCount,
       categoryCount: catCount,
       trial,
+      createdAt: b.created_at,
     };
   });
 
-  // Apply search query
   if (params?.search) {
     const q = params.search.toLowerCase().trim();
     list = list.filter(
-      (item) =>
-        item.name.toLowerCase().includes(q) ||
-        item.slug.toLowerCase().includes(q) ||
-        (item.phone && item.phone.toLowerCase().includes(q)) ||
-        (item.city && item.city.toLowerCase().includes(q)) ||
-        item.userId.toLowerCase().includes(q)
+      (b) =>
+        b.name.toLowerCase().includes(q) ||
+        b.slug.toLowerCase().includes(q) ||
+        (b.phone && b.phone.toLowerCase().includes(q)) ||
+        (b.city && b.city.toLowerCase().includes(q))
     );
   }
 
-  // Apply filter
   if (params?.filter) {
-    if (params.filter === 'trial') {
-      list = list.filter((i) => !i.trial.isExpired);
+    if (params.filter === 'active') {
+      list = list.filter((b) => b.menuActive);
+    } else if (params.filter === 'trial') {
+      list = list.filter((b) => !b.trial.isExpired);
     } else if (params.filter === 'expired') {
-      list = list.filter((i) => i.trial.isExpired);
-    } else if (params.filter === 'active') {
-      list = list.filter((i) => i.menuActive);
+      list = list.filter((b) => b.trial.isExpired);
     }
   }
 
@@ -274,49 +499,75 @@ export async function getAdminCustomersList(params?: { search?: string; filter?:
 }
 
 /**
- * Fetches detailed customer data including all linked business details, menu items, and translation counts.
+ * Fetches single customer details by userId or businessId.
  */
-export async function getAdminCustomerDetail(customerId: string) {
+export async function getAdminCustomerDetail(targetId: string) {
   const supabase = await createClient();
+  const allUsers = await getAllAdminUsers();
 
-  // Find business(es) belonging to customer ID (user_id) or business ID
-  const { data: businesses } = await supabase
-    .from('businesses')
-    .select('*')
-    .or(`user_id.eq.${customerId},id.eq.${customerId}`);
+  // Find user by userId or by owning business ID
+  let user = allUsers.find((u) => u.id === targetId);
+  if (!user) {
+    user = allUsers.find((u) => u.businesses.some((b) => b.id === targetId));
+  }
 
-  if (!businesses || businesses.length === 0) {
+  if (!user) {
+    // If not found in user map, try single query from businesses
+    const { data: bList } = await supabase.from('businesses').select('*').eq('id', targetId);
+    if (bList && bList.length > 0) {
+      const b = bList[0];
+      user = allUsers.find((u) => u.id === b.user_id);
+    }
+  }
+
+  if (!user) {
     return null;
   }
 
-  const primaryBusiness = businesses[0];
-  const settings = parseBusinessSettings(primaryBusiness);
+  // If user has business, fetch deep details of primary business
+  const primaryBusinessSummary = user.primaryBusiness;
+  if (!primaryBusinessSummary) {
+    return {
+      user,
+      business: null,
+      menu: null,
+      categories: [],
+      products: [],
+      categoryTranslations: [],
+      productTranslations: [],
+      trial: null,
+    };
+  }
 
-  // Fetch menu
+  const { data: fullBusiness } = await supabase
+    .from('businesses')
+    .select('*')
+    .eq('id', primaryBusinessSummary.id)
+    .single();
+
+  const settings = parseBusinessSettings(fullBusiness || {});
+
   const { data: menu } = await supabase
     .from('menus')
     .select('*')
-    .eq('business_id', primaryBusiness.id)
+    .eq('business_id', primaryBusinessSummary.id)
     .maybeSingle();
 
-  // Fetch categories
   const { data: categories } = await supabase
     .from('categories')
     .select('*')
-    .eq('business_id', primaryBusiness.id)
+    .eq('business_id', primaryBusinessSummary.id)
     .order('position', { ascending: true });
 
-  // Fetch products
   const { data: products } = await supabase
     .from('products')
     .select('*')
-    .eq('business_id', primaryBusiness.id)
+    .eq('business_id', primaryBusinessSummary.id)
     .order('position', { ascending: true });
 
   const catIds = (categories || []).map((c) => c.id);
   const prodIds = (products || []).map((p) => p.id);
 
-  // Fetch translations
   const { data: catTrans } = catIds.length > 0
     ? await supabase.from('category_translations').select('*').in('category_id', catIds)
     : { data: [] };
@@ -325,15 +576,12 @@ export async function getAdminCustomerDetail(customerId: string) {
     ? await supabase.from('product_translations').select('*').in('product_id', prodIds)
     : { data: [] };
 
-  const trial = calculateTrialInfo(primaryBusiness.created_at);
+  const trial = calculateTrialInfo(fullBusiness?.created_at || user.createdAt);
 
   return {
-    customer: {
-      userId: primaryBusiness.user_id,
-      createdAt: primaryBusiness.created_at,
-    },
+    user,
     business: {
-      ...primaryBusiness,
+      ...fullBusiness,
       settings,
       theme: settings.menu_theme,
       show_menu_intro: settings.show_menu_intro,
@@ -362,5 +610,32 @@ export async function getAdminRequestsList() {
     return requests || [];
   } catch {
     return [];
+  }
+}
+
+/**
+ * Records an entry into `admin_audit_logs`.
+ */
+export async function logAdminAction(params: {
+  actorId?: string;
+  actorEmail: string;
+  action: string;
+  targetType: string;
+  targetId?: string;
+  details?: Record<string, unknown>;
+}) {
+  try {
+    const supabase = await createClient();
+    await supabase.from('admin_audit_logs').insert({
+      actor_id: params.actorId || null,
+      actor_email: params.actorEmail,
+      action: params.action,
+      target_type: params.targetType,
+      target_id: params.targetId || null,
+      details: params.details || {},
+      created_at: new Date().toISOString(),
+    });
+  } catch (e) {
+    console.warn('Audit log write error (graceful):', e);
   }
 }

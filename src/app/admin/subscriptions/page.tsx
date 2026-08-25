@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import { requireAdmin, getAdminCustomersList } from '@/lib/admin';
+import { requireAdmin, getAdminBusinessesList } from '@/lib/admin';
 import styles from '@/components/admin/admin.module.css';
 
 export default async function AdminSubscriptionsPage() {
   await requireAdmin();
-  const customers = await getAdminCustomersList();
+  const customers = await getAdminBusinessesList();
 
   return (
     <div>

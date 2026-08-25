@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { requireAdmin, getAdminCustomersList } from '@/lib/admin';
+import { requireAdmin, getAdminBusinessesList } from '@/lib/admin';
 import styles from '@/components/admin/admin.module.css';
 
 interface BusinessesPageProps {
@@ -14,7 +14,7 @@ export default async function AdminBusinessesPage({ searchParams }: BusinessesPa
   await requireAdmin();
   const { q, filter } = await searchParams;
 
-  const businesses = await getAdminCustomersList({
+  const businesses = await getAdminBusinessesList({
     search: q,
     filter,
   });

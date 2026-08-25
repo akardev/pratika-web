@@ -72,7 +72,7 @@ export async function signup(formData: FormData) {
     redirect(`/login?mode=signup&message=${errorParam}&redirect=${encodeURIComponent(redirectTo)}`)
   }
 
-  const { error } = await supabase.auth.signUp({
+  const { data: signUpData, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
@@ -85,6 +85,22 @@ export async function signup(formData: FormData) {
   if (error) {
     const errorParam = encodeURIComponent(mapAuthError(error.message))
     redirect(`/login?mode=signup&message=${errorParam}&redirect=${encodeURIComponent(redirectTo)}`)
+  }
+
+  if (signUpData?.user) {
+    try {
+      await supabase.from('profiles').upsert({
+        id: signUpData.user.id,
+        email,
+        full_name: fullName || '',
+        role: 'customer',
+        status: 'active',
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      });
+    } catch {
+      // Graceful fallback if table not yet created
+    }
   }
 
   revalidatePath('/', 'layout')

@@ -15,7 +15,7 @@ export default function AdminSidebar({ adminEmail, pendingRequestsCount = 0 }: A
 
   const navItems = [
     { href: '/admin', label: 'Genel Bakış', icon: '📊', exact: true },
-    { href: '/admin/customers', label: 'Müşteriler', icon: '👥' },
+    { href: '/admin/customers', label: 'Kullanıcılar', icon: '👥' },
     { href: '/admin/businesses', label: 'İşletmeler', icon: '🏪' },
     { href: '/admin/subscriptions', label: 'Abonelikler', icon: '💳' },
     {
@@ -24,7 +24,7 @@ export default function AdminSidebar({ adminEmail, pendingRequestsCount = 0 }: A
       icon: '📨',
       count: pendingRequestsCount > 0 ? pendingRequestsCount : undefined,
     },
-    { href: '/admin/settings', label: 'Sistem', icon: '⚙️' },
+    { href: '/admin/settings', label: 'Sistem & Loglar', icon: '⚙️' },
   ];
 
   const adminLetter = (adminEmail[0] || 'A').toUpperCase();
@@ -38,7 +38,7 @@ export default function AdminSidebar({ adminEmail, pendingRequestsCount = 0 }: A
           <div>
             <h1 className={styles.brandTitle}>Pratika</h1>
             <div className="flex items-center gap-1.5 mt-0.5">
-              <span className={styles.brandBadge}>ADMIN V1</span>
+              <span className={styles.brandBadge}>ADMIN V2</span>
             </div>
           </div>
         </div>
