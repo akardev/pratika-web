@@ -131,7 +131,7 @@ export default function QrLandingPage() {
                 Canlı Demoyu İncele
                 <span className={styles.btnIcon}>↗</span>
               </Link>
-              <Link href="/login?redirect=/panel" className={styles.heroSecondaryBtn}>
+              <Link href="/login?redirect=/panel&mode=signup" className={styles.heroSecondaryBtn}>
                 15 Gün Ücretsiz Başla
               </Link>
             </div>
@@ -579,7 +579,7 @@ export default function QrLandingPage() {
               </ul>
 
               <div className={styles.planCtaWrap}>
-                <Link href="/login?redirect=/panel" className={styles.planOutlineBtn}>
+                <Link href="/login?redirect=/panel&mode=signup" className={styles.planOutlineBtn}>
                   15 Gün Ücretsiz Başla
                 </Link>
               </div>
@@ -613,7 +613,7 @@ export default function QrLandingPage() {
               </ul>
 
               <div className={styles.planCtaWrap}>
-                <Link href="/login?redirect=/panel" className={styles.planPrimaryBtn}>
+                <Link href="/login?redirect=/panel&mode=signup" className={styles.planPrimaryBtn}>
                   Profesyonel ile Başla <span>→</span>
                 </Link>
               </div>
@@ -711,7 +711,7 @@ export default function QrLandingPage() {
               <Link href="/demo/qr-menu" target="_blank" rel="noopener noreferrer" className={styles.heroPrimaryBtn}>
                 Canlı Demoyu Gör <span>↗</span>
               </Link>
-              <Link href="/login?redirect=/panel" className={styles.heroSecondaryBtn}>
+              <Link href="/login?redirect=/panel&mode=signup" className={styles.heroSecondaryBtn}>
                 15 Gün Ücretsiz Dene
               </Link>
               <Link href="/iletisim?konu=qr-menu" className={styles.textLinkBtn}>

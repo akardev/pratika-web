@@ -1,69 +1,103 @@
-import { redirect } from 'next/navigation'
-import {
-  getCurrentUserEntitlements,
-  getQuota,
-  hasFeature,
-} from '@/lib/entitlements'
+import { redirect } from 'next/navigation';
+import { createClient } from '@/lib/supabase/server';
+import PanelLayout from '@/components/panel/PanelLayout';
+import PanelOnboarding from '@/components/panel/PanelOnboarding';
 
 export default async function PanelPage() {
-  const entitlements = await getCurrentUserEntitlements()
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
 
-  if (!entitlements) {
-    redirect('/login')
+  if (!user) {
+    redirect('/login?redirect=/panel');
   }
 
-  const canCreateQrBusiness = hasFeature(
-    entitlements,
-    'qr.business.create',
-  )
-  const qrBusinessLimit = getQuota(
-    entitlements,
-    'qr.business.limit',
-  )
-  const hasProToolsAccess = hasFeature(
-    entitlements,
-    'tools.pro.access',
-  )
+  // 1. Fetch user's business
+  const { data: business, error: businessError } = await supabase
+    .from('businesses')
+    .select('*')
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (businessError) {
+    console.error('Error fetching business:', businessError);
+  }
+
+  // If user has no business, show Onboarding
+  if (!business) {
+    return (
+      <div className="min-h-screen bg-slate-50 py-10">
+        <PanelOnboarding />
+      </div>
+    );
+  }
+
+  // 2. Fetch or create menu
+  let { data: menu } = await supabase
+    .from('menus')
+    .select('*')
+    .eq('business_id', business.id)
+    .order('position', { ascending: true })
+    .limit(1)
+    .maybeSingle();
+
+  if (!menu) {
+    const { data: newMenu } = await supabase
+      .from('menus')
+      .insert({
+        business_id: business.id,
+        name: 'Ana Menü',
+        slug: 'ana-menu',
+        is_active: true,
+        position: 0,
+      })
+      .select()
+      .single();
+
+    menu = newMenu;
+  }
+
+  const menuId = menu?.id || '';
+  const isMenuActive = menu ? menu.is_active : true;
+
+  // 3. Fetch categories
+  const { data: categories } = await supabase
+    .from('categories')
+    .select('*')
+    .eq('business_id', business.id)
+    .order('position', { ascending: true })
+    .order('created_at', { ascending: true });
+
+  // 4. Fetch products
+  const { data: products } = await supabase
+    .from('products')
+    .select('*')
+    .eq('business_id', business.id)
+    .order('position', { ascending: true })
+    .order('created_at', { ascending: true });
+
+  const { parseBusinessSettings } = await import('@/lib/business-settings');
+  const settings = parseBusinessSettings(business);
+
+  const mergedBusiness = {
+    ...business,
+    description: settings.descriptionText,
+    menu_theme: settings.menu_theme,
+    show_menu_intro: settings.show_menu_intro,
+    welcome_message: settings.welcome_message,
+    slogan: settings.slogan,
+    working_hours: settings.working_hours,
+  };
 
   return (
-    <div className="p-8 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8">İşletme Paneli</h1>
-
-      <div className="mb-8 p-6 bg-gray-50 rounded-lg border border-gray-200">
-        <h2 className="text-xl font-semibold mb-2">Üyelik Durumu</h2>
-        <p className="mb-4">
-          Aktif ürün: <span className="font-bold">{entitlements.planCode}</span>
-        </p>
-        <p className="text-sm text-gray-600">
-          Pro araç erişimi:{' '}
-          <span className="font-semibold">
-            {hasProToolsAccess ? 'Açık' : 'Kapalı'}
-          </span>
-        </p>
-      </div>
-
-      <div className="p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
-        <h2 className="text-xl font-semibold mb-4">QR Menü Entitlement</h2>
-
-        {canCreateQrBusiness ? (
-          <>
-            <p className="text-green-600 font-medium">
-              QR Menü oluşturma hakkınız aktif.
-            </p>
-            <p className="text-gray-600 text-sm mt-2">
-              Business limiti: {qrBusinessLimit}
-            </p>
-            <p className="text-gray-500 text-sm mt-4">
-              Business/Menu CRUD ve QR Menü ekranları sonraki aşamada
-              geliştirilecektir.
-            </p>
-          </>
-        ) : (
-          <p className="text-gray-600 text-sm">
-            Bu hesapta QR Menü oluşturma entitlement&apos;ı bulunmuyor.
-          </p>
-        )}
-      </div>
-    </div>
-  )
+    <PanelLayout
+      userEmail={user.email || ''}
+      business={mergedBusiness}
+      menuId={menuId}
+      isMenuActive={isMenuActive}
+      categories={categories || []}
+      products={products || []}
+    />
+  );
 }

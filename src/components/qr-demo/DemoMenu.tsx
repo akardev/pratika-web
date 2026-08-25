@@ -39,7 +39,7 @@ export default function DemoMenu() {
         <div className={styles.introGlow} aria-hidden="true" />
         <main className={styles.welcomeScreen}>
           <div className={styles.welcomeTopbar}>
-            <span className={styles.demoPill}><span className={styles.liveDot} /> QR MENU DEMO</span>
+            <span className={styles.demoPill}><span className={styles.liveDot} /> TASARIM 01 — ELEGANT</span>
             <DemoLanguageSwitcher locale={locale} onChange={handleLocaleChange} />
           </div>
 
@@ -57,7 +57,24 @@ export default function DemoMenu() {
             </button>
           </section>
 
-          <p className={styles.demoNote}>{copy.demoNote}</p>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+            <Link
+              href="/panel"
+              style={{
+                fontSize: '12px',
+                fontWeight: '700',
+                color: '#fae392',
+                backgroundColor: 'rgba(212, 175, 55, 0.15)',
+                border: '1px solid #d4af37',
+                padding: '6px 16px',
+                borderRadius: '9999px',
+                textDecoration: 'none',
+              }}
+            >
+              ✨ Bu Tasarımı İşletmende Kullan →
+            </Link>
+            <p className={styles.demoNote}>{copy.demoNote}</p>
+          </div>
         </main>
       </div>
     );

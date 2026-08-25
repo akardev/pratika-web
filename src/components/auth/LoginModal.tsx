@@ -3,7 +3,15 @@
 import { useEffect, useRef } from 'react';
 import LoginForm from './LoginForm';
 
-export default function LoginModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+export default function LoginModal({
+  isOpen,
+  onClose,
+  initialMode = 'login',
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  initialMode?: 'login' | 'signup';
+}) {
   const dialogRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -39,8 +47,8 @@ export default function LoginModal({ isOpen, onClose }: { isOpen: boolean; onClo
     <div className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto bg-foreground/35 p-4 backdrop-blur-[2px] sm:p-6" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
       <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="login-modal-title" className="relative my-auto max-h-[calc(100svh-2rem)] w-full max-w-md overflow-y-auto rounded-2xl border border-border/80 bg-background p-1 shadow-xl sm:max-h-[calc(100svh-3rem)]">
         <button type="button" onClick={onClose} aria-label="Giriş penceresini kapat" className="absolute right-4 top-4 z-10 grid min-h-10 min-w-10 place-items-center rounded-full text-xl leading-none text-muted-foreground transition hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"><span aria-hidden="true">×</span></button>
-        <div id="login-modal-title" className="sr-only">Pratika&apos;ya Giriş Yap</div>
-        <LoginForm />
+        <div id="login-modal-title" className="sr-only">Pratika Giriş / Kayıt</div>
+        <LoginForm initialMode={initialMode} />
       </div>
     </div>
   );
