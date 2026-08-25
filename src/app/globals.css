@@ -64,6 +64,19 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* Custom subtle scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
@@ -90,5 +103,4 @@ textarea::placeholder {
   overflow: hidden;
   white-space: nowrap;
 }
-
 

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useId, useSyncExternalStore } from 'react';
+import { createPortal } from 'react-dom';
 import { TURKEY_CITIES, CityCoordinate, getWeatherCondition, WeatherCondition } from '@/data/todayData';
 import WeatherIcon from './WeatherIcon';
 
@@ -90,6 +91,25 @@ export default function TodayWidget() {
     const interval = setInterval(updateDateTime, 30000);
     return () => clearInterval(interval);
   }, [isClient]);
+
+  // Modal accessibility: Escape key and body scroll lock
+  useEffect(() => {
+    if (!isCityModalOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsCityModalOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isCityModalOpen]);
 
   // 2. Fetch Weather Data safely inside Effect with ignore flag
   useEffect(() => {
@@ -543,16 +563,16 @@ export default function TodayWidget() {
       </div>
 
       {/* Şehir Seçim Modalı */}
-      {isCityModalOpen && (
+      {isCityModalOpen && typeof document !== 'undefined' && createPortal(
         <div
           role="dialog"
           aria-modal="true"
           aria-labelledby="city-modal-title"
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-xs animate-fade-in"
+          className="fixed inset-0 z-[60] flex items-center justify-center overflow-y-auto bg-foreground/40 p-4 backdrop-blur-xs animate-fade-in"
           onClick={() => setIsCityModalOpen(false)}
         >
           <div
-            className="w-full max-w-md bg-card border border-border rounded-2xl shadow-xl p-5 space-y-4 overflow-hidden"
+            className="relative my-auto flex max-h-[min(36rem,calc(100svh-2rem))] min-h-0 w-full max-w-md flex-col space-y-3 overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-xl sm:space-y-4 sm:p-5"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-border/60 pb-3">
@@ -606,7 +626,7 @@ export default function TodayWidget() {
             </div>
 
             {/* Şehir Listesi Grid */}
-            <div className="max-h-60 overflow-y-auto space-y-1 pr-1 custom-scrollbar">
+            <div className="min-h-0 max-h-60 flex-1 overflow-y-auto overscroll-contain space-y-1 pr-1 custom-scrollbar">
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
                 {filteredCities.map((city) => (
                   <button
@@ -634,7 +654,8 @@ export default function TodayWidget() {
               🔒 Konumunuz yalnızca hava durumunu göstermek için kullanılır ve sunucuda saklanmaz.
             </p>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </aside>
   );

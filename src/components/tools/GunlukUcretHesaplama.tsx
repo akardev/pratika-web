@@ -3,8 +3,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { formatCurrency, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
+import { calculateGrossSalaryFromNet } from '@/lib/laborCalculations';
+import SalaryTypeSelector from './SalaryTypeSelector';
 
 export default function GunlukUcretHesaplama() {
+  const [salaryType, setSalaryType] = useState<'gross' | 'net'>('gross');
   const [salaryStr, setSalaryStr] = useState<string>('30.000');
   const [daysCountStr, setDaysCountStr] = useState<string>('1');
 
@@ -42,8 +45,9 @@ export default function GunlukUcretHesaplama() {
       days = d;
     }
 
+    const effectiveGrossSalary = salaryType === 'net' ? calculateGrossSalaryFromNet(salary).grossSalary : salary;
     // 4857 sayılı İş Kanununa göre aylık ücretli çalışanlarda 1 günlük ücret = Aylık Ücret / 30
-    const dailyWage = salary / 30;
+    const dailyWage = effectiveGrossSalary / 30;
     const hourlyWage = dailyWage / 7.5; // Günlük 7.5 saat çalışma
     const totalAmount = dailyWage * days;
 
@@ -60,9 +64,10 @@ export default function GunlukUcretHesaplama() {
       <div className="bg-card rounded-xl border border-border/60 p-6 sm:p-8 shadow-sm mb-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <form onSubmit={handleCalculate} noValidate className="space-y-4">
+            <SalaryTypeSelector value={salaryType} onChange={setSalaryType} />
             <div>
               <label htmlFor="dailySal" className="block text-sm font-medium mb-2 text-foreground">
-                Aylık Maaş Tutarı (TL) <span className="text-destructive">*</span>
+                {salaryType === 'gross' ? 'Aylık Brüt Maaş Tutarı (TL)' : 'Aylık Net Maaş Tutarı (Ele Geçen TL)'} <span className="text-destructive">*</span>
               </label>
               <div className="relative">
                 <input

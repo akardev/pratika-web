@@ -3,9 +3,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { formatCurrency, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
-import { calculateOvertimePay, OvertimeResult } from '@/lib/laborCalculations';
+import { calculateGrossSalaryFromNet, calculateOvertimePay, OvertimeResult } from '@/lib/laborCalculations';
+import SalaryTypeSelector from './SalaryTypeSelector';
 
 export default function FazlaMesaiHesaplama() {
+  const [salaryType, setSalaryType] = useState<'gross' | 'net'>('gross');
   const [salaryStr, setSalaryStr] = useState<string>('35.000');
   const [hoursStr, setHoursStr] = useState<string>('12');
   const [overtimeType, setOvertimeType] = useState<'weekday' | 'holiday'>('weekday');
@@ -32,7 +34,8 @@ export default function FazlaMesaiHesaplama() {
       return;
     }
 
-    const calcResult = calculateOvertimePay(salary, hours, overtimeType, incomeTaxRate);
+    const effectiveGrossSalary = salaryType === 'net' ? calculateGrossSalaryFromNet(salary).grossSalary : salary;
+    const calcResult = calculateOvertimePay(effectiveGrossSalary, hours, overtimeType, incomeTaxRate);
     setResult(calcResult);
   };
 
@@ -41,9 +44,10 @@ export default function FazlaMesaiHesaplama() {
       <div className="bg-card rounded-xl border border-border/60 p-6 sm:p-8 shadow-2xs mb-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <form onSubmit={handleCalculate} noValidate className="space-y-4">
+            <SalaryTypeSelector value={salaryType} onChange={setSalaryType} />
             <div>
               <label htmlFor="ovSal" className="block text-xs font-semibold mb-1.5 text-foreground">
-                Aylık Brüt Maaş Tutarı (TL) <span className="text-destructive">*</span>
+                {salaryType === 'gross' ? 'Aylık Brüt Maaş Tutarı (TL)' : 'Aylık Net Maaş Tutarı (Ele Geçen TL)'} <span className="text-destructive">*</span>
               </label>
               <div className="relative">
                 <input

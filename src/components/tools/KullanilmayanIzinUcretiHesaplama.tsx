@@ -3,15 +3,22 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { formatCurrency, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
-import { calculateUnusedLeavePay, UnusedLeaveResult } from '@/lib/laborCalculations';
+import { calculateGrossSalaryFromNet, calculateUnusedLeavePay, UnusedLeaveResult } from '@/lib/laborCalculations';
+import SalaryTypeSelector from './SalaryTypeSelector';
 
 export default function KullanilmayanIzinUcretiHesaplama() {
+  const [salaryType, setSalaryType] = useState<'gross' | 'net'>('gross');
   const [salaryStr, setSalaryStr] = useState<string>('36.000');
   const [unusedDaysStr, setUnusedDaysStr] = useState<string>('14');
   const [incomeTaxRate, setIncomeTaxRate] = useState<number>(0.15);
 
   const [result, setResult] = useState<UnusedLeaveResult | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  const inputSalary = parseTurkishNumber(salaryStr);
+  const derivedGrossSalary = salaryType === 'net' && Number.isFinite(inputSalary) && inputSalary > 0
+    ? calculateGrossSalaryFromNet(inputSalary).grossSalary
+    : inputSalary;
 
   const handleCalculate = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +29,7 @@ export default function KullanilmayanIzinUcretiHesaplama() {
     const unusedDays = parseTurkishNumber(unusedDaysStr);
 
     if (isNaN(salary) || salary <= 0) {
-      setError('Lütfen geçerli bir brüt maaş tutarı girin.');
+      setError(`Lütfen geçerli bir ${salaryType === 'gross' ? 'brüt' : 'net'} maaş tutarı girin.`);
       return;
     }
 
@@ -31,7 +38,8 @@ export default function KullanilmayanIzinUcretiHesaplama() {
       return;
     }
 
-    const calcResult = calculateUnusedLeavePay(salary, unusedDays, incomeTaxRate);
+    const effectiveGrossSalary = salaryType === 'net' ? calculateGrossSalaryFromNet(salary).grossSalary : salary;
+    const calcResult = calculateUnusedLeavePay(effectiveGrossSalary, unusedDays, incomeTaxRate);
     setResult(calcResult);
   };
 
@@ -40,9 +48,10 @@ export default function KullanilmayanIzinUcretiHesaplama() {
       <div className="bg-card rounded-xl border border-border/60 p-6 sm:p-8 shadow-2xs mb-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <form onSubmit={handleCalculate} noValidate className="space-y-4">
+            <SalaryTypeSelector value={salaryType} onChange={setSalaryType} />
             <div>
               <label htmlFor="leaveSal" className="block text-xs font-semibold mb-1.5 text-foreground">
-                Son Aylık Brüt Maaş (TL) <span className="text-destructive">*</span>
+                {salaryType === 'gross' ? 'Son Aylık Brüt Maaş (TL)' : 'Son Aylık Net Maaş (Ele Geçen TL)'} <span className="text-destructive">*</span>
               </label>
               <div className="relative">
                 <input
@@ -58,6 +67,7 @@ export default function KullanilmayanIzinUcretiHesaplama() {
                   TL
                 </div>
               </div>
+              {salaryType === 'net' && Number.isFinite(derivedGrossSalary) && derivedGrossSalary > 0 && <p className="mt-1.5 rounded-lg border border-primary/20 bg-primary/5 p-2 text-[11px] text-muted-foreground">Hesaplamada kullanılacak brüt karşılık: <strong className="font-mono text-foreground">{formatCurrency(derivedGrossSalary)}</strong></p>}
               <p className="text-[11px] text-muted-foreground mt-1">İş sözleşmesinin sona erdiği tarihteki son brüt ücret.</p>
             </div>
 

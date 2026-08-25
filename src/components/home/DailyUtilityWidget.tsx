@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, useSyncExternalStore } from 'react';
-import { getUpcomingHoliday } from '@/data/holidays';
+import Link from 'next/link';
+import { getTodayInHistory } from '@/data/todayInHistory';
 
 interface MarketItem {
   code: string;
@@ -118,7 +119,7 @@ export default function DailyUtilityWidget() {
       <section className="py-4 sm:py-6 px-4 sm:px-6 lg:px-8 border-b border-border/60 bg-muted/10">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="h-24 rounded-2xl bg-card border border-border/60 animate-pulse" />
+            <div className="h-52 rounded-2xl bg-card border border-border/60 animate-pulse" />
             <div className="h-24 rounded-2xl bg-card border border-border/60 animate-pulse" />
           </div>
         </div>
@@ -127,24 +128,19 @@ export default function DailyUtilityWidget() {
   }
 
   const now = new Date();
-  const currentDateStr = now.toLocaleDateString('tr-TR', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-  });
-  const upcomingHoliday = getUpcomingHoliday(now);
+  const todayInHistory = getTodayInHistory(now);
 
   return (
     <section
-      aria-label="Günlük Bilgiler ve Piyasalar"
+      aria-label="Tarihte Bugün ve Piyasalar"
       className="py-3.5 sm:py-5 px-4 sm:px-6 lg:px-8 border-b border-border/60 bg-muted/10"
     >
       <div className="container mx-auto max-w-6xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
           {/* ============================================================ */}
-          {/* 1. BUGÜN & YAKLAŞAN RESMİ TATİL                              */}
+          {/* 1. TARİHTE BUGÜN                                             */}
           {/* ============================================================ */}
-          <div className="p-4 sm:p-5 rounded-2xl border border-border/80 bg-card shadow-2xs flex flex-col justify-between">
+          <div className="p-4 sm:p-5 rounded-2xl border border-border/80 bg-card shadow-2xs flex flex-col">
             <div className="flex items-center justify-between gap-2 mb-2">
               <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary uppercase tracking-wider">
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -155,35 +151,38 @@ export default function DailyUtilityWidget() {
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                <span>Bugün</span>
+                <span>Tarihte Bugün</span>
               </div>
 
               <span className="text-[11px] text-muted-foreground font-medium">
-                Takvim &amp; Gün
+                Tarih arşivi
               </span>
             </div>
 
-            <div className="my-1">
-              <div className="text-base sm:text-lg font-bold text-foreground tracking-tight">
-                {currentDateStr || 'Bugün'}
-              </div>
+            <div className="mt-1 space-y-2.5">
+              {todayInHistory.events.length > 0 ? todayInHistory.events.slice(0, 3).map((event) => (
+                <div key={`${event.year}-${event.title}`} className="flex gap-3">
+                  <span className="shrink-0 pt-0.5 font-mono text-[11px] font-semibold text-primary">
+                    {event.year}
+                  </span>
+                  <p className="min-w-0 text-xs sm:text-sm font-medium leading-snug text-foreground">
+                    {event.title}
+                  </p>
+                </div>
+              )) : (
+                <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
+                  Bu tarih için henüz doğrulanmış bir içerik bulunmuyor.
+                </p>
+              )}
             </div>
 
-            <div className="pt-2 mt-1 border-t border-border/50 text-xs text-muted-foreground">
-              {upcomingHoliday ? (
-                <div className="flex items-center gap-1.5 flex-wrap">
-                  <span className="font-medium text-foreground/80">Yaklaşan Tatil:</span>
-                  <span className="text-primary font-semibold">
-                    {upcomingHoliday.name}
-                  </span>
-                  <span className="text-border" aria-hidden="true">•</span>
-                  <span className="font-mono text-[11px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-semibold">
-                    {upcomingHoliday.isToday ? 'Bugün!' : `${upcomingHoliday.daysRemaining} gün`}
-                  </span>
-                </div>
-              ) : (
-                <span>Resmi tatil ve özel gün takvimi</span>
-              )}
+            <div className="mt-3 border-t border-border/50 pt-2.5">
+              <Link
+                href="/tarihte-bugun"
+                className="inline-flex items-center gap-1 text-xs font-semibold text-primary transition-colors hover:text-primary/80 hover:underline"
+              >
+                Daha fazlasını gör <span aria-hidden="true">→</span>
+              </Link>
             </div>
           </div>
 

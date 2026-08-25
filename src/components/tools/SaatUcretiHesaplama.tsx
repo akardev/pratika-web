@@ -3,8 +3,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { formatCurrency, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
+import { calculateGrossSalaryFromNet } from '@/lib/laborCalculations';
+import SalaryTypeSelector from './SalaryTypeSelector';
 
 export default function SaatUcretiHesaplama() {
+  const [salaryType, setSalaryType] = useState<'gross' | 'net'>('gross');
   const [salaryStr, setSalaryStr] = useState<string>('30.000');
   const [hoursType, setHoursType] = useState<'standard' | 'custom'>('standard');
   const [customHoursStr, setCustomHoursStr] = useState<string>('225');
@@ -43,11 +46,12 @@ export default function SaatUcretiHesaplama() {
       monthlyHours = h;
     }
 
-    const hourlyWage = salary / monthlyHours;
-    const dailyWage = salary / 30;
+    const effectiveGrossSalary = salaryType === 'net' ? calculateGrossSalaryFromNet(salary).grossSalary : salary;
+    const hourlyWage = effectiveGrossSalary / monthlyHours;
+    const dailyWage = effectiveGrossSalary / 30;
 
     setResult({
-      monthlySalary: salary,
+      monthlySalary: effectiveGrossSalary,
       hourlyWage,
       dailyWage,
       monthlyHours,
@@ -59,9 +63,10 @@ export default function SaatUcretiHesaplama() {
       <div className="bg-card rounded-xl border border-border/60 p-6 sm:p-8 shadow-sm mb-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <form onSubmit={handleCalculate} noValidate className="space-y-4">
+            <SalaryTypeSelector value={salaryType} onChange={setSalaryType} />
             <div>
               <label htmlFor="sal" className="block text-sm font-medium mb-2 text-foreground">
-                Aylık Maaş Tutarı (TL) <span className="text-destructive">*</span>
+                {salaryType === 'gross' ? 'Aylık Brüt Maaş Tutarı (TL)' : 'Aylık Net Maaş Tutarı (Ele Geçen TL)'} <span className="text-destructive">*</span>
               </label>
               <div className="relative">
                 <input

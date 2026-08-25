@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import SiteChrome from "@/components/layout/SiteChrome";
 import { siteConfig } from "@/lib/site";
 
 const inter = Inter({
@@ -101,11 +100,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
-        <Header />
-        <main className="flex-1 flex flex-col">
-          {children}
-        </main>
-        <Footer />
+        <SiteChrome>
+          <main className="flex-1 flex flex-col">
+            {children}
+          </main>
+        </SiteChrome>
       </body>
     </html>
   );

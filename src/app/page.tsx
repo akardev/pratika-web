@@ -4,6 +4,7 @@ import SearchBar from '@/components/ui/SearchBar';
 import ToolCard from '@/components/ui/ToolCard';
 import TodayWidget from '@/components/home/TodayWidget';
 import DailyUtilityWidget from '@/components/home/DailyUtilityWidget';
+import QrPromo from '@/components/home/QrPromo';
 import { tools } from '@/data/tools';
 import { articles } from '@/data/articles';
 import { siteConfig } from '@/lib/site';
@@ -198,6 +199,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <QrPromo />
 
       {/* ============================================================ */}
       {/* GÜNLÜK YARDIMCI KATMANI (BUGÜN & PİYASALAR)                  */}

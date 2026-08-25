@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import KnowledgeList from '@/components/knowledge/KnowledgeList';
 
 export const metadata: Metadata = {
@@ -22,10 +23,15 @@ export default function BilgiMerkeziPage() {
         <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
           Hesaplamalar, finans, iş ve günlük konular hakkında anlaşılır, formüllü ve pratik rehberler.
         </p>
+        <Link
+          href="/tarihte-bugun"
+          className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
+        >
+          Tarihte Bugün’ü keşfet <span aria-hidden="true">→</span>
+        </Link>
       </div>
 
       <KnowledgeList />
     </div>
   );
 }
-

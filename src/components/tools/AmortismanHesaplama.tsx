@@ -1,76 +1,90 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { formatCurrency, formatNumber, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
 
-export default function AmortismanHesaplama() {
-  const [assetCostStr, setAssetCostStr] = useState<string>('200.000'); // Varlık Alış Maliyeti TL
-  const [usefulLifeStr, setUsefulLifeStr] = useState<string>('5'); // Faydalı Ömür (Yıl)
-  const [method, setMethod] = useState<'normal' | 'declining'>('normal');
+type DepreciationMethod = 'normal' | 'declining';
+type DepreciationScheduleRow = { year: number; depreciationAmount: number; accumulatedDepreciation: number; netBookValue: number };
+type DepreciationResult = {
+  assetCost: number;
+  usefulLife: number;
+  annualDepreciationRate: number;
+  schedule: DepreciationScheduleRow[];
+};
 
-  const [result, setResult] = useState<{
-    assetCost: number;
-    usefulLife: number;
-    annualDepreciationRate: number;
-    schedule: { year: number; depreciationAmount: number; accumulatedDepreciation: number; netBookValue: number }[];
-  } | null>(null);
-  const [error, setError] = useState<string | null>(null);
+function calculateDepreciation(
+  assetCostStr: string,
+  usefulLifeStr: string,
+  method: DepreciationMethod,
+): { result: DepreciationResult | null; error: string | null } {
+  const cost = parseTurkishNumber(assetCostStr);
+  const life = parseTurkishNumber(usefulLifeStr);
 
-  const handleCalculate = (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setResult(null);
+  if (isNaN(cost) || cost <= 0) {
+    return { result: null, error: 'Lütfen geçerli bir varlık maliyeti giriniz.' };
+  }
+  if (isNaN(life) || life < 1 || life > 50) {
+    return { result: null, error: 'Faydalı ömür 1 ile 50 yıl arasında olmalıdır.' };
+  }
 
-    const cost = parseTurkishNumber(assetCostStr);
-    const life = parseTurkishNumber(usefulLifeStr);
+  const normalRate = (1 / life) * 100;
+  const decliningRate = Math.min(50, normalRate * 2); // VUK gereği en çok %50 olabilir
+  const schedule: DepreciationScheduleRow[] = [];
 
-    if (isNaN(cost) || cost <= 0) {
-      setError('Lütfen geçerli bir varlık maliyeti giriniz.');
-      return;
-    }
-    if (isNaN(life) || life < 1 || life > 50) {
-      setError('Faydalı ömür 1 ile 50 yıl arasında olmalıdır.');
-      return;
-    }
+  let currentBookValue = cost;
+  let accumulated = 0;
 
-    const normalRate = (1 / life) * 100;
-    const decliningRate = Math.min(50, normalRate * 2); // VUK gereği en çok %50 olabilir
-    const schedule: { year: number; depreciationAmount: number; accumulatedDepreciation: number; netBookValue: number }[] = [];
-
-    let currentBookValue = cost;
-    let accumulated = 0;
-
-    for (let y = 1; y <= life; y++) {
-      let depAmount = 0;
-      if (method === 'normal') {
-        depAmount = cost / life;
-      } else {
-        // Azalan bakiyeler: Son yıl kalan defter değerinin tamamı amorti edilir
-        if (y === life) {
-          depAmount = currentBookValue;
-        } else {
-          depAmount = currentBookValue * (decliningRate / 100);
-        }
-      }
-
-      depAmount = Math.min(depAmount, currentBookValue);
-      accumulated += depAmount;
-      currentBookValue -= depAmount;
-
-      schedule.push({
-        year: y,
-        depreciationAmount: depAmount,
-        accumulatedDepreciation: accumulated,
-        netBookValue: Math.max(0, currentBookValue),
-      });
+  for (let y = 1; y <= life; y++) {
+    let depAmount = 0;
+    if (method === 'normal') {
+      depAmount = cost / life;
+    } else {
+      // Azalan bakiyeler: Son yıl kalan defter değerinin tamamı amorti edilir
+      depAmount = y === life ? currentBookValue : currentBookValue * (decliningRate / 100);
     }
 
-    setResult({
+    depAmount = Math.min(depAmount, currentBookValue);
+    accumulated += depAmount;
+    currentBookValue -= depAmount;
+
+    schedule.push({
+      year: y,
+      depreciationAmount: depAmount,
+      accumulatedDepreciation: accumulated,
+      netBookValue: Math.max(0, currentBookValue),
+    });
+  }
+
+  return {
+    error: null,
+    result: {
       assetCost: cost,
       usefulLife: life,
       annualDepreciationRate: method === 'normal' ? normalRate : decliningRate,
       schedule,
-    });
+    },
+  };
+}
+
+export default function AmortismanHesaplama() {
+  const [assetCostStr, setAssetCostStr] = useState<string>('200.000'); // Varlık Alış Maliyeti TL
+  const [usefulLifeStr, setUsefulLifeStr] = useState<string>('5'); // Faydalı Ömür (Yıl)
+  const [method, setMethod] = useState<DepreciationMethod>('normal');
+  const [hasCalculated, setHasCalculated] = useState(true);
+
+  const { result, error } = useMemo(() => {
+    if (!hasCalculated) return { result: null, error: null };
+    return calculateDepreciation(assetCostStr, usefulLifeStr, method);
+  }, [assetCostStr, usefulLifeStr, method, hasCalculated]);
+
+  const handleMethodChange = (newMethod: DepreciationMethod) => {
+    setMethod(newMethod);
+    setHasCalculated(true);
+  };
+
+  const handleCalculate = (e: React.FormEvent) => {
+    e.preventDefault();
+    setHasCalculated(true);
   };
 
   return (
@@ -121,7 +135,7 @@ export default function AmortismanHesaplama() {
               <div className="grid grid-cols-2 gap-2">
                 <button
                   type="button"
-                  onClick={() => setMethod('normal')}
+                  onClick={() => handleMethodChange('normal')}
                   className={`py-2 px-3 text-xs font-semibold rounded-lg border transition-all ${
                     method === 'normal'
                       ? 'bg-primary text-primary-foreground border-primary shadow-xs'
@@ -132,7 +146,7 @@ export default function AmortismanHesaplama() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => setMethod('declining')}
+                  onClick={() => handleMethodChange('declining')}
                   className={`py-2 px-3 text-xs font-semibold rounded-lg border transition-all ${
                     method === 'declining'
                       ? 'bg-primary text-primary-foreground border-primary shadow-xs'

@@ -1,5 +1,6 @@
 import { tools, categories } from '@/data/tools';
 import { articles } from '@/data/articles';
+import { getAllAvailableDates, getAllAvailableYears } from '@/data/todayInHistory';
 import { siteConfig } from '@/lib/site';
 
 export default function sitemap() {
@@ -23,6 +24,18 @@ export default function sitemap() {
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/tarihte-bugun`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/qr-menu`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.85,
     },
     {
       url: `${baseUrl}/hakkimizda`,
@@ -91,6 +104,26 @@ export default function sitemap() {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...categoryRoutes, ...toolRoutes, ...articleRoutes];
-}
+  const historyDayRoutes = getAllAvailableDates().map((item) => ({
+    url: `${baseUrl}/tarihte-bugun/${item.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
 
+  const historyYearRoutes = getAllAvailableYears().map((item) => ({
+    url: `${baseUrl}/tarihte-bugun/yil/${item.year}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [
+    ...staticRoutes,
+    ...categoryRoutes,
+    ...toolRoutes,
+    ...articleRoutes,
+    ...historyDayRoutes,
+    ...historyYearRoutes,
+  ];
+}

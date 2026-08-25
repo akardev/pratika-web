@@ -3,8 +3,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { formatCurrency, parseTurkishNumber, sanitizeNumericInput } from '@/lib/utils';
+import { calculateGrossSalaryFromNet } from '@/lib/laborCalculations';
+import SalaryTypeSelector from './SalaryTypeSelector';
 
 export default function IsverenMaliyetiHesaplama() {
+  const [salaryType, setSalaryType] = useState<'gross' | 'net'>('gross');
   const [grossSalaryStr, setGrossSalaryStr] = useState<string>('30.000');
   const [hasIncentive, setHasIncentive] = useState<boolean>(true); // 5510 sayılı %5 prim teşviki
 
@@ -24,7 +27,10 @@ export default function IsverenMaliyetiHesaplama() {
     setError(null);
     setResult(null);
 
-    const gross = parseTurkishNumber(grossSalaryStr);
+    const inputSalary = parseTurkishNumber(grossSalaryStr);
+    const gross = salaryType === 'net' && Number.isFinite(inputSalary) && inputSalary > 0
+      ? calculateGrossSalaryFromNet(inputSalary).grossSalary
+      : inputSalary;
     if (isNaN(gross) || gross <= 0) {
       setError('Lütfen 0\'dan büyük geçerli bir brüt maaş tutarı giriniz.');
       return;
@@ -57,9 +63,10 @@ export default function IsverenMaliyetiHesaplama() {
       <div className="bg-card rounded-xl border border-border/60 p-6 sm:p-8 shadow-sm mb-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <form onSubmit={handleCalculate} noValidate className="space-y-5">
+            <SalaryTypeSelector value={salaryType} onChange={setSalaryType} />
             <div>
               <label htmlFor="grossSalary" className="block text-sm font-medium mb-2 text-foreground">
-                Aylık Brüt Maaş (TL) <span className="text-destructive">*</span>
+                {salaryType === 'gross' ? 'Aylık Brüt Maaş (TL)' : 'Aylık Net Maaş (Ele Geçen TL)'} <span className="text-destructive">*</span>
               </label>
               <div className="relative">
                 <input
