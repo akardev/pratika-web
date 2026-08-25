@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useState } from 'react';
+import { submitContactRequestAction } from '@/app/iletisim/actions';
 
 type ContactSubject = 'general-support' | 'pratika-qr' | 'tool-suggestion' | 'collaboration' | 'other';
 
@@ -19,6 +20,8 @@ const subjectLabels: Record<ContactSubject, string> = {
 
 export default function ContactPageContent() {
   const [subject, setSubject] = useState<ContactSubject | ''>('');
+  const [submitting, setSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const formRef = useRef<HTMLDivElement>(null);
 
   const focusForm = (nextSubject: ContactSubject) => {
@@ -27,6 +30,24 @@ export default function ContactPageContent() {
       formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       window.setTimeout(() => document.getElementById('contact-full-name')?.focus(), 350);
     });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setSubmitStatus(null);
+
+    const formData = new FormData(e.currentTarget);
+    const res = await submitContactRequestAction(formData);
+    setSubmitting(false);
+
+    if (res.error) {
+      setSubmitStatus({ type: 'error', text: res.error });
+    } else {
+      setSubmitStatus({ type: 'success', text: res.message || '✓ Mesajınız başarıyla iletildi.' });
+      (e.target as HTMLFormElement).reset();
+      setSubject('');
+    }
   };
 
   return (
@@ -56,14 +77,55 @@ export default function ContactPageContent() {
 
       <div ref={formRef} id="iletisim-formu" className="mt-8 grid scroll-mt-24 gap-7 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start">
         <section className="rounded-xl border border-border/70 bg-card p-5 shadow-sm sm:p-7" aria-labelledby="contact-form-title">
-          <div className="mb-6"><h2 id="contact-form-title" className="text-xl font-semibold tracking-tight text-foreground">{subject ? `${subjectLabels[subject]} formu` : 'İletişim / Talep Formu'}</h2><p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{subject ? `${subjectLabels[subject]} hakkında iletmek istediğiniz konu ve mesajı paylaşın.` : 'Bize iletmek istediğiniz konuyu ve mesajınızı paylaşın.'}</p></div>
-          <form className="grid gap-4 sm:grid-cols-2">
-            <label htmlFor="contact-full-name" className="grid gap-1.5 text-sm font-medium text-foreground">Ad Soyad<input id="contact-full-name" className={fieldClassName} name="fullName" autoComplete="name" placeholder="Adınız ve soyadınız" /></label>
-            <label htmlFor="contact-email" className="grid gap-1.5 text-sm font-medium text-foreground">E-posta<input id="contact-email" className={fieldClassName} name="email" type="email" autoComplete="email" placeholder="ornek@pratika.com" /></label>
-            <label htmlFor="contact-phone" className="grid gap-1.5 text-sm font-medium text-foreground">Telefon<input id="contact-phone" className={fieldClassName} name="phone" type="tel" autoComplete="tel" placeholder="05xx xxx xx xx" /></label>
-            <label htmlFor="contact-subject" className="grid gap-1.5 text-sm font-medium text-foreground">Konu<select id="contact-subject" className={fieldClassName} name="subject" value={subject} onChange={(event) => setSubject(event.target.value as ContactSubject | '')}><option value="" disabled>Seçiniz</option>{(Object.keys(subjectLabels) as ContactSubject[]).map((key) => <option key={key} value={key}>{subjectLabels[key]}</option>)}</select></label>
-            <label htmlFor="contact-message" className="grid gap-1.5 text-sm font-medium text-foreground sm:col-span-2">Mesaj<textarea id="contact-message" className={`${fieldClassName} min-h-32 resize-y`} name="message" placeholder="Mesajınızı buraya yazın." /></label>
-            <div className="sm:col-span-2"><button type="button" disabled className="inline-flex min-h-11 w-full cursor-not-allowed items-center justify-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground opacity-65 sm:w-auto">Mesajı Gönder</button><p className="mt-2 text-xs leading-relaxed text-muted-foreground">Form gönderim altyapısı hazırlanıyor. Şimdilik e-posta üzerinden bize ulaşabilirsiniz.</p></div>
+          {submitStatus && (
+            <div
+              role="alert"
+              className={`mb-4 rounded-xl border p-3.5 text-xs font-bold ${
+                submitStatus.type === 'success'
+                  ? 'border-green-200 bg-green-50 text-green-800'
+                  : 'border-red-200 bg-red-50 text-red-800'
+              }`}
+            >
+              {submitStatus.text}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="grid gap-4 sm:grid-cols-2">
+            <label htmlFor="contact-full-name" className="grid gap-1.5 text-sm font-medium text-foreground">
+              Ad Soyad *
+              <input id="contact-full-name" required className={fieldClassName} name="fullName" autoComplete="name" placeholder="Adınız ve soyadınız" />
+            </label>
+            <label htmlFor="contact-email" className="grid gap-1.5 text-sm font-medium text-foreground">
+              E-posta *
+              <input id="contact-email" required className={fieldClassName} name="email" type="email" autoComplete="email" placeholder="ornek@pratika.com" />
+            </label>
+            <label htmlFor="contact-phone" className="grid gap-1.5 text-sm font-medium text-foreground">
+              Telefon
+              <input id="contact-phone" className={fieldClassName} name="phone" type="tel" autoComplete="tel" placeholder="05xx xxx xx xx" />
+            </label>
+            <label htmlFor="contact-subject" className="grid gap-1.5 text-sm font-medium text-foreground">
+              Konu *
+              <select id="contact-subject" required className={fieldClassName} name="subject" value={subject} onChange={(event) => setSubject(event.target.value as ContactSubject | '')}>
+                <option value="" disabled>Seçiniz</option>
+                {(Object.keys(subjectLabels) as ContactSubject[]).map((key) => (
+                  <option key={key} value={key}>{subjectLabels[key]}</option>
+                ))}
+              </select>
+            </label>
+            <label htmlFor="contact-message" className="grid gap-1.5 text-sm font-medium text-foreground sm:col-span-2">
+              Mesaj *
+              <textarea id="contact-message" required className={`${fieldClassName} min-h-32 resize-y`} name="message" placeholder="Mesajınızı buraya yazın." />
+            </label>
+            <div className="sm:col-span-2 flex flex-col sm:flex-row sm:items-center gap-3">
+              <button
+                type="submit"
+                disabled={submitting}
+                className="inline-flex min-h-11 cursor-pointer items-center justify-center rounded-lg bg-primary px-6 text-sm font-bold text-primary-foreground shadow-xs transition hover:opacity-90 disabled:opacity-50"
+              >
+                {submitting ? 'Gönderiliyor...' : 'Mesajı Gönder →'}
+              </button>
+              <span className="text-xs text-muted-foreground">Talebiniz ekibimize iletilir ve en kısa sürede yanıtlanır.</span>
+            </div>
           </form>
         </section>
 

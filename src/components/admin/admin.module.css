@@ -1,0 +1,547 @@
+/* Pratika Admin Panel V1 Design System */
+
+.adminLayout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #0f172a; /* Slate 900 */
+  color: #f8fafc;
+  font-family: inherit;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 260px;
+  background-color: #090d16;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 40;
+}
+
+.sidebarHeader {
+  padding: 24px 20px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.brandWrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brandIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.35);
+}
+
+.brandTitle {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.brandBadge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* NAV LINKS */
+.navSection {
+  padding: 20px 12px;
+  flex: 1;
+}
+
+.navLabel {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #64748b;
+  padding: 0 10px 8px;
+}
+
+.navList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.navItem:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.navItemActive {
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(99, 102, 241, 0.15));
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.15);
+}
+
+.navItemLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navCountPill {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* SIDEBAR FOOTER */
+.sidebarFooter {
+  padding: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.adminUserBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.adminAvatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.adminEmail {
+  font-size: 11px;
+  font-weight: 700;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+.adminRoleBadge {
+  font-size: 9px;
+  color: #10b981;
+  font-weight: 700;
+}
+
+.footerActions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.footerBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: #94a3b8;
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.footerBtn:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* MAIN CONTENT AREA */
+.mainWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background-color: #090e17;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 28px;
+  background-color: #0b111e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.pageContent {
+  padding: 28px;
+  flex: 1;
+  max-width: 1400px;
+  width: 100%;
+}
+
+/* DASHBOARD CARDS GRID */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.statCard {
+  background-color: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.statCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.statIcon {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.statTitle {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  margin: 12px 0 4px;
+}
+
+.statValue {
+  font-size: 26px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+}
+
+.statHint {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+/* SECTION CARDS & TABLES */
+.adminCard {
+  background-color: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  margin-bottom: 24px;
+}
+
+.adminCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 20px;
+}
+
+.adminCardTitle {
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.adminCardDesc {
+  font-size: 12px;
+  color: #64748b;
+  margin: 2px 0 0;
+}
+
+/* DATA TABLES */
+.tableWrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.adminTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+  text-align: left;
+}
+
+.adminTable th {
+  background-color: rgba(255, 255, 255, 0.02);
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.adminTable td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: #cbd5e1;
+  vertical-align: middle;
+}
+
+.adminTable tr:hover td {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+/* BADGES */
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.badgeSuccess {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.badgeWarning {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.badgeDanger {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.badgeInfo {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.badgeNeutral {
+  background-color: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+  border-color: rgba(148, 163, 184, 0.3);
+}
+
+/* BUTTONS */
+.btnPrimary {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+}
+
+.btnPrimary:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+}
+
+.btnSecondary {
+  background-color: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+}
+
+.btnSecondary:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btnOutlineDanger {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.btnOutlineDanger:hover {
+  background-color: rgba(239, 68, 68, 0.2);
+}
+
+/* SEARCH & FILTERS */
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.searchInput {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: #ffffff;
+  outline: none;
+  min-width: 260px;
+  transition: border-color 0.15s;
+}
+
+.searchInput:focus {
+  border-color: #3b82f6;
+}
+
+.filterPills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.filterPill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.03);
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.filterPill:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+}
+
+.filterPillActive {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  color: #ffffff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+  }
+  .pageContent {
+    padding: 16px;
+  }
+}
