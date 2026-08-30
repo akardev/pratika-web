@@ -35,26 +35,13 @@ export async function updateSession(request: NextRequest) {
     }
   )
 
-  // This will refresh session if expired - required for Server Components
-  // https://supabase.com/docs/guides/auth/server-side/nextjs
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  const isPanelRoute = request.nextUrl.pathname.startsWith('/panel')
-  const isAuthRoute = request.nextUrl.pathname.startsWith('/login')
-
-  // Auth routing logic
-  if (isPanelRoute && !user) {
-    // If not logged in and trying to access panel, redirect to login with target path
-    const loginUrl = new URL('/login', request.url)
-    loginUrl.searchParams.set('redirect', request.nextUrl.pathname)
-    return NextResponse.redirect(loginUrl)
-  }
-
-  if (isAuthRoute && user) {
-    // If logged in and trying to access login, redirect to panel
-    return NextResponse.redirect(new URL('/panel', request.url))
+  // If Supabase credentials are provided, refresh session if needed
+  if (url && key) {
+    try {
+      await supabase.auth.getUser()
+    } catch {
+      // ignore
+    }
   }
 
   return supabaseResponse

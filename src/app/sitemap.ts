@@ -32,12 +32,6 @@ export default function sitemap() {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/qr-menu`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.85,
-    },
-    {
       url: `${baseUrl}/hakkimizda`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,

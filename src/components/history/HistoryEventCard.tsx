@@ -1,52 +1,66 @@
 'use client';
 
-import { HistoryEvent, CATEGORY_LABELS, formatHistoryDayLabel } from '@/data/todayInHistory';
+import { HistoryEvent, formatHistoryDayLabel } from '@/data/todayInHistory';
 
 interface HistoryEventCardProps {
   event: HistoryEvent;
   mode: 'day' | 'year';
 }
 
+const getCategoryDisplay = (cat: string) => {
+  switch (cat) {
+    case 'turkey': return '🇹🇷 Türkiye Tarihi';
+    case 'world': return '🌍 Dünya Tarihi';
+    case 'science': return '🔬 Bilim & Teknoloji';
+    case 'culture': return '🎨 Kültür & Sanat';
+    case 'sports': return '⚽ Spor';
+    case 'birth': return '👤 Doğum';
+    case 'death': return '🕊️ Vefat';
+    default: return '📌 Tarihi Olay';
+  }
+};
+
 export default function HistoryEventCard({ event, mode }: HistoryEventCardProps) {
-  const categoryLabel = CATEGORY_LABELS[event.category] || 'OLAY';
+  const categoryDisplay = getCategoryDisplay(event.category);
   const badge = mode === 'day' ? `${event.year}` : formatHistoryDayLabel(event.month, event.day);
+  const isFeatured = event.importance === 'featured';
 
   return (
-    <article className="group flex flex-col justify-between rounded-xl border border-border/80 bg-card p-5 shadow-2xs transition-all hover:border-primary/40 hover:shadow-xs sm:p-6">
+    <article className={`group flex flex-col justify-between rounded-xl border bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md sm:p-6 ${isFeatured ? 'border-[#d97750]/30' : 'border-border/60'}`}>
       <div>
-        <div className="mb-3 flex items-center justify-between gap-2">
-          <span className="rounded-md bg-primary/10 px-2.5 py-1 font-mono text-xs font-bold text-primary">
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <span className={`inline-flex items-center rounded-lg px-3 py-1 font-mono text-lg font-bold tracking-tight ${isFeatured ? 'bg-[#d97750]/10 text-[#d97750]' : 'bg-[#0a1d37]/5 text-[#0a1d37]'}`}>
             {badge}
           </span>
-          <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
-            {categoryLabel}
+          <span className="inline-flex items-center rounded-full bg-muted/50 px-3 py-1 text-[11px] font-semibold text-muted-foreground">
+            {categoryDisplay}
           </span>
         </div>
 
-        <h3 className="text-base font-semibold leading-snug text-foreground sm:text-lg">
+        <h3 className="text-base font-bold leading-snug text-[#0a1d37] sm:text-lg">
           {event.title}
         </h3>
 
-        <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
           {event.description}
         </p>
       </div>
 
-      <div className="mt-4 border-t border-border/50 pt-3">
+      <div className="mt-5 border-t border-border/40 pt-4">
         <a
           href={event.sourceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex max-w-full items-center gap-1 text-xs font-medium text-primary transition-colors hover:underline"
+          className="inline-flex max-w-full items-center gap-1.5 text-xs font-medium text-muted-foreground transition-colors hover:text-[#d97750]"
           title={`${event.sourceLabel} kaynağını yeni sekmede aç`}
         >
-          <span>Kaynak:</span>
-          <span className="truncate">{event.sourceLabel}</span>
-          <svg className="h-3 w-3 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          <svg className="h-3.5 w-3.5 shrink-0 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
           </svg>
+          <span className="truncate">{event.sourceLabel}</span>
         </a>
       </div>
     </article>
   );
 }
+
