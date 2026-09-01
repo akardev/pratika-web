@@ -176,7 +176,7 @@ export default function BelKalcaOraniHesaplama() {
 
                 <div className="mt-4 pt-3 border-t border-border/60 text-center">
                   <Link
-                    href="/arac/vki-hesaplama"
+                    href="/arac/bmi-hesaplama"
                     className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-1"
                   >
                     Vücut kitle indeksi (VKİ) hesaplayıcısına gidin &rarr;

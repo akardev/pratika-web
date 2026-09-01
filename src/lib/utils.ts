@@ -33,9 +33,19 @@ export function parseTurkishNumber(input: string): number {
 
   if (trimmed.includes('.')) {
     const parts = trimmed.split('.');
-    if (parts.length > 1 && parts[parts.length - 1].length === 3) {
+    const isLeadingZero = parts[0] === '0' || parts[0] === '-0' || parts[0] === '+0';
+
+    // Birden fazla nokta varsa binlik ayracı olarak değerlendir (1.000.000 -> 1000000)
+    if (parts.length > 2) {
       return parseFloat(trimmed.replace(/\./g, ''));
     }
+
+    // Tek nokta: Başı 0 değilse ve noktadan sonra 3 basamak varsa binlik ayracıdır (1.500 -> 1500)
+    // 0.123 veya 10.5 gibi durumlar doğrudan ondalık sayı olarak parse edilir
+    if (parts.length === 2 && !isLeadingZero && parts[1].length === 3) {
+      return parseFloat(trimmed.replace(/\./g, ''));
+    }
+
     return parseFloat(trimmed);
   }
 

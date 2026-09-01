@@ -153,10 +153,10 @@ export default function InternetHiziDonusturucu() {
 
                 <div className="mt-4 pt-3 border-t border-border/60 text-center">
                   <Link
-                    href="/arac/veri-depolama-donusturucu"
+                    href="/arac/veri-birimi-donusturucu"
                     className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-1"
                   >
-                    Veri depolama birimlerine gidin &rarr;
+                    Veri depolama ve birim dönüştürücüsüne gidin &rarr;
                   </Link>
                 </div>
               </div>

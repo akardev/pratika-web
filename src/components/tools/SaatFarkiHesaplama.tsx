@@ -138,10 +138,10 @@ export default function SaatFarkiHesaplama() {
 
                 <div className="mt-4 pt-3 border-t border-border/60 text-center">
                   <Link
-                    href="/arac/iki-tarih-arasi-gun-hesaplama"
+                    href="/arac/tarih-farki-hesaplama"
                     className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-1"
                   >
-                    İki tarih arası gün hesaplama aracına gidin &rarr;
+                    Tarih farkı ve gün hesaplama aracına gidin &rarr;
                   </Link>
                 </div>
               </div>

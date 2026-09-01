@@ -168,10 +168,10 @@ export default function KlimaBtuHesaplama() {
 
                 <div className="mt-4 pt-3 border-t border-border/60 text-center">
                   <Link
-                    href="/arac/metrekare-hesaplama"
+                    href="/arac/alan-donusturucu"
                     className="text-xs font-semibold text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-1"
                   >
-                    Oda metrekare hesaplayıcısına gidin &rarr;
+                    Oda alanı ve metrekare dönüştürücüsüne gidin &rarr;
                   </Link>
                 </div>
               </div>

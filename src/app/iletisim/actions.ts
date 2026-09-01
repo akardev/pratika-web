@@ -1,6 +1,5 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { createClient } from '@/lib/supabase/server';
 
 export async function submitContactRequestAction(formData: FormData) {
@@ -36,8 +35,6 @@ export async function submitContactRequestAction(formData: FormData) {
     };
   }
 
-  revalidatePath('/admin/requests');
-  revalidatePath('/admin');
   return {
     success: true,
     message: '✓ Talebiniz başarıyla alındı. Ekibimiz en kısa sürede sizinle iletişime geçecektir.',
