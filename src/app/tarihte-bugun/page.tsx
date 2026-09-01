@@ -11,17 +11,17 @@ export async function generateMetadata(): Promise<Metadata> {
   const day = today.getDate();
   const dayLabel = formatHistoryDayLabel(month, day);
 
-  const title = `Tarihte Bugün (${dayLabel}) | Tarih Keşif Merkezi | Pratika`;
+  const pageTitle = `Tarihte Bugün (${dayLabel})`;
   const description = `${dayLabel} gününde tarihte yaşanan önemli siyasi, bilimsel, kültürel olaylar, doğumlar ve vefatlar.`;
 
   return {
-    title,
+    title: pageTitle,
     description,
     alternates: {
       canonical: `${siteConfig.url}/tarihte-bugun`,
     },
     openGraph: {
-      title,
+      title: `${pageTitle} | Pratika`,
       description,
       url: `${siteConfig.url}/tarihte-bugun`,
       type: 'website',

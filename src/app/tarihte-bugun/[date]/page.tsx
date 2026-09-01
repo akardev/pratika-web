@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: HistoryDatePageProps): Promis
 
   if (!parsed) {
     return {
-      title: 'Tarihte Bugün | Pratika',
+      title: 'Tarihte Bugün',
       robots: { index: false, follow: false },
     };
   }
@@ -40,18 +40,18 @@ export async function generateMetadata({ params }: HistoryDatePageProps): Promis
   const events = getEventsByDay(month, day);
   const hasContent = events.length > 0;
 
-  const title = `Tarihte ${dayLabel} | Tarihte Bugün | Pratika`;
+  const pageTitle = `Tarihte ${dayLabel}`;
   const description = `${dayLabel} tarihinde tarihte yaşanan önemli olayları, bilimsel ve kültürel gelişmeleri, doğumları ve vefatları keşfedin.`;
 
   return {
-    title,
+    title: pageTitle,
     description,
     alternates: {
       canonical: `${siteConfig.url}/tarihte-bugun/${canonicalSlug}`,
     },
     robots: hasContent ? undefined : { index: false, follow: true },
     openGraph: {
-      title,
+      title: `${pageTitle} | Pratika`,
       description,
       url: `${siteConfig.url}/tarihte-bugun/${canonicalSlug}`,
       type: 'website',

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Gizlilik Politikası | Pratika',
+  title: 'Gizlilik Politikası',
   description: 'Pratika Gizlilik Politikası. Kullanıcı verilerinin korunması ve gizlilik standartlarımız hakkında bilgi edinin.',
   alternates: {
     canonical: '/gizlilik',

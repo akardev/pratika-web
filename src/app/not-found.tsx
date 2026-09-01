@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Sayfa Bulunamadı | Pratika',
+  title: 'Sayfa Bulunamadı',
   description: 'Aradığınız sayfa mevcut değil veya taşınmış olabilir.',
   robots: {
     index: false,

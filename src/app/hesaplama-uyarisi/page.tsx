@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Hesaplama Araçları Hakkında | Pratika',
+  title: 'Hesaplama Araçları Bildirimi',
   description: 'Pratika hesaplama araçlarının kullanım amacı, doğruluk standartları ve yasal bilgilendirme notları.',
   alternates: {
     canonical: '/hesaplama-uyarisi',

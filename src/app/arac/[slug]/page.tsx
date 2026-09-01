@@ -30,26 +30,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!tool) {
     return {
-      title: 'Araç Bulunamadı | Pratika',
+      title: 'Araç Bulunamadı',
     };
   }
 
   const isSocialMediaResizer = tool.slug === 'sosyal-medya-gorsel-boyutlandirici';
-  const title = isSocialMediaResizer
-    ? 'Sosyal Medya Görsel Boyutlandırıcı | Instagram, YouTube ve TikTok | Pratika'
-    : `${tool.title} | Pratika`;
+  const pageTitle = isSocialMediaResizer
+    ? 'Sosyal Medya Görsel Boyutlandırıcı'
+    : tool.title;
   const description = isSocialMediaResizer
     ? 'Instagram, YouTube, TikTok, LinkedIn ve X için görsellerinizi doğru ölçülere ücretsiz olarak uyarlayın. Görselinizi yükleyin, formatı seçin ve indirin.'
     : tool.description;
 
   return {
-    title,
+    title: pageTitle,
     description,
     alternates: {
       canonical: `/arac/${tool.slug}`,
     },
     openGraph: {
-      title,
+      title: `${pageTitle} | Pratika`,
       description,
       url: `${siteConfig.url}/arac/${tool.slug}`,
       type: 'website',

@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import ToolsCatalog from '@/components/tools/ToolsCatalog';
 
 export const metadata: Metadata = {
-  title: 'Online Araçlar ve Hesaplama Araçları | Pratika',
+  title: 'Online Araçlar ve Hesaplama Araçları',
   description: 'İhtiyacınız olan tüm online hesaplama, dönüştürme ve pratik dijital araçları Pratika araç kataloğunda keşfedin.',
   alternates: {
     canonical: '/araclar',

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Kullanım Koşulları | Pratika',
+  title: 'Kullanım Koşulları',
   description: 'Pratika Kullanım Koşulları. Platformumuzun sunduğu hesaplama araçlarının kullanım şartları ve yasal sorumluluk sınırları.',
   alternates: {
     canonical: '/kullanim-kosullari',

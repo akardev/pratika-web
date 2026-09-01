@@ -9,7 +9,9 @@ import { articles } from '@/data/articles';
 import { siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: 'Pratika — Günlük İşler İçin Pratik Dijital Yardımcı',
+  title: {
+    absolute: 'Pratika',
+  },
   description: 'Hesaplama, dönüştürme, dosya işlemleri, metin, görsel ve günlük dijital ihtiyaçlar için hızlı, güvenilir ve sade dijital yardımcı platformu.',
   alternates: {
     canonical: '/',

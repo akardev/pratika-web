@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Çerez Politikası | Pratika',
+  title: 'Çerez Politikası',
   description: 'Pratika Çerez Politikası. Web sitemizde kullanılan çerezler ve bunların kullanım amaçları hakkında bilgilendirme.',
   alternates: {
     canonical: '/cerez-politikasi',

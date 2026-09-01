@@ -5,7 +5,7 @@ import { siteConfig } from '@/lib/site';
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-  title: 'Yıl Keşfi — Tarihte Bu Yılda Neler Oldu? | Pratika',
+  title: 'Yıl Keşfi — Tarihte Bu Yılda Neler Oldu?',
   description: 'Tarihteki önemli yılları, siyasi dönüm noktalarını, bilimsel buluşları ve kültürel olayları keşfedin.',
   alternates: {
     canonical: `${siteConfig.url}/tarihte-bugun/yil/1960`,

@@ -22,12 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!article) {
     return {
-      title: 'İçerik Bulunamadı | Pratika',
+      title: 'İçerik Bulunamadı',
     };
   }
 
   return {
-    title: `${article.title} | Pratika`,
+    title: article.title,
     description: article.description,
     alternates: {
       canonical: `/bilgi/${article.slug}`,

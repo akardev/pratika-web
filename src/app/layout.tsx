@@ -12,7 +12,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Pratika | Modern Araçlar ve Hesaplama Platformu",
+    default: "Pratika",
     template: "%s | Pratika",
   },
   description: siteConfig.description,

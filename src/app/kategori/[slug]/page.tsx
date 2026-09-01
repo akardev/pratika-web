@@ -22,12 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   
   if (!category) {
     return {
-      title: 'Kategori Bulunamadı | Pratika',
+      title: 'Kategori Bulunamadı',
     };
   }
 
   return {
-    title: `${category.title} Hesaplama Araçları | Pratika`,
+    title: `${category.title} Hesaplama Araçları`,
     description: category.description,
     alternates: {
       canonical: `/kategori/${category.slug}`,

@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: HistoryYearPageProps): Promis
 
   if (isNaN(yearNum) || yearNum < 1000 || yearNum > 2100) {
     return {
-      title: 'Yıl Keşfi | Pratika',
+      title: 'Yıl Keşfi',
       robots: { index: false, follow: false },
     };
   }
@@ -31,18 +31,18 @@ export async function generateMetadata({ params }: HistoryYearPageProps): Promis
   const events = getEventsByYear(yearNum);
   const hasContent = events.length > 0;
 
-  const title = `${yearNum} Yılında Neler Oldu? | Tarih Keşfi | Pratika`;
+  const pageTitle = `${yearNum} Yılında Neler Oldu?`;
   const description = `${yearNum} yılında dünyada ve Türkiye'de gerçekleşen önemli siyasi, bilimsel, kültürel olayları ve dönüm noktalarını keşfedin.`;
 
   return {
-    title,
+    title: pageTitle,
     description,
     alternates: {
       canonical: `${siteConfig.url}/tarihte-bugun/yil/${yearNum}`,
     },
     robots: hasContent ? undefined : { index: false, follow: true },
     openGraph: {
-      title,
+      title: `${pageTitle} | Pratika`,
       description,
       url: `${siteConfig.url}/tarihte-bugun/yil/${yearNum}`,
       type: 'website',

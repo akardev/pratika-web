@@ -3,7 +3,7 @@ import Link from 'next/link';
 import KnowledgeList from '@/components/knowledge/KnowledgeList';
 
 export const metadata: Metadata = {
-  title: 'Bilgi Merkezi | Pratika',
+  title: 'Bilgi Merkezi',
   description: 'Hesaplamalar, finans ve günlük konular hakkında anlaşılır, formüllü ve pratik rehber içerikleri.',
   alternates: {
     canonical: '/bilgi',

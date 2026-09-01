@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Hakkımızda | Pratika',
+  title: 'Hakkımızda',
   description: 'Pratika hakkında bilgi edinin. Günlük ve profesyonel hayatı kolaylaştıran hızlı, sade ve güvenilir online hesaplama platformu.',
   alternates: {
     canonical: '/hakkimizda',

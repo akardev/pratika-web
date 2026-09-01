@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import ContactPageContent from '@/components/contact/ContactPageContent';
 
 export const metadata: Metadata = {
-  title: 'İletişim | Pratika',
+  title: 'İletişim',
   description: 'Görüş, öneri, destek talepleriniz veya Pratika ürünleri hakkında bilgi almak için bizimle iletişime geçebilirsiniz.',
   alternates: { canonical: '/iletisim' },
 };
