@@ -108,8 +108,18 @@ export default function Footer() {
         </div>
 
         {/* Alt Çubuk */}
-        <div className="pt-6 border-t border-border/60 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-muted-foreground">
-          <p>© {currentYear} Pratika. Tüm hakları saklıdır.</p>
+        <div className="pt-6 border-t border-border/60 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-muted-foreground text-center sm:text-left">
+          <p>
+            © {currentYear} Pratika ·{' '}
+            <a
+              href="https://akardev.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+            >
+              AkarDev Digital Solutions
+            </a>
+          </p>
           <p className="text-xs text-muted-foreground/80">
             Kullanıcı odaklı dijital araç ekosistemi.
           </p>
@@ -118,7 +128,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-
-
-
