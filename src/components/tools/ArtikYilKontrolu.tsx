@@ -38,13 +38,13 @@ export default function ArtikYilKontrolu() {
       if (year % 400 === 0) {
         reason = `${year} yılı 400&apos;e tam bölündüğü için artık yıldır.`;
       } else {
-        reason = `${year} yılı 4'e tam bölünür ve 100'ün katı değildir, bu yüzden artık yıldır.`;
+        reason = `${year} yılı 4&apos;e tam bölünür ve 100'ün katı değildir, bu yüzden artık yıldır.`;
       }
     } else {
       if (year % 100 === 0 && year % 400 !== 0) {
-        reason = `${year} yılı 100'e bölünür ancak 400'e bölünemediği için artık yıl değildir.`;
+        reason = `${year} yılı 100&apos;e bölünür ancak 400&apos;e bölünemediği için artık yıl değildir.`;
       } else {
-        reason = `${year} yılı 4'e tam bölünemediği için artık yıl değildir.`;
+        reason = `${year} yılı 4&apos;e tam bölünemediği için artık yıl değildir.`;
       }
     }
 

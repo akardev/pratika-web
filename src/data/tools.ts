@@ -84,6 +84,54 @@ export const categories: Category[] = [
     slug: 'pdf',
     title: 'PDF ve Dosya Araçları',
     description: 'Tarayıcınızda %100 güvenli ve gizli PDF birleştirme, bölme, sayfa silme, döndürme ve dönüştürme araçları.',
+  },
+  {
+    id: 'araba',
+    slug: 'araba',
+    title: 'Araç ve Otomotiv',
+    description: 'Motorlu taşıtlar vergisi (MTV), yakıt tüketimi, lastik ebatları ve araç masraf hesaplayıcıları.',
+  },
+  {
+    id: 'alisveris',
+    slug: 'alisveris',
+    title: 'Alışveriş ve Tüketim',
+    description: 'Kargo desi, taksit vs peşin karşılaştırması ve alışveriş tasarruf araçları.',
+  },
+  {
+    id: 'ev-yasam',
+    slug: 'ev-yasam',
+    title: 'Ev ve Yaşam',
+    description: 'Parke, boya, su faturası, perde kumaşı ve ev tadilat hesaplayıcıları.',
+  },
+  {
+    id: 'muhasebe',
+    slug: 'muhasebe',
+    title: 'Vergi ve Muhasebe',
+    description: 'Gelir vergisi dilimleri, kira stopajı, KDV ve şahıs şirketi maliyet hesaplayıcıları.',
+  },
+  {
+    id: 'yatirim',
+    slug: 'yatirim',
+    title: 'Yatırım ve Borsa',
+    description: 'Kripto kâr/zarar, hisse senedi maliyet düşürme ve yatırım getiri araçları.',
+  },
+  {
+    id: 'kredi',
+    slug: 'kredi',
+    title: 'Kredi ve Borç',
+    description: 'Konut, ihtiyaç ve taşıt kredisi taksit ve geri ödeme hesaplayıcıları.',
+  },
+  {
+    id: 'gayrimenkul',
+    slug: 'gayrimenkul',
+    title: 'Gayrimenkul ve Emlak',
+    description: 'Kira getirisi, amortisman süresi ve konut yatırım analiz araçları.',
+  },
+  {
+    id: 'saglik',
+    slug: 'saglik',
+    title: 'Vücut ve Sağlık',
+    description: 'Günlük protein ihtiyacı, hedef nabız aralıkları, bel-boy oranı ve vücut ölçüm araçları.',
   }
 ];
 
@@ -1845,6 +1893,477 @@ export const tools: Tool[] = [
     toolType: 'calculator',
     status: 'active',
     keywords: ['yakıt tasarrufu hesaplama', 'araç yakıt kıyaslama', 'benzin dizel tasarruf', 'yıllık yakıt masrafı', 'lpg tasarruf hesabı']
+  }
+,
+  {
+    id: 'mtv-hesaplama',
+    slug: 'mtv-hesaplama',
+    title: 'Motorlu Taşıtlar Vergisi (MTV) Hesaplama',
+    description: 'Araç türü, motor silindir hacmi ve tescil yılına göre güncel 2026 Motorlu Taşıtlar Vergisi (MTV) tutarını ve 6 aylık 2 eşit taksitini hesaplayın.',
+    categoryId: 'araba',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["mtv hesaplama","motorlu taşıtlar vergisi","araç vergisi","araba mtv tutarı","2026 mtv","mtv taksit"]
+  },
+  {
+    id: 'lastik-ebat-karsilastirici',
+    slug: 'lastik-ebat-karsilastirici',
+    title: 'Lastik Ebat Karşılaştırma ve Hız Sapması',
+    description: 'Eski ve yeni lastik ebatlarını girerek dış çap farkını, %3 güvenlik toleransını, yanak yüksekliğini ve hız göstergesi sapmasını hesaplayın.',
+    categoryId: 'araba',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["lastik ebat hesaplama","lastik çapı karşılaştırma","hız göstergesi sapması","lastik toleransı","lastik değişimi"]
+  },
+  {
+    id: 'ortalama-yakit-tuketimi-hesaplama',
+    slug: 'ortalama-yakit-tuketimi-hesaplama',
+    title: '100 Km Ortalama Yakıt Tüketimi Hesaplama',
+    description: 'Alınan yakıt miktarı (litre) ve kat edilen mesafeden (km) aracınızın 100 km başına gerçek yakıt tüketimini ve kilometre başına maliyetini hesaplayın.',
+    categoryId: 'araba',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["100 km yakıt tüketimi","araç ne kadar yakar","ortalama yakıt hesaplama","km başı kuruş","yakıt sarfiyatı"]
+  },
+  {
+    id: 'kargo-desi-hesaplama',
+    slug: 'kargo-desi-hesaplama',
+    title: 'Kargo Desi Hesaplama',
+    description: 'Koli veya paketin en, boy ve yükseklik ölçülerinden kargo desi değerini (Hacimsel Ağırlık) hesaplayın ve gerçek ağırlıkla kıyaslayın.',
+    categoryId: 'alisveris',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["desi hesaplama","kargo desi","hacimsel ağırlık","koli desi","yurtiçi aras mng desi"]
+  },
+  {
+    id: 'taksitli-pesin-karsilastirici',
+    slug: 'taksitli-pesin-karsilastirici',
+    title: 'Taksitli ve Peşin Alışveriş Karşılaştırıcı',
+    description: 'Peşin indirim oranı ile taksitli ödemede cebinizde kalan paranın mevduat/fon getirisini kıyaslayarak hangi seçeneğin daha karlı olduğunu bulun.',
+    categoryId: 'alisveris',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["peşin mi taksit mi","taksit karşılaştırma","peşin indirim avantajı","en karlı ödeme yöntemi"]
+  },
+  {
+    id: 'parke-fayans-hesaplama',
+    slug: 'parke-fayans-hesaplama',
+    title: 'Parke ve Fayans Adet/Fire Hesaplama',
+    description: 'Zemin en ve boy ölçülerine göre gereken parke veya seramik metrekaresini, %10 kesim firesini ve toplam paket adedini hesaplayın.',
+    categoryId: 'ev-yasam',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["parke hesaplama","fayans hesaplama","kaç paket parke lazım","seramik fire hesaplama","zemin metrekaresi"]
+  },
+  {
+    id: 'su-faturasi-hesaplama',
+    slug: 'su-faturasi-hesaplama',
+    title: 'Su Tüketim Faturası Hesaplama',
+    description: 'Metreküp (m³) su tüketim miktarınıza göre kademeli su tarifesi, atık su bedeli ve ÇTV dahil aylık tahmini su faturanızı hesaplayın.',
+    categoryId: 'ev-yasam',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["su faturası hesaplama","su tüketim bedeli","iski aski su faturası","m3 su kaç tl"]
+  },
+  {
+    id: 'perde-kumas-hesaplama',
+    slug: 'perde-kumas-hesaplama',
+    title: 'Perde Kumaş ve Pile Ölçüsü Hesaplama',
+    description: 'Korniş genişliği ve tavan yüksekliğine göre seyrek, normal veya sık pileli dikim için gereken toplam perde kumaşı metresini hesaplayın.',
+    categoryId: 'ev-yasam',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["perde kumaş hesaplama","perde pile hesabı","kaç metre perde gider","pile katsayısı"]
+  },
+  {
+    id: 'hali-oda-metrekare-hesaplama',
+    slug: 'hali-oda-metrekare-hesaplama',
+    title: 'Halı ve Oda Metrekaresi Hesaplayıcı',
+    description: 'Odanızın boyutlarına ve mobilya paylarına göre en uygun standart halı ölçülerini (4 m², 6 m² vb.) ve kalan zemin boşluğunu belirleyin.',
+    categoryId: 'ev-yasam',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["halı metrekaresi hesaplama","6 metrekare halı ölçüsü","4 m2 halı boyutu","odaya göre halı seçimi"]
+  },
+  {
+    id: 'gelir-vergisi-dilimleri-hesaplama',
+    slug: 'gelir-vergisi-dilimleri-hesaplama',
+    title: 'Gelir Vergisi Dilimleri Hesaplama',
+    description: 'Yıllık kümülatif gelir vergisi matrahınıza göre %15, %20, %27, %35 ve %40 dilimlerine göre ödenecek toplam gelir vergisini ve efektif oranı hesaplayın.',
+    categoryId: 'muhasebe',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["gelir vergisi dilimleri","vergi dilimi hesaplama","2026 gelir vergisi","kümülatif vergi matrahı"]
+  },
+  {
+    id: 'kira-stopaji-hesaplama',
+    slug: 'kira-stopaji-hesaplama',
+    title: 'Kira Stopajı Hesaplama (İşyeri)',
+    description: 'İşyeri kiralarında %20 yasal stopaj oranıyla brütten nete veya netten brüte kira stopajı ve net mülk sahibi ödemesini hesaplayın.',
+    categoryId: 'muhasebe',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["kira stopajı hesaplama","işyeri kira stopajı","netten brüte kira stopajı","gvk 94 kira"]
+  },
+  {
+    id: 'sahis-sirketi-maliyeti-hesaplama',
+    slug: 'sahis-sirketi-maliyeti-hesaplama',
+    title: 'Şahıs Şirketi Aylık Sabit Gider Hesaplayıcı',
+    description: 'Bağ-Kur primi, muhasebeci ücreti, KDV ve muhtasar damga vergileriyle şahıs firmasının aylık asgari zorunlu gider dökümünü hesaplayın.',
+    categoryId: 'muhasebe',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["şahıs şirketi aylık gideri","şahıs şirketi maliyeti","bağkur primi","muhasebe sabit gider"]
+  },
+  {
+    id: 'vadeli-mevduat-net-getiri-hesaplama',
+    slug: 'vadeli-mevduat-net-getiri-hesaplama',
+    title: 'Vadeli Mevduat Net Getiri Hesaplama',
+    description: 'Anapara, vade süresi (gün), yıllık mevduat faiz oranı ve stopaj kesintisine göre net faiz getirisini ve vade sonu toplam tutarı hesaplayın.',
+    categoryId: 'finans',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["mevduat faizi hesaplama","vadeli mevduat getirisi","net mevduat faizi","stopaj kesintisi faiz","banka faiz getirisi"]
+  },
+  {
+    id: 'cagr-bilesik-buyume-hesaplama',
+    slug: 'cagr-bilesik-buyume-hesaplama',
+    title: 'Bileşik Yıllık Büyüme Oranı (CAGR) Hesaplama',
+    description: 'Başlangıç değeri, bitiş değeri ve yıl sayısı ile yatırımlarınızın yıllık geometrik bileşik büyüme oranını (CAGR) hesaplayın.',
+    categoryId: 'finans',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["cagr hesaplama","bileşik yıllık büyüme oranı","yatırım büyüme oranı","yıllık getiri cagr"]
+  },
+  {
+    id: 'dca-maliyet-ortalamasi-hesaplama',
+    slug: 'dca-maliyet-ortalamasi-hesaplama',
+    title: 'Dolar Maliyet Ortalaması (DCA) Hesaplayıcı',
+    description: 'Farklı tarihlerde ve fiyat seviyelerinde yapılan kademeli alımların ağırlıklı ortalama maliyetini ve anlık kâr/zarar durumunu hesaplayın.',
+    categoryId: 'finans',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["dca hesaplama","dolar maliyet ortalaması","ortalama maliyet düşürme","kademeli alım maliyeti"]
+  },
+  {
+    id: 'kripto-kar-zarar-hesaplama',
+    slug: 'kripto-kar-zarar-hesaplama',
+    title: 'Kripto Kâr / Zarar ve Başabaş Hesaplayıcı',
+    description: 'Giriş ve çıkış fiyatı, coin adedi ve çift yönlü borsa komisyonu düşüldükten sonra net kazancınızı ve kâra geçiş başabaş fiyatını hesaplayın.',
+    categoryId: 'yatirim',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["kripto kar zarar hesaplama","bitcoin kazanç hesaplama","kripto komisyon düşümü","başabaş fiyatı"]
+  },
+  {
+    id: 'hipotenus-dik-ucgen-hesaplama',
+    slug: 'hipotenus-dik-ucgen-hesaplama',
+    title: 'Hipotenüs ve Dik Üçgen Hesaplama',
+    description: 'Dik kenar uzunluklarından Pisagor bağıntısıyla hipotenüs uzunluğunu, dar açıları (derece) ve dik üçgen alanını hesaplayın.',
+    categoryId: 'matematik',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["hipotenüs hesaplama","dik üçgen hesaplama","pisagor teoremi","dik kenarlar","üçgen açıları"]
+  },
+  {
+    id: 'ucgen-alani-hesaplama',
+    slug: 'ucgen-alani-hesaplama',
+    title: 'Üçgen Alanı Hesaplama (Taban-Yükseklik ve Heron)',
+    description: 'Taban ve yükseklik ile veya 3 kenar uzunluğu bilinen herhangi bir üçgenin alanını Heron formülüyle hatasız hesaplayın.',
+    categoryId: 'matematik',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["üçgen alanı hesaplama","heron formülü","taban çarpı yükseklik bölü 2","üçgenin alanı kaç"]
+  },
+  {
+    id: 'geometrik-cisimler-hacim-hesaplayici',
+    slug: 'geometrik-cisimler-hacim-hesaplayici',
+    title: 'Geometrik Cisimler Hacim Hesaplayıcı',
+    description: 'Silindir, koni, küre, küp ve dikdörtgenler prizmasının hacim ve toplam yüzey alanını 3D formülleriyle hesaplayın.',
+    categoryId: 'matematik',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["hacim hesaplama","silindir hacmi","küre hacmi","koni hacmi","prizma yüzey alanı"]
+  },
+  {
+    id: 'logaritma-hesaplama',
+    slug: 'logaritma-hesaplama',
+    title: 'Logaritma Hesaplama (ln, log10 ve log_b)',
+    description: 'Doğal logaritma (ln), 10 tabanında logaritma veya istenen tabanda log_b(x) değerini basamak hassasiyetiyle hesaplayın.',
+    categoryId: 'matematik',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["logaritma hesaplama","ln hesaplama","log tabanı","doğal logaritma"]
+  },
+  {
+    id: 'modulo-kalan-bulma-hesaplayici',
+    slug: 'modulo-kalan-bulma-hesaplayici',
+    title: 'Modulo (Kalan Bulma) Hesaplayıcı',
+    description: 'Bölünen ve bölen sayılara göre A mod B kalanını, tam bölüm değerini ve bölünebilirlik durumunu bulun.',
+    categoryId: 'matematik',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["mod hesaplama","kalan bulma","modulo hesaplayıcı","a mod b","bölmede kalan"]
+  },
+  {
+    id: 'matris-determinanti-hesaplama',
+    slug: 'matris-determinanti-hesaplama',
+    title: 'Matris Determinantı Hesaplama (2x2 ve 3x3)',
+    description: '2x2 ve 3x3 kare matrislerin determinantını (Sarrus kuralı ve kofaktör açılımı) adım adım çözümle hesaplayın.',
+    categoryId: 'matematik',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["matris determinantı","3x3 determinant hesaplama","sarrus kuralı","lineer cebir"]
+  },
+  {
+    id: 'gunluk-protein-ihtiyaci-hesaplama',
+    slug: 'gunluk-protein-ihtiyaci-hesaplama',
+    title: 'Günlük Protein İhtiyacı Hesaplama',
+    description: 'Vücut ağırlığı, cinsiyet ve aktivite hedefinize (sedanter, dayanıklılık, kas geliştirme) göre günlük almanız gereken gram protein miktarını hesaplayın.',
+    categoryId: 'saglik',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["günlük protein ihtiyacı","kilo başına protein","protein hesaplama","kaç gram protein almalıyım","fitness protein"]
+  },
+  {
+    id: 'hedef-nabiz-bolgesi-hesaplama',
+    slug: 'hedef-nabiz-bolgesi-hesaplama',
+    title: 'Hedef Nabız Bölgesi Hesaplama (Karvonen)',
+    description: 'Yaş ve dinlenik nabız değerinizden Karvonen metoduyla Yağ Yakımı (%60-70), Aerobik Kardiyo (%70-80) ve Zirve Nabız bölgelerini hesaplayın.',
+    categoryId: 'saglik',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["hedef nabız hesaplama","karvonen formülü","yağ yakım nabzı","maksimum nabız","kardiyo nabız aralığı"]
+  },
+  {
+    id: 'bel-boy-orani-hesaplama',
+    slug: 'bel-boy-orani-hesaplama',
+    title: 'Bel-Boy Oranı (WHtR) Hesaplama',
+    description: 'Bel çevresi ve boy uzunluğunuzu oranlayarak kardiyovasküler sağlık riskinizi ve visceral yağlanma düzeyinizi değerlendirin.',
+    categoryId: 'saglik',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["bel boy oranı","whtr hesaplama","bel çevresi boy oranı","sağlık riski ölçümü"]
+  },
+  {
+    id: 'vucut-yuzey-alani-hesaplama',
+    slug: 'vucut-yuzey-alani-hesaplama',
+    title: 'Vücut Yüzey Alanı (BSA) Hesaplama',
+    description: 'Mosteller ve DuBois medikal formülleriyle boy ve kilonuza göre metrekare (m²) cinsinden toplam vücut yüzey alanınızı hesaplayın.',
+    categoryId: 'saglik',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["vücut yüzey alanı","bsa hesaplama","mosteller formülü","dubois bsa"]
+  },
+  {
+    id: 'safak-sayar-askerlik-hesaplama',
+    slug: 'safak-sayar-askerlik-hesaplama',
+    title: 'Şafak Sayar (Askerlik Terhis Hesaplama)',
+    description: 'Sülüs tarihi, askerlik türü (6 ay er veya 12 ay yedek subay) ve yol izni süresini girerek kalan şafak gününü ve kesin terhis tarihini hesaplayın.',
+    categoryId: 'zaman',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["şafak sayar","askerlik terhis tarihi","şafak hesaplama","terhise kaç gün kaldı","askerlik şafak"]
+  },
+  {
+    id: 'gebelik-dogum-tarihi-hesaplama',
+    slug: 'gebelik-dogum-tarihi-hesaplama',
+    title: 'Gebelik ve Doğum Tarihi Hesaplama',
+    description: 'Son adet tarihinize (SAT) göre Naegele kuralıyla tahmini doğum tarihini, güncel gebelik haftasını ve trimester dönemini hesaplayın.',
+    categoryId: 'zaman',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["gebelik hesaplama","kaç haftalık hamileyim","doğum tarihi hesaplayıcı","tahmini doğum günü","gebelik haftası"]
+  },
+  {
+    id: 'burc-yukselen-burc-bulucu',
+    slug: 'burc-yukselen-burc-bulucu',
+    title: 'Burç ve Yükselen Burç Bulucu',
+    description: 'Doğum gününüz ile Güneş burcunuzu; doğum saatiniz ile yaklaşık ufuk yükselen burcunuzu ve elementinizi (Ateş, Toprak, Hava, Su) öğrenin.',
+    categoryId: 'zaman',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["burç bulucu","hangi burcum","yükselen burç hesaplama","yükselen burç bul","burç tarihleri"]
+  },
+  {
+    id: 'uyku-dongusu-hesaplayici',
+    slug: 'uyku-dongusu-hesaplayici',
+    title: 'Uyku Döngüsü (REM) Hesaplayıcı',
+    description: '90 dakikalık doğal REM uyku döngüleri ve 14 dakika uykuya dalma payı ile sabah zinde ve dinç uyanmak için en ideal yatış ve kalkış saatlerini bulun.',
+    categoryId: 'zaman',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["uyku döngüsü","rem uykusu hesaplama","kaçta yatmalıyım","dinç uyanma saati","uyku hesaplayıcı"]
+  },
+  {
+    id: 'basinc-birimi-donusturucu',
+    slug: 'basinc-birimi-donusturucu',
+    title: 'Basınç Birimi Dönüştürücü (Bar, PSI, Pa)',
+    description: 'Bar, PSI, Pascal (Pa), Kilopascal (kPa), Megapascal (MPa), Atmosfer (atm) ve Torr basınç birimleri arasında anında karşılıklı dönüşüm yapın.',
+    categoryId: 'donusum',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["basınç dönüştürücü","bar psi çevirme","lastik hava basıncı psi bar","pascal bar","atm psi"]
+  },
+  {
+    id: 'hiz-birimi-donusturucu',
+    slug: 'hiz-birimi-donusturucu',
+    title: 'Hız Birimi Dönüştürücü (km/h, m/s, Knot, Mph)',
+    description: 'Kilometre/saat (km/h), metre/saniye (m/s), mil/saat (mph), knot (deniz mili) ve feet/saniye sürat birimlerini karşılıklı dönüştürün.',
+    categoryId: 'donusum',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["hız dönüştürücü","kmh mph çevirme","knot kaç km","metre saniye km saat","deniz mili knot"]
+  },
+  {
+    id: 'enerji-is-birimi-donusturucu',
+    slug: 'enerji-is-birimi-donusturucu',
+    title: 'Enerji ve İş Birimi Dönüştürücü (Joule, Kalori, kWh)',
+    description: 'Joule (J), Kilojoule (kJ), Kalori (cal), Kilokalori (kcal), Kilowatt-saat (kWh) ve BTU enerji birimleri arasında kesin dönüşüm yapın.',
+    categoryId: 'donusum',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["enerji dönüştürücü","joule kalori çevirme","kwh joule","btu kwh","kcal joule çevirici"]
+  },
+  {
+    id: 'guc-birimi-donusturucu',
+    slug: 'guc-birimi-donusturucu',
+    title: 'Güç Birimi Dönüştürücü (kW, HP, Beygir Gücü)',
+    description: 'Kilowatt (kW), Metrik Beygir Gücü (PS / BG), Mekanik Beygir (HP), Watt ve Megawatt güç birimlerini karşılıklı hesaplayın.',
+    categoryId: 'donusum',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["güç dönüştürücü","kw hp çevirme","beygir gücü kw","araç beygir kilowatt hesabı","watt kilowatt"]
+  },
+  {
+    id: 'ekran-ppi-yogunluk-hesaplama',
+    slug: 'ekran-ppi-yogunluk-hesaplama',
+    title: 'Ekran PPI (Piksel Yoğunluğu) Hesaplama',
+    description: 'Ekran yatay-dikey piksel çözünürlüğü ve köşegen inç boyutundan inç başına düşen piksel yoğunluğunu (PPI) ve keskinlik kalitesini hesaplayın.',
+    categoryId: 'yazilim',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["ppi hesaplama","piksel yoğunluğu","ekran keskinliği ppi","monitör ppi hesabı","telefon ppi"]
+  },
+  {
+    id: 'monitor-gorus-mesafesi-hesaplayici',
+    slug: 'monitor-gorus-mesafesi-hesaplayici',
+    title: 'Monitör Görüş Mesafesi Hesaplayıcı',
+    description: 'Ekran boyutu (inç) ve çözünürlüğe (1080p, 2K, 4K) göre göz sağlığı ve piksel ayırt etme eşiği için en ideal oturma mesafesini belirleyin.',
+    categoryId: 'yazilim',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["monitör görüş mesafesi","ekrana ne kadar uzaktan bakılmalı","ideal ekran mesafesi","göz sağlığı monitör"]
+  },
+  {
+    id: 'ip-subnet-cidr-hesaplayici',
+    slug: 'ip-subnet-cidr-hesaplayici',
+    title: 'IP Subnet (CIDR / Alt Ağ) Hesaplayıcı',
+    description: 'IPv4 adresi ve CIDR önekinden (/24, /28 vb.) Alt Ağ Maskesi, Ağ Adresi, Broadcast, Kullanılabilir İlk/Son IP ve toplam host sayısını hesaplayın.',
+    categoryId: 'yazilim',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["subnet hesaplayıcı","cidr hesaplama","alt ağ maskesi","ip aralığı","broadcast adresi","ağ mühendisliği"]
+  },
+  {
+    id: 'jwt-token-cozucu',
+    slug: 'jwt-token-cozucu',
+    title: 'JWT Token Çözücü (İstemci Taraflı)',
+    description: 'JSON Web Token (JWT) Header ve Payload JSON verilerini hiçbir veriyi sunucuya göndermeden, %100 tarayıcı içinde güvenle çözümleyin ve inceleyin.',
+    categoryId: 'yazilim',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["jwt decoder","jwt token çözücü","json web token decode","jwt payload oku","güvenli jwt"]
+  },
+  {
+    id: 'cron-ifade-olusturucu',
+    slug: 'cron-ifade-olusturucu',
+    title: 'Cron İfade Oluşturucu ve Açıklayıcı',
+    description: 'Dakika, saat, gün, ay ve hafta günü alanlarından oluşan cron ifadelerini (örn: */15 * * * *) görsel olarak oluşturun ve Türkçe açıklamasını okuyun.',
+    categoryId: 'yazilim',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["cron oluşturucu","cron generator","cron ifadesi türkçe","crontab hesaplayıcı","cron job süresi"]
+  },
+  {
+    id: 'metin-okuma-suresi-hesaplama',
+    slug: 'metin-okuma-suresi-hesaplama',
+    title: 'Metin Okuma Süresi Hesaplama',
+    description: 'Yazınızın kelime sayısına ve ortalama sessiz okuma (200 k/dk) veya sesli konuşma (130 k/dk) hızına göre tahmini okuma ve sunum süresini hesaplayın.',
+    categoryId: 'metin',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["okuma süresi hesaplama","metin kaç dakikada okunur","sunum konuşma süresi","kelime okuma dakikası"]
+  },
+  {
+    id: 'mors-alfabesi-cevirici',
+    slug: 'mors-alfabesi-cevirici',
+    title: 'Mors Alfabesi Çevirici (Çift Yönlü)',
+    description: 'Türkçe ve Latin karakterli metinleri uluslararası standart Mors koduna, Mors kodlarını ise anında anlaşılır metne çift yönlü olarak dönüştürün.',
+    categoryId: 'metin',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["mors alfabesi çevirici","mors kodu yazma","mors alfabesi türkçe","sos mors kodu","morse code translator"]
+  },
+  {
+    id: 'rastgele-liste-kura-cekilis-araci',
+    slug: 'rastgele-liste-kura-cekilis-araci',
+    title: 'Rastgele Liste Kura ve Çekiliş Aracı',
+    description: 'İsimler veya maddeler listesinden kriptografik güvenli rastgele seçim algoritmasıyla adil kazananlar ve yedek talihliler belirleyin.',
+    categoryId: 'metin',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["çekiliş aracı","kura çekme","isim çekilişi","rastgele liste seçici","kura programı online"]
+  },
+  {
+    id: 'en-boy-orani-hesaplayici',
+    slug: 'en-boy-orani-hesaplayici',
+    title: 'En-Boy Oranı (Aspect Ratio) Hesaplayıcı',
+    description: 'Genişlik ve yükseklik piksel ölçülerinden 16:9, 4:3, 21:9 veya 1:1 en-boy oranını bulun; yeni boyuta göre orantılı genişlik/yükseklik hesaplayın.',
+    categoryId: 'tasarim',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["aspect ratio hesaplama","en boy oranı bulma","16 9 oran hesaplama","orantılı boyutlandırma","video çözünürlük oranı"]
+  },
+  {
+    id: 'dpi-baski-olcusu-donusturucu',
+    slug: 'dpi-baski-olcusu-donusturucu',
+    title: 'DPI / PPI Baskı Ölçüsü Dönüştürücü',
+    description: 'Piksel boyutlarını (örn: 3000x2000 px) 300 DPI, 150 DPI veya 72 DPI baskı çözünürlüğünde santimetre (cm) ve inç çıktı ebatlarına dönüştürün.',
+    categoryId: 'tasarim',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["dpi hesaplama","pikseli cm yapma","baskı boyutu hesaplayıcı","300 dpi kaç cm","matbaa baskı ölçüsü"]
+  },
+  {
+    id: 'yillik-ucretli-izin-hakki-hesaplama',
+    slug: 'yillik-ucretli-izin-hakki-hesaplama',
+    title: 'Yıllık Ücretli İzin Hak Edişi Hesaplama',
+    description: '4857 sayılı İş Kanunu Madde 53 uyarınca hizmet süreniz ve yaş durumunuza (18 yaş altı veya 50 yaş üstü için en az 20 gün) göre yasal izin hakkınızı hesaplayın.',
+    categoryId: 'maas',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["yıllık izin hakkı","kaç gün yıllık izin var","iş kanunu izin günleri","kıdeme göre yıllık izin","hizmet yılı izin"]
+  },
+  {
+    id: 'freelance-saatlik-ucret-hesaplayici',
+    slug: 'freelance-saatlik-ucret-hesaplayici',
+    title: 'Freelance Saatlik Ücret Belirleme Hesaplayıcısı',
+    description: 'Hedeflenen aylık net gelir, sabit işletme giderleri, vergi payı ve aylık faturalandırılabilir çalışma saatinden saatlik asgari teklif ücretinizi hesaplayın.',
+    categoryId: 'maas',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["freelance saatlik ücret","saatlik ücret belirleme","serbest çalışan fiyatlandırma","proje saatlik fiyatı"]
+  },
+  {
+    id: 'kira-amortisman-getiri-hesaplama',
+    slug: 'kira-amortisman-getiri-hesaplama',
+    title: 'Kira Getirisi ve Amortisman Süresi Hesaplama',
+    description: 'Gayrimenkul satın alma bedeli ve aylık net kira gelirine göre yatırımın brüt ve net kira getiri oranını ve geri dönüş (amortisman) yılını hesaplayın.',
+    categoryId: 'gayrimenkul',
+    toolType: 'calculator',
+    status: 'active',
+    keywords: ["amortisman süresi hesaplama","kira çarpanı","konut amortisman yılı","kira getiri oranı","gayrimenkul yatırım getirisi"]
   }
 ];
 

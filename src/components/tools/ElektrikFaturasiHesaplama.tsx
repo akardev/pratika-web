@@ -9,7 +9,7 @@ export default function ElektrikFaturasiHesaplama() {
   
   const [result, setResult] = useState<{
     totalKwh: number;
-    tier1Kwh: number; // 240 kWh'e kadar
+    tier1Kwh: number; // 240 kWh&apos;e kadar
     tier2Kwh: number; // 240 kWh üzeri
     tier1Cost: number;
     tier2Cost: number;

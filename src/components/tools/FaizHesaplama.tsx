@@ -99,7 +99,7 @@ export default function FaizHesaplama() {
     }
 
     if (durationNum <= 0) {
-      setError("Süre 0'dan büyük olmalıdır.");
+      setError("Süre 0&apos;dan büyük olmalıdır.");
       return;
     }
 

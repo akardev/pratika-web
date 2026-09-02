@@ -78,13 +78,13 @@ export default function MetniPdfDonusturucu() {
     setText(
       `PRATİKA BELGE VE DÖKÜMAN ŞABLONU\n\n` +
       `Tarih: ${new Date().toLocaleDateString('tr-TR')}\n\n` +
-      `Bu belge, Pratika "Metni PDF'e Dönüştür" aracı kullanılarak doğrudan tarayıcı üzerinde oluşturulmuştur.\n\n` +
+      `Bu belge, Pratika "Metni PDF&apos;e Dönüştür" aracı kullanılarak doğrudan tarayıcı üzerinde oluşturulmuştur.\n\n` +
       `Öne Çıkan Özellikler:\n` +
       `1. Türkçe Karakter Desteği: ç, Ç, ğ, Ğ, ı, İ, ö, Ö, ş, Ş, ü, Ü.\n` +
       `2. %100 İstemci Taraflı Güvenlik: Yazdığınız veya yapıştırdığınız metinler hiçbir zaman sunucuya gönderilmez.\n` +
       `3. Çok Sayfalı Taşma Yönetimi: Metin uzadıkça yeni sayfalar otomatik olarak eklenir ve sayfa altbilgisi numaralandırılır.\n` +
       `4. Özel Sayfa ve Font Ayarları: A4, A5, Letter boyutları; dikey/yatay yön ve farklı tipografi seçenekleri.\n\n` +
-      `Hızlı, sade, güvenilir ve pratik dijital araçlar için Pratika'yı tercih ettiğiniz için teşekkür ederiz.`
+      `Hızlı, sade, güvenilir ve pratik dijital araçlar için Pratika&apos;yı tercih ettiğiniz için teşekkür ederiz.`
     );
     setStatusMessage({ type: 'info', text: 'Örnek metin başarıyla yüklendi.' });
   };

@@ -33,13 +33,13 @@ export default function MaliyetHesaplama() {
 
     // 1. Birim Alış Fiyatı Kontrolü (Zorunlu)
     if (!unitPurchasePriceStr.trim()) {
-      setError("Birim alış fiyatı 0'dan büyük olmalıdır.");
+      setError("Birim alış fiyatı 0&apos;dan büyük olmalıdır.");
       return;
     }
 
     const unitPurchasePriceNum = parseTurkishNumber(unitPurchasePriceStr);
     if (isNaN(unitPurchasePriceNum) || unitPurchasePriceNum <= 0) {
-      setError("Birim alış fiyatı 0'dan büyük olmalıdır.");
+      setError("Birim alış fiyatı 0&apos;dan büyük olmalıdır.");
       return;
     }
 
@@ -87,7 +87,7 @@ export default function MaliyetHesaplama() {
 
     // 5. Ürün Adedi Kontrolü (Zorunlu, Pozitif Tam Sayı)
     if (!quantityStr.trim()) {
-      setError("Ürün adedi 0'dan büyük olmalıdır.");
+      setError("Ürün adedi 0&apos;dan büyük olmalıdır.");
       return;
     }
 
@@ -103,7 +103,7 @@ export default function MaliyetHesaplama() {
     }
 
     if (quantityNum <= 0) {
-      setError("Ürün adedi 0'dan büyük olmalıdır.");
+      setError("Ürün adedi 0&apos;dan büyük olmalıdır.");
       return;
     }
 

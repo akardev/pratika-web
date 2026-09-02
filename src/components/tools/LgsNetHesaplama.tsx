@@ -27,7 +27,7 @@ export default function LgsNetHesaplama() {
   const calcNet3 = (cStr: string, iStr: string, max: number) => {
     const c = Math.min(max, Math.max(0, parseInt(cStr, 10) || 0));
     const i = Math.min(max - c, Math.max(0, parseInt(iStr, 10) || 0));
-    const net = Math.max(0, c - i / 3); // LGS'de 3 yanlış 1 doğruyu götürür
+    const net = Math.max(0, c - i / 3); // LGS&apos;de 3 yanlış 1 doğruyu götürür
     return { c, i, net };
   };
 

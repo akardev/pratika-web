@@ -55,7 +55,7 @@ export default function AgirlikliOrtalamaHesaplama() {
       const weight = parseTurkishNumber(r.weight);
 
       if (isNaN(val) || isNaN(weight) || weight <= 0) {
-        setError(`${i + 1}. satırda geçerli bir değer ve 0'dan büyük ağırlık/kredi girin.`);
+        setError(`${i + 1}. satırda geçerli bir değer ve 0&apos;dan büyük ağırlık/kredi girin.`);
         return;
       }
 

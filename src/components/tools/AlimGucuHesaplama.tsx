@@ -14,7 +14,7 @@ export default function AlimGucuHesaplama() {
     inflationRate: number;
     years: number;
     futureEquivalentCost: number; // Bugün 50.000 TL olan malın gelecekteki fiyatı
-    futurePurchasingPower: number; // Bugün kenarda duran 50.000 TL'nin gelecekteki bugünkü karşılığı alım gücü
+    futurePurchasingPower: number; // Bugün kenarda duran 50.000 TL&apos;nin gelecekteki bugünkü karşılığı alım gücü
     lossPercentage: number;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
