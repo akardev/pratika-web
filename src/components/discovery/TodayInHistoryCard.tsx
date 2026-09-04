@@ -21,15 +21,11 @@ function getCardTopEvents(events: ReturnType<typeof getTodayInHistory>['events']
   if (!events || events.length === 0) return [];
 
   const selected: typeof events = [];
-  let accumulatedHeight = 0;
-  const TARGET_HEIGHT = 180; // Safe height to keep total card around min-h-[350px]
+  let totalChars = 0;
 
   for (const event of events) {
     const narrative = getHistoryEventNarrative(event);
-    const lines = narrative.length > 55 ? 2 : 1;
-    const itemHeight = (lines === 1 ? 26 : 40) + 10;
-
-    if (selected.length >= 3 && accumulatedHeight + itemHeight > TARGET_HEIGHT) {
+    if (selected.length >= 5 && totalChars + narrative.length > 380) {
       break;
     }
     if (selected.length >= 6) {
@@ -37,10 +33,10 @@ function getCardTopEvents(events: ReturnType<typeof getTodayInHistory>['events']
     }
 
     selected.push(event);
-    accumulatedHeight += itemHeight;
+    totalChars += narrative.length;
   }
 
-  return selected.length >= 3 ? selected : events.slice(0, 4);
+  return selected.length >= 4 ? selected : events.slice(0, 5);
 }
 
 export default function TodayInHistoryCard({
