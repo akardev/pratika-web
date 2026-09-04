@@ -46,7 +46,7 @@ export default function MetinOkumaSuresiHesaplama() {
             rows={7}
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder="Makale, deneme veya konuşma metnini buraya yapıştırın..."
+            placeholder="Metninizi buraya yapıştırın..."
             className="w-full p-3 rounded-lg border border-border bg-background text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-primary"
           />
 

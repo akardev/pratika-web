@@ -3,7 +3,7 @@ import Link from 'next/link';
 import SearchBar from '@/components/ui/SearchBar';
 import ToolCard from '@/components/ui/ToolCard';
 import TodayWidget from '@/components/home/TodayWidget';
-import DailyUtilityWidget from '@/components/home/DailyUtilityWidget';
+import DailyDiscoverySection from '@/components/discovery/DailyDiscoverySection';
 import { tools } from '@/data/tools';
 import { articles } from '@/data/articles';
 import { siteConfig } from '@/lib/site';
@@ -84,7 +84,7 @@ export default function Home() {
       title: 'Hesapla',
       description: 'Finans, kredi, KDV, kâr marjı, indirim, faiz ve matematiksel işlemler.',
       examples: 'KDV • Kredi • Kâr Marjı • Faiz • Yaş',
-      href: '/araclar?kategori=finans',
+      href: '/araclar/finans',
       icon: (
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -95,7 +95,7 @@ export default function Home() {
       title: 'Dönüştür',
       description: 'PDF\'den görsele, metin formatları, veri dönüşümleri ve ölçü birimleri.',
       examples: 'PDF → JPG • Metin → PDF • Birimler • JSON',
-      href: '/araclar?kategori=donusum',
+      href: '/araclar/donusum',
       icon: (
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.033 8.033 0 01-15.357-2m15.357 2H15" />
@@ -117,7 +117,7 @@ export default function Home() {
       title: 'Görsel & Tasarım',
       description: 'Renk kodları, görsel boyutlandırma ve sosyal medya formatları.',
       examples: 'Renk Kodları • Görsel Boyutları • Formatlar',
-      href: '/araclar?kategori=tasarim',
+      href: '/araclar/tasarim',
       icon: (
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -128,7 +128,7 @@ export default function Home() {
       title: 'Günlük Hayat',
       description: 'Tarih farkı, iş günleri, yakıt maliyeti, elektrik ve sağlık hesaplamaları.',
       examples: 'Tarih Farkı • İş Günü • Yakıt Maliyeti • BMI',
-      href: '/araclar?kategori=gunluk-hayat',
+      href: '/araclar/gunluk-hayat',
       icon: (
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -202,9 +202,13 @@ export default function Home() {
       </section>
 
       {/* ============================================================ */}
-      {/* GÜNLÜK YARDIMCI KATMANI (BUGÜN & PİYASALAR)                  */}
+      {/* GÜNÜN KEŞFİ (TARİHTE BUGÜN • BİLİYOR MUYDUNUZ • GÜNÜN SORUSU) */}
       {/* ============================================================ */}
-      <DailyUtilityWidget />
+      <section className="py-8 sm:py-10 px-4 sm:px-6 lg:px-8 border-b border-border/60 bg-muted/10">
+        <div className="container mx-auto max-w-6xl">
+          <DailyDiscoverySection />
+        </div>
+      </section>
 
       {/* ============================================================ */}
       {/* 2. BUGÜN NEYE İHTİYACINIZ VAR? (GENİŞ ÇÖZÜM ALANLARI)         */}

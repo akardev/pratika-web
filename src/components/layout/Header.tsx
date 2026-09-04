@@ -8,6 +8,8 @@ import SearchModal from '@/components/ui/SearchModal';
 
 const navLinks = [
   { href: '/araclar', label: 'Araçlar' },
+  { href: '/kategoriler', label: 'Kategoriler' },
+  { href: '/tarihte-bugun', label: 'Tarihte Bugün' },
   { href: '/bilgi', label: 'Bilgi Merkezi' },
   { href: '/iletisim', label: 'İletişim' },
 ] as const;
@@ -38,9 +40,15 @@ export default function Header() {
     };
   }, []);
 
-  const isActive = (href: string) => href === '/araclar'
-    ? pathname === href || pathname.startsWith('/arac/')
-    : pathname === href || pathname.startsWith(`${href}/`);
+  const isActive = (href: string) => {
+    if (href === '/araclar') {
+      return pathname === href || pathname.startsWith('/araclar/') || pathname.startsWith('/arac/');
+    }
+    if (href === '/kategoriler') {
+      return pathname === href || pathname.startsWith('/kategori');
+    }
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   const closeMenus = () => { setMobileMenuOpen(false); };
 
@@ -114,6 +122,26 @@ export default function Header() {
               >
                 Araçlar Kataloğu
                 <span className="text-xs font-medium text-primary">Tüm Araçlar →</span>
+              </Link>
+              <Link
+                href="/kategoriler"
+                onClick={closeMenus}
+                className={`flex min-h-11 items-center justify-between rounded-lg p-3 text-sm font-medium ${
+                  isActive('/kategoriler') ? 'bg-muted text-foreground' : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
+                }`}
+              >
+                Kategoriler
+                <span className="text-xs font-medium text-primary">Tüm Kategoriler →</span>
+              </Link>
+              <Link
+                href="/tarihte-bugun"
+                onClick={closeMenus}
+                className={`flex min-h-11 items-center justify-between rounded-lg p-3 text-sm font-medium ${
+                  isActive('/tarihte-bugun') ? 'bg-muted text-foreground' : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground'
+                }`}
+              >
+                Tarihte Bugün
+                <span className="text-xs font-medium text-primary">Tarih Arşivi →</span>
               </Link>
               <Link
                 href="/bilgi"

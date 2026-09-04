@@ -60,7 +60,7 @@ export default function GeriSayimAraci() {
               <input
                 type="text"
                 id="eventName"
-                placeholder="Örn: Yılbaşı, Sınav Tarihi..."
+                placeholder="Örn: Yılbaşı, Sınav..."
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 value={eventName}
                 onChange={(e) => setEventName(e.target.value)}

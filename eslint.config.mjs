@@ -14,6 +14,9 @@ const eslintConfig = defineConfig([
     "public/**",
     "scratch/**",
     "next-env.d.ts",
+    "src/data/*.backup.*",
+    "src/data/*.generated.*",
+    "src/data/todayInHistory.generated.ts",
   ]),
 ]);
 

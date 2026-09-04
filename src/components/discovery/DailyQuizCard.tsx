@@ -1,0 +1,167 @@
+'use client';
+
+import React, { useState } from 'react';
+import { QuizQuestion } from '@/data/dailyQuiz';
+
+interface DailyQuizCardProps {
+  initialQuestion: QuizQuestion;
+  className?: string;
+}
+
+const OPTION_LETTERS = ['A', 'B', 'C', 'D'] as const;
+
+export default function DailyQuizCard({
+  initialQuestion,
+  className = '',
+}: DailyQuizCardProps) {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const isAnswered = selectedIndex !== null;
+  const isCorrect = selectedIndex === initialQuestion.correctIndex;
+
+  const handleSelectOption = (index: number) => {
+    if (isAnswered) return;
+    setSelectedIndex(index);
+  };
+
+  return (
+    <div
+      className={`group relative flex h-full min-h-[350px] flex-col justify-between overflow-hidden rounded-2xl border border-border/80 bg-card p-5 sm:p-6 shadow-xs transition-all hover:border-border hover:shadow-md ${className}`}
+    >
+      {/* Decorative ambient gradient */}
+      <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-blue-500/10 blur-2xl transition-all group-hover:bg-blue-500/15" />
+
+      {/* Top Meta Bar */}
+      <div>
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-500/10 px-2.5 py-1 text-[11px] font-semibold text-blue-600 dark:text-blue-400">
+              <svg aria-hidden="true" className="h-3.5 w-3.5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Günün Sorusu
+            </span>
+            <span className="rounded-md bg-muted px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
+              {initialQuestion.category}
+            </span>
+          </div>
+
+          <span
+            className={`text-[11px] font-semibold transition-colors ${
+              isAnswered
+                ? isCorrect
+                  ? 'text-emerald-600 dark:text-emerald-400'
+                  : 'text-rose-600 dark:text-rose-400'
+                : 'text-muted-foreground'
+            }`}
+          >
+            {isAnswered ? (isCorrect ? '✓ Doğru!' : '✗ Yanlış') : 'Tek Soru'}
+          </span>
+        </div>
+
+        {/* Question Prompt */}
+        <div className="mt-3.5">
+          <h3 className="min-h-[40px] text-xs sm:text-[13.5px] font-semibold leading-snug text-foreground">
+            {initialQuestion.question}
+          </h3>
+
+          {/* 4 Options: Compact 2x2 Grid */}
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            {initialQuestion.options.map((option, idx) => {
+              const letter = OPTION_LETTERS[idx];
+              const isSelected = selectedIndex === idx;
+              const isThisCorrect = idx === initialQuestion.correctIndex;
+
+              let buttonStyles =
+                'border-border/80 bg-muted/40 hover:bg-muted/80 hover:border-border text-foreground';
+              let badgeStyles = 'bg-card text-foreground border-border/80 font-bold';
+              let textStyles = 'text-foreground font-medium';
+
+              if (isAnswered) {
+                if (isThisCorrect) {
+                  buttonStyles =
+                    'border-2 border-emerald-500 bg-emerald-50/80 dark:bg-emerald-950/30 shadow-xs';
+                  badgeStyles = 'bg-emerald-600 text-white border-emerald-600 font-bold';
+                  textStyles = 'text-foreground font-semibold';
+                } else if (isSelected) {
+                  buttonStyles =
+                    'border-2 border-rose-500 bg-rose-50/80 dark:bg-rose-950/30';
+                  badgeStyles = 'bg-rose-600 text-white border-rose-600 font-bold';
+                  textStyles = 'text-foreground/85 font-medium line-through';
+                } else {
+                  buttonStyles = 'border-border/60 bg-muted/20';
+                  badgeStyles = 'bg-muted text-muted-foreground border-border/60 font-semibold';
+                  textStyles = 'text-foreground/75 font-normal';
+                }
+              }
+
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  disabled={isAnswered}
+                  onClick={() => handleSelectOption(idx)}
+                  className={`flex min-h-9 items-center gap-2 rounded-xl border px-2.5 py-1.5 text-left text-xs transition-all ${buttonStyles} ${
+                    !isAnswered ? 'cursor-pointer active:scale-[0.99]' : 'cursor-default'
+                  }`}
+                >
+                  <span
+                    className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border text-[11px] transition-colors ${badgeStyles}`}
+                  >
+                    {letter}
+                  </span>
+                  <span className={`flex-1 text-[11.5px] sm:text-xs leading-tight ${textStyles}`}>{option}</span>
+                  {isAnswered && isThisCorrect && (
+                    <svg aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                    </svg>
+                  )}
+                  {isAnswered && isSelected && !isThisCorrect && (
+                    <svg aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-rose-600 dark:text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Dedicated Compact Result Area: Pre-allocated height to eliminate layout jumping */}
+          <div className="mt-3 min-h-[52px]">
+            {isAnswered ? (
+              <div className="rounded-xl border border-border/70 bg-muted/40 p-2.5 text-xs animate-fadeIn">
+                <p className="text-[11.5px] leading-snug text-foreground/90">
+                  <strong className="text-foreground">
+                    Doğru Cevap: {OPTION_LETTERS[initialQuestion.correctIndex]}){' '}
+                  </strong>
+                  {initialQuestion.explanation}
+                </p>
+              </div>
+            ) : (
+              <p className="py-2 text-center text-[11px] text-muted-foreground/75">
+                Doğru şıkkı seçerek cevabınızı test edin.
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Actions / Footer Bar */}
+      <div className="mt-4 flex items-center justify-between gap-3 border-t border-border/50 pt-3">
+        <div className="flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
+          <span>Günün Sorusu</span>
+          <span className="text-muted-foreground/40">•</span>
+          <span className="text-[10.5px] text-muted-foreground/75">Her gün 1 yeni soru</span>
+        </div>
+
+        {isAnswered && (
+          <span className="text-[10.5px] font-medium text-muted-foreground/70">
+            {isCorrect ? 'Tebrikler! 🎉' : 'Yarın yeni soru!'}
+          </span>
+        )}
+      </div>
+    </div>
+  );
+}
+

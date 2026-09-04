@@ -340,7 +340,7 @@ export default function QrKodOlusturucu() {
                     id="qr-image-url"
                     value={imageUrl}
                     onChange={(e) => setImageUrl(e.target.value)}
-                    placeholder="https://orneksite.com/fotograf.jpg veya Google Drive / Imgur linki"
+                    placeholder="https://orneksite.com/gorsel.jpg"
                     className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary font-mono"
                   />
                 </div>

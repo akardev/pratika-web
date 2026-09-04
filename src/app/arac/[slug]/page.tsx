@@ -1,4 +1,4 @@
-import { tools } from '@/data/tools';
+import { tools, categories } from '@/data/tools';
 import { getArticlesByToolSlug } from '@/data/articles';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
@@ -9,6 +9,7 @@ import ToolCard from '@/components/ui/ToolCard';
 
 
 import ToolRenderer from '@/components/tools/ToolRenderer';
+import ToolDidYouKnowWidget from '@/components/discovery/ToolDidYouKnowWidget';
 
 
 
@@ -65,6 +66,7 @@ export default async function ToolPage({ params }: Props) {
     notFound();
   }
 
+  const category = categories.find((c) => c.id === tool.categoryId);
   const relatedTools = tools.filter((t) => t.id !== tool.id && t.categoryId === tool.categoryId).slice(0, 4);
   const fallbackRelatedTools = relatedTools.length > 0 ? relatedTools : tools.filter((t) => t.id !== tool.id).slice(0, 4);
   const relatedArticles = getArticlesByToolSlug(tool.slug);
@@ -103,14 +105,25 @@ export default async function ToolPage({ params }: Props) {
       <Breadcrumb
         items={[
           { label: 'Araçlar', href: '/araclar' },
+          ...(category ? [{ label: category.title, href: `/araclar/${category.slug}` }] : []),
           { label: tool.title },
         ]}
       />
 
       {/* Başlık Alanı */}
       <div className="mt-4 mb-8 border-b border-border/70 pb-6">
-        <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-muted text-muted-foreground border border-border/60 mb-2.5">
-          <span>{tool.toolType === 'pdf' ? 'PDF & Dosya Aracı' : 'Ücretsiz Hesaplama'}</span>
+        <div className="flex flex-wrap items-center gap-2 mb-2.5">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-muted text-muted-foreground border border-border/60">
+            <span>{tool.toolType === 'pdf' ? 'PDF & Dosya Aracı' : 'Ücretsiz Hesaplama'}</span>
+          </div>
+          {category && (
+            <Link
+              href={`/araclar/${category.slug}`}
+              className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
+            >
+              <span>{category.title}</span>
+            </Link>
+          )}
         </div>
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground mb-2">
           {tool.title}
@@ -120,9 +133,16 @@ export default async function ToolPage({ params }: Props) {
         </p>
       </div>
 
-      <div className="mb-14">
+      <div className="mb-10">
         <ToolRenderer slug={tool.slug} />
       </div>
+
+      {/* İlgili Biliyor Muydunuz Kartı */}
+      <ToolDidYouKnowWidget
+        toolSlug={tool.slug}
+        categorySlug={category?.slug}
+        className="mb-12"
+      />
 
 
       {/* İlgili Bilgiler (Bilgi Merkezi İçerikleri) */}

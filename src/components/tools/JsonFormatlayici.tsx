@@ -128,7 +128,7 @@ export default function JsonFormatlayici() {
             setInput(e.target.value);
             setStatus({ type: 'idle' });
           }}
-          placeholder='JSON verinizi buraya yapıştırın... (Örn: {"ad": "Pratika", "aracSayisi": 50, "aktif": true})'
+          placeholder="JSON verinizi buraya yapıştırın..."
           className="w-full rounded-xl border border-border bg-background p-4 text-foreground font-mono text-xs sm:text-sm leading-relaxed resize-y focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
           spellCheck={false}
         />

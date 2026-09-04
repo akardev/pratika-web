@@ -97,7 +97,7 @@ export default function GpaGanoHesaplama() {
                 <div className="col-span-6 sm:col-span-5">
                   <input
                     type="text"
-                    placeholder="Ders Adı (Örn: Matematik)"
+                    placeholder="Ders adı"
                     className="w-full rounded-md border border-border bg-background px-3 py-1.5 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                     value={course.name}
                     onChange={(e) => updateCourse(course.id, 'name', e.target.value)}
@@ -108,7 +108,7 @@ export default function GpaGanoHesaplama() {
                   <input
                     type="text"
                     inputMode="decimal"
-                    placeholder="Kredi / AKTS"
+                    placeholder="Kredi"
                     className="w-full rounded-md border border-border bg-background px-2.5 py-1.5 text-xs text-foreground font-mono focus:outline-none focus:ring-1 focus:ring-primary"
                     value={course.credit}
                     onChange={(e) => updateCourse(course.id, 'credit', sanitizeNumericInput(e.target.value, { allowDecimal: true }))}

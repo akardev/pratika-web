@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useSyncExternalStore } from 'react';
 import Link from 'next/link';
-import { getTodayInHistory } from '@/data/todayInHistory';
+import { getTodayInHistory, getHistoryEventNarrative } from '@/data/todayInHistory';
 
 interface MarketItem {
   code: string;
@@ -160,16 +160,20 @@ export default function DailyUtilityWidget() {
             </div>
 
             <div className="mt-1 space-y-2.5">
-              {todayInHistory.events.length > 0 ? todayInHistory.events.slice(0, 3).map((event) => (
-                <div key={`${event.year}-${event.title}`} className="flex gap-3">
-                  <span className="shrink-0 pt-0.5 font-mono text-[11px] font-semibold text-primary">
-                    {event.year}
-                  </span>
-                  <p className="min-w-0 text-xs sm:text-sm font-medium leading-snug text-foreground">
-                    {event.title}
-                  </p>
-                </div>
-              )) : (
+              {todayInHistory.events.length > 0 ? todayInHistory.events.slice(0, 3).map((event) => {
+                const narrative = getHistoryEventNarrative(event);
+                const yearBadge = event.year < 0 ? `MÖ ${Math.abs(event.year)}` : event.year;
+                return (
+                  <div key={event.id || `${event.year}-${narrative}`} className="flex gap-3">
+                    <span className="shrink-0 pt-0.5 font-mono text-[11px] font-semibold text-primary">
+                      {yearBadge}
+                    </span>
+                    <p className="min-w-0 text-xs sm:text-sm font-medium leading-snug text-foreground">
+                      {narrative}
+                    </p>
+                  </div>
+                );
+              }) : (
                 <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground">
                   Bu tarih için henüz doğrulanmış bir içerik bulunmuyor.
                 </p>

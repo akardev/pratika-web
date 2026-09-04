@@ -72,9 +72,10 @@ export default function FreelanceSaatlikUcretHesaplayici() {
                 type="text"
                 value={fixedExpensesStr}
                 onChange={(e) => setFixedExpensesStr(sanitizeNumericInput(e.target.value))}
-                placeholder="Bağkur, yazılım lisansları vb."
+                placeholder="Örn: 5.000"
                 className="w-full h-11 px-3 rounded-lg border border-border bg-background text-sm"
               />
+              <span className="text-[11px] text-muted-foreground block mt-1">Bağkur, yazılım lisansları, ofis vb.</span>
             </div>
             <div>
               <label htmlFor="taxp" className="block text-sm font-medium text-foreground mb-1">Tahmini Vergi Payı (%)</label>

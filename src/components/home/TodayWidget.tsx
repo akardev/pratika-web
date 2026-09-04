@@ -619,7 +619,7 @@ export default function TodayWidget() {
                 type="text"
                 value={searchCityQuery}
                 onChange={(e) => setSearchCityQuery(e.target.value)}
-                placeholder="Şehir adı yazın (ör. Antalya, İzmir)..."
+                placeholder="Şehir adı yazın..."
                 className="w-full px-3 py-2 text-xs bg-muted/30 border border-border/80 rounded-xl text-foreground focus:outline-none focus:border-primary"
                 autoFocus
               />

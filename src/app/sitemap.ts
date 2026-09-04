@@ -20,6 +20,12 @@ export default function sitemap() {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/kategoriler`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/bilgi`,
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
@@ -76,7 +82,7 @@ export default function sitemap() {
   ];
 
   const categoryRoutes = categories.map((cat) => ({
-    url: `${baseUrl}/kategori/${cat.slug}`,
+    url: `${baseUrl}/araclar/${cat.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.8,

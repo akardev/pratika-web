@@ -75,9 +75,10 @@ export default function BelBoyOraniHesaplama() {
                 type="text"
                 value={waistStr}
                 onChange={(e) => setWaistStr(sanitizeNumericInput(e.target.value))}
-                placeholder="Göbek deliği hizasından"
+                placeholder="Örn: 85"
                 className="w-full h-11 px-3 rounded-lg border border-border bg-background text-sm"
               />
+              <span className="text-[11px] text-muted-foreground block mt-1">Göbek deliği hizasından</span>
             </div>
             <div>
               <label htmlFor="h" className="block text-sm font-medium text-foreground mb-1">Boy Uzunluğu (cm)</label>
@@ -86,6 +87,7 @@ export default function BelBoyOraniHesaplama() {
                 type="text"
                 value={heightStr}
                 onChange={(e) => setHeightStr(sanitizeNumericInput(e.target.value))}
+                placeholder="Örn: 175"
                 className="w-full h-11 px-3 rounded-lg border border-border bg-background text-sm"
               />
             </div>

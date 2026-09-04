@@ -84,7 +84,7 @@ export default function KelimeSayaci() {
           rows={7}
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder="İstatistiklerini hesaplamak istediğiniz metni buraya yazın veya yapıştırın..."
+          placeholder="Metninizi buraya yazın veya yapıştırın..."
           className="w-full rounded-xl border border-border bg-background p-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm sm:text-base leading-relaxed resize-y"
         />
 

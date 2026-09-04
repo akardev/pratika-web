@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
+import Link from 'next/link';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import {
   tools,
@@ -13,7 +14,6 @@ import {
 import { matchesSearchQuery, getSearchRelevanceScore } from '@/lib/search';
 
 import ToolCard from '@/components/ui/ToolCard';
-import CategoryCard from '@/components/ui/CategoryCard';
 import { Tool, Category } from '@/types';
 
 type SortOption = 'recommended' | 'az' | 'za';
@@ -167,7 +167,6 @@ export default function ToolsCatalog() {
 
 
   const isFiltered = selectedCategory !== 'all' || searchQuery.trim().length > 0;
-  const isSearchActive = searchQuery.trim().length > 0;
 
   // Seçili kategori bilgisi
   const currentCategoryObj = useMemo(() => {
@@ -219,7 +218,7 @@ export default function ToolsCatalog() {
               id="hero-catalog-search"
               aria-label="Katalogda arama yapın"
               autoComplete="off"
-              placeholder="KDV, PDF, QR kod, yüzde, fotoğraf..."
+              placeholder="Araç veya işlem arayın..."
               value={searchQuery}
               onChange={(e) => handleSearchChange(e.target.value)}
               className="h-full w-full outline-none text-sm sm:text-base bg-transparent pr-3 text-foreground placeholder:text-muted-foreground"
@@ -261,43 +260,23 @@ export default function ToolsCatalog() {
             </button>
           ))}
         </div>
+
+        {/* Kategori Vitrini Yönlendirme Rozeti */}
+        <div className="pt-3.5 flex items-center justify-center">
+          <Link
+            href="/kategoriler"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium text-muted-foreground hover:text-foreground bg-card border border-border hover:border-primary/40 hover:bg-muted/30 transition-all shadow-2xs"
+          >
+            <span>Kategorileri geniş vitrinde incelemek için</span>
+            <span className="text-primary font-semibold inline-flex items-center gap-0.5">
+              Kategori Vitrini <span>&rarr;</span>
+            </span>
+          </Link>
+        </div>
       </section>
 
       {/* ============================================================ */}
-      {/* 2. KATEGORİLER GRİDİ (DISCOVER VİTRİNİ)                      */}
-      {/* Sadece arama yapılmıyorken ve tümü seçiliyken gösterilir     */}
-      {/* ============================================================ */}
-      {!isSearchActive && selectedCategory === 'all' && (
-        <section className="space-y-6 pt-2">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-border/60 pb-3">
-            <div>
-              <span className="text-xs font-semibold text-primary uppercase tracking-wider block mb-1">
-                Kapsamlı Rehber
-              </span>
-              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-                Kategorilere Göre Keşfedin
-              </h2>
-            </div>
-            <p className="text-xs text-muted-foreground">
-              {activeCategories.length} kategori, {totalActiveToolsCount} aktif araç
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {activeCategories.map((cat: Category) => (
-              <CategoryCard
-                key={cat.id}
-                category={cat}
-                onClick={() => handleCategoryChange(cat.id, true)}
-                customHref={`/araclar?kategori=${cat.id}`}
-              />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* ============================================================ */}
-      {/* 3. ÖNE ÇIKAN / POPÜLER ARAÇLAR                               */}
+      {/* 2. ÖNE ÇIKAN / POPÜLER ARAÇLAR                               */}
       {/* Sadece filtre uygulanmamışken gösterilir                     */}
       {/* ============================================================ */}
       {!isFiltered && (
@@ -341,9 +320,17 @@ export default function ToolsCatalog() {
                 </span>
               </h2>
               {currentCategoryObj && (
-                <p className="text-xs text-muted-foreground mt-1">
-                  {currentCategoryObj.description}
-                </p>
+                <div className="flex flex-wrap items-center gap-2 mt-1">
+                  <p className="text-xs text-muted-foreground">
+                    {currentCategoryObj.description}
+                  </p>
+                  <Link
+                    href={`/araclar/${currentCategoryObj.slug}`}
+                    className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-0.5"
+                  >
+                    Kategori Rehberine Git &rarr;
+                  </Link>
+                </div>
               )}
             </div>
 

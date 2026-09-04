@@ -64,7 +64,7 @@ export default function SlugOlusturucu() {
               id="slug-input"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Örn: 2026 Yılında KDV Nasıl Hesaplanır ve Nelere Dikkat Edilir?"
+              placeholder="Örn: KDV Nasıl Hesaplanır?"
               className="w-full rounded-xl border border-border bg-background px-4 py-3.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary text-base"
             />
           </div>

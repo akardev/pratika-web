@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import Link from 'next/link';
 import { getAllAvailableDates, getAllAvailableYears } from '@/data/todayInHistory';
 
@@ -9,16 +10,16 @@ interface HistoryEmptyStateProps {
 }
 
 export default function HistoryEmptyState({ mode, queryLabel }: HistoryEmptyStateProps) {
-  const popularDates = getAllAvailableDates().slice(0, 6);
-  const popularYears = getAllAvailableYears().slice(0, 8);
+  const popularDates = getAllAvailableDates().slice(0, 8);
+  const popularYears = getAllAvailableYears().slice(0, 10);
 
   return (
     <section
       aria-live="polite"
-      className="rounded-2xl border border-dashed border-border bg-card/60 p-8 text-center sm:p-12"
+      className="rounded-3xl border border-dashed border-slate-200 bg-white p-8 text-center shadow-xs sm:p-12"
     >
-      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-muted text-muted-foreground">
-        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
+        <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -28,17 +29,17 @@ export default function HistoryEmptyState({ mode, queryLabel }: HistoryEmptyStat
         </svg>
       </div>
 
-      <h2 className="mt-4 text-lg font-bold text-foreground sm:text-xl">
-        {queryLabel} için henüz doğrulanmış bir kayıt bulunmuyor
+      <h2 className="mt-4 text-lg font-bold text-slate-900 sm:text-xl">
+        {queryLabel} için kayıt bulunamadı
       </h2>
-      <p className="mx-auto mt-2 max-w-md text-xs leading-relaxed text-muted-foreground sm:text-sm">
-        Pratika Tarih Arşivi yalnızca resmî ve doğrulanabilir kaynaklarla genişletilmektedir. Aşağıdaki popüler ve zengin tarih kayıtlarını keşfedebilirsiniz.
+      <p className="mx-auto mt-2 max-w-lg text-xs leading-relaxed text-slate-500 sm:text-sm">
+        Pratika Tarih Arşivi yalnızca resmî ve doğrulanabilir kaynaklarla genişletilmektedir. Aşağıdaki popüler ve zengin tarih kayıtlarını inceleyebilirsiniz.
       </p>
 
       {/* Suggested Landmarks */}
-      <div className="mt-6 border-t border-border/60 pt-6">
-        <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-          {mode === 'day' ? 'Önerilen Tarihler:' : 'Önerilen Dönüm Noktası Yıllar:'}
+      <div className="mt-8 border-t border-slate-100 pt-6">
+        <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+          {mode === 'day' ? 'Öne Çıkan Tarihler:' : 'Dönüm Noktası Yıllar:'}
         </span>
 
         {mode === 'day' ? (
@@ -47,11 +48,11 @@ export default function HistoryEmptyState({ mode, queryLabel }: HistoryEmptyStat
               <Link
                 key={item.slug}
                 href={`/tarihte-bugun/${item.slug}`}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-border/80 bg-card px-3 py-1.5 text-xs font-semibold text-foreground transition-all hover:border-primary/50 hover:bg-primary/5 hover:text-primary"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-semibold text-slate-700 transition-all hover:border-blue-300 hover:bg-blue-50 hover:text-blue-800 hover:shadow-2xs"
               >
                 <span>📅</span>
                 <span>{item.label}</span>
-                <span className="text-[10px] text-muted-foreground">({item.count})</span>
+                <span className="text-[11px] text-slate-400 font-normal">({item.count} olay)</span>
               </Link>
             ))}
           </div>
@@ -61,11 +62,11 @@ export default function HistoryEmptyState({ mode, queryLabel }: HistoryEmptyStat
               <Link
                 key={item.year}
                 href={`/tarihte-bugun/yil/${item.year}`}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-border/80 bg-card px-3 py-1.5 font-mono text-xs font-semibold text-foreground transition-all hover:border-primary/50 hover:bg-primary/5 hover:text-primary"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 font-mono text-xs font-semibold text-slate-700 transition-all hover:border-blue-300 hover:bg-blue-50 hover:text-blue-800 hover:shadow-2xs"
               >
                 <span>🏛️</span>
                 <span>{item.year}</span>
-                <span className="text-[10px] text-muted-foreground">({item.count} olay)</span>
+                <span className="text-[11px] text-slate-400 font-normal">({item.count} olay)</span>
               </Link>
             ))}
           </div>

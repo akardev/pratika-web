@@ -30,5 +30,13 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "src/data/todayInHistory.backup.*.ts",
+    "src/data/todayInHistory.backup.ts",
+    "src/data/todayInHistory.generated.ts",
+    "src/data/todayInHistory.generated.cleaned.ts",
+    "src/data/todayInHistory.generated.cleaned.final.ts",
+    "src/data/todayInHistory.final.cleaned.ts"
+  ]
 }

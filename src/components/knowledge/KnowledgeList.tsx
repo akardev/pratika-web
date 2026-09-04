@@ -50,7 +50,7 @@ export default function KnowledgeList() {
             id="knowledge-search"
             aria-label="Bilgi İçeriklerinde Ara"
             autoComplete="off"
-            placeholder="Rehberlerde ve kavramlarda arayın..."
+            placeholder="Rehber veya konu arayın..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="peer h-full w-full outline-none text-sm sm:text-base bg-transparent pr-4 text-foreground placeholder:text-muted-foreground"

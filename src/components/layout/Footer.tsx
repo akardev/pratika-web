@@ -30,6 +30,16 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/kategoriler" className="hover:text-foreground transition-colors">
+                    Tüm Kategoriler
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/tarihte-bugun" className="hover:text-foreground transition-colors">
+                    Tarihte Bugün
+                  </Link>
+                </li>
+                <li>
                   <Link href="/bilgi" className="hover:text-foreground transition-colors">
                     Bilgi Merkezi
                   </Link>
