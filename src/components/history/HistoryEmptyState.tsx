@@ -16,10 +16,10 @@ export default function HistoryEmptyState({ mode, queryLabel }: HistoryEmptyStat
   return (
     <section
       aria-live="polite"
-      className="rounded-3xl border border-dashed border-slate-200 bg-white p-8 text-center shadow-xs sm:p-12"
+      className="rounded-2xl border border-dashed border-border bg-card p-8 text-center shadow-2xs sm:p-12"
     >
-      <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-        <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -29,44 +29,42 @@ export default function HistoryEmptyState({ mode, queryLabel }: HistoryEmptyStat
         </svg>
       </div>
 
-      <h2 className="mt-4 text-lg font-bold text-slate-900 sm:text-xl">
+      <h2 className="mt-4 text-base font-bold text-foreground sm:text-lg">
         {queryLabel} için kayıt bulunamadı
       </h2>
-      <p className="mx-auto mt-2 max-w-lg text-xs leading-relaxed text-slate-500 sm:text-sm">
-        Pratika Tarih Arşivi yalnızca resmî ve doğrulanabilir kaynaklarla genişletilmektedir. Aşağıdaki popüler ve zengin tarih kayıtlarını inceleyebilirsiniz.
+      <p className="mx-auto mt-1.5 max-w-md text-xs leading-relaxed text-muted-foreground sm:text-sm">
+        Pratika Tarih Arşivi yalnızca resmî ve doğrulanabilir kaynaklarla genişletilmektedir. Aşağıdaki popüler tarih kayıtlarını inceleyebilirsiniz.
       </p>
 
       {/* Suggested Landmarks */}
-      <div className="mt-8 border-t border-slate-100 pt-6">
-        <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+      <div className="mt-6 border-t border-border/60 pt-5">
+        <span className="text-xs font-semibold text-muted-foreground">
           {mode === 'day' ? 'Öne Çıkan Tarihler:' : 'Dönüm Noktası Yıllar:'}
         </span>
 
         {mode === 'day' ? (
-          <div className="mt-3 flex flex-wrap justify-center gap-2">
+          <div className="mt-2.5 flex flex-wrap justify-center gap-1.5">
             {popularDates.map((item) => (
               <Link
                 key={item.slug}
                 href={`/tarihte-bugun/${item.slug}`}
-                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-xs font-semibold text-slate-700 transition-all hover:border-blue-300 hover:bg-blue-50 hover:text-blue-800 hover:shadow-2xs"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-border/70 bg-muted/40 px-3 py-1.5 text-xs font-medium text-foreground transition-all hover:bg-muted hover:border-border"
               >
-                <span>📅</span>
                 <span>{item.label}</span>
-                <span className="text-[11px] text-slate-400 font-normal">({item.count} olay)</span>
+                <span className="text-[10px] text-muted-foreground font-normal">({item.count})</span>
               </Link>
             ))}
           </div>
         ) : (
-          <div className="mt-3 flex flex-wrap justify-center gap-2">
+          <div className="mt-2.5 flex flex-wrap justify-center gap-1.5">
             {popularYears.map((item) => (
               <Link
                 key={item.year}
                 href={`/tarihte-bugun/yil/${item.year}`}
-                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 font-mono text-xs font-semibold text-slate-700 transition-all hover:border-blue-300 hover:bg-blue-50 hover:text-blue-800 hover:shadow-2xs"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-border/70 bg-muted/40 px-3 py-1.5 text-xs font-mono font-medium text-foreground transition-all hover:bg-muted hover:border-border"
               >
-                <span>🏛️</span>
                 <span>{item.year}</span>
-                <span className="text-[11px] text-slate-400 font-normal">({item.count} olay)</span>
+                <span className="text-[10px] text-muted-foreground font-normal">({item.count})</span>
               </Link>
             ))}
           </div>

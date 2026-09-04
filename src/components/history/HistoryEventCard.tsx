@@ -8,46 +8,38 @@ interface HistoryEventCardProps {
   mode: 'day' | 'year';
 }
 
-const CATEGORY_STYLES: Record<string, { label: string; badgeClass: string; yearBadgeClass: string }> = {
+const CATEGORY_STYLES: Record<string, { label: string; badgeClass: string }> = {
   turkey: {
-    label: '🇹🇷 Türkiye Tarihi',
-    badgeClass: 'bg-red-50 text-red-700 border-red-200/80',
-    yearBadgeClass: 'bg-red-50 text-red-800 border-red-200',
+    label: 'Türkiye',
+    badgeClass: 'bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20',
   },
   world: {
-    label: '🌍 Dünya & Siyaset',
-    badgeClass: 'bg-blue-50 text-blue-700 border-blue-200/80',
-    yearBadgeClass: 'bg-blue-50 text-blue-800 border-blue-200',
+    label: 'Dünya & Siyaset',
+    badgeClass: 'bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/20',
   },
   science: {
-    label: '🔬 Bilim & Teknoloji',
-    badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
-    yearBadgeClass: 'bg-emerald-50 text-emerald-800 border-emerald-200',
+    label: 'Bilim & Teknoloji',
+    badgeClass: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20',
   },
   culture: {
-    label: '🎨 Sanat & Kültür',
-    badgeClass: 'bg-purple-50 text-purple-700 border-purple-200/80',
-    yearBadgeClass: 'bg-purple-50 text-purple-800 border-purple-200',
+    label: 'Sanat & Kültür',
+    badgeClass: 'bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/20',
   },
   sports: {
-    label: '⚽ Spor',
-    badgeClass: 'bg-amber-50 text-amber-800 border-amber-200/80',
-    yearBadgeClass: 'bg-amber-50 text-amber-900 border-amber-200',
+    label: 'Spor',
+    badgeClass: 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
   },
   birth: {
-    label: '👶 Doğum',
-    badgeClass: 'bg-teal-50 text-teal-700 border-teal-200/80',
-    yearBadgeClass: 'bg-teal-50 text-teal-800 border-teal-200',
+    label: 'Doğum',
+    badgeClass: 'bg-teal-500/10 text-teal-600 dark:text-teal-400 border-teal-500/20',
   },
   death: {
-    label: '🕊️ Vefat',
-    badgeClass: 'bg-slate-100 text-slate-700 border-slate-200/80',
-    yearBadgeClass: 'bg-slate-100 text-slate-800 border-slate-200',
+    label: 'Vefat',
+    badgeClass: 'bg-muted text-muted-foreground border-border/80',
   },
   event: {
-    label: '📌 Tarihi Olay',
-    badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200/80',
-    yearBadgeClass: 'bg-indigo-50 text-indigo-800 border-indigo-200',
+    label: 'Olay',
+    badgeClass: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/20',
   },
 };
 
@@ -70,17 +62,17 @@ export default function HistoryEventCard({ event, mode }: HistoryEventCardProps)
   };
 
   return (
-    <article className="group relative flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.03)] transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400/70 hover:shadow-md">
+    <article className="group relative flex flex-col justify-between rounded-2xl border border-border/80 bg-card p-4 sm:p-5 shadow-2xs transition-all duration-200 hover:border-primary/40 hover:shadow-xs">
       <div>
         {/* Top Header: YIL + Kategori + Copy Icon */}
-        <div className="flex items-center justify-between gap-3 border-b border-slate-100 pb-3">
+        <div className="flex items-center justify-between gap-3 border-b border-border/60 pb-2.5">
           <div className="flex items-center gap-2">
-            {/* Prominent Year Badge */}
-            <span className={`inline-flex items-center rounded-lg border px-2.5 py-1 font-mono text-sm font-extrabold tracking-tight ${styleConfig.yearBadgeClass}`}>
+            {/* Year Badge */}
+            <span className="inline-flex items-center rounded-lg border border-border/70 bg-muted/60 px-2 py-0.5 font-mono text-xs font-bold text-foreground">
               {timeBadge}
             </span>
             {/* Category Pill */}
-            <span className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[11px] font-semibold tracking-wide ${styleConfig.badgeClass}`}>
+            <span className={`inline-flex items-center rounded-md border px-2 py-0.5 text-[11px] font-medium tracking-wide ${styleConfig.badgeClass}`}>
               {styleConfig.label}
             </span>
           </div>
@@ -91,10 +83,10 @@ export default function HistoryEventCard({ event, mode }: HistoryEventCardProps)
             onClick={handleCopy}
             title={copied ? 'Kopyalandı!' : 'Metni Kopyala'}
             aria-label="Olay metnini kopyala"
-            className="flex h-7 w-7 items-center justify-center rounded-lg text-slate-400 opacity-70 transition-all hover:bg-slate-100 hover:text-slate-700 hover:opacity-100 focus:opacity-100"
+            className="flex h-7 w-7 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus:opacity-100"
           >
             {copied ? (
-              <svg className="h-4 w-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-3.5 w-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
               </svg>
             ) : (
@@ -105,15 +97,15 @@ export default function HistoryEventCard({ event, mode }: HistoryEventCardProps)
           </button>
         </div>
 
-        {/* Single Historical Explanation */}
-        <p className="mt-3.5 text-sm sm:text-[15px] font-normal leading-relaxed text-slate-700">
+        {/* Historical Explanation */}
+        <p className="mt-3 text-sm font-normal leading-relaxed text-foreground/90">
           {narrative}
         </p>
       </div>
 
       {mode === 'year' && (
-        <div className="mt-3 flex items-center justify-end border-t border-slate-100 pt-2.5 text-xs">
-          <span className="text-[11px] font-medium text-slate-400">
+        <div className="mt-3 flex items-center justify-end border-t border-border/60 pt-2 text-xs">
+          <span className="text-[11px] font-medium text-muted-foreground">
             {formatHistoryDayLabel(event.month, event.day)}
           </span>
         </div>

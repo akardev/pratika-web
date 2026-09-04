@@ -38,18 +38,6 @@ const CATEGORY_ORDER: HistoryCategory[] = [
   'death',
   'event',
 ];
-
-const CATEGORY_ICONS: Record<HistoryCategory, string> = {
-  turkey: '🇹🇷',
-  world: '🌍',
-  science: '🔬',
-  culture: '🎨',
-  sports: '⚽',
-  birth: '👶',
-  death: '🕊️',
-  event: '📌',
-};
-
 // Initial items shown per category before user clicks "Daha Fazla Göster"
 const INITIAL_CATEGORY_LIMIT = 8;
 
@@ -144,7 +132,6 @@ export default function HistoryDiscoveryPage({
       return {
         category,
         label: CATEGORY_LABELS[category],
-        icon: CATEGORY_ICONS[category],
         events: catEvents,
         totalInDate: stats[category] || 0,
       };
@@ -210,13 +197,13 @@ export default function HistoryDiscoveryPage({
   };
 
   return (
-    <main className="min-h-screen bg-slate-50/50 pb-20">
+    <main className="min-h-screen bg-background pb-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
 
-      <div className="container mx-auto max-w-5xl px-4 pt-6 sm:px-6 sm:pt-10 lg:px-8">
+      <div className="container mx-auto max-w-5xl px-4 pt-6 sm:px-6 sm:pt-8 lg:px-8">
         {/* 1. HERO / ÜST ALAN */}
         <HistoryHeader
           mode={mode}
@@ -224,11 +211,10 @@ export default function HistoryDiscoveryPage({
           subtitle={pageSubtitle}
           currentDaySlug={daySlug}
           currentYear={effectiveYear}
-          highlightLabel={mode === 'day' ? dayLabel : `${effectiveYear}`}
         />
 
         {/* 2. DATE / YEAR NAVIGATOR */}
-        <div className="mt-6">
+        <div className="mt-5">
           {mode === 'day' ? (
             <HistoryDayNavigator month={effectiveMonth} day={effectiveDay} />
           ) : (
@@ -236,64 +222,70 @@ export default function HistoryDiscoveryPage({
           )}
         </div>
 
-        {/* 3. GÜN ÖZETİ (DYNAMIC SUMMARY STATS) & KATEGORİ FİLTRELERİ */}
+        {/* 3. MODERN FİLTRE & ARAMA ALANI */}
         {hasContent && (
-          <div className="mt-8 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-xs sm:p-5">
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                  Günün Kayıt Dağılımı ({stats.all} Kayıt):
-                </span>
-                {/* Stats Pills Bar / Category Filter */}
-                <div className="mt-2.5 flex flex-wrap gap-1.5">
-                  {/* All Category Pill */}
-                  <button
-                    type="button"
-                    onClick={() => setSelectedCategory('all')}
-                    className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
+          <div className="mt-6 rounded-2xl border border-border/80 bg-card p-3.5 shadow-2xs sm:p-4">
+            <div className="flex flex-col gap-3.5 lg:flex-row lg:items-center lg:justify-between">
+              {/* Category Filter Chips */}
+              <div className="flex flex-wrap items-center gap-1.5">
+                {/* All Category Chip */}
+                <button
+                  type="button"
+                  onClick={() => setSelectedCategory('all')}
+                  className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-semibold transition-all ${
+                    selectedCategory === 'all'
+                      ? 'bg-primary text-primary-foreground shadow-xs'
+                      : 'bg-muted/70 text-muted-foreground hover:bg-muted hover:text-foreground'
+                  }`}
+                >
+                  <span>Tümü</span>
+                  <span
+                    className={`rounded-md px-1.5 py-0.5 text-[10px] font-medium leading-none ${
                       selectedCategory === 'all'
-                        ? 'bg-blue-600 text-white shadow-xs'
-                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                        ? 'bg-primary-foreground/20 text-primary-foreground'
+                        : 'bg-background/80 text-foreground/70'
                     }`}
                   >
-                    <span>Tümü</span>
-                    <span className={`rounded-md px-1.5 py-0.2 text-[10px] ${selectedCategory === 'all' ? 'bg-white/20 text-white' : 'bg-slate-200 text-slate-800'}`}>
-                      {stats.all}
-                    </span>
-                  </button>
+                    {stats.all}
+                  </span>
+                </button>
 
-                  {/* Individual Categories */}
-                  {CATEGORY_ORDER.map((cat) => {
-                    const count = stats[cat] || 0;
-                    if (count === 0) return null;
-                    const isSelected = selectedCategory === cat;
-                    return (
-                      <button
-                        key={cat}
-                        type="button"
-                        onClick={() => setSelectedCategory(isSelected ? 'all' : cat)}
-                        className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-semibold transition-all ${
+                {/* Individual Categories */}
+                {CATEGORY_ORDER.map((cat) => {
+                  const count = stats[cat] || 0;
+                  if (count === 0) return null;
+                  const isSelected = selectedCategory === cat;
+                  return (
+                    <button
+                      key={cat}
+                      type="button"
+                      onClick={() => setSelectedCategory(isSelected ? 'all' : cat)}
+                      className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-medium transition-all ${
+                        isSelected
+                          ? 'bg-primary text-primary-foreground font-semibold shadow-xs'
+                          : 'bg-muted/70 text-muted-foreground hover:bg-muted hover:text-foreground'
+                      }`}
+                    >
+                      <span>{CATEGORY_LABELS[cat]}</span>
+                      <span
+                        className={`rounded-md px-1.5 py-0.5 text-[10px] leading-none ${
                           isSelected
-                            ? 'bg-blue-600 text-white font-bold shadow-xs'
-                            : 'bg-slate-100 text-slate-700 hover:bg-blue-50 hover:text-blue-700 hover:border-blue-200'
+                            ? 'bg-primary-foreground/20 text-primary-foreground'
+                            : 'bg-background/80 text-foreground/70'
                         }`}
                       >
-                        <span>{CATEGORY_ICONS[cat]}</span>
-                        <span>{CATEGORY_LABELS[cat]}</span>
-                        <span className={`rounded-md px-1.5 py-0.2 text-[10px] ${isSelected ? 'bg-white/20 text-white' : 'bg-slate-200 text-slate-800'}`}>
-                          {count}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
+                        {count}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
 
               {/* In-page Instant Search */}
-              <div className="w-full lg:w-72">
+              <div className="w-full shrink-0 lg:w-64">
                 <div className="relative">
-                  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-muted-foreground">
+                    <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                   </div>
@@ -302,17 +294,17 @@ export default function HistoryDiscoveryPage({
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Bu günde ara..."
-                    className="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 pl-9 pr-8 text-xs text-slate-800 outline-none transition-all placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500/20"
+                    className="h-9 w-full rounded-xl border border-border/80 bg-background pl-8 pr-7 text-xs text-foreground placeholder:text-muted-foreground outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary"
                     aria-label="Bu günde ara"
                   />
                   {searchQuery && (
                     <button
                       type="button"
                       onClick={() => setSearchQuery('')}
-                      className="absolute inset-y-0 right-0 flex items-center pr-2.5 text-slate-400 hover:text-slate-600"
+                      className="absolute inset-y-0 right-0 flex items-center pr-2.5 text-muted-foreground hover:text-foreground"
                       aria-label="Aramayı temizle"
                     >
-                      <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                       </svg>
                     </button>
@@ -325,14 +317,14 @@ export default function HistoryDiscoveryPage({
 
         {/* 4. ÖNE ÇIKAN OLAY (FEATURED SPOTLIGHT CARD) */}
         {featuredEvent && !searchQuery && selectedCategory === 'all' && (
-          <div className="mt-8">
+          <div className="mt-6">
             <HistoryFeaturedCard event={featuredEvent} mode={mode} />
           </div>
         )}
 
         {/* 5. KATEGORİLERE GÖRE EVENT KARTLARI */}
-        <div className="mt-10 space-y-12">
-          {categorizedSections.map(({ category, label, icon, events }) => {
+        <div className="mt-8 space-y-10">
+          {categorizedSections.map(({ category, label, events }) => {
             const isExpanded = Boolean(expandedCategories[category]);
             const shouldLimit = events.length > INITIAL_CATEGORY_LIMIT && !isExpanded;
             const displayedEvents = shouldLimit
@@ -342,25 +334,24 @@ export default function HistoryDiscoveryPage({
             return (
               <section key={category} aria-labelledby={`category-${category}`}>
                 {/* Category Section Header */}
-                <div className="mb-5 flex items-center justify-between border-b border-slate-200 pb-3">
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-xl" aria-hidden="true">{icon}</span>
+                <div className="mb-4 flex items-center justify-between border-b border-border/70 pb-2.5">
+                  <div className="flex items-center gap-2">
                     <h2
                       id={`category-${category}`}
-                      className="text-base font-extrabold tracking-tight text-slate-900 sm:text-lg"
+                      className="text-base font-bold tracking-tight text-foreground sm:text-lg"
                     >
                       {label}
                     </h2>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-600">
-                      {events.length} kayıt
+                    <span className="rounded-full bg-muted px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground">
+                      {events.length} olay
                     </span>
                   </div>
                 </div>
 
                 {/* Event Cards Grid */}
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-3.5 md:grid-cols-2">
                   {displayedEvents.map((event) => (
                     <HistoryEventCard key={event.id} event={event} mode={mode} />
                   ))}
@@ -368,23 +359,23 @@ export default function HistoryDiscoveryPage({
 
                 {/* Progressive Loading: "Daha Fazla Göster" Button */}
                 {events.length > INITIAL_CATEGORY_LIMIT && (
-                  <div className="mt-5 text-center">
+                  <div className="mt-4 text-center">
                     <button
                       type="button"
                       onClick={() => toggleExpand(category)}
-                      className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-xs font-bold text-blue-700 shadow-2xs transition-all hover:border-blue-300 hover:bg-blue-50 hover:shadow-xs"
+                      className="inline-flex items-center gap-2 rounded-xl border border-border/80 bg-card px-4 py-2 text-xs font-semibold text-foreground shadow-2xs transition-colors hover:bg-muted hover:border-border"
                     >
                       {isExpanded ? (
                         <>
                           <span>Daha Az Göster</span>
-                          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg className="h-3.5 w-3.5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                           </svg>
                         </>
                       ) : (
                         <>
-                          <span>+{events.length - INITIAL_CATEGORY_LIMIT} Olayı Daha Göster</span>
-                          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <span>+{events.length - INITIAL_CATEGORY_LIMIT} Olay Daha Göster</span>
+                          <svg className="h-3.5 w-3.5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                           </svg>
                         </>
@@ -398,14 +389,14 @@ export default function HistoryDiscoveryPage({
 
           {/* Search Result Empty State */}
           {hasContent && categorizedSections.length === 0 && searchQuery && (
-            <div className="rounded-2xl border border-dashed border-slate-200 bg-white p-8 text-center sm:p-12">
-              <p className="text-sm font-semibold text-slate-700">
+            <div className="rounded-2xl border border-dashed border-border bg-card p-8 text-center sm:p-12">
+              <p className="text-sm font-semibold text-foreground">
                 &ldquo;{searchQuery}&rdquo; aramasına uygun bir olay bulunamadı.
               </p>
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
-                className="mt-3 text-xs font-bold text-blue-600 hover:underline"
+                className="mt-3 text-xs font-semibold text-primary hover:underline"
               >
                 Aramayı temizle
               </button>
@@ -422,14 +413,14 @@ export default function HistoryDiscoveryPage({
         </div>
 
         {/* 6. BOTTOM ARCHIVE FOOTER */}
-        <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200/80 pt-6 text-sm text-slate-500">
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-border/70 pt-6 text-sm text-muted-foreground">
           <Link
             href="/bilgi"
-            className="inline-flex items-center gap-1.5 font-bold text-blue-700 transition-colors hover:text-blue-900 hover:underline"
+            className="inline-flex items-center gap-1.5 font-semibold text-primary transition-colors hover:underline"
           >
             ← Bilgi Merkezi Rehberlerine Dön
           </Link>
-          <div className="text-xs text-slate-400">
+          <div className="text-xs text-muted-foreground">
             Pratika Tarih Keşif Merkezi — Güvenilir Resmî Tarih Arşivi
           </div>
         </div>

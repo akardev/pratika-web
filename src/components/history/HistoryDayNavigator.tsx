@@ -64,16 +64,16 @@ export default function HistoryDayNavigator({ month, day }: HistoryDayNavigatorP
   };
 
   return (
-    <div className="relative rounded-2xl border border-slate-200/80 bg-white p-2.5 shadow-sm sm:p-3">
+    <div className="relative rounded-2xl border border-border/80 bg-card p-2 sm:p-2.5 shadow-xs">
       <div className="flex items-center justify-between gap-2">
         {/* Previous Day */}
         <Link
           href={`/tarihte-bugun/${prev.slug}`}
-          className="group inline-flex items-center gap-1.5 rounded-xl border border-slate-200/70 bg-slate-50/80 px-3 py-2 text-xs font-semibold text-slate-700 transition-all hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700 sm:px-4 sm:py-2.5 sm:text-sm"
+          className="group inline-flex items-center gap-1.5 rounded-xl border border-border/70 bg-muted/40 px-3 py-2 text-xs font-medium text-foreground transition-all hover:bg-muted hover:border-border sm:px-4 sm:py-2 sm:text-sm"
           title={`Önceki Gün: ${prev.label}`}
           aria-label={`Önceki Gün: ${prev.label}`}
         >
-          <svg className="h-4 w-4 shrink-0 transition-transform group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <svg className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:-translate-x-0.5 group-hover:text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
           <span className="hidden xs:inline">{prev.label}</span>
@@ -90,9 +90,9 @@ export default function HistoryDayNavigator({ month, day }: HistoryDayNavigatorP
             }}
             aria-expanded={isOpen}
             aria-haspopup="dialog"
-            className="inline-flex items-center gap-2 rounded-xl bg-blue-50 border border-blue-200/80 px-3.5 py-2 text-sm font-bold text-blue-900 shadow-2xs transition-all hover:bg-blue-100/70 hover:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 sm:px-6 sm:py-2.5 sm:text-base"
+            className="inline-flex items-center gap-2 rounded-xl bg-primary/10 border border-primary/20 px-3.5 py-2 text-xs font-semibold text-primary transition-all hover:bg-primary/15 sm:px-5 sm:py-2 sm:text-sm cursor-pointer"
           >
-            <svg className="h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <svg className="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -100,9 +100,9 @@ export default function HistoryDayNavigator({ month, day }: HistoryDayNavigatorP
                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
               />
             </svg>
-            <span className="tracking-tight">{currentLabel}</span>
+            <span className="tracking-tight font-bold">{currentLabel}</span>
             <svg
-              className={`h-4 w-4 text-blue-600 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+              className={`h-3.5 w-3.5 text-primary transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -115,7 +115,7 @@ export default function HistoryDayNavigator({ month, day }: HistoryDayNavigatorP
           {!isViewingToday && (
             <Link
               href={`/tarihte-bugun/${todaySlug}`}
-              className="hidden sm:inline-flex items-center gap-1 rounded-xl border border-amber-300/80 bg-amber-50 px-3 py-2 text-xs font-bold text-amber-900 transition-all hover:bg-amber-100 hover:border-amber-400"
+              className="inline-flex items-center gap-1 rounded-xl border border-amber-500/25 bg-amber-500/10 px-2.5 py-1.5 text-xs font-semibold text-amber-600 dark:text-amber-400 transition-all hover:bg-amber-500/15"
               title={`Bugünün Tarihine Git (${todayLabel})`}
             >
               <span>Bugün</span>
@@ -126,13 +126,13 @@ export default function HistoryDayNavigator({ month, day }: HistoryDayNavigatorP
         {/* Next Day */}
         <Link
           href={`/tarihte-bugun/${next.slug}`}
-          className="group inline-flex items-center gap-1.5 rounded-xl border border-slate-200/70 bg-slate-50/80 px-3 py-2 text-xs font-semibold text-slate-700 transition-all hover:border-blue-300 hover:bg-blue-50/60 hover:text-blue-700 sm:px-4 sm:py-2.5 sm:text-sm"
+          className="group inline-flex items-center gap-1.5 rounded-xl border border-border/70 bg-muted/40 px-3 py-2 text-xs font-medium text-foreground transition-all hover:bg-muted hover:border-border sm:px-4 sm:py-2 sm:text-sm"
           title={`Sonraki Gün: ${next.label}`}
           aria-label={`Sonraki Gün: ${next.label}`}
         >
           <span className="hidden xs:inline">{next.label}</span>
           <span className="xs:hidden">Sonraki</span>
-          <svg className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <svg className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </Link>
