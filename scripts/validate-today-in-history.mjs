@@ -120,7 +120,10 @@ async function validateTodayInHistory() {
   console.log(`İşlem süresi               : ${((Date.now() - startTime) / 1000).toFixed(2)}s`);
   console.log('==================================================');
 
-  if (daysFound.size !== 366 || emptyTitles.length > 0 || emptyDescriptions.length > 0 || invalidCategories.length > 0) {
+  if (daysFound.size !== 366 || emptyTitles.length > 0 || emptyDescriptions.length > 0 || invalidCategories.length > 0 || duplicates.length > 0) {
+    if (duplicates.length > 0) {
+      console.error('HATA: Aşağıdaki ID\'ler birden fazla kez kullanılmış:', duplicates);
+    }
     console.error('Doğrulama başarısız oldu!');
     process.exit(1);
   } else {

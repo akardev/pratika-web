@@ -20,12 +20,54 @@ function useIsClient() {
 function getCardTopEvents(events: ReturnType<typeof getTodayInHistory>['events']) {
   if (!events || events.length === 0) return [];
 
+  const CATEGORY_PRIORITY: Record<string, number> = {
+    turkey: 1,
+    world: 2,
+    science: 3,
+    culture: 4,
+    sports: 5,
+    event: 6,
+    birth: 7,
+    death: 8
+  };
+
+  const isImportantPerson = (event: ReturnType<typeof getTodayInHistory>['events'][0]) => {
+    if (event.importance === 'featured') return true;
+    
+    const text = (event.title + ' ' + event.description).toLowerCase();
+    
+    // Unvanlar tek başına yetmez, o yüzden kral/kraliçe vs. yok
+    const keywords = [
+      'kurucu', 'kuruluş', 'bilim insan', 'fizikçi', 'kimyager', 'biyolog', 
+      'matematikçi', 'astronom', 'filozof', 'felsefeci', 'yazar', 'şair', 
+      'ressam', 'besteci', 'müzisyen', 'mucit', 'kâşif', 'kaşif', 'önder', 
+      'lider', 'devlet başkanı', 'cumhurbaşkanı', 'başbakan', 'nobel', 
+      'komutan', 'sadrazam', 'vezir', 'mimar', 'yönetmen', 'devrimci',
+      'heykeltıraş', 'oyuncu', 'sanatçı'
+    ];
+    
+    return keywords.some(kw => text.includes(kw));
+  };
+
+  // 1. Kategorilere ayır
+  const historicalEvents = events.filter(e => e.category !== 'birth' && e.category !== 'death');
+  const personEvents = events.filter(e => e.category === 'birth' || e.category === 'death');
+
+  // 2. Öncelik sırasına göre aday listesi oluştur
+  // Önce tarihi olaylar (kendi içinde kategori önceliği > yıl)
+  // Sonra önemli kişiler (kendi içinde kategori önceliği > yıl)
+  const candidateEvents = [
+    ...historicalEvents.sort((a, b) => CATEGORY_PRIORITY[a.category] - CATEGORY_PRIORITY[b.category] || a.year - b.year),
+    ...personEvents.filter(isImportantPerson).sort((a, b) => CATEGORY_PRIORITY[a.category] - CATEGORY_PRIORITY[b.category] || a.year - b.year)
+  ];
+
   const selected: typeof events = [];
   // Kartın min-h-[350px] sınırını aşmayacak kullanılabilir net dikey alan bütçesi (piksel)
   const MAX_EVENTS_HEIGHT_PX = 205;
   let accumulatedHeight = 0;
 
-  for (const event of events) {
+  // Adaylar arasından karta sığacak en değerlilerini seç (packing)
+  for (const event of candidateEvents) {
     const narrative = getHistoryEventNarrative(event);
     // 44 karakter ve altı tek satır (~22px), üstü 2 satır (~38px) render alanı kaplar
     const isMultiLine = narrative.length > 44;
@@ -42,7 +84,14 @@ function getCardTopEvents(events: ReturnType<typeof getTodayInHistory>['events']
     accumulatedHeight += requiredHeight;
   }
 
-  return selected.length > 0 ? selected : events.slice(0, 2);
+  // Eğer adaylardan hiçbiri seçilemediyse (çok nadir, örn. sadece önemsiz doğum/ölüm olan bir gün)
+  // en azından UI boş kalmasın diye ilk 2 sıradan olayı al
+  if (selected.length === 0) {
+    return events.slice(0, 2);
+  }
+
+  // 3. Seçilen olayları kronolojik sıraya sok (Mevcut tarih mantığını korumak için)
+  return selected.sort((a, b) => a.year - b.year);
 }
 
 export default function TodayInHistoryCard({
