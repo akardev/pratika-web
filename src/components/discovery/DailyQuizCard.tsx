@@ -20,8 +20,8 @@ export default function DailyQuizCard({
     if (typeof window !== 'undefined') {
       try {
         const todayStr = new Date().toISOString().split('T')[0];
-        const cacheKey = `pratika_daily_quiz_${todayStr}_${initialQuestion.id}`;
-        const cachedStr = localStorage.getItem(cacheKey);
+        const cacheKey = `pratiksel_daily_quiz_${todayStr}_${initialQuestion.id}`;
+        const cachedStr = localStorage.getItem(cacheKey) || localStorage.getItem(`pratika_daily_quiz_${todayStr}_${initialQuestion.id}`);
         
         if (cachedStr) {
           const parsed = parseInt(cachedStr, 10);
@@ -46,7 +46,7 @@ export default function DailyQuizCard({
     if (typeof window !== 'undefined') {
       try {
         const todayStr = new Date().toISOString().split('T')[0];
-        const cacheKey = `pratika_daily_quiz_${todayStr}_${initialQuestion.id}`;
+        const cacheKey = `pratiksel_daily_quiz_${todayStr}_${initialQuestion.id}`;
         localStorage.setItem(cacheKey, index.toString());
       } catch {
         // Ignore localStorage errors

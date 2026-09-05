@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/bilgi/${article.slug}`,
     },
     openGraph: {
-      title: `${article.title} | Pratika`,
+      title: `${article.title} | Pratiksel`,
       description: article.description,
       url: `${siteConfig.url}/bilgi/${article.slug}`,
       type: 'article',
@@ -76,7 +76,7 @@ export default async function ArticlePage({ params }: Props) {
       url: siteConfig.url,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteConfig.url}/brand/pratika-logo.png`,
+        url: `${siteConfig.url}/brand/pratiksel-logo.png`,
       },
     },
   };
@@ -123,7 +123,7 @@ export default async function ArticlePage({ params }: Props) {
         <div className="mb-10 p-5 rounded-xl border border-border bg-muted/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <p className="text-[11px] font-bold uppercase tracking-wider text-primary mb-1">
-              Pratika Hesaplama Aracı
+              Pratiksel Hesaplama Aracı
             </p>
             <p className="text-xs sm:text-sm text-foreground font-medium">
               Bu formülü elle hesaplamak yerine doğrudan <strong>{relatedTool.title}</strong> aracıyla anında sonuca ulaşabilirsiniz.

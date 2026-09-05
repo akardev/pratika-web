@@ -18,14 +18,14 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 /**
  * Produces a safe output filename based on the user's original image name:
  * Example:
- * - XXXX_454.jpg -> pratikacom-XXXX_454.png
- * - urun-123.webp -> pratikacom-urun-123.png
- * - tatil-fotografi.jpeg -> pratikacom-tatil-fotografi.png
- * - benim-urun.png -> pratikacom-benim-urun.png
+ * - XXXX_454.jpg -> pratiksel-XXXX_454.png
+ * - urun-123.webp -> pratiksel-urun-123.png
+ * - tatil-fotografi.jpeg -> pratiksel-tatil-fotografi.png
+ * - benim-urun.png -> pratiksel-benim-urun.png
  */
 function getOutputFilename(originalName?: string | null): string {
   if (!originalName || typeof originalName !== 'string') {
-    return 'pratikacom-arka-plan-silici.png';
+    return 'pratiksel-arka-plan-silici.png';
   }
 
   // Strip extension
@@ -38,7 +38,7 @@ function getOutputFilename(originalName?: string | null): string {
     .trim()
     .replace(/\s+/g, '-');
 
-  return `pratikacom-${safeBaseName || 'arka-plan-silici'}.png`;
+  return `pratiksel-${safeBaseName || 'arka-plan-silici'}.png`;
 }
 
 type ProcessStatus = 'idle' | 'loading-model' | 'processing' | 'success' | 'error';
@@ -130,7 +130,7 @@ export default function ArkaPlanSilici() {
   const [originalDimensions, setOriginalDimensions] = useState<{ width: number; height: number } | null>(null);
   const [resultUrl, setResultUrl] = useState<string | null>(null);
   const [resultBlob, setResultBlob] = useState<Blob | null>(null);
-  const [downloadFilename, setDownloadFilename] = useState<string>('pratikacom-arka-plan-silici.png');
+  const [downloadFilename, setDownloadFilename] = useState<string>('pratiksel-arka-plan-silici.png');
 
   const [status, setStatus] = useState<ProcessStatus>('idle');
   const [statusMessage, setStatusMessage] = useState<string>('');
@@ -236,7 +236,7 @@ export default function ArkaPlanSilici() {
     setOriginalDimensions(null);
     setResultUrl(null);
     setResultBlob(null);
-    setDownloadFilename('pratikacom-arka-plan-silici.png');
+    setDownloadFilename('pratiksel-arka-plan-silici.png');
     setStatus('idle');
     setStatusMessage('');
     setErrorMessage(null);

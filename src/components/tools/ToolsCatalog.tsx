@@ -249,7 +249,7 @@ export default function ToolsCatalog() {
       {/* ============================================================ */}
       <section className="text-center pt-2 sm:pt-4">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-muted text-muted-foreground border border-border/60 mb-4">
-          <span>Pratika Araç Kataloğu</span>
+          <span>Pratiksel Araç Kataloğu</span>
         </div>
 
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-3">

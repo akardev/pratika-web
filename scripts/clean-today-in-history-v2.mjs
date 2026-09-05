@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Pratika - Tarihte Bugün veri temizleyici
+ * Pratiksel - Tarihte Bugün veri temizleyici
  *
  * Kullanım:
  *   node clean-today-in-history-v2.mjs "src\data\todayInHistory.generated.ts"

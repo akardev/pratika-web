@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Kullanım Koşulları',
-  description: 'Pratika Kullanım Koşulları. Platformumuzun sunduğu hesaplama araçlarının kullanım şartları ve yasal sorumluluk sınırları.',
+  description: 'Pratiksel Kullanım Koşulları. Platformumuzun sunduğu hesaplama araçlarının kullanım şartları ve yasal sorumluluk sınırları.',
   alternates: {
     canonical: '/kullanim-kosullari',
   },
@@ -24,7 +24,7 @@ export default function KullanimKosullariPage() {
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-2">1. Hizmetin Kapsamı</h2>
           <p>
-            Pratika, kullanıcılara günlük, finansal ve matematiksel hesaplamaları kolaylaştırmak amacıyla çeşitli çevrim içi hesaplama araçları sunan bir web platformudur. Sitemizi ziyaret ederek bu kullanım koşullarını kabul etmiş sayılırsınız.
+            Pratiksel, kullanıcılara günlük, finansal ve matematiksel hesaplamaları kolaylaştırmak amacıyla çeşitli çevrim içi hesaplama araçları sunan bir web platformudur. Sitemizi ziyaret ederek bu kullanım koşullarını kabul etmiş sayılırsınız.
           </p>
         </section>
 
@@ -38,14 +38,14 @@ export default function KullanimKosullariPage() {
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-2">3. Kullanıcının Sorumlulukları</h2>
           <p>
-            Hesaplama araçlarına girilen verilerin doğruluğu tamamen kullanıcının sorumluluğundadır. Yanlış veya eksik girilen verilerden kaynaklanan hatalı sonuçlardan Pratika sorumlu tutulamaz.
+            Hesaplama araçlarına girilen verilerin doğruluğu tamamen kullanıcının sorumluluğundadır. Yanlış veya eksik girilen verilerden kaynaklanan hatalı sonuçlardan Pratiksel sorumlu tutulamaz.
           </p>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-2">4. Hesaplama Sonuçlarının Niteliği</h2>
           <p>
-            Pratika üzerindeki tüm hesaplama sonuçları yalnızca genel bilgilendirme ve tahmin amaçlıdır. Bu sonuçlar hiçbir şekilde resmi mali, vergisel, hukuki, yatırım veya muhasebe danışmanlığı niteliği taşımaz.
+            Pratiksel üzerindeki tüm hesaplama sonuçları yalnızca genel bilgilendirme ve tahmin amaçlıdır. Bu sonuçlar hiçbir şekilde resmi mali, vergisel, hukuki, yatırım veya muhasebe danışmanlığı niteliği taşımaz.
           </p>
         </section>
 
@@ -59,28 +59,28 @@ export default function KullanimKosullariPage() {
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-2">6. Hizmette Yapılabilecek Değişiklikler</h2>
           <p>
-            Pratika, önceden bildirimde bulunmaksızın sunduğu araçları güncelleme, değiştirme, geçici olarak durdurma veya yayından kaldırma hakkını saklı tutar.
+            Pratiksel, önceden bildirimde bulunmaksızın sunduğu araçları güncelleme, değiştirme, geçici olarak durdurma veya yayından kaldırma hakkını saklı tutar.
           </p>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-2">7. Fikri Mülkiyet</h2>
           <p>
-            Pratika web sitesinde yer alan tasarım, logo, arayüz bileşenleri, metinler ve yazılım kodları fikri mülkiyet mevzuatına tabidir ve izinsiz çoğaltılamaz veya ticari amaçla kullanılamaz.
+            Pratiksel web sitesinde yer alan tasarım, logo, arayüz bileşenleri, metinler ve yazılım kodları fikri mülkiyet mevzuatına tabidir ve izinsiz çoğaltılamaz veya ticari amaçla kullanılamaz.
           </p>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-2">8. Sorumluluk Sınırları</h2>
           <p>
-            Pratika, hesaplama araçlarının kullanımından veya kullanılamamasından doğabilecek doğrudan veya dolaylı maddi ya da manevi zararlardan ötürü hiçbir koşulda sorumlu tutulamaz. Resmi ve ticari işlemlerinizde ilgili yetkili kurumlardan ve uzmanlardan onay almanız tavsiye edilir.
+            Pratiksel, hesaplama araçlarının kullanımından veya kullanılamamasından doğabilecek doğrudan veya dolaylı maddi ya da manevi zararlardan ötürü hiçbir koşulda sorumlu tutulamaz. Resmi ve ticari işlemlerinizde ilgili yetkili kurumlardan ve uzmanlardan onay almanız tavsiye edilir.
           </p>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-2">9. Kullanım Koşullarındaki Değişiklikler</h2>
           <p>
-            Pratika, bu kullanım koşullarını dilediği zaman güncelleme hakkına sahiptir. Güncellenen koşullar sitede yayınlandığı andan itibaren geçerlilik kazanır.
+            Pratiksel, bu kullanım koşullarını dilediği zaman güncelleme hakkına sahiptir. Güncellenen koşullar sitede yayınlandığı andan itibaren geçerlilik kazanır.
           </p>
         </section>
       </div>

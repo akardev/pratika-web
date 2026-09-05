@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: HistoryYearPageProps): Promis
     },
     robots: hasContent ? undefined : { index: false, follow: true },
     openGraph: {
-      title: `${pageTitle} | Pratika`,
+      title: `${pageTitle} | Pratiksel`,
       description,
       url: `${siteConfig.url}/tarihte-bugun/yil/${yearNum}`,
       type: 'website',

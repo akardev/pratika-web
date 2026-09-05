@@ -92,7 +92,7 @@ export default function PdfFiligranEkle() {
             <div>
               <a
                 href={downloadUrl}
-                download="pratikacom-filigranli.pdf"
+                download="pratiksel-filigranli.pdf"
                 className="px-6 h-11 inline-flex items-center justify-center bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-700 transition-colors shadow-sm"
               >
                 Filigranlı PDF&apos;i İndir

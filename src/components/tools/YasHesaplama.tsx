@@ -241,7 +241,7 @@ export default function YasHesaplama() {
           <div>
             <h4 className="font-semibold text-lg text-foreground">Yaş hesaplama doğum gününü dikkate alır mı?</h4>
             <p className="text-muted-foreground mt-2">
-              Evet. Pratika Yaş Hesaplama aracı, doğum ayı ve gününü güncel takvimle kıyaslayarak kesin ve hatasız yaşınızı hesaplar.
+              Evet. Pratiksel Yaş Hesaplama aracı, doğum ayı ve gününü güncel takvimle kıyaslayarak kesin ve hatasız yaşınızı hesaplar.
             </p>
           </div>
           <div>

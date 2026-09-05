@@ -4,10 +4,10 @@ import { useState } from 'react';
 
 export default function MetinKarsilastirmaDiff() {
   const [textA, setTextA] = useState<string>(
-    'Pratika web platformu kullanıcı dostudur.\nHızlı ve pratik hesaplama araçları sunar.\n100 yeni araç eklenmiştir.'
+    'Pratiksel web platformu kullanıcı dostudur.\nHızlı ve pratik hesaplama araçları sunar.\n100 yeni araç eklenmiştir.'
   );
   const [textB, setTextB] = useState<string>(
-    'Pratika web platformu modern ve kullanıcı dostudur.\nHızlı ve pratik hesaplama araçları sunar.\n104 yeni araç eklenmiştir.'
+    'Pratiksel web platformu modern ve kullanıcı dostudur.\nHızlı ve pratik hesaplama araçları sunar.\n104 yeni araç eklenmiştir.'
   );
 
   const [diffLines, setDiffLines] = useState<{

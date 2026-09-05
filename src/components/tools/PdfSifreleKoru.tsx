@@ -77,7 +77,7 @@ export default function PdfSifreleKoru() {
             <div>
               <a
                 href={downloadUrl}
-                download="pratikacom-korunmus.pdf"
+                download="pratiksel-korunmus.pdf"
                 className="px-6 h-11 inline-flex items-center justify-center bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-700 transition-colors shadow-sm"
               >
                 Korumalı PDF&apos;i İndir

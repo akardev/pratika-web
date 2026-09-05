@@ -144,7 +144,7 @@ export default function CssGradientOlusturucu() {
                   : `radial-gradient(circle, ${color1}, ${color2})`
               }}
             >
-              Pratika Gradient
+              Pratiksel Gradient
             </div>
           </div>
         </div>

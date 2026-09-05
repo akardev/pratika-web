@@ -96,7 +96,7 @@ export default function GorselFormatDonusturucu() {
             <div className="flex items-center gap-4">
               <a
                 href={convertedUrl}
-                download={`pratikacom-donusturuldu.${getExtension()}`}
+                download={`pratiksel-donusturuldu.${getExtension()}`}
                 className="px-6 h-11 inline-flex items-center justify-center bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-700 transition-colors shadow-sm"
               >
                 .{getExtension().toUpperCase()} Dosyasını İndir

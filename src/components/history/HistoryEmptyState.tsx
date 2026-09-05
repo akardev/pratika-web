@@ -33,7 +33,7 @@ export default function HistoryEmptyState({ mode, queryLabel }: HistoryEmptyStat
         {queryLabel} için kayıt bulunamadı
       </h2>
       <p className="mx-auto mt-1.5 max-w-md text-xs leading-relaxed text-muted-foreground sm:text-sm">
-        Pratika Tarih Arşivi yalnızca resmî ve doğrulanabilir kaynaklarla genişletilmektedir. Aşağıdaki popüler tarih kayıtlarını inceleyebilirsiniz.
+        Pratiksel Tarih Arşivi yalnızca resmî ve doğrulanabilir kaynaklarla genişletilmektedir. Aşağıdaki popüler tarih kayıtlarını inceleyebilirsiniz.
       </p>
 
       {/* Suggested Landmarks */}

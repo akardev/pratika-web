@@ -8,7 +8,7 @@ const subscribe = (callback: () => void) => {
   return () => window.removeEventListener('storage', callback);
 };
 
-const getSnapshot = () => localStorage.getItem('pratika_cookie_consent') || 'none';
+const getSnapshot = () => localStorage.getItem('pratiksel_cookie_consent') || localStorage.getItem('pratika_cookie_consent') || 'none';
 const getServerSnapshot = () => 'dismissed';
 
 export default function CookieBanner() {
@@ -18,12 +18,12 @@ export default function CookieBanner() {
   if (consent !== 'none' || closed) return null;
 
   const handleAccept = () => {
-    localStorage.setItem('pratika_cookie_consent', 'accepted');
+    localStorage.setItem('pratiksel_cookie_consent', 'accepted');
     setClosed(true);
   };
 
   const handleEssentialOnly = () => {
-    localStorage.setItem('pratika_cookie_consent', 'essential');
+    localStorage.setItem('pratiksel_cookie_consent', 'essential');
     setClosed(true);
   };
 
@@ -46,7 +46,7 @@ export default function CookieBanner() {
               Çerez Tercihleriniz
             </h2>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              Pratika, temel site fonksiyonlarını sunmak ve deneyiminizi iyileştirmek için teknik çerezler kullanır. Detaylı bilgi için{' '}
+              Pratiksel, temel site fonksiyonlarını sunmak ve deneyiminizi iyileştirmek için teknik çerezler kullanır. Detaylı bilgi için{' '}
               <Link
                 href="/cerez-politikasi"
                 className="text-primary hover:underline font-medium"

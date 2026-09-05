@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/arac/${tool.slug}`,
     },
     openGraph: {
-      title: `${pageTitle} | Pratika`,
+      title: `${pageTitle} | Pratiksel`,
       description,
       url: `${siteConfig.url}/arac/${tool.slug}`,
       type: 'website',

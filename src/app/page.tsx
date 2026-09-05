@@ -10,14 +10,14 @@ import { siteConfig } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'Pratika',
+    absolute: 'Pratiksel',
   },
   description: 'Hesaplama, dönüştürme, dosya işlemleri, metin, görsel ve günlük dijital ihtiyaçlar için hızlı, güvenilir ve sade dijital yardımcı platformu.',
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Pratika — Günlük İşler İçin Pratik Dijital Yardımcı',
+    title: 'Pratiksel — Günlük İşler İçin Pratik Dijital Yardımcı',
     description: 'Hesaplama, dönüştürme, dosya işlemleri, metin, görsel ve günlük dijital ihtiyaçlar için hızlı, güvenilir ve sade dijital yardımcı platformu.',
     url: siteConfig.url,
     type: 'website',
@@ -78,7 +78,7 @@ export default function Home() {
     { label: 'JSON Formatla', query: 'json' },
   ];
 
-  // 6 Geniş Çözüm Alanı (Pillars of Pratika)
+  // 6 Geniş Çözüm Alanı (Pillars of Pratiksel)
   const discoveryPillars = [
     {
       title: 'Hesapla',
@@ -175,7 +175,7 @@ export default function Home() {
           </h1>
 
           <p className="text-sm sm:text-base lg:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed">
-            Pratika; günlük hayatta, işte ve internette karşılaştığınız küçük ama zaman alan işleri saniyeler içinde çözmenize yardımcı olan sade bir dijital yardımcıdır.
+            Pratiksel; günlük hayatta, işte ve internette karşılaştığınız küçük ama zaman alan işleri saniyeler içinde çözmenize yardımcı olan sade bir dijital yardımcıdır.
           </p>
 
           <div className="mb-4 sm:mb-5">
@@ -295,7 +295,7 @@ export default function Home() {
       </section>
 
       {/* ============================================================ */}
-      {/* 4. NASIL ÇALIŞIR? (3 ADIMDA PRATİKA)                         */}
+      {/* 4. NASIL ÇALIŞIR? (3 ADIMDA PRATİKSEL)                         */}
       {/* ============================================================ */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 border-b border-border/60 bg-muted/20">
         <div className="container mx-auto max-w-6xl">
@@ -346,7 +346,7 @@ export default function Home() {
       </section>
 
       {/* ============================================================ */}
-      {/* 5. PLATFORM DEĞERLERİ (PRATİKA NEDEN FARKLI?)                 */}
+      {/* 5. PLATFORM DEĞERLERİ (PRATİKSEL NEDEN FARKLI?)                 */}
       {/* ============================================================ */}
       <section className="py-12 sm:py-16 px-4 sm:px-6 lg:px-8 border-b border-border/60">
         <div className="container mx-auto max-w-6xl">
@@ -356,10 +356,10 @@ export default function Home() {
                 Güvenilirlik &amp; Sadeliğin Standardı
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground mb-3">
-                Neden Pratika?
+                Neden Pratiksel?
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-3xl">
-                Pratika, gereksiz reklamlar, karmaşık yönlendirmeler ve hantal arayüzler olmadan; aradığınız sonuca tek tıkla ulaşmanızı sağlayan profesyonel bir dijital yardımcı platformudur.
+                Pratiksel, gereksiz reklamlar, karmaşık yönlendirmeler ve hantal arayüzler olmadan; aradığınız sonuca tek tıkla ulaşmanızı sağlayan profesyonel bir dijital yardımcı platformudur.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mt-8 pt-8 border-t border-border/60 text-left">
@@ -395,7 +395,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-2 border-b border-border/60 pb-3">
             <div>
               <span className="text-xs font-semibold text-primary uppercase tracking-wider block mb-1">
-                Pratika Rehberleri
+                Pratiksel Rehberleri
               </span>
               <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground mb-1">
                 Bir şeyi sadece hesaplamayın, mantığını öğrenin.

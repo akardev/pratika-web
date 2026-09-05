@@ -147,7 +147,7 @@ export default function KelimeSayaci() {
             <div>
               <h3 className="font-semibold text-foreground mb-1">Girdiğim metinler sunucuya kaydedilir mi?</h3>
               <p className="text-muted-foreground">
-                Hayır. Pratika Kelime Sayacı %100 tarayıcınızda çalışır. Metniniz hiçbir sunucuya iletilmez ve saklanmaz.
+                Hayır. Pratiksel Kelime Sayacı %100 tarayıcınızda çalışır. Metniniz hiçbir sunucuya iletilmez ve saklanmaz.
               </p>
             </div>
             <div>

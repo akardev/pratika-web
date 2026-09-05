@@ -15,7 +15,7 @@ export default function BilgiMerkeziPage() {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 max-w-5xl">
       <div className="text-center max-w-2xl mx-auto mb-10">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-muted text-muted-foreground border border-border/60 mb-3">
-          <span>Pratika Rehberleri</span>
+          <span>Pratiksel Rehberleri</span>
         </div>
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-foreground mb-3">
           Bilgi Merkezi

@@ -196,7 +196,7 @@ export default function PdfBirlestir() {
         <div>
           <h2 className="text-lg font-bold text-foreground mb-2">PDF Birleştirici Nasıl Çalışır?</h2>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Pratika PDF Birleştirici, iki veya daha fazla bağımsız PDF belgesini tek bir dosyada bir araya getirmenizi sağlar. Dosyalarınızı yükledikten sonra yukarı/aşağı okları kullanarak dilediğiniz sıraya dizin ve <strong>&quot;PDF’leri Birleştir&quot;</strong> butonuna tıklayın. Tüm birleştirme işlemi tarayıcınızın kendi işlem gücü ile güvenle tamamlanır.
+            Pratiksel PDF Birleştirici, iki veya daha fazla bağımsız PDF belgesini tek bir dosyada bir araya getirmenizi sağlar. Dosyalarınızı yükledikten sonra yukarı/aşağı okları kullanarak dilediğiniz sıraya dizin ve <strong>&quot;PDF’leri Birleştir&quot;</strong> butonuna tıklayın. Tüm birleştirme işlemi tarayıcınızın kendi işlem gücü ile güvenle tamamlanır.
           </p>
         </div>
 

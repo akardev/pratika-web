@@ -270,7 +270,7 @@ export default function GuvenliSifreOlusturucu() {
         <div>
           <h2 className="text-lg font-bold text-foreground mb-2">Şifre Güvenliği &amp; Web Crypto API</h2>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Standart rastgele sayı üreteçleri (`Math.random()`) tahmin edilebilir algoritmalar kullanır. Pratika Şifre Oluşturucu, tarayıcınızın kriptografik olarak güvenli <strong>Web Crypto API (`crypto.getRandomValues`)</strong> donanım entropisini kullanır. Üretilen hiçbir parola sunucuya iletilmez.
+            Standart rastgele sayı üreteçleri (`Math.random()`) tahmin edilebilir algoritmalar kullanır. Pratiksel Şifre Oluşturucu, tarayıcınızın kriptografik olarak güvenli <strong>Web Crypto API (`crypto.getRandomValues`)</strong> donanım entropisini kullanır. Üretilen hiçbir parola sunucuya iletilmez.
           </p>
         </div>
 

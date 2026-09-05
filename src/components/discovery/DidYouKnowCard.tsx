@@ -16,7 +16,7 @@ export default function DidYouKnowCard({
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    const textToCopy = `Biliyor muydunuz?\n\n"${initialFact.fact}"\n— Pratika Günün Keşfi (pratika.com.tr)`;
+    const textToCopy = `Biliyor muydunuz?\n\n"${initialFact.fact}"\n— Pratiksel Günün Keşfi (pratiksel.com)`;
     navigator.clipboard.writeText(textToCopy).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);

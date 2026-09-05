@@ -140,7 +140,7 @@ export default function BuyukKucukHarfDonusturucu() {
         <div>
           <h2 className="text-lg font-bold text-foreground mb-2">Türkçe Karakter Uyumlu Dönüşüm</h2>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Standart harf dönüştürücüler genellikle Türkçe&apos;deki <strong>&apos;i&apos; → &apos;İ&apos;</strong> ve <strong>&apos;I&apos; → &apos;ı&apos;</strong> kurallarını bozarak hatalı sonuçlar üretir. Pratika Harf Dönüştürücü, Türkçe dil bilgisi standartlarına tam uyumlu olarak harfleri dönüştürür.
+            Standart harf dönüştürücüler genellikle Türkçe&apos;deki <strong>&apos;i&apos; → &apos;İ&apos;</strong> ve <strong>&apos;I&apos; → &apos;ı&apos;</strong> kurallarını bozarak hatalı sonuçlar üretir. Pratiksel Harf Dönüştürücü, Türkçe dil bilgisi standartlarına tam uyumlu olarak harfleri dönüştürür.
           </p>
         </div>
 

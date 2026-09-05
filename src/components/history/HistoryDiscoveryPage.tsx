@@ -166,12 +166,12 @@ export default function HistoryDiscoveryPage({
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: `${pageTitle} | Pratika Tarih Arşivi`,
+    name: `${pageTitle} | Pratiksel Tarih Arşivi`,
     description: pageSubtitle,
     url: pageUrl,
     isPartOf: {
       '@type': 'WebSite',
-      name: 'Pratika',
+      name: 'Pratiksel',
       url: siteConfig.url,
     },
     breadcrumb: {
@@ -420,7 +420,7 @@ export default function HistoryDiscoveryPage({
             ← Bilgi Merkezi Rehberlerine Dön
           </Link>
           <div className="text-xs text-muted-foreground">
-            Pratika Tarih Keşif Merkezi — Güvenilir Resmî Tarih Arşivi
+            Pratiksel Tarih Keşif Merkezi — Güvenilir Resmî Tarih Arşivi
           </div>
         </div>
       </div>

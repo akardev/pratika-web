@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'KVKK Aydınlatma Metni',
-  description: 'Pratika 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamındaki aydınlatma metni.',
+  description: 'Pratiksel 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamındaki aydınlatma metni.',
   alternates: {
     canonical: '/kvkk',
   },
@@ -24,14 +24,14 @@ export default function KvkkPage() {
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-2">1. Veri Sorumlusu</h2>
           <p>
-            Bu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu (&ldquo;KVKK&rdquo;) uyarınca, Pratika platformunun işletilmesine ve ziyaretçilerine ilişkin kişisel veri işleme faaliyetleri hakkında bilgi vermek amacıyla hazırlanmıştır.
+            Bu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu (&ldquo;KVKK&rdquo;) uyarınca, Pratiksel platformunun işletilmesine ve ziyaretçilerine ilişkin kişisel veri işleme faaliyetleri hakkında bilgi vermek amacıyla hazırlanmıştır.
           </p>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-2">2. İşlenen Kişisel Veriler</h2>
           <p>
-            Pratika, kullanıcıların hesaplama araçlarına girdiği sayısal veya takvimsel verileri (örneğin fiyat, indirim oranı, doğum tarihi vb.) sunucularında kaydetmez ve işlemez; tüm hesaplama işlemleri kullanıcının kendi tarayıcısında (istemci tarafında) anlık olarak gerçekleşir. Siteyi ziyaret ettiğinizde yalnızca internet sitesi güvenliği ve teknik işleyiş için gerekli olan temel trafik ve sunucu log verileri otomatik yöntemlerle işlenebilir.
+            Pratiksel, kullanıcıların hesaplama araçlarına girdiği sayısal veya takvimsel verileri (örneğin fiyat, indirim oranı, doğum tarihi vb.) sunucularında kaydetmez ve işlemez; tüm hesaplama işlemleri kullanıcının kendi tarayıcısında (istemci tarafında) anlık olarak gerçekleşir. Siteyi ziyaret ettiğinizde yalnızca internet sitesi güvenliği ve teknik işleyiş için gerekli olan temel trafik ve sunucu log verileri otomatik yöntemlerle işlenebilir.
           </p>
         </section>
 

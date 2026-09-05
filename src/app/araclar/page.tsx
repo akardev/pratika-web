@@ -6,13 +6,13 @@ import ToolsCatalog from '@/components/tools/ToolsCatalog';
 
 export const metadata: Metadata = {
   title: 'Online Araçlar ve Hesaplama Araçları',
-  description: 'İhtiyacınız olan tüm online hesaplama, dönüştürme ve pratik dijital araçları Pratika araç kataloğunda keşfedin.',
+  description: 'İhtiyacınız olan tüm online hesaplama, dönüştürme ve pratik dijital araçları Pratiksel araç kataloğunda keşfedin.',
   alternates: {
     canonical: '/araclar',
   },
   openGraph: {
-    title: 'Online Araçlar ve Hesaplama Araçları | Pratika',
-    description: 'İhtiyacınız olan tüm online hesaplama, dönüştürme ve pratik dijital araçları Pratika araç kataloğunda keşfedin.',
+    title: 'Online Araçlar ve Hesaplama Araçları | Pratiksel',
+    description: 'İhtiyacınız olan tüm online hesaplama, dönüştürme ve pratik dijital araçları Pratiksel araç kataloğunda keşfedin.',
     url: '/araclar',
     type: 'website',
   },

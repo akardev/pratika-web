@@ -50,7 +50,7 @@ export default function MetniPdfDonusturucu() {
   const [fontSize, setFontSize] = useState<FontSizeOption>(14);
   const [fontFamily, setFontFamily] = useState<FontFamilyOption>('arial');
   const [margin, setMargin] = useState<MarginOption>('medium');
-  const [fileName, setFileName] = useState('pratika-belge');
+  const [fileName, setFileName] = useState('pratiksel-belge');
   const [isGenerating, setIsGenerating] = useState(false);
   const [statusMessage, setStatusMessage] = useState<{ type: 'success' | 'error' | 'info'; text: string } | null>(null);
 
@@ -78,13 +78,13 @@ export default function MetniPdfDonusturucu() {
     setText(
       `PRATİKA BELGE VE DÖKÜMAN ŞABLONU\n\n` +
       `Tarih: ${new Date().toLocaleDateString('tr-TR')}\n\n` +
-      `Bu belge, Pratika "Metni PDF&apos;e Dönüştür" aracı kullanılarak doğrudan tarayıcı üzerinde oluşturulmuştur.\n\n` +
+      `Bu belge, Pratiksel "Metni PDF&apos;e Dönüştür" aracı kullanılarak doğrudan tarayıcı üzerinde oluşturulmuştur.\n\n` +
       `Öne Çıkan Özellikler:\n` +
       `1. Türkçe Karakter Desteği: ç, Ç, ğ, Ğ, ı, İ, ö, Ö, ş, Ş, ü, Ü.\n` +
       `2. %100 İstemci Taraflı Güvenlik: Yazdığınız veya yapıştırdığınız metinler hiçbir zaman sunucuya gönderilmez.\n` +
       `3. Çok Sayfalı Taşma Yönetimi: Metin uzadıkça yeni sayfalar otomatik olarak eklenir ve sayfa altbilgisi numaralandırılır.\n` +
       `4. Özel Sayfa ve Font Ayarları: A4, A5, Letter boyutları; dikey/yatay yön ve farklı tipografi seçenekleri.\n\n` +
-      `Hızlı, sade, güvenilir ve pratik dijital araçlar için Pratika&apos;yı tercih ettiğiniz için teşekkür ederiz.`
+      `Hızlı, sade, güvenilir ve pratik dijital araçlar için Pratiksel&apos;i tercih ettiğiniz için teşekkür ederiz.`
     );
     setStatusMessage({ type: 'info', text: 'Örnek metin başarıyla yüklendi.' });
   };
@@ -244,7 +244,7 @@ export default function MetniPdfDonusturucu() {
       const blob = new Blob([pdfBytes as unknown as BlobPart], { type: 'application/pdf' });
       const downloadUrl = URL.createObjectURL(blob);
 
-      const cleanBaseName = fileName.trim().replace(/\.pdf$/i, '') || 'pratika-belge';
+      const cleanBaseName = fileName.trim().replace(/\.pdf$/i, '') || 'pratiksel-belge';
       const finalFileName = `${cleanBaseName}.pdf`;
 
       const link = document.createElement('a');
@@ -427,7 +427,7 @@ export default function MetniPdfDonusturucu() {
                     type="text"
                     value={fileName}
                     onChange={(e) => setFileName(e.target.value)}
-                    placeholder="pratika-belge"
+                    placeholder="pratiksel-belge"
                     className="w-full px-3 py-2 text-xs sm:text-sm rounded-l-lg border border-r-0 border-border bg-background text-foreground focus:outline-none focus:border-primary"
                   />
                   <span className="px-3 py-2 bg-muted text-muted-foreground text-xs font-mono rounded-r-lg border border-border border-l-0 select-none">
@@ -488,7 +488,7 @@ export default function MetniPdfDonusturucu() {
 
                 {/* Önizleme Alt Bilgi */}
                 <div className="pt-3 mt-auto border-t border-slate-100 flex items-center justify-between text-[9px] text-slate-400 font-mono">
-                  <span>Pratika PDF Belgesi ({estimatedPages} Sayfa)</span>
+                  <span>Pratiksel PDF Belgesi ({estimatedPages} Sayfa)</span>
                   <span>Sayfa 1 / {estimatedPages}</span>
                 </div>
               </div>

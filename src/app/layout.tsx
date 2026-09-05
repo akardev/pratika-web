@@ -12,14 +12,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Pratika",
-    template: "%s | Pratika",
+    default: "Pratiksel",
+    template: "%s | Pratiksel",
   },
   description: siteConfig.description,
-  applicationName: "Pratika",
-  authors: [{ name: "Pratika" }],
-  creator: "Pratika",
-  publisher: "Pratika",
+  applicationName: "Pratiksel",
+  authors: [{ name: "Pratiksel" }],
+  creator: "Pratiksel",
+  publisher: "Pratiksel",
   formatDetection: {
     telephone: false,
   },
@@ -31,20 +31,20 @@ export const metadata: Metadata = {
     locale: siteConfig.locale,
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "Pratika | Modern Araçlar ve Hesaplama Platformu",
+    title: "Pratiksel | Modern Araçlar ve Hesaplama Platformu",
     description: siteConfig.description,
     images: [
       {
         url: siteConfig.ogImage,
         width: 588,
         height: 164,
-        alt: "Pratika Logo",
+        alt: "Pratiksel Logo",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pratika | Modern Araçlar ve Hesaplama Platformu",
+    title: "Pratiksel | Modern Araçlar ve Hesaplama Platformu",
     description: siteConfig.description,
     images: [siteConfig.ogImage],
   },
@@ -60,9 +60,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/brand/pratika-icon.png",
-    shortcut: "/brand/pratika-icon.png",
-    apple: "/brand/pratika-icon.png",
+    icon: "/brand/pratiksel-icon-32.png",
+    shortcut: "/brand/pratiksel-icon-32.png",
+    apple: "/brand/pratiksel-icon-32.png",
   },
 };
 

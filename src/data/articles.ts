@@ -573,7 +573,7 @@ export const articles: Article[] = [
       {
         heading: 'Maliyetten Kârlılığa Geçiş',
         paragraphs: [
-          'Gerçek birim maliyetinizi kesin olarak belirledikten sonra, satmayı planladığınız fiyat üzerinden net kazancınızı görmek için Pratika Kâr / Zarar Hesaplama veya hedeflediğiniz kâr marjını tutturmak için Kar Marjı Hesaplama araçlarını kullanabilirsiniz.'
+          'Gerçek birim maliyetinizi kesin olarak belirledikten sonra, satmayı planladığınız fiyat üzerinden net kazancınızı görmek için Pratiksel Kâr / Zarar Hesaplama veya hedeflediğiniz kâr marjını tutturmak için Kar Marjı Hesaplama araçlarını kullanabilirsiniz.'
         ]
       }
     ]
@@ -935,7 +935,7 @@ export const articles: Article[] = [
       {
         heading: 'Adım Adım PDF Birleştirme',
         paragraphs: [
-          '1. Birleştirmek istediğiniz PDF dosyalarını Pratika PDF Birleştirici alanına sürükleyin veya dosya seçici ile yükleyin.',
+          '1. Birleştirmek istediğiniz PDF dosyalarını Pratiksel PDF Birleştirici alanına sürükleyin veya dosya seçici ile yükleyin.',
           '2. Dosya listesindeki yukarı/aşağı ok butonlarını kullanarak belgelerin nihai PDF içindeki sıralamasını belirleyin.',
           '3. "PDF’leri Birleştir" butonuna tıklayın. Birleştirilmiş yeni dosyanız anında tarayıcınızda oluşturulup indirilmeye hazır hale gelir.'
         ]
@@ -963,7 +963,7 @@ export const articles: Article[] = [
         heading: 'Sayfa Aralıklarını Belirleme',
         paragraphs: [
           'Sayfa numaralarını virgülle ayırarak tekil sayfaları (örneğin 1, 4, 9), tire işareti ile de ardışık sayfa bloklarını (örneğin 3-7) ifade edebilirsiniz.',
-          'Pratika PDF Bölücü, orijinal dosyanızı değiştirmeden yalnızca istediğiniz sayfalardan yepyeni bir PDF oluşturur.'
+          'Pratiksel PDF Bölücü, orijinal dosyanızı değiştirmeden yalnızca istediğiniz sayfalardan yepyeni bir PDF oluşturur.'
         ]
       }
     ]
@@ -983,7 +983,7 @@ export const articles: Article[] = [
         heading: 'İstenmeyen Sayfaları Çıkarma',
         paragraphs: [
           'Tarama işlemlerinde sıklıkla araya boş sayfalar karışır veya çift taraflı baskı taramalarında arka kapak gibi gereksiz sayfalar yer alır.',
-          'Pratika PDF Sayfa Silici ile belgenizdeki tüm sayfaları ızgara düzeninde görerek silmek istediklerinizi tek tıkla işaretleyebilir ve saniyeler içinde temiz bir kopya elde edebilirsiniz.'
+          'Pratiksel PDF Sayfa Silici ile belgenizdeki tüm sayfaları ızgara düzeninde görerek silmek istediklerinizi tek tıkla işaretleyebilir ve saniyeler içinde temiz bir kopya elde edebilirsiniz.'
         ]
       }
     ]
@@ -1025,9 +1025,9 @@ export const articles: Article[] = [
         ]
       },
       {
-        heading: 'Pratika’nın %100 İstemci Taraflı (Client-Side) Mimarisi',
+        heading: 'Pratiksel’in %100 İstemci Taraflı (Client-Side) Mimarisi',
         paragraphs: [
-          'Pratika PDF ve Dosya Araçları, modern JavaScript ve WebAssembly teknolojileriyle doğrudan bilgisayarınızın veya telefonunuzun tarayıcısında çalışır. Dosyalarınız cihazınızın dışına asla çıkmaz, hiçbir sunucuya yüklenmez ve üçüncü taraflarla paylaşılmaz.'
+          'Pratiksel PDF ve Dosya Araçları, modern JavaScript ve WebAssembly teknolojileriyle doğrudan bilgisayarınızın veya telefonunuzun tarayıcısında çalışır. Dosyalarınız cihazınızın dışına asla çıkmaz, hiçbir sunucuya yüklenmez ve üçüncü taraflarla paylaşılmaz.'
         ]
       }
     ]
@@ -1062,13 +1062,13 @@ export const articles: Article[] = [
         heading: 'A4 Sayfaya Görsel Yerleştirme ve Aspect Ratio (En-Boy Oranı)',
         paragraphs: [
           'Görseller PDF sayfasına aktarılırken en sık yapılan hata, resmin sayfa boyutuna zorlanarak uzatılması (ezilmesi) veya kenarlarının kırpılmasıdır.',
-          'Pratika JPG PDF Dönüştürücü, orijinal görselin en-boy oranını (aspect ratio) tam olarak korur. Resim, sayfa içerisine ve seçilen kenar boşluklarına göre maksimum ölçekte, ortalanmış olarak yerleştirilir.'
+          'Pratiksel JPG PDF Dönüştürücü, orijinal görselin en-boy oranını (aspect ratio) tam olarak korur. Resim, sayfa içerisine ve seçilen kenar boşluklarına göre maksimum ölçekte, ortalanmış olarak yerleştirilir.'
         ]
       },
       {
         heading: 'Adım Adım JPG → PDF Dönüştürme',
         paragraphs: [
-          '1. Birleştirmek istediğiniz JPG, JPEG veya PNG görsellerini Pratika yükleme alanına sürükleyin.',
+          '1. Birleştirmek istediğiniz JPG, JPEG veya PNG görsellerini Pratiksel yükleme alanına sürükleyin.',
           '2. Liste üzerinden yukarı ve aşağı ok butonlarıyla sayfa sırasını belirleyin.',
           '3. Sayfa boyutunu (A4, A5 veya Görsel Boyutu) ve kenar boşluğunu seçin.',
           '4. "PDF’i Oluştur ve İndir" butonuna tıklayın. Belgeniz anında cihazınızda üretilir.'
@@ -1078,7 +1078,7 @@ export const articles: Article[] = [
         heading: 'Dosya Güvenliği ve Yerel (Client-Side) Gizlilik',
         paragraphs: [
           'Pasaport fotokopileri, sözleşmeler ve banka dekontları gibi kişisel veriler içeren görsellerinizin güvenliği son derece kritiktir.',
-          'Pratika, hiçbir görselinizi uzak sunuculara göndermez. Tüm dönüşüm işlemi tarayıcınızın kendi bellek ve işlemci gücüyle cihazınızda tamamlanır.'
+          'Pratiksel, hiçbir görselinizi uzak sunuculara göndermez. Tüm dönüşüm işlemi tarayıcınızın kendi bellek ve işlemci gücüyle cihazınızda tamamlanır.'
         ]
       }
     ]
@@ -1113,7 +1113,7 @@ export const articles: Article[] = [
       {
         heading: 'Telefonda ve Bilgisayarda Metin PDF’e Nasıl Çevrilir?',
         paragraphs: [
-          '1. Metninizi Hazırlayın: Dönüştürmek istediğiniz yazıyı kopyalayın veya doğrudan Pratika metin alanına yazın.',
+          '1. Metninizi Hazırlayın: Dönüştürmek istediğiniz yazıyı kopyalayın veya doğrudan Pratiksel metin alanına yazın.',
           '2. Sayfa ve Tipografi Ayarlarını Seçin: İhtiyacınıza göre sayfa boyutunu (A4, A5, Letter), yönünü (Dikey, Yatay), yazı tipini ve boyutunu belirleyin.',
           '3. Önizlemeyi Kontrol Edin: Sayfa yerleşimini ve tahmini sayfa sayısını sağdaki önizleme kutusundan inceleyin.',
           '4. İndirin: "PDF Oluştur ve İndir" butonuna dokunarak dosyanızı saniyeler içinde cihazınıza kaydedin.'
@@ -1131,7 +1131,7 @@ export const articles: Article[] = [
         heading: 'Türkçe Karakterler PDF’te Neden Bozulabilir?',
         paragraphs: [
           'Birçok eski veya standart PDF kütüphanesi yalnızca İngilizce ASCII / Latin-1 karakter setini destekler. Bu nedenle "ç, Ç, ğ, Ğ, ı, İ, ö, Ö, ş, Ş, ü, Ü" gibi Türkçe karakterler "?" veya anlamsız semboller olarak basılabilir.',
-          'Pratika Metni PDF’e Dönüştürücü aracı, Türkçe karakterleri tam destekleyen Unicode font motoru (Latin-Extended) kullanır. Bu sayede yazınızdaki tüm Türkçe harfler eksiksiz ve kusursuz şekilde PDF belgenize işlenir.'
+          'Pratiksel Metni PDF’e Dönüştürücü aracı, Türkçe karakterleri tam destekleyen Unicode font motoru (Latin-Extended) kullanır. Bu sayede yazınızdaki tüm Türkçe harfler eksiksiz ve kusursuz şekilde PDF belgenize işlenir.'
         ]
       },
       {
@@ -1199,7 +1199,7 @@ export const articles: Article[] = [
           '• PNG: Şeffaf arka plan gerektiren logolar, ikonlar ve keskin metin içeren tasarımlar için kayıpsız (lossless) en iyi seçenektir.',
           '• WebP: Modern web standardı olup JPG ve PNG kalitesini %30 daha küçük dosya boyutunda sağlayarak hızlı yükleme avantajı sunar.'
         ],
-        note: 'Görselinizi seçtiğiniz sosyal medya ölçüsüne tarayıcınızda anında ve ücretsiz dönüştürmek için Pratika Sosyal Medya Görsel Boyutlandırıcı aracını kullanabilirsiniz.'
+        note: 'Görselinizi seçtiğiniz sosyal medya ölçüsüne tarayıcınızda anında ve ücretsiz dönüştürmek için Pratiksel Sosyal Medya Görsel Boyutlandırıcı aracını kullanabilirsiniz.'
       }
     ]
   },

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Pratika - Tarihte Bugün KAPSAMLI TEMİZLEME & VALIDATION (Final Master)
+ * Pratiksel - Tarihte Bugün KAPSAMLI TEMİZLEME & VALIDATION (Final Master)
  *
  * Kullanım:
  *   node clean-and-validate-final.mjs "src\data\todayInHistory.ts"

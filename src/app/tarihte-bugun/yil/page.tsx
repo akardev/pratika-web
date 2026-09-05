@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     canonical: `${siteConfig.url}/tarihte-bugun/yil/1960`,
   },
   openGraph: {
-    title: 'Yıl Keşfi | Pratika Tarih Keşif Merkezi',
+    title: 'Yıl Keşfi | Pratiksel Tarih Keşif Merkezi',
     description: 'Tarihteki önemli yılları keşfedin.',
     url: `${siteConfig.url}/tarihte-bugun/yil/1960`,
     type: 'website',

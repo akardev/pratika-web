@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Pratika - Tarihte Bugün veri üreticisi (429 korumalı / kaldığı yerden devam eder)
+ * Pratiksel - Tarihte Bugün veri üreticisi (429 korumalı / kaldığı yerden devam eder)
  * Node 18+.
  *
  * Kullanım:
@@ -79,7 +79,7 @@ async function fetchDatePage(day, month) {
   for (let attempt=1; attempt<=maxAttempts; attempt++) {
     try {
       const res = await fetch(api, {headers:{
-        'User-Agent':'Pratika-TarihteBugun/1.1 (personal project; respectful API client)',
+        'User-Agent':'Pratiksel-TarihteBugun/1.1 (personal project; respectful API client)',
         'Accept':'application/json'
       }});
       if (res.ok) {

@@ -153,7 +153,7 @@ export default function JsonFormatlayici() {
         <div>
           <h2 className="text-lg font-bold text-foreground mb-2">Gizlilik Garantisi</h2>
           <p className="text-sm text-muted-foreground leading-relaxed">
-            Girdiğiniz hiçbir JSON verisi Pratika sunucularına gönderilmez veya kaydedilmez. Tüm formatlama, minify ve doğrulama işlemleri doğrudan tarayıcınızın JavaScript motoru tarafından cihazınızda gerçekleştirilir.
+            Girdiğiniz hiçbir JSON verisi Pratiksel sunucularına gönderilmez veya kaydedilmez. Tüm formatlama, minify ve doğrulama işlemleri doğrudan tarayıcınızın JavaScript motoru tarafından cihazınızda gerçekleştirilir.
           </p>
         </div>
 

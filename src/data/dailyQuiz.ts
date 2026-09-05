@@ -1777,7 +1777,7 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
     "id": "quiz-126",
     "category": "Teknoloji",
     "categorySlug": "teknoloji",
-    "question": "İnternette alan adlarını (örn: pratika.com.tr) IP adreslerine çeviren sisteme nedir?",
+    "question": "İnternette alan adlarını (örn: pratiksel.com) IP adreslerine çeviren sisteme nedir?",
     "options": [
       "DNS (Domain",
       "DHCP",

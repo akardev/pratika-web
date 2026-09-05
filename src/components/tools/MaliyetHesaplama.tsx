@@ -430,7 +430,7 @@ export default function MaliyetHesaplama() {
           <div>
             <h4 className="font-semibold text-lg text-foreground">Maliyeti bulduktan sonra kârımı nasıl hesaplarım?</h4>
             <p className="text-muted-foreground mt-2">
-              Belirlediğiniz satış fiyatından hesapladığınız toplam maliyeti çıkararak net kârınızı bulabilir; Pratika&apos;nın <Link href="/arac/kar-zarar-hesaplama" className="text-primary hover:underline font-medium">Kâr / Zarar Hesaplama</Link> ve <Link href="/arac/kar-marji-hesaplama" className="text-primary hover:underline font-medium">Kar Marjı Hesaplama</Link> araçlarını kullanarak kârlılık oranlarınızı anında görebilirsiniz.
+              Belirlediğiniz satış fiyatından hesapladığınız toplam maliyeti çıkararak net kârınızı bulabilir; Pratiksel&apos;in <Link href="/arac/kar-zarar-hesaplama" className="text-primary hover:underline font-medium">Kâr / Zarar Hesaplama</Link> ve <Link href="/arac/kar-marji-hesaplama" className="text-primary hover:underline font-medium">Kar Marjı Hesaplama</Link> araçlarını kullanarak kârlılık oranlarınızı anında görebilirsiniz.
             </p>
           </div>
         </div>

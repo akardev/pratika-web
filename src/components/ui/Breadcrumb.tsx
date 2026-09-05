@@ -32,7 +32,7 @@ export default function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
             className="hover:text-foreground transition-colors font-medium"
             itemProp="item"
           >
-            <span itemProp="name">Pratika</span>
+            <span itemProp="name">Pratiksel</span>
           </Link>
           <meta itemProp="position" content="1" />
         </li>

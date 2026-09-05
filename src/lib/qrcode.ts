@@ -14,7 +14,7 @@ export function generateQrSvgString(
   text: string,
   options?: QrCodeOptions
 ): string {
-  const safeText = text.trim() || 'https://pratika.com.tr';
+  const safeText = text.trim() || 'https://pratiksel.com';
   const qr = QRCode.create(safeText, {
     errorCorrectionLevel: options?.errorCorrectionLevel || 'M',
   });

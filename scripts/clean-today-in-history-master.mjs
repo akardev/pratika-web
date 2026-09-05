@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Pratika - Tarihte Bugün MASTER CLEANER
+ * Pratiksel - Tarihte Bugün MASTER CLEANER
  *
  * Tek seferde:
  * 1) Doğum/vefat başlıklarını description'daki tam kişi tanımıyla düzeltir.

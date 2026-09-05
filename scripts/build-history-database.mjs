@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Pratika - Tarihte Bugün veri üreticisi
+ * Pratiksel - Tarihte Bugün veri üreticisi
  *
  * Ne yapar?
  * 1) Türkçe Wikipedia'nın 365/366 tarih sayfasını tarar.
@@ -123,7 +123,7 @@ async function fetchDatePage(day, month) {
   const api = `https://tr.wikipedia.org/w/api.php?action=parse&page=${encodeURIComponent(page)}&prop=text&format=json&formatversion=2&origin=*`;
   const res = await fetch(api, {
     headers: {
-      'User-Agent': 'Pratika-TarihteBugun/1.0 (personal project; contact via project repository)'
+      'User-Agent': 'Pratiksel-TarihteBugun/1.0 (personal project; contact via project repository)'
     }
   });
   if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     canonical: '/kategoriler',
   },
   openGraph: {
-    title: 'Tüm Kategoriler ve Araç Kataloğu | Pratika',
+    title: 'Tüm Kategoriler ve Araç Kataloğu | Pratiksel',
     description: 'Eğitim, finans, matematik, ticaret, PDF, metin, sağlık ve onlarca kategoride yüzlerce online hesaplama ve dönüştürme aracını keşfedin.',
     url: '/kategoriler',
     type: 'website',

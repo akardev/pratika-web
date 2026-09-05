@@ -15,9 +15,9 @@ interface WeatherData {
   timestamp: number;
 }
 
-const CACHE_KEY_WEATHER = 'pratika_today_weather_v1';
-const CACHE_KEY_LOCATION = 'pratika_today_location_v1';
-const CACHE_KEY_DISMISSED = 'pratika_today_dismissed_v1';
+const CACHE_KEY_WEATHER = 'pratiksel_today_weather_v1';
+const CACHE_KEY_LOCATION = 'pratiksel_today_location_v1';
+const CACHE_KEY_DISMISSED = 'pratiksel_today_dismissed_v1';
 const CACHE_TTL_MS = 20 * 60 * 1000; // 20 minutes
 
 function useIsClient() {

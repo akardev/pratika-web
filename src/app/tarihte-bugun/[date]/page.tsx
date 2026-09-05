@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: HistoryDatePageProps): Promis
     },
     robots: hasContent ? undefined : { index: false, follow: true },
     openGraph: {
-      title: `${pageTitle} | Pratika`,
+      title: `${pageTitle} | Pratiksel`,
       description,
       url: `${siteConfig.url}/tarihte-bugun/${canonicalSlug}`,
       type: 'website',

@@ -7,7 +7,7 @@ export default function QrKodOlusturucu() {
   const [qrType, setQrType] = useState<'url' | 'image' | 'text' | 'wifi' | 'email' | 'phone'>('url');
   
   // Content inputs
-  const [text, setText] = useState('https://pratika.com.tr');
+  const [text, setText] = useState('https://pratiksel.com');
   const [imageUrl, setImageUrl] = useState('');
   const [ssid, setSsid] = useState('');
   const [password, setPassword] = useState('');
@@ -30,7 +30,7 @@ export default function QrKodOlusturucu() {
 
   const payload = useMemo(() => {
     if (qrType === 'image') {
-      return imageUrl.trim() || 'https://pratika.com.tr';
+      return imageUrl.trim() || 'https://pratiksel.com';
     }
     if (qrType === 'wifi') {
       const auth = encryption === 'nopass' ? 'nopass' : encryption;
@@ -42,7 +42,7 @@ export default function QrKodOlusturucu() {
     if (qrType === 'phone') {
       return `tel:${phone.trim()}`;
     }
-    return text || 'https://pratika.com.tr';
+    return text || 'https://pratiksel.com';
   }, [qrType, imageUrl, text, ssid, password, encryption, email, subject, phone]);
 
   // If logo is present, use at least 'Q' or 'H' error correction for best scanability
@@ -94,13 +94,13 @@ export default function QrKodOlusturucu() {
         },
       });
     } catch {
-      return generateQrSvgDataUri('https://pratika.com.tr');
+      return generateQrSvgDataUri('https://pratiksel.com');
     }
   }, [payload, darkColor, lightColor, activeEcLevel]);
 
   const triggerDownload = (dataUrl: string, ext: string) => {
     const a = document.createElement('a');
-    a.download = `pratika-qr-kod-${Date.now()}.${ext}`;
+    a.download = `pratiksel-qr-kod-${Date.now()}.${ext}`;
     a.href = dataUrl;
     document.body.appendChild(a);
     a.click();

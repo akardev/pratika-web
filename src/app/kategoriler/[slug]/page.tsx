@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: `/kategoriler/${category.slug}`,
     },
     openGraph: {
-      title: `${pageTitle} | Pratika`,
+      title: `${pageTitle} | Pratiksel`,
       description: metaDescription,
       url: `${siteConfig.url}/kategoriler/${category.slug}`,
       type: 'website',
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${pageTitle} | Pratika`,
+      title: `${pageTitle} | Pratiksel`,
       description: metaDescription,
     },
   };
@@ -89,11 +89,11 @@ export default async function CategoryPage({ params }: Props) {
   const faqs = [
     {
       question: `${category.title} araçları ücretsiz mi?`,
-      answer: `Evet, Pratika'daki tüm ${category.title.toLowerCase()} araçları %100 ücretsizdir. Hiçbir kayıt, üyelik veya gizli ücretlendirme bulunmaz.`,
+      answer: `Evet, Pratiksel'deki tüm ${category.title.toLowerCase()} araçları %100 ücretsizdir. Hiçbir kayıt, üyelik veya gizli ücretlendirme bulunmaz.`,
     },
     {
       question: 'Girdiğim veriler veya dosyalar sunuculara kaydediliyor mu?',
-      answer: 'Hayır. Pratika gizlilik odaklı bir mimariye sahiptir. Tüm hesaplama, metin, görsel ve dosya işlemleri doğrudan tarayıcınızda (yerel olarak) işlenir.',
+      answer: 'Hayır. Pratiksel gizlilik odaklı bir mimariye sahiptir. Tüm hesaplama, metin, görsel ve dosya işlemleri doğrudan tarayıcınızda (yerel olarak) işlenir.',
     },
     {
       question: 'Mobil telefon veya tabletten kullanabilir miyim?',
@@ -115,7 +115,7 @@ export default async function CategoryPage({ params }: Props) {
           {
             '@type': 'ListItem',
             position: 1,
-            name: 'Pratika',
+            name: 'Pratiksel',
             item: siteConfig.url,
           },
           {

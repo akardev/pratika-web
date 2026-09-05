@@ -22,7 +22,7 @@ export default function JpgPdfDonusturucu() {
   const [pageSize, setPageSize] = useState<PageSizeOption>('a4');
   const [orientation, setOrientation] = useState<OrientationOption>('portrait');
   const [margin, setMargin] = useState<MarginOption>('small');
-  const [customFileName, setCustomFileName] = useState<string>('pratika-gorseller');
+  const [customFileName, setCustomFileName] = useState<string>('pratiksel-gorseller');
   const [isProcessing, setIsProcessing] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -222,7 +222,7 @@ export default function JpgPdfDonusturucu() {
       const blob = new Blob([pdfBytes as unknown as BlobPart], { type: 'application/pdf' });
       const url = URL.createObjectURL(blob);
 
-      const sanitizedName = (customFileName.trim() || 'pratika-gorseller')
+      const sanitizedName = (customFileName.trim() || 'pratiksel-gorseller')
         .replace(/[^a-zA-Z0-9_-]/g, '-')
         .replace(/-+/g, '-') + '.pdf';
 
@@ -364,7 +364,7 @@ export default function JpgPdfDonusturucu() {
                         id="pdf-filename-opt"
                         value={customFileName}
                         onChange={(e) => setCustomFileName(e.target.value)}
-                        placeholder="pratika-gorseller"
+                        placeholder="pratiksel-gorseller"
                         className="w-full rounded-xl border border-border bg-background px-3 py-2 text-xs sm:text-sm font-medium text-foreground focus:ring-2 focus:ring-primary"
                       />
                     </div>
@@ -507,7 +507,7 @@ export default function JpgPdfDonusturucu() {
             <div>
               <h3 className="font-semibold text-foreground mb-1">Görsellerimin netliği ve çözünürlüğü bozulur mu?</h3>
               <p className="text-muted-foreground">
-                Hayır. Pratika, görsellerin orijinal en-boy oranını (aspect ratio) titizlikle korur. Görseller sıkıştırılıp ezilmeden, tam sayfa çözünürlüğünde PDF içerisine gömülür.
+                Hayır. Pratiksel, görsellerin orijinal en-boy oranını (aspect ratio) titizlikle korur. Görseller sıkıştırılıp ezilmeden, tam sayfa çözünürlüğünde PDF içerisine gömülür.
               </p>
             </div>
             <div>

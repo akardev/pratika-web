@@ -19,7 +19,7 @@ interface MarketsData {
   updatedAt: string;
 }
 
-const CACHE_KEY_MARKETS = 'pratika_markets_cache_v1';
+const CACHE_KEY_MARKETS = 'pratiksel_markets_cache_v1';
 const CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
 
 function useIsClient() {

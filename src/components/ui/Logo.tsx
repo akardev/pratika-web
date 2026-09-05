@@ -32,8 +32,8 @@ export default function Logo({
     if (variant === 'symbol') {
       return (
         <Image
-          src="/brand/pratika-icon.png"
-          alt="Pratika"
+          src="/brand/pratiksel-icon.png"
+          alt="Pratiksel"
           width={32}
           height={32}
           className={`h-8 w-8 object-contain rounded-lg ${className}`}
@@ -44,8 +44,8 @@ export default function Logo({
 
     return (
       <Image
-        src="/brand/pratika-logo.png"
-        alt="Pratika"
+        src="/brand/pratiksel-logo.png"
+        alt="Pratiksel"
         width={width}
         height={height}
         className={`w-auto h-auto object-contain select-none ${className}`}
@@ -56,7 +56,7 @@ export default function Logo({
 
   if (showLink) {
     return (
-      <Link href="/" className="inline-flex items-center focus:outline-none" aria-label="pratika ana sayfa">
+      <Link href="/" className="inline-flex items-center focus:outline-none" aria-label="pratiksel ana sayfa">
         {renderContent()}
       </Link>
     );

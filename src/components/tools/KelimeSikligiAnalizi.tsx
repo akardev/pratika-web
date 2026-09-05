@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 export default function KelimeSikligiAnalizi() {
-  const [text, setText] = useState<string>('Pratika ile hayatınızı kolaylaştıran yüzlerce ücretsiz araç elinizin altında. Pratika, hızlı, güvenilir ve tamamen modern bir hesaplama ve dönüşüm platformudur.');
+  const [text, setText] = useState<string>('Pratiksel ile hayatınızı kolaylaştıran yüzlerce ücretsiz araç elinizin altında. Pratiksel, hızlı, güvenilir ve tamamen modern bir hesaplama ve dönüşüm platformudur.');
   const [ignoreCase, setIgnoreCase] = useState<boolean>(true);
   const [minWordLength, setMinWordLength] = useState<number>(2);
 
@@ -84,7 +84,7 @@ export default function KelimeSikligiAnalizi() {
                 onChange={(e) => setIgnoreCase(e.target.checked)}
                 className="w-4 h-4 rounded border-border text-primary focus:ring-primary"
               />
-              Büyük / Küçük Harf Farkını Yoksay (Örn: &quot;Pratika&quot; = &quot;pratika&quot;)
+              Büyük / Küçük Harf Farkını Yoksay (Örn: &quot;Pratiksel&quot; = &quot;pratiksel&quot;)
             </label>
 
             <div className="flex items-center gap-2 text-xs font-medium text-foreground">

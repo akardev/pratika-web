@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export default function HtmlMetinAyiklayici() {
   const [inputHtml, setInputHtml] = useState<string>(
-    '<div className="article">\n  <h1>Pratika Yenilikleri</h1>\n  <p>Modern araçlarımızla <strong>hızlı</strong> ve <em>kolay</em> hesaplama yapın.</p>\n  <a href="https://pratika.com.tr">Daha Fazla Bilgi</a>\n</div>'
+    '<div className="article">\n  <h1>Pratiksel Yenilikleri</h1>\n  <p>Modern araçlarımızla <strong>hızlı</strong> ve <em>kolay</em> hesaplama yapın.</p>\n  <a href="https://pratiksel.com">Daha Fazla Bilgi</a>\n</div>'
   );
   const [outputText, setOutputText] = useState<string>('');
   const [preserveLineBreaks, setPreserveLineBreaks] = useState<boolean>(true);

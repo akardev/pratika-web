@@ -54,9 +54,9 @@ export default function ContactPageContent() {
       <section aria-label="İletişim alanları" className="grid gap-4 md:grid-cols-3">
         <article className="rounded-xl border border-border/70 bg-card p-5 sm:p-6">
           <span className="mb-4 block text-xs font-bold uppercase tracking-[0.16em] text-primary">Genel Destek</span>
-          <h2 className="mb-2 text-lg font-semibold tracking-tight text-foreground">Pratika Araçları ve Destek</h2>
-          <p className="text-sm leading-relaxed text-muted-foreground">Pratika araçları, kullanım rehberleri ve platform hakkındaki genel destek talepleriniz için bize ulaşabilirsiniz.</p>
-          <a href="mailto:destek@pratika.com.tr" className="mt-5 inline-flex min-h-11 items-center text-sm font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">destek@pratika.com.tr</a>
+          <h2 className="mb-2 text-lg font-semibold tracking-tight text-foreground">Pratiksel Araçları ve Destek</h2>
+          <p className="text-sm leading-relaxed text-muted-foreground">Pratiksel araçları, kullanım rehberleri ve platform hakkındaki genel destek talepleriniz için bize ulaşabilirsiniz.</p>
+          <a href="mailto:destek@pratiksel.com" className="mt-5 inline-flex min-h-11 items-center text-sm font-semibold text-primary hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">destek@pratiksel.com</a>
         </article>
 
         <article className="rounded-xl border border-primary/20 bg-primary/[0.04] p-5 sm:p-6">
@@ -96,7 +96,7 @@ export default function ContactPageContent() {
             </label>
             <label htmlFor="contact-email" className="grid gap-1.5 text-sm font-medium text-foreground">
               E-posta *
-              <input id="contact-email" required className={fieldClassName} name="email" type="email" autoComplete="email" placeholder="ornek@pratika.com.tr" />
+              <input id="contact-email" required className={fieldClassName} name="email" type="email" autoComplete="email" placeholder="ornek@pratiksel.com" />
             </label>
             <label htmlFor="contact-phone" className="grid gap-1.5 text-sm font-medium text-foreground">
               Telefon
@@ -134,7 +134,7 @@ export default function ContactPageContent() {
             <div className="grid gap-4 text-sm">
               <div>
                 <span className="mb-1 block text-xs font-semibold uppercase tracking-wider text-muted-foreground">E-posta</span>
-                <a href="mailto:destek@pratika.com.tr" className="font-medium text-primary hover:underline">destek@pratika.com.tr</a>
+                <a href="mailto:destek@pratiksel.com" className="font-medium text-primary hover:underline">destek@pratiksel.com</a>
               </div>
               <div>
                 <span className="mb-1 block text-xs font-semibold uppercase tracking-wider text-muted-foreground">Yanıt Süresi</span>

@@ -18,7 +18,7 @@ Object.entries(MORSE_MAP).forEach(([char, code]) => {
 });
 
 export default function MorsAlfabesiCevirici() {
-  const [textInput, setTextInput] = useState<string>('PRATIKA');
+  const [textInput, setTextInput] = useState<string>('PRATIKSEL');
   const [morseInput, setMorseInput] = useState<string>('.--. .-. .- - .. -.- .-');
 
   const handleTextChange = (val: string) => {

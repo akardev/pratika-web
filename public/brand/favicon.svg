@@ -1,6 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <!-- Pratika Favicon P. Symbol (Vibrant Blue Square with rounded corners) -->
-  <rect width="32" height="32" rx="7" fill="#2563EB"/>
-  <path d="M8 6h9c4.8 0 8 3 8 7.5S21.8 21 17 21H13v5H8V6zm5 10.5h4c2.5 0 4-1.4 4-3s-1.5-3-4-3h-4v6z" fill="#FFFFFF"/>
-  <circle cx="23.5" cy="23.5" r="2.75" fill="#FFFFFF"/>
+  <!-- Pratiksel Favicon P Symbol -->
+  <!-- Row 1 -->
+  <rect x="4.5" y="2.5" width="7" height="6" rx="1.8" fill="#4F46E5"/>
+  <rect x="12.5" y="2.5" width="7" height="6" rx="1.8" fill="#4F46E5"/>
+  <rect x="20.5" y="2.5" width="7" height="6" rx="1.8" fill="#00E599"/>
+
+  <!-- Row 2 -->
+  <rect x="4.5" y="9.5" width="7" height="6" rx="1.8" fill="#4F46E5"/>
+  <rect x="20.5" y="9.5" width="7" height="6" rx="1.8" fill="#4F46E5"/>
+
+  <!-- Row 3 -->
+  <rect x="4.5" y="16.5" width="7" height="6" rx="1.8" fill="#4F46E5"/>
+  <rect x="12.5" y="16.5" width="7" height="6" rx="1.8" fill="#4F46E5"/>
+  <rect x="20.5" y="16.5" width="7" height="6" rx="1.8" fill="#4F46E5"/>
+
+  <!-- Row 4 -->
+  <rect x="4.5" y="23.5" width="7" height="6" rx="1.8" fill="#4F46E5"/>
 </svg>

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Hesaplama Araçları Bildirimi',
-  description: 'Pratika hesaplama araçlarının kullanım amacı, doğruluk standartları ve yasal bilgilendirme notları.',
+  description: 'Pratiksel hesaplama araçlarının kullanım amacı, doğruluk standartları ve yasal bilgilendirme notları.',
   alternates: {
     canonical: '/hesaplama-uyarisi',
   },
@@ -16,7 +16,7 @@ export default function HesaplamaUyarisiPage() {
           Hesaplama Araçları Hakkında
         </h1>
         <p className="text-lg text-muted-foreground">
-          Pratika üzerindeki araçların kullanım amacı ve hesaplama sonuçlarının niteliğine ilişkin bilgilendirme.
+          Pratiksel üzerindeki araçların kullanım amacı ve hesaplama sonuçlarının niteliğine ilişkin bilgilendirme.
         </p>
       </div>
 
@@ -24,7 +24,7 @@ export default function HesaplamaUyarisiPage() {
         <section className="p-6 rounded-xl border border-border/60 bg-card">
           <h2 className="text-xl font-semibold text-foreground mb-3">Bilgilendirme ve Pratik Kullanım</h2>
           <p className="text-muted-foreground leading-relaxed">
-            Pratika üzerindeki tüm hesaplama araçları; günlük yaşamda, alışverişte ve iş süreçlerinde pratik, hızlı ve anlaşılır fikir vermesi amacıyla geliştirilmiştir. Sunulan sonuçlar bilgilendirme niteliğindedir.
+            Pratiksel üzerindeki tüm hesaplama araçları; günlük yaşamda, alışverişte ve iş süreçlerinde pratik, hızlı ve anlaşılır fikir vermesi amacıyla geliştirilmiştir. Sunulan sonuçlar bilgilendirme niteliğindedir.
           </p>
         </section>
 
@@ -34,7 +34,7 @@ export default function HesaplamaUyarisiPage() {
             Finans, vergi, çalışma hayatı, SGK ve mevzuat gibi alanlardaki resmi katsayılar, oranlar ve yasal düzenlemeler zaman içerisinde ilgili kamu kurumları tarafından güncellenebilir.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Pratika olarak araçlarımızı güncel tutmak için azami özeni gösteriyor olsak da, bağlayıcı resmi başvurular, yasal sözleşmeler veya vergi beyanlarında daima yürürlükteki mevzuat ve resmi kurum duyuruları esas alınmalıdır.
+            Pratiksel olarak araçlarımızı güncel tutmak için azami özeni gösteriyor olsak da, bağlayıcı resmi başvurular, yasal sözleşmeler veya vergi beyanlarında daima yürürlükteki mevzuat ve resmi kurum duyuruları esas alınmalıdır.
           </p>
         </section>
 

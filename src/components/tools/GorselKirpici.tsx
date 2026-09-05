@@ -123,7 +123,7 @@ export default function GorselKirpici() {
               <img src={croppedUrl} alt="Sonuç" className="max-h-48 rounded border border-border" />
               <a
                 href={croppedUrl}
-                download="pratikacom-kirpilmis.png"
+                download="pratiksel-kirpilmis.png"
                 className="px-6 h-11 inline-flex items-center justify-center bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-700 transition-colors shadow-sm"
               >
                 Kırpılan Görseli İndir

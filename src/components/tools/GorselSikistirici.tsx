@@ -114,7 +114,7 @@ export default function GorselSikistirici() {
 
             <a
               href={compressedUrl}
-              download="pratikacom-sikistirilmis.jpg"
+              download="pratiksel-sikistirilmis.jpg"
               className="inline-flex items-center justify-center px-6 h-11 bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-700 transition-colors shadow-sm"
             >
               Sıkıştırılmış Görseli İndir

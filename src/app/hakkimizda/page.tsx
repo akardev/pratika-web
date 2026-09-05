@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Hakkımızda',
-  description: 'Pratika hakkında bilgi edinin. Günlük ve profesyonel hayatı kolaylaştıran hızlı, sade ve güvenilir online hesaplama platformu.',
+  description: 'Pratiksel hakkında bilgi edinin. Günlük ve profesyonel hayatı kolaylaştıran hızlı, sade ve güvenilir online hesaplama platformu.',
   alternates: {
     canonical: '/hakkimizda',
   },
@@ -16,15 +16,15 @@ export default function HakkimizdaPage() {
           Hakkımızda
         </h1>
         <p className="text-lg text-muted-foreground">
-          Pratika, günlük ve profesyonel hayatta ihtiyaç duyulan hesaplamaları hızlı, sade ve güvenilir şekilde yapabilmeniz için geliştirilmiştir.
+          Pratiksel, günlük ve profesyonel hayatta ihtiyaç duyulan hesaplamaları hızlı, sade ve güvenilir şekilde yapabilmeniz için geliştirilmiştir.
         </p>
       </div>
 
       <div className="prose prose-slate max-w-none space-y-8 text-foreground/90">
         <section>
-          <h2 className="text-xl font-semibold text-foreground mb-3">Neden Pratika?</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-3">Neden Pratiksel?</h2>
           <p className="text-muted-foreground leading-relaxed">
-            İnternette basit bir hesaplama yapmak istediğinizde; karmaşık arayüzler, yanıltıcı reklamlar ve gereksiz form kalabalığıyla karşılaşmak kullanıcı deneyimini zorlaştırır. Pratika, doğrudan sonuca odaklanan modern bir yaklaşımla bu süreci kolaylaştırmayı amaçlar.
+            İnternette basit bir hesaplama yapmak istediğinizde; karmaşık arayüzler, yanıltıcı reklamlar ve gereksiz form kalabalığıyla karşılaşmak kullanıcı deneyimini zorlaştırır. Pratiksel, doğrudan sonuca odaklanan modern bir yaklaşımla bu süreci kolaylaştırmayı amaçlar.
           </p>
         </section>
 
@@ -55,7 +55,7 @@ export default function HakkimizdaPage() {
         <section>
           <h2 className="text-xl font-semibold text-foreground mb-3">Sürekli Gelişim</h2>
           <p className="text-muted-foreground leading-relaxed">
-            Pratika; finans, matematik, zaman, iş ve günlük yaşam alanlarında yeni araçlarla sürekli genişleyen bağımsız bir hesaplama platformudur. Kullanıcılarımızın geri bildirimleri doğrultusunda araçlarımızı geliştirmeye ve yeni pratik çözümler sunmaya devam ediyoruz.
+            Pratiksel; finans, matematik, zaman, iş ve günlük yaşam alanlarında yeni araçlarla sürekli genişleyen bağımsız bir hesaplama platformudur. Kullanıcılarımızın geri bildirimleri doğrultusunda araçlarımızı geliştirmeye ve yeni pratik çözümler sunmaya devam ediyoruz.
           </p>
         </section>
       </div>

@@ -88,8 +88,8 @@ export default function UrlEncodeDecode() {
               onChange={(e) => setInput(e.target.value)}
               placeholder={
                 mode === 'encode'
-                  ? 'Örn: https://pratika.com.tr/araclar?kategori=finans ve para&q=kdv hesaplama'
-                  : 'Örn: https%3A%2F%2Fpratika.com.tr%2Faraclar%3Fkategori%3Dfinans'
+                  ? 'Örn: https://pratiksel.com/araclar?kategori=finans ve para&q=kdv hesaplama'
+                  : 'Örn: https%3A%2F%2Fpratiksel.com%2Faraclar%3Fkategori%3Dfinans'
               }
               className="w-full rounded-xl border border-border bg-background p-4 text-foreground font-mono text-sm leading-relaxed focus:outline-none focus:ring-2 focus:ring-primary"
             />

@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
       canonical: `${siteConfig.url}/tarihte-bugun`,
     },
     openGraph: {
-      title: `${pageTitle} | Pratika`,
+      title: `${pageTitle} | Pratiksel`,
       description,
       url: `${siteConfig.url}/tarihte-bugun`,
       type: 'website',

@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="border-t border-border/80 bg-card mt-auto">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl py-10 sm:py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
-          {/* Sol: Pratika & Açıklama */}
+          {/* Sol: Pratiksel & Açıklama */}
           <div className="md:col-span-1 space-y-3">
             <Logo variant="wordmark" />
             <p className="text-xs text-muted-foreground leading-relaxed">
@@ -120,7 +120,7 @@ export default function Footer() {
         {/* Alt Çubuk */}
         <div className="pt-6 border-t border-border/60 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-muted-foreground text-center sm:text-left">
           <p>
-            © {currentYear} Pratika
+            © {currentYear} Pratiksel
           </p>
           <p className="text-xs text-muted-foreground/80">
             Kullanıcı odaklı dijital araç ekosistemi.

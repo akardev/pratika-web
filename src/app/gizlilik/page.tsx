@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Gizlilik Politikası',
-  description: 'Pratika Gizlilik Politikası. Kullanıcı verilerinin korunması ve gizlilik standartlarımız hakkında bilgi edinin.',
+  description: 'Pratiksel Gizlilik Politikası. Kullanıcı verilerinin korunması ve gizlilik standartlarımız hakkında bilgi edinin.',
   alternates: {
     canonical: '/gizlilik',
   },
@@ -24,14 +24,14 @@ export default function GizlilikPage() {
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-2">1. Genel Yaklaşımımız</h2>
           <p>
-            Pratika olarak kullanıcılarımızın gizliliğine ve kişisel verilerinin korunmasına büyük önem veriyoruz. Bu Gizlilik Politikası, platformumuzu ziyaret ettiğinizde ve hesaplama araçlarımızı kullandığınızda verilerinizin nasıl ele alındığını açıklamaktadır.
+            Pratiksel olarak kullanıcılarımızın gizliliğine ve kişisel verilerinin korunmasına büyük önem veriyoruz. Bu Gizlilik Politikası, platformumuzu ziyaret ettiğinizde ve hesaplama araçlarımızı kullandığınızda verilerinizin nasıl ele alındığını açıklamaktadır.
           </p>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-2">2. Hesaplama Verileri ve Güvenlik</h2>
           <p>
-            Pratika üzerindeki araçlara (örneğin İndirim, Yüzde veya Yaş Hesaplama) girdiğiniz veriler, hesaplamaların tamamı tarayıcınız üzerinde (istemci tarafında) gerçekleştirildiği için sunucularımıza kaydedilmez ve saklanmaz. Girdiğiniz tutar, oran veya doğum tarihi gibi bilgiler yalnızca hesaplama sonucunu üretmek için anlık olarak kullanılır.
+            Pratiksel üzerindeki araçlara (örneğin İndirim, Yüzde veya Yaş Hesaplama) girdiğiniz veriler, hesaplamaların tamamı tarayıcınız üzerinde (istemci tarafında) gerçekleştirildiği için sunucularımıza kaydedilmez ve saklanmaz. Girdiğiniz tutar, oran veya doğum tarihi gibi bilgiler yalnızca hesaplama sonucunu üretmek için anlık olarak kullanılır.
           </p>
         </section>
 
@@ -45,14 +45,14 @@ export default function GizlilikPage() {
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-2">4. Üçüncü Taraf Bağlantıları</h2>
           <p>
-            Sitemiz üzerinden üçüncü taraf web sitelerine veya kaynaklara bağlantılar verilebilir. Bu sitelerin gizlilik uygulamalarından Pratika sorumlu değildir. İlgili sitelerin kendi gizlilik politikalarını incelemenizi tavsiye ederiz.
+            Sitemiz üzerinden üçüncü taraf web sitelerine veya kaynaklara bağlantılar verilebilir. Bu sitelerin gizlilik uygulamalarından Pratiksel sorumlu değildir. İlgili sitelerin kendi gizlilik politikalarını incelemenizi tavsiye ederiz.
           </p>
         </section>
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-2">5. Değişiklikler</h2>
           <p>
-            Pratika, gizlilik politikasını platforma yeni özellikler veya araçlar eklendikçe güncelleme hakkını saklı tutar. Güncellenmiş politika bu sayfa üzerinden yayınlandığı tarihte yürürlüğe girer.
+            Pratiksel, gizlilik politikasını platforma yeni özellikler veya araçlar eklendikçe güncelleme hakkını saklı tutar. Güncellenmiş politika bu sayfa üzerinden yayınlandığı tarihte yürürlüğe girer.
           </p>
         </section>
       </div>

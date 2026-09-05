@@ -206,7 +206,7 @@ export default function Base64Donusturucu() {
             <div>
               <h3 className="font-semibold text-foreground mb-1">Türkçe karakterler bozulur mu?</h3>
               <p className="text-muted-foreground">
-                Pratika Base64 dönüştürücü UTF-8 standardını destekler; bu sayede Türkçe karakterler (ç, ğ, ı, ö, ş, ü) ve emojiler bozulmadan kodlanır ve çözülür.
+                Pratiksel Base64 dönüştürücü UTF-8 standardını destekler; bu sayede Türkçe karakterler (ç, ğ, ı, ö, ş, ü) ve emojiler bozulmadan kodlanır ve çözülür.
               </p>
             </div>
           </div>
