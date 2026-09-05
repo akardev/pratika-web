@@ -104,3 +104,14 @@ textarea::placeholder {
   white-space: nowrap;
 }
 
+/* Hide scrollbar while keeping scroll functionality */
+.scrollbar-none,
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+

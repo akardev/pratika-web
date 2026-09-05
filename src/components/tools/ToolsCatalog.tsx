@@ -24,6 +24,8 @@ export default function ToolsCatalog() {
   const pathname = usePathname();
   const searchInputRef = useRef<HTMLInputElement>(null);
   const catalogListRef = useRef<HTMLDivElement>(null);
+  const categoryScrollRef = useRef<HTMLDivElement>(null);
+  const categoryBtnRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
   // URL query parametrelerinden başlangıç state'lerini al
   const initialCategory = searchParams.get('kategori') || 'all';
@@ -33,6 +35,8 @@ export default function ToolsCatalog() {
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [selectedCategory, setSelectedCategory] = useState<string>(initialCategory);
   const [sortOption, setSortOption] = useState<SortOption>(initialSort);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
 
   // Global Ctrl+K / Cmd+K kısayolu ile hero arama inputuna odaklan
   useEffect(() => {
@@ -46,6 +50,59 @@ export default function ToolsCatalog() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
+
+  // Kategori scroll barı taşma / kaydırılabilirlik kontrolü (fade affordance)
+  const checkCategoryScroll = useCallback(() => {
+    const el = categoryScrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 2);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
+  }, []);
+
+  useEffect(() => {
+    const el = categoryScrollRef.current;
+    if (!el) return;
+
+    checkCategoryScroll();
+    el.addEventListener('scroll', checkCategoryScroll, { passive: true });
+    window.addEventListener('resize', checkCategoryScroll);
+
+    return () => {
+      el.removeEventListener('scroll', checkCategoryScroll);
+      window.removeEventListener('resize', checkCategoryScroll);
+    };
+  }, [checkCategoryScroll]);
+
+  // Masaüstünde mouse wheel dikey kaydırmayı yatay scroll'a dönüştür
+  useEffect(() => {
+    const el = categoryScrollRef.current;
+    if (!el) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        const canScrollLeftNow = el.scrollLeft > 0;
+        const canScrollRightNow = el.scrollLeft < el.scrollWidth - el.clientWidth - 1;
+
+        if ((e.deltaY > 0 && canScrollRightNow) || (e.deltaY < 0 && canScrollLeftNow)) {
+          e.preventDefault();
+          el.scrollLeft += e.deltaY;
+        }
+      }
+    };
+
+    el.addEventListener('wheel', handleWheel, { passive: false });
+    return () => {
+      el.removeEventListener('wheel', handleWheel);
+    };
+  }, []);
+
+  // Seçili kategori değiştiğinde butonu görünür alana kaydır
+  useEffect(() => {
+    const btn = categoryBtnRefs.current[selectedCategory];
+    if (btn) {
+      btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }, [selectedCategory]);
 
   // URL query parametrelerini güncelle (sayfa yenilenmeden)
   const updateUrlParams = useCallback(
@@ -364,41 +421,76 @@ export default function ToolsCatalog() {
             </div>
           </div>
 
-          {/* KATEGORİ SEÇİCİ BARI (Kompakt, Ekranı Boğmayan Scrollable & Dropdown Hibrit Tasarım) */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-            {/* Tümü Butonu */}
-            <button
-              type="button"
-              onClick={() => handleCategoryChange('all')}
-              className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap shrink-0 ${
-                selectedCategory === 'all'
-                  ? 'bg-foreground text-background font-semibold'
-                  : 'bg-card text-muted-foreground border border-border hover:text-foreground hover:border-foreground/30'
+          {/* KATEGORİ SEÇİCİ BARI (Yatay Kaydırılabilir & Scroll Affordance Fade) */}
+          <div className="relative w-full min-w-0">
+            {/* Sol Fade Gradient */}
+            <div
+              className={`pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-r from-background to-transparent z-10 transition-opacity duration-200 ${
+                canScrollLeft ? 'opacity-100' : 'opacity-0'
               }`}
+              aria-hidden="true"
+            />
+
+            {/* Sağ Fade Gradient */}
+            <div
+              className={`pointer-events-none absolute right-0 top-0 bottom-0 w-10 sm:w-16 bg-gradient-to-l from-background to-transparent z-10 transition-opacity duration-200 ${
+                canScrollRight ? 'opacity-100' : 'opacity-0'
+              }`}
+              aria-hidden="true"
+            />
+
+            {/* Kaydırılabilir Kategori Listesi */}
+            <div
+              ref={categoryScrollRef}
+              className="w-full min-w-0 flex items-center gap-2 overflow-x-auto scrollbar-none py-1 px-0.5 overscroll-x-contain"
+              style={{
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+              }}
             >
-              Tümü ({totalActiveToolsCount})
-            </button>
+              {/* Tümü Butonu */}
+              <button
+                ref={(el) => {
+                  categoryBtnRefs.current['all'] = el;
+                }}
+                type="button"
+                onClick={() => handleCategoryChange('all')}
+                className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap shrink-0 ${
+                  selectedCategory === 'all'
+                    ? 'bg-foreground text-background font-semibold shadow-2xs'
+                    : 'bg-card text-muted-foreground border border-border hover:text-foreground hover:border-foreground/30'
+                }`}
+              >
+                Tümü ({totalActiveToolsCount})
+              </button>
 
-            {/* Kategori Butonları */}
-            {activeCategories.map((cat: Category) => {
-              const count = getToolsByCategoryId(cat.id).length;
-              const isSelected = selectedCategory === cat.id;
+              {/* Kategori Butonları */}
+              {activeCategories.map((cat: Category) => {
+                const count = getToolsByCategoryId(cat.id).length;
+                const isSelected = selectedCategory === cat.id;
 
-              return (
-                <button
-                  key={cat.id}
-                  type="button"
-                  onClick={() => handleCategoryChange(cat.id)}
-                  className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap shrink-0 ${
-                    isSelected
-                      ? 'bg-foreground text-background font-semibold'
-                      : 'bg-card text-muted-foreground border border-border hover:text-foreground hover:border-foreground/30'
-                  }`}
-                >
-                  {cat.title} ({count})
-                </button>
-              );
-            })}
+                return (
+                  <button
+                    key={cat.id}
+                    ref={(el) => {
+                      categoryBtnRefs.current[cat.id] = el;
+                    }}
+                    type="button"
+                    onClick={() => handleCategoryChange(cat.id)}
+                    className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-colors whitespace-nowrap shrink-0 ${
+                      isSelected
+                        ? 'bg-foreground text-background font-semibold shadow-2xs'
+                        : 'bg-card text-muted-foreground border border-border hover:text-foreground hover:border-foreground/30'
+                    }`}
+                  >
+                    {cat.title} ({count})
+                  </button>
+                );
+              })}
+
+              {/* Sağ uçta son kategori butonunun rahat görünmesi için nefes payı spacer */}
+              <div className="w-8 shrink-0 pointer-events-none" aria-hidden="true" />
+            </div>
           </div>
         </div>
 
