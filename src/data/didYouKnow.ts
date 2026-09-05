@@ -26,9 +26,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-1",
     "category": "Tarih",
     "categorySlug": "tarih",
-    "fact": "Dünya tarihinin en kısa savaşı, 27 Ağustos 1896'da Britanya ile Zanzibar arasında gerçekleşmiş ve yaklaşık 38 ila 45 dakika sürmüştür.",
-    "relatedToolSlug": "kdv-hesaplama",
-    "relatedToolTitle": "KDV Hesaplama"
+    "fact": "Dünya tarihinin en kısa savaşı, 27 Ağustos 1896'da Britanya ile Zanzibar arasında gerçekleşmiş ve yaklaşık 38 ila 45 dakika sürmüştür."
   },
   {
     "id": "dyk-2",
@@ -40,9 +38,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-3",
     "category": "Tarih",
     "categorySlug": "tarih",
-    "fact": "Oxford Üniversitesi, Aztek İmparatorluğu'ndan daha eskidir. Oxford'da eğitim 1096'da başlamışken, Aztek medeniyeti 1325'te kurulmuştur.",
-    "relatedToolSlug": "yas-hesaplama",
-    "relatedToolTitle": "Yaş Hesaplama"
+    "fact": "Oxford Üniversitesi, Aztek İmparatorluğu'ndan daha eskidir. Oxford'da eğitim 1096'da başlamışken, Aztek medeniyeti 1325'te kurulmuştur."
   },
   {
     "id": "dyk-4",
@@ -90,25 +86,19 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-11",
     "category": "Tarih",
     "categorySlug": "tarih",
-    "fact": "Osmanlı İmparatorluğu'nda ilk matbaa, İbrahim Müteferrika tarafından 1727 yılında kurulmuş ve ilk basılan eser Vankulu Lügati olmuştur.",
-    "relatedToolSlug": "kelime-sayaci",
-    "relatedToolTitle": "Kelime Sayacı"
+    "fact": "Osmanlı İmparatorluğu'nda ilk matbaa, İbrahim Müteferrika tarafından 1727 yılında kurulmuş ve ilk basılan eser Vankulu Lügati olmuştur."
   },
   {
     "id": "dyk-12",
     "category": "Tarih",
     "categorySlug": "tarih",
-    "fact": "Çin Seddi insan yapımı en uzun savunma duvarıdır, ancak popüler mitin aksine Ay'dan çıplak gözle görülemez.",
-    "relatedToolSlug": "birim-cevirici",
-    "relatedToolTitle": "Birim Dönüştürücü"
+    "fact": "Çin Seddi insan yapımı en uzun savunma duvarıdır, ancak popüler mitin aksine Ay'dan çıplak gözle görülemez."
   },
   {
     "id": "dyk-13",
     "category": "Tarih",
     "categorySlug": "tarih",
-    "fact": "Kleopatra, Büyük Giza Piramidi'nin yapılışından ziyade Ay'a ayak basılan tarihe (1969) zaman olarak daha yakındır.",
-    "relatedToolSlug": "yas-hesaplama",
-    "relatedToolTitle": "Tarih ve Zaman Hesaplama"
+    "fact": "Kleopatra, Büyük Giza Piramidi'nin yapılışından ziyade Ay'a ayak basılan tarihe (1969) zaman olarak daha yakındır."
   },
   {
     "id": "dyk-14",
@@ -276,17 +266,13 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-41",
     "category": "Bilim & Evren",
     "categorySlug": "bilim",
-    "fact": "Güneş ışığının yüzeyden ayrılıp Dünya'ya ulaşması yaklaşık 8 dakika 20 saniye sürer; çekirdekten yüzeye çıkması ise yüz binlerce yıl alır.",
-    "relatedToolSlug": "birim-cevirici",
-    "relatedToolTitle": "Birim Dönüştürücü"
+    "fact": "Güneş ışığının yüzeyden ayrılıp Dünya'ya ulaşması yaklaşık 8 dakika 20 saniye sürer; çekirdekten yüzeye çıkması ise yüz binlerce yıl alır."
   },
   {
     "id": "dyk-42",
     "category": "Bilim & Evren",
     "categorySlug": "bilim",
-    "fact": "Venüs gezegeninde bir gün, bir yıldan daha uzundur; kendi etrafında dönüşü 243 gün sürerken Güneş etrafındaki turu 225 günde biter.",
-    "relatedToolSlug": "yas-hesaplama",
-    "relatedToolTitle": "Zaman Hesaplama"
+    "fact": "Venüs gezegeninde bir gün, bir yıldan daha uzundur; kendi etrafında dönüşü 243 gün sürerken Güneş etrafındaki turu 225 günde biter."
   },
   {
     "id": "dyk-43",
@@ -298,9 +284,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-44",
     "category": "Bilim & Evren",
     "categorySlug": "bilim",
-    "fact": "Nötron yıldızları o kadar yoğundur ki, bir nötron yıldızından alınacak bir çay kaşığı madde Dünya'da yaklaşık 6 milyar ton gelir.",
-    "relatedToolSlug": "birim-cevirici",
-    "relatedToolTitle": "Ağırlık Dönüştürücü"
+    "fact": "Nötron yıldızları o kadar yoğundur ki, bir nötron yıldızından alınacak bir çay kaşığı madde Dünya'da yaklaşık 6 milyar ton gelir."
   },
   {
     "id": "dyk-45",
@@ -324,9 +308,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-48",
     "category": "Bilim & Evren",
     "categorySlug": "bilim",
-    "fact": "Işık saniyede yaklaşık 300.000 km hızla ilerler; bu hızla Dünya'nın ekvator çevresini bir saniyede 7.5 kez dolaşabilir.",
-    "relatedToolSlug": "birim-cevirici",
-    "relatedToolTitle": "Hız Dönüştürücü"
+    "fact": "Işık saniyede yaklaşık 300.000 km hızla ilerler; bu hızla Dünya'nın ekvator çevresini bir saniyede 7.5 kez dolaşabilir."
   },
   {
     "id": "dyk-49",
@@ -350,9 +332,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-52",
     "category": "Bilim & Evren",
     "categorySlug": "bilim",
-    "fact": "Mars'taki Olympus Mons yanardağı yaklaşık 22 km yüksekliğiyle Everest Dağı'nın yaklaşık 2.5 katı boyundadır ve Güneş Sistemi'nin en yüksek dağıdır.",
-    "relatedToolSlug": "birim-cevirici",
-    "relatedToolTitle": "Mesafe Dönüştürücü"
+    "fact": "Mars'taki Olympus Mons yanardağı yaklaşık 22 km yüksekliğiyle Everest Dağı'nın yaklaşık 2.5 katı boyundadır ve Güneş Sistemi'nin en yüksek dağıdır."
   },
   {
     "id": "dyk-53",
@@ -468,9 +448,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-71",
     "category": "Bilim & Evren",
     "categorySlug": "bilim",
-    "fact": "Dünya'nın kendi ekseni etrafındaki dönüş hızı ekvatorda saatte yaklaşık 1.670 kilometredir.",
-    "relatedToolSlug": "birim-cevirici",
-    "relatedToolTitle": "Hız Birimleri"
+    "fact": "Dünya'nın kendi ekseni etrafındaki dönüş hızı ekvatorda saatte yaklaşık 1.670 kilometredir."
   },
   {
     "id": "dyk-72",
@@ -530,9 +508,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-81",
     "category": "İnsan & Biyoloji",
     "categorySlug": "insan",
-    "fact": "Yetişkin bir insanın kalbi günde ortalama 100.000 kez atar ve yaklaşık 7.500 litre kanı damar ağına pompalar.",
-    "relatedToolSlug": "kalori-hesaplama",
-    "relatedToolTitle": "Kalori Hesaplama"
+    "fact": "Yetişkin bir insanın kalbi günde ortalama 100.000 kez atar ve yaklaşık 7.500 litre kanı damar ağına pompalar."
   },
   {
     "id": "dyk-82",
@@ -544,9 +520,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-83",
     "category": "İnsan & Biyoloji",
     "categorySlug": "insan",
-    "fact": "İnsan beyni vücut ağırlığının yaklaşık %2'sini oluşturmasına rağmen, dinlenme anındaki toplam oksijen ve enerjinin %20'sini harcar.",
-    "relatedToolSlug": "vucut-kitle-indeksi-hesaplama",
-    "relatedToolTitle": "Vücut Kitle İndeksi"
+    "fact": "İnsan beyni vücut ağırlığının yaklaşık %2'sini oluşturmasına rağmen, dinlenme anındaki toplam oksijen ve enerjinin %20'sini harcar."
   },
   {
     "id": "dyk-84",
@@ -559,8 +533,8 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "category": "İnsan & Biyoloji",
     "categorySlug": "insan",
     "fact": "Gözlerimiz kapalıyken gördüğümüz tam siyah olmayan koyu gri tonun optik bilimindeki özel adı 'Eigengrau'dur.",
-    "relatedToolSlug": "renk-kodu-donusturucu",
-    "relatedToolTitle": "Renk Kodu Dönüştürücü"
+    "relatedToolSlug": "renk-donusturucu",
+    "relatedToolTitle": "Renk Dönüştürücü"
   },
   {
     "id": "dyk-86",
@@ -591,8 +565,8 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "category": "İnsan & Biyoloji",
     "categorySlug": "insan",
     "fact": "İnsan gözü yaklaşık 10 milyon farklı renk tonunu birbirinden ayırt edebilecek reseptör kapasitesine sahiptir.",
-    "relatedToolSlug": "renk-kodu-donusturucu",
-    "relatedToolTitle": "Renk Kodları"
+    "relatedToolSlug": "renk-donusturucu",
+    "relatedToolTitle": "Renk Dönüştürücü"
   },
   {
     "id": "dyk-91",
@@ -796,9 +770,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-124",
     "category": "Hayvanlar & Doğa",
     "categorySlug": "hayvanlar",
-    "fact": "Dünyadaki en hızlı kara hayvanı olan çita, saatte 100 kilometre hıza sadece 3 saniyede ulaşabilir; bu çoğu spor otomobilden hızlıdır.",
-    "relatedToolSlug": "birim-cevirici",
-    "relatedToolTitle": "Hız Dönüştürücü"
+    "fact": "Dünyadaki en hızlı kara hayvanı olan çita, saatte 100 kilometre hıza sadece 3 saniyede ulaşabilir; bu çoğu spor otomobilden hızlıdır."
   },
   {
     "id": "dyk-125",
@@ -1044,9 +1016,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-165",
     "category": "Coğrafya & Doğa",
     "categorySlug": "cografya",
-    "fact": "Rusya 11 farklı zaman dilimine yayılmıştır; ülkenin bir ucunda sabah kahvaltısı yapılırken diğer ucunda gece uykusuna yatılır.",
-    "relatedToolSlug": "yas-hesaplama",
-    "relatedToolTitle": "Saat & Zaman"
+    "fact": "Rusya 11 farklı zaman dilimine yayılmıştır; ülkenin bir ucunda sabah kahvaltısı yapılırken diğer ucunda gece uykusuna yatılır."
   },
   {
     "id": "dyk-166",
@@ -1262,9 +1232,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-201",
     "category": "Teknoloji",
     "categorySlug": "teknoloji",
-    "fact": "1969'da Apollo 11'i Ay'a götüren Apollo Yönlendirme Bilgisayarı (AGC) sadece 4 kilobayt RAM belleğe sahipti.",
-    "relatedToolSlug": "kelime-sayaci",
-    "relatedToolTitle": "Karakter Sayacı"
+    "fact": "1969'da Apollo 11'i Ay'a götüren Apollo Yönlendirme Bilgisayarı (AGC) sadece 4 kilobayt RAM belleğe sahipti."
   },
   {
     "id": "dyk-202",
@@ -1294,9 +1262,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-206",
     "category": "Teknoloji",
     "categorySlug": "teknoloji",
-    "fact": "Dünyadaki ilk ticari kısa mesaj (SMS), 3 Aralık 1992'de Neil Papworth tarafından bilgisayardan cep telefonuna 'Merry Christmas' olarak gönderilmiştir.",
-    "relatedToolSlug": "kelime-sayaci",
-    "relatedToolTitle": "Kelime & Karakter"
+    "fact": "Dünyadaki ilk ticari kısa mesaj (SMS), 3 Aralık 1992'de Neil Papworth tarafından bilgisayardan cep telefonuna 'Merry Christmas' olarak gönderilmiştir."
   },
   {
     "id": "dyk-207",
@@ -1351,7 +1317,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "category": "Teknoloji",
     "categorySlug": "teknoloji",
     "fact": "QR Kod (Quick Response), 1994 yılında Japon Denso Wave şirketi tarafından otomotiv parçalarının üretim hattında hızlı takibi için icat edilmiştir.",
-    "relatedToolSlug": "arac/qr-kod-olusturucu",
+    "relatedToolSlug": "qr-kod-olusturucu",
     "relatedToolTitle": "QR Kod Oluşturucu"
   },
   {
@@ -1467,8 +1433,8 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "category": "Teknoloji",
     "categorySlug": "teknoloji",
     "fact": "Kriptografi biliminde kullanılan asimetrik RSA şifreleme algoritması, iki büyük asal sayının çarpımının çarpanlarına ayrılmasının zorluğuna dayanır.",
-    "relatedToolSlug": "sifre-olusturucu",
-    "relatedToolTitle": "Şifre Oluşturucu"
+    "relatedToolSlug": "guvenli-sifre-olusturucu",
+    "relatedToolTitle": "Güvenli Şifre Oluşturucu"
   },
   {
     "id": "dyk-235",
@@ -1623,8 +1589,8 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "category": "Matematik & Sayılar",
     "categorySlug": "matematik",
     "fact": "Bileşik faizin üstel büyüme gücünü Albert Einstein 'Evrenin sekizinci harikası; anlayan kazanır, anlamayan öder' sözüyle özetlemiştir.",
-    "relatedToolSlug": "kredi-hesaplama",
-    "relatedToolTitle": "Kredi & Faiz"
+    "relatedToolSlug": "bilesik-faiz-hesaplama",
+    "relatedToolTitle": "Bileşik Faiz Hesaplama"
   },
   {
     "id": "dyk-260",
@@ -1696,9 +1662,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-271",
     "category": "Matematik & Sayılar",
     "categorySlug": "matematik",
-    "fact": "Bir saatin akrebi ve yelkovanı 24 saatlik bir günde tam 22 kez üst üste gelir.",
-    "relatedToolSlug": "yas-hesaplama",
-    "relatedToolTitle": "Zaman Hesabı"
+    "fact": "Bir saatin akrebi ve yelkovanı 24 saatlik bir günde tam 22 kez üst üste gelir."
   },
   {
     "id": "dyk-272",
@@ -1734,9 +1698,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-277",
     "category": "Türkiye & Kültür",
     "categorySlug": "turkiye",
-    "fact": "Türkiye kişi başına yıllık yaklaşık 3.5 kilogramlık tüketimiyle dünyada en çok çay içilen ülkedir.",
-    "relatedToolSlug": "kalori-hesaplama",
-    "relatedToolTitle": "Kalori Hesaplama"
+    "fact": "Türkiye kişi başına yıllık yaklaşık 3.5 kilogramlık tüketimiyle dünyada en çok çay içilen ülkedir."
   },
   {
     "id": "dyk-278",
@@ -1748,9 +1710,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-279",
     "category": "Türkiye & Kültür",
     "categorySlug": "turkiye",
-    "fact": "Tarihte bilinen ilk standart madeni para, M.Ö. 7. yüzyılda Batı Anadolu'da Lidyalılar tarafından basılmıştır.",
-    "relatedToolSlug": "kdv-hesaplama",
-    "relatedToolTitle": "KDV Hesaplama"
+    "fact": "Tarihte bilinen ilk standart madeni para, M.Ö. 7. yüzyılda Batı Anadolu'da Lidyalılar tarafından basılmıştır."
   },
   {
     "id": "dyk-280",
@@ -2154,9 +2114,7 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "id": "dyk-346",
     "category": "Ekonomi & Finans",
     "categorySlug": "ekonomi",
-    "fact": "Dünyadaki toplam para arzının yaklaşık %90'ından fazlası fiziksel banknot ve madeni para değil, banka sistemlerindeki dijital kayıtlardır.",
-    "relatedToolSlug": "kdv-hesaplama",
-    "relatedToolTitle": "KDV Hesaplama"
+    "fact": "Dünyadaki toplam para arzının yaklaşık %90'ından fazlası fiziksel banknot ve madeni para değil, banka sistemlerindeki dijital kayıtlardır."
   },
   {
     "id": "dyk-347",
@@ -2175,8 +2133,8 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "category": "Ekonomi & Finans",
     "categorySlug": "ekonomi",
     "fact": "Bileşik faiz hesaplamasında paranızın ikiye katlanma süresini bulmak için 72 sayısını yıllık faiz oranına bölmek yeterlidir (72 Kuralı).",
-    "relatedToolSlug": "kredi-hesaplama",
-    "relatedToolTitle": "Kredi & Faiz"
+    "relatedToolSlug": "bilesik-faiz-hesaplama",
+    "relatedToolTitle": "Bileşik Faiz Hesaplama"
   },
   {
     "id": "dyk-350",
@@ -2201,8 +2159,8 @@ export const DID_YOU_KNOW_ITEMS: DidYouKnowItem[] = [
     "category": "Ekonomi & Finans",
     "categorySlug": "ekonomi",
     "fact": "Enflasyon, paranın satın alma gücünün zamanla erimesidir; yıllık %10 enflasyonda paranızın değeri yaklaşık 7 yılda yarıya iner.",
-    "relatedToolSlug": "yuzde-hesaplama",
-    "relatedToolTitle": "Yüzde Hesaplama"
+    "relatedToolSlug": "enflasyon-hesaplama",
+    "relatedToolTitle": "Enflasyon Hesaplama"
   },
   {
     "id": "dyk-354",

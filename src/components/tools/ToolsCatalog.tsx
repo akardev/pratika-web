@@ -325,7 +325,7 @@ export default function ToolsCatalog() {
                     {currentCategoryObj.description}
                   </p>
                   <Link
-                    href={`/araclar/${currentCategoryObj.slug}`}
+                    href={`/kategoriler/${currentCategoryObj.slug}`}
                     className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-0.5"
                   >
                     Kategori Rehberine Git &rarr;

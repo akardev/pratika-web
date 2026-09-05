@@ -28,13 +28,13 @@ export default async function AraclarPage({ searchParams }: Props) {
     const kategori = typeof params.kategori === 'string' ? params.kategori : undefined;
     const query = typeof params.q === 'string' ? params.q : undefined;
 
-    // Eski query parametreli kategori URL'lerini (/araclar?kategori=egitim) yeni temiz SEO rotasına (/araclar/egitim) yönlendir
+    // Eski query parametreli kategori URL'lerini (/araclar?kategori=egitim) yeni temiz SEO rotasına (/kategoriler/egitim) yönlendir
     if (kategori && kategori !== 'all' && !query) {
       const matchedCategory = categories.find(
         (c) => c.id === kategori || c.slug === kategori
       );
       if (matchedCategory) {
-        permanentRedirect(`/araclar/${matchedCategory.slug}`);
+        permanentRedirect(`/kategoriler/${matchedCategory.slug}`);
       }
     }
   }

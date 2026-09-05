@@ -21,5 +21,5 @@ export default async function LegacyCategoryRedirectPage({ params }: Props) {
     notFound();
   }
 
-  permanentRedirect(`/araclar/${category.slug}`);
+  permanentRedirect(`/kategoriler/${category.slug}`);
 }

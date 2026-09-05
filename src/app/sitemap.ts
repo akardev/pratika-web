@@ -82,7 +82,7 @@ export default function sitemap() {
   ];
 
   const categoryRoutes = categories.map((cat) => ({
-    url: `${baseUrl}/araclar/${cat.slug}`,
+    url: `${baseUrl}/kategoriler/${cat.slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.8,

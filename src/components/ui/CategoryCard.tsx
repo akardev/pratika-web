@@ -198,7 +198,7 @@ export default function CategoryCard({
 }: CategoryCardProps) {
   const categoryTools = getToolsByCategoryId(category.id);
   const sampleTools = categoryTools.slice(0, 3);
-  const href = customHref || `/araclar/${category.slug}`;
+  const href = customHref || `/kategoriler/${category.slug}`;
   const theme = CATEGORY_THEMES[category.id] || DEFAULT_THEME;
 
   return (

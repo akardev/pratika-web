@@ -79,8 +79,6 @@ export default function DidYouKnowCard({
         <div className="flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
           <span>Günün Bilgisi</span>
-          <span className="text-muted-foreground/40">•</span>
-          <span className="text-[10.5px] text-muted-foreground/75">Her gün yenilenir</span>
         </div>
 
         {initialFact.relatedToolSlug && initialFact.relatedToolTitle ? (
@@ -92,7 +90,7 @@ export default function DidYouKnowCard({
             <span aria-hidden="true">→</span>
           </Link>
         ) : (
-          <span className="text-[10.5px] text-muted-foreground/60">Yarın yeni bilgi</span>
+          <span className="text-[10.5px] text-muted-foreground/60">Günün Keşfi</span>
         )}
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { tools, categories } from '@/data/tools';
 import { getArticlesByToolSlug } from '@/data/articles';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { siteConfig } from '@/lib/site';
@@ -60,6 +60,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ToolPage({ params }: Props) {
   const resolvedParams = await params;
+
+  // Legacy/duplicate tool slug redirect
+  if (resolvedParams.slug === 'sosyal-medya-gorsel-boyutlari') {
+    permanentRedirect('/arac/sosyal-medya-gorsel-boyutlandirici');
+  }
+
   const tool = tools.find((t) => t.slug === resolvedParams.slug);
 
   if (!tool) {
@@ -105,7 +111,7 @@ export default async function ToolPage({ params }: Props) {
       <Breadcrumb
         items={[
           { label: 'Araçlar', href: '/araclar' },
-          ...(category ? [{ label: category.title, href: `/araclar/${category.slug}` }] : []),
+          ...(category ? [{ label: category.title, href: `/kategoriler/${category.slug}` }] : []),
           { label: tool.title },
         ]}
       />
@@ -118,7 +124,7 @@ export default async function ToolPage({ params }: Props) {
           </div>
           {category && (
             <Link
-              href={`/araclar/${category.slug}`}
+              href={`/kategoriler/${category.slug}`}
               className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
             >
               <span>{category.title}</span>

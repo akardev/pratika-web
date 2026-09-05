@@ -263,9 +263,9 @@ export default function CategoriesCatalog() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
               </svg>
             </div>
-            <h3 className="text-sm font-bold text-foreground mb-1">Sürekli Güncellenen Veritabanı</h3>
+            <h3 className="text-sm font-bold text-foreground mb-1">Genişleyen Araç Kütüphanesi</h3>
             <p className="text-xs text-muted-foreground leading-relaxed">
-              Vergi oranları, güncel mevzuat formülleri ve yeni yardımcı araçlar {totalActiveToolsCount}+ araçlık portföye düzenli olarak eklenir.
+              Vergi oranları, mevzuat standartları ve pratik hesaplamalar {totalActiveToolsCount}+ araçlık portföyümüzde güvenle kullanıma sunulur.
             </p>
           </div>
         </div>

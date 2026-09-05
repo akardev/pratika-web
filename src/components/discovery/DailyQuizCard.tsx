@@ -60,13 +60,13 @@ export default function DailyQuizCard({
         </div>
 
         {/* Question Prompt */}
-        <div className="mt-3.5">
-          <h3 className="min-h-[40px] text-xs sm:text-[13.5px] font-semibold leading-snug text-foreground">
+        <div className="mt-3">
+          <h3 className="min-h-[38px] text-xs sm:text-[13px] font-semibold leading-snug text-foreground line-clamp-2">
             {initialQuestion.question}
           </h3>
 
           {/* 4 Options: Compact 2x2 Grid */}
-          <div className="mt-3 grid grid-cols-2 gap-2">
+          <div className="mt-2.5 grid grid-cols-2 gap-2">
             {initialQuestion.options.map((option, idx) => {
               const letter = OPTION_LETTERS[idx];
               const isSelected = selectedIndex === idx;
@@ -101,16 +101,16 @@ export default function DailyQuizCard({
                   type="button"
                   disabled={isAnswered}
                   onClick={() => handleSelectOption(idx)}
-                  className={`flex min-h-9 items-center gap-2 rounded-xl border px-2.5 py-1.5 text-left text-xs transition-all ${buttonStyles} ${
+                  className={`flex min-h-8 sm:min-h-9 items-center gap-1.5 sm:gap-2 rounded-xl border px-2 sm:px-2.5 py-1.5 text-left text-xs transition-all ${buttonStyles} ${
                     !isAnswered ? 'cursor-pointer active:scale-[0.99]' : 'cursor-default'
                   }`}
                 >
                   <span
-                    className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border text-[11px] transition-colors ${badgeStyles}`}
+                    className={`flex h-4.5 w-4.5 sm:h-5 sm:w-5 shrink-0 items-center justify-center rounded-md border text-[10.5px] sm:text-[11px] transition-colors ${badgeStyles}`}
                   >
                     {letter}
                   </span>
-                  <span className={`flex-1 text-[11.5px] sm:text-xs leading-tight ${textStyles}`}>{option}</span>
+                  <span className={`flex-1 text-[11px] sm:text-[12px] leading-tight break-words ${textStyles}`}>{option}</span>
                   {isAnswered && isThisCorrect && (
                     <svg aria-hidden="true" className="h-3.5 w-3.5 shrink-0 text-emerald-600 dark:text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
@@ -127,10 +127,10 @@ export default function DailyQuizCard({
           </div>
 
           {/* Dedicated Compact Result Area: Pre-allocated height to eliminate layout jumping */}
-          <div className="mt-3 min-h-[52px]">
+          <div className="mt-2.5 min-h-[48px]">
             {isAnswered ? (
-              <div className="rounded-xl border border-border/70 bg-muted/40 p-2.5 text-xs animate-fadeIn">
-                <p className="text-[11.5px] leading-snug text-foreground/90">
+              <div className="rounded-xl border border-border/70 bg-muted/40 p-2 text-xs animate-fadeIn">
+                <p className="text-[11px] sm:text-[11.5px] leading-snug text-foreground/90 line-clamp-2">
                   <strong className="text-foreground">
                     Doğru Cevap: {OPTION_LETTERS[initialQuestion.correctIndex]}){' '}
                   </strong>
@@ -151,8 +151,6 @@ export default function DailyQuizCard({
         <div className="flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground">
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
           <span>Günün Sorusu</span>
-          <span className="text-muted-foreground/40">•</span>
-          <span className="text-[10.5px] text-muted-foreground/75">Her gün 1 yeni soru</span>
         </div>
 
         {isAnswered && (

@@ -21,22 +21,26 @@ function getCardTopEvents(events: ReturnType<typeof getTodayInHistory>['events']
   if (!events || events.length === 0) return [];
 
   const selected: typeof events = [];
-  let totalChars = 0;
+  let totalLineScore = 0;
+  const maxLineScore = 6; // Kartın sabit yüksekliğini koruyacak satır sınırı
 
   for (const event of events) {
     const narrative = getHistoryEventNarrative(event);
-    if (selected.length >= 5 && totalChars + narrative.length > 380) {
+    const lineScore = narrative.length > 55 ? 2 : 1;
+
+    // Satır kapasitesi aşıldığında kartın büyümesini önlemek için durdur
+    if (selected.length >= 2 && totalLineScore + lineScore > maxLineScore) {
       break;
     }
-    if (selected.length >= 6) {
+    if (selected.length >= 5) {
       break;
     }
 
     selected.push(event);
-    totalChars += narrative.length;
+    totalLineScore += lineScore;
   }
 
-  return selected.length >= 4 ? selected : events.slice(0, 5);
+  return selected.length > 0 ? selected : events.slice(0, 2);
 }
 
 export default function TodayInHistoryCard({
@@ -107,7 +111,7 @@ export default function TodayInHistoryCard({
       {/* Bottom Actions */}
       <div className="mt-5 flex items-center justify-between gap-3 border-t border-border/50 pt-3">
         <span className="text-[11px] text-muted-foreground">
-          62.000+ kayıtlık arşiv
+          Kapsamlı Tarih Arşivi
         </span>
 
         {showExploreLink && (

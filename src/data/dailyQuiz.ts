@@ -25,8 +25,8 @@ export const QUIZ_CATEGORIES = [
 export const QUIZ_QUESTIONS: QuizQuestion[] = [
   {
     "id": "quiz-1",
-    "category": "Coğrafya",
-    "categorySlug": "cografya",
+    "category": "Bilim & Doğa",
+    "categorySlug": "bilim",
     "question": "Güneş Sistemi'ndeki en büyük gezegen hangisidir?",
     "options": [
       "Satürn",
@@ -139,7 +139,7 @@ export const QUIZ_QUESTIONS: QuizQuestion[] = [
     "id": "quiz-9",
     "category": "Coğrafya",
     "categorySlug": "cografya",
-    "question": "Avrupa ile Asya'yı ayıran Ural Dağları hangi ülkededir?",
+    "question": "Avrupa ile Asya kıtalarını birbirinden ayıran doğal kara sınırı kabul edilen dağ sırası hangisidir?",
     "options": [
       "Ural Dağları",
       "Alpler",
