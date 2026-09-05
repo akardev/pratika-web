@@ -31,7 +31,7 @@ export default function AracMuayeneGecikmeUcretiHesaplama() {
             <select
               id="vt"
               value={vehicleType}
-              onChange={(e) => setVehicleType(e.target.value as 'car' | 'commercial' | 'tractor' | 'motorcycle')}
+              onChange={(e) => setVehicleType(e.target.value as 'car' | 'moto' | 'bus')}
               className="w-full h-11 px-3 rounded-lg border border-border bg-background text-sm"
             >
               <option value="car">Otomobil, Minibüs, Kamyonet</option>

@@ -96,6 +96,17 @@ export default function ToolsCatalog() {
     };
   }, []);
 
+  // Kategori çubuğunu sağa/sola ok butonlarıyla kaydır
+  const handleScrollCategories = (direction: 'left' | 'right') => {
+    const el = categoryScrollRef.current;
+    if (!el) return;
+    const scrollAmount = Math.max(el.clientWidth * 0.65, 260);
+    el.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth'
+    });
+  };
+
   // Seçili kategori değiştiğinde butonu görünür alana kaydır
   useEffect(() => {
     const btn = categoryBtnRefs.current[selectedCategory];
@@ -421,28 +432,50 @@ export default function ToolsCatalog() {
             </div>
           </div>
 
-          {/* KATEGORİ SEÇİCİ BARI (Yatay Kaydırılabilir & Scroll Affordance Fade) */}
+          {/* KATEGORİ SEÇİCİ BARI (Yatay Kaydırılabilir & Sağ/Sol Ok Butonlu) */}
           <div className="relative w-full min-w-0">
-            {/* Sol Fade Gradient */}
+            {/* Sol Kaydırma Butonu & Gradyan */}
             <div
-              className={`pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-r from-background to-transparent z-10 transition-opacity duration-200 ${
-                canScrollLeft ? 'opacity-100' : 'opacity-0'
+              className={`absolute left-0 top-0 bottom-0 flex items-center pr-3 bg-gradient-to-r from-background via-background/95 to-transparent z-10 transition-all duration-200 ${
+                canScrollLeft ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
               }`}
-              aria-hidden="true"
-            />
+            >
+              <button
+                type="button"
+                onClick={() => handleScrollCategories('left')}
+                aria-label="Önceki kategoriler"
+                title="Önceki kategoriler"
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-border bg-card/95 hover:bg-muted text-foreground shadow-sm flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+            </div>
 
-            {/* Sağ Fade Gradient */}
+            {/* Sağ Kaydırma Butonu & Gradyan */}
             <div
-              className={`pointer-events-none absolute right-0 top-0 bottom-0 w-10 sm:w-16 bg-gradient-to-l from-background to-transparent z-10 transition-opacity duration-200 ${
-                canScrollRight ? 'opacity-100' : 'opacity-0'
+              className={`absolute right-0 top-0 bottom-0 flex items-center pl-3 bg-gradient-to-l from-background via-background/95 to-transparent z-10 transition-all duration-200 ${
+                canScrollRight ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
               }`}
-              aria-hidden="true"
-            />
+            >
+              <button
+                type="button"
+                onClick={() => handleScrollCategories('right')}
+                aria-label="Sonraki kategoriler"
+                title="Sonraki kategoriler"
+                className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-border bg-card/95 hover:bg-muted text-foreground shadow-sm flex items-center justify-center transition-all hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
 
             {/* Kaydırılabilir Kategori Listesi */}
             <div
               ref={categoryScrollRef}
-              className="w-full min-w-0 flex items-center gap-2 overflow-x-auto scrollbar-none py-1 px-0.5 overscroll-x-contain"
+              className="w-full min-w-0 flex items-center gap-2 overflow-x-auto scroll-smooth scrollbar-none py-1 px-1 overscroll-x-contain"
               style={{
                 scrollbarWidth: 'none',
                 msOverflowStyle: 'none',
@@ -488,8 +521,8 @@ export default function ToolsCatalog() {
                 );
               })}
 
-              {/* Sağ uçta son kategori butonunun rahat görünmesi için nefes payı spacer */}
-              <div className="w-8 shrink-0 pointer-events-none" aria-hidden="true" />
+              {/* Sağ uçta son kategori butonunun rahat görünmesi ve okun arkasında kalmaması için boşluk */}
+              <div className="w-10 shrink-0 pointer-events-none" aria-hidden="true" />
             </div>
           </div>
         </div>

@@ -64,7 +64,7 @@ export default function YasalFaizHesaplama() {
               <select
                 id="tp"
                 value={faizType}
-                onChange={(e) => setFaizType(e.target.value as 'yasal' | 'ticari')}
+                onChange={(e) => setFaizType(e.target.value as 'commercial' | 'legal')}
                 className="w-full h-11 px-3 rounded-lg border border-border bg-background text-sm"
               >
                 <option value="legal">Yasal Faiz (%24 Yıllık)</option>

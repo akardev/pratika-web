@@ -28,7 +28,7 @@ export default function KahveDemlemeOraniHesaplama() {
             <select
               id="mth"
               value={method}
-              onChange={(e) => setMethod(e.target.value as 'v60' | 'chemex' | 'french' | 'aeropress' | 'filter')}
+              onChange={(e) => setMethod(e.target.value as 'v60' | 'french' | 'aeropress' | 'moka' | 'espresso')}
               className="w-full h-11 px-3 rounded-lg border border-border bg-background text-sm"
             >
               <option value="v60">V60 / Filtre Kahve (1:16 Oran)</option>

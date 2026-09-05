@@ -43,7 +43,7 @@ export default function GeciciVergiHesaplama() {
               <select
                 id="et"
                 value={entityType}
-                onChange={(e) => setEntityType(e.target.value as 'gelir' | 'kurumlar')}
+                onChange={(e) => setEntityType(e.target.value as 'corporate' | 'individual')}
                 className="w-full h-11 px-3 rounded-lg border border-border bg-background text-sm"
               >
                 <option value="corporate">Sermaye Şirketi (LTD/A.Ş. - %25)</option>

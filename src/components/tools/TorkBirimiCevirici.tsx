@@ -31,7 +31,7 @@ export default function TorkBirimiCevirici() {
             <select
               id="tunt"
               value={unit}
-              onChange={(e) => setUnit(e.target.value as 'nm' | 'ftlb' | 'inlb' | 'kgfm')}
+              onChange={(e) => setUnit(e.target.value as 'nm' | 'lbft' | 'kgfm')}
               className="w-full h-11 px-3 rounded-lg border border-border bg-background text-sm"
             >
               <option value="nm">Newton Metre (Nm - SI)</option>

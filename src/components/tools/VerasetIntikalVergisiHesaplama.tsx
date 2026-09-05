@@ -47,7 +47,7 @@ export default function VerasetIntikalVergisiHesaplama() {
               <select
                 id="tt"
                 value={transferType}
-                onChange={(e) => setTransferType(e.target.value as 'child' | 'spouse_alone' | 'other' | 'unrequited')}
+                onChange={(e) => setTransferType(e.target.value as 'inheritance' | 'gift')}
                 className="w-full h-11 px-3 rounded-lg border border-border bg-background text-sm"
               >
                 <option value="inheritance">Veraset (Miras Yoluyla İntikal)</option>
