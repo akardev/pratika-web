@@ -17,8 +17,8 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: "Pratika",
-  authors: [{ name: "akardev" }],
-  creator: "akardev",
+  authors: [{ name: "Pratika" }],
+  creator: "Pratika",
   publisher: "Pratika",
   formatDetection: {
     telephone: false,

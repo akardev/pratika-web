@@ -1,11 +1,11 @@
 export const siteConfig = {
   name: 'Pratika',
-  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://pratika.com',
+  url: process.env.NEXT_PUBLIC_SITE_URL || 'https://pratika.com.tr',
   description: 'Türkiye odaklı hızlı, sade ve güvenilir online hesaplama araçları ve bilgi merkezi platformu.',
   ogImage: '/brand/pratika-logo.png',
   locale: 'tr_TR',
   links: {
-    github: 'https://github.com/akardev/pratika-web',
+    github: 'https://github.com/pratika-web',
   },
 };
 
