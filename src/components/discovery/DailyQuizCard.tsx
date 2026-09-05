@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { QuizQuestion } from '@/data/dailyQuiz';
 
 interface DailyQuizCardProps {
@@ -16,12 +16,42 @@ export default function DailyQuizCard({
 }: DailyQuizCardProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const todayStr = new Date().toISOString().split('T')[0];
+        const cacheKey = `pratika_daily_quiz_${todayStr}_${initialQuestion.id}`;
+        const cachedStr = localStorage.getItem(cacheKey);
+        
+        if (cachedStr) {
+          const parsed = parseInt(cachedStr, 10);
+          if (!isNaN(parsed) && parsed >= 0 && parsed <= 3) {
+            // eslint-disable-next-line
+            setSelectedIndex(parsed);
+          }
+        }
+      } catch {
+        // Ignore localStorage errors
+      }
+    }
+  }, [initialQuestion.id]);
+
   const isAnswered = selectedIndex !== null;
   const isCorrect = selectedIndex === initialQuestion.correctIndex;
 
   const handleSelectOption = (index: number) => {
     if (isAnswered) return;
     setSelectedIndex(index);
+
+    if (typeof window !== 'undefined') {
+      try {
+        const todayStr = new Date().toISOString().split('T')[0];
+        const cacheKey = `pratika_daily_quiz_${todayStr}_${initialQuestion.id}`;
+        localStorage.setItem(cacheKey, index.toString());
+      } catch {
+        // Ignore localStorage errors
+      }
+    }
   };
 
   return (
@@ -58,7 +88,7 @@ export default function DailyQuizCard({
 
         {/* Question Prompt */}
         <div className="mt-3">
-          <h3 className="min-h-[38px] text-xs sm:text-[13px] font-semibold leading-snug text-foreground line-clamp-2">
+          <h3 className="min-h-[38px] text-xs sm:text-[13px] font-semibold leading-snug text-foreground">
             {initialQuestion.question}
           </h3>
 
@@ -127,7 +157,7 @@ export default function DailyQuizCard({
           <div className="mt-2.5 min-h-[48px]">
             {isAnswered ? (
               <div className="rounded-xl border border-border/70 bg-muted/40 p-2 text-xs animate-fadeIn">
-                <p className="text-[11px] sm:text-[11.5px] leading-snug text-foreground/90 line-clamp-2">
+                <p className="text-[11px] sm:text-[11.5px] leading-snug text-foreground/90">
                   <strong className="text-foreground">
                     Doğru Cevap: {OPTION_LETTERS[initialQuestion.correctIndex]}){' '}
                   </strong>

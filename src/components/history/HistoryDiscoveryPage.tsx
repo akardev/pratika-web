@@ -178,11 +178,10 @@ export default function HistoryDiscoveryPage({
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: siteConfig.url },
-        { '@type': 'ListItem', position: 2, name: 'Bilgi Merkezi', item: `${siteConfig.url}/bilgi` },
-        { '@type': 'ListItem', position: 3, name: 'Tarihte Bugün', item: `${siteConfig.url}/tarihte-bugun` },
+        { '@type': 'ListItem', position: 2, name: 'Tarihte Bugün', item: `${siteConfig.url}/tarihte-bugun` },
         ...(mode === 'year'
-          ? [{ '@type': 'ListItem', position: 4, name: `${effectiveYear} Yılı`, item: pageUrl }]
-          : [{ '@type': 'ListItem', position: 4, name: dayLabel, item: pageUrl }]),
+          ? [{ '@type': 'ListItem', position: 3, name: `${effectiveYear} Yılı`, item: pageUrl }]
+          : [{ '@type': 'ListItem', position: 3, name: dayLabel, item: pageUrl }]),
       ],
     },
     mainEntity: {

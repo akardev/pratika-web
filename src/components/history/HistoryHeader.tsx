@@ -35,12 +35,6 @@ export default function HistoryHeader({
                 </Link>
               </li>
               <li aria-hidden="true" className="text-muted-foreground/40">/</li>
-              <li>
-                <Link href="/bilgi" className="transition-colors hover:text-foreground hover:underline">
-                  Bilgi Merkezi
-                </Link>
-              </li>
-              <li aria-hidden="true" className="text-muted-foreground/40">/</li>
               <li className="font-semibold text-foreground" aria-current="page">
                 Tarihte Bugün
               </li>

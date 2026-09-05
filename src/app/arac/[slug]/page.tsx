@@ -9,7 +9,7 @@ import ToolCard from '@/components/ui/ToolCard';
 
 
 import ToolRenderer from '@/components/tools/ToolRenderer';
-import ToolDidYouKnowWidget from '@/components/discovery/ToolDidYouKnowWidget';
+
 
 
 
@@ -143,12 +143,7 @@ export default async function ToolPage({ params }: Props) {
         <ToolRenderer slug={tool.slug} />
       </div>
 
-      {/* İlgili Biliyor Muydunuz Kartı */}
-      <ToolDidYouKnowWidget
-        toolSlug={tool.slug}
-        categorySlug={category?.slug}
-        className="mb-12"
-      />
+
 
 
       {/* İlgili Bilgiler (Bilgi Merkezi İçerikleri) */}
