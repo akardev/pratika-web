@@ -13,12 +13,7 @@ export default function DailyDiscoverySection() {
     <section aria-labelledby="daily-discovery-heading" className="w-full">
       <div className="mb-5 flex flex-col items-start justify-between gap-1.5 sm:flex-row sm:items-end">
         <div>
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-0.5 text-xs font-semibold text-primary">
-            <svg aria-hidden="true" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-            Günün Keşfi
-          </div>
+
           <h2 id="daily-discovery-heading" className="mt-2 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
             Günün Keşfi
           </h2>
