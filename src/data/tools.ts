@@ -2383,6 +2383,718 @@ export const tools: Tool[] = [
       'png arka plan silme'
     ]
   }
+,
+  {
+    id: 'kredi-karti-asgari-odeme-hesaplama',
+    slug: 'kredi-karti-asgari-odeme-hesaplama',
+    title: "Kredi Kartı Asgari Ödeme Tutarı Hesaplama",
+    description: "Kredi kartı limitinize ve dönem borcunuza göre yasal BDDK oranlarıyla (%20 veya %40) asgari ödeme tutarınızı ve kalan borç bakiyesini hesaplayın.",
+    categoryId: 'kredi',
+    status: 'active',
+    keywords: ["kredi kartı asgari ödeme","asgari ödeme tutarı","kredi kartı borcu","asgari tutar hesaplama","bddk asgari ödeme"]
+  },
+  {
+    id: 'kredi-karti-gecikme-faizi-hesaplama',
+    slug: 'kredi-karti-gecikme-faizi-hesaplama',
+    title: "Kredi Kartı Gecikme Faizi Hesaplama",
+    description: "TCMB azami akdi ve gecikme faiz oranları ile KKDF (%15) ve BSMV (%5) vergileri dahil kredi kartı gecikme faizi ve toplam maliyeti hesaplayın.",
+    categoryId: 'kredi',
+    status: 'active',
+    keywords: ["kredi kartı gecikme faizi","kart faizi hesaplama","gecikme zammı","akdi faiz","tcmb gecikme faizi"]
+  },
+  {
+    id: 'kredi-karti-nakit-avans-hesaplama',
+    slug: 'kredi-karti-nakit-avans-hesaplama',
+    title: "Kredi Kartı Taksitli Nakit Avans Hesaplama",
+    description: "Kredi kartından taksitli nakit avans çekiminde akdi faiz, KKDF ve BSMV dahil aylık taksit ve toplam geri ödeme tutarını hesaplayın.",
+    categoryId: 'kredi',
+    status: 'active',
+    keywords: ["nakit avans hesaplama","taksitli nakit avans","kredi kartı nakit çekim","nakit avans faizi","taksitli avans"]
+  },
+  {
+    id: 'kredi-yapilandirma-hesaplama',
+    slug: 'kredi-yapilandirma-hesaplama',
+    title: "Kredi Yapılandırma ve Refinansman Hesaplama",
+    description: "Mevcut kredinizin kalan anaparası ve yeni faiz oranı kıyaslanarak erken kapama cezası ve tahsis masrafları sonrası net kâr/tasarrufunuzu hesaplayın.",
+    categoryId: 'kredi',
+    status: 'active',
+    keywords: ["kredi yapılandırma","refinansman hesaplama","kredi transferi","borç yapılandırma","kredi faiz düşürme"]
+  },
+  {
+    id: 'kredi-yillik-maliyet-orani-hesaplama',
+    slug: 'kredi-yillik-maliyet-orani-hesaplama',
+    title: "Kredi Yıllık Maliyet Oranı (YMO) Hesaplama",
+    description: "Kredi faizi, tahsis ücreti, sigorta ve ekspertiz gibi tüm zorunlu masrafları dahil ederek yasal efektif yıllık maliyet oranını (YMO) hesaplayın.",
+    categoryId: 'kredi',
+    status: 'active',
+    keywords: ["yıllık maliyet oranı","ymo hesaplama","efektif faiz oranı","kredi gerçek maliyeti","kredi masrafları"]
+  },
+  {
+    id: 'kkdf-bsmv-hesaplama',
+    slug: 'kkdf-bsmv-hesaplama',
+    title: "KKDF ve BSMV Hesaplama",
+    description: "Tüketici ve ticari kredilerdeki faiz tutarı üzerinden %15 KKDF ve %5 BSMV yasal kesintilerini veya brüt faizden net faizi kolayca hesaplayın.",
+    categoryId: 'kredi',
+    status: 'active',
+    keywords: ["kkdf hesaplama","bsmv hesaplama","kaynak kullanımı destekleme fonu","banka sigorta muameleleri vergisi","kredi vergi kesintisi"]
+  },
+  {
+    id: 'parola-gucu-testi',
+    slug: 'parola-gucu-testi',
+    title: "Parola Gücü ve Kırılma Süresi Testi",
+    description: "Parolanızın karakter entropisini, kaba kuvvet saldırılarına karşı tahmini kırılma süresini ve güvenlik zafiyetlerini tarayıcınızda test edin.",
+    categoryId: 'guvenlik',
+    status: 'active',
+    keywords: ["şifre gücü testi","parola güvenlik testi","şifre kırılma süresi","güçlü şifre kontrolü","password strength"]
+  },
+  {
+    id: 'aes-metin-sifreleme',
+    slug: 'aes-metin-sifreleme',
+    title: "AES-256 Metin Şifreleme ve Çözme",
+    description: "Web Crypto API ile parolanız eşliğinde metinleri sıfır bilgi prensibiyle AES-GCM 256-bit standardında güvenle şifreleyin ve çözün.",
+    categoryId: 'guvenlik',
+    status: 'active',
+    keywords: ["aes şifreleme","aes-256 metin şifreleme","metin kriptolama","aes deşifre","gizli metin şifreleme"]
+  },
+  {
+    id: 'chmod-izin-hesaplama',
+    slug: 'chmod-izin-hesaplama',
+    title: "Linux Chmod İzin Hesaplayıcı",
+    description: "Linux ve Unix dosya izinlerini (okuma, yazma, çalıştırma) rwx ve 755/644 gibi sayısal chmod kodlarına görsel olarak dönüştürün.",
+    categoryId: 'guvenlik',
+    status: 'active',
+    keywords: ["chmod hesaplama","linux dosya izinleri","chmod 755","chmod 777","unix izin hesaplayıcı"]
+  },
+  {
+    id: 'htpasswd-olusturucu',
+    slug: 'htpasswd-olusturucu',
+    title: "Htpasswd Şifre Oluşturucu",
+    description: "Apache ve Nginx Basic Auth kimlik doğrulaması için bcrypt veya APR1/MD5 formatında htpasswd satırları oluşturun.",
+    categoryId: 'guvenlik',
+    status: 'active',
+    keywords: ["htpasswd oluşturucu","apache şifre üretici","basic auth generator","htpasswd bcrypt","nginx auth"]
+  },
+  {
+    id: 'sha512-hash-uretici',
+    slug: 'sha512-hash-uretici',
+    title: "SHA-512 Hash Oluşturucu",
+    description: "Herhangi bir metnin Web Crypto API standardında güvenli 512-bit kriptografik SHA-512 özetini (hash) oluşturun.",
+    categoryId: 'guvenlik',
+    status: 'active',
+    keywords: ["sha512 hesaplama","sha512 hash oluşturucu","sha-512 generator","hash dönüştürücü","kriptografik hash"]
+  },
+  {
+    id: 'rastgele-pin-uretici',
+    slug: 'rastgele-pin-uretici',
+    title: "Rastgele PIN Kodu Üretici",
+    description: "Kriptografik güvenli rastgele sayı üreteci (CSPRNG) ile 4, 6 veya 8 haneli tekil güvenlik PIN kodları oluşturun.",
+    categoryId: 'guvenlik',
+    status: 'active',
+    keywords: ["pin kodu üretici","rastgele pin","4 haneli pin","6 haneli pin","güvenli pin oluşturucu"]
+  },
+  {
+    id: 'tapu-harci-hesaplama',
+    slug: 'tapu-harci-hesaplama',
+    title: "Tapu Harcı ve Döner Sermaye Bedeli Hesaplama",
+    description: "Gayrimenkul alım satımında alıcı ve satıcı için %2 + %2 yasal tapu harcını ve güncel döner sermaye bedelini hesaplayın.",
+    categoryId: 'gayrimenkul',
+    status: 'active',
+    keywords: ["tapu harcı hesaplama","tapu masrafı","ev alım satım tapu harcı","döner sermaye bedeli","gayrimenkul tapu harcı"]
+  },
+  {
+    id: 'emlak-komisyonu-hesaplama',
+    slug: 'emlak-komisyonu-hesaplama',
+    title: "Emlakçı Komisyonu Hesaplama",
+    description: "Taşınmaz Ticareti Yönetmeliği tavan oranlarına (%2 + KDV) göre satılık ve kiralık konutlarda yasal emlak komisyonunu hesaplayın.",
+    categoryId: 'gayrimenkul',
+    status: 'active',
+    keywords: ["emlakçı komisyonu hesaplama","emlak komisyon oranı","gayrimenkul komisyonu","emlakçı ücreti","yasal emlak komisyonu"]
+  },
+  {
+    id: 'emlak-vergisi-hesaplama',
+    slug: 'emlak-vergisi-hesaplama',
+    title: "Emlak Vergisi Hesaplama",
+    description: "Bina, mesken, arsa ve araziler için büyükşehir ve normal belediye rayiç değer oranlarına göre yıllık emlak vergisini hesaplayın.",
+    categoryId: 'gayrimenkul',
+    status: 'active',
+    keywords: ["emlak vergisi hesaplama","bina vergisi","arsa vergisi","büyükşehir emlak vergisi","belediye emlak vergisi"]
+  },
+  {
+    id: 'deger-artis-kazanci-vergisi-hesaplama',
+    slug: 'deger-artis-kazanci-vergisi-hesaplama',
+    title: "Değer Artış Kazancı Vergisi Hesaplama",
+    description: "5 yıl dolmadan satılan gayrimenkullerde Yİ-ÜFE endekslemesi, yasal istisna ve gelir vergisi dilimlerine göre ödenecek vergiyi hesaplayın.",
+    categoryId: 'gayrimenkul',
+    status: 'active',
+    keywords: ["değer artış kazancı","gayrimenkul satış vergisi","5 yıl kuralı ev satışı","üfe endeksleme","ev satış kâr vergisi"]
+  },
+  {
+    id: 'arsa-payi-hesaplama',
+    slug: 'arsa-payi-hesaplama',
+    title: "Arsa Payı Hesaplama",
+    description: "Kat mülkiyeti ve kentsel dönüşümde bağımsız bölümlerin metrekaresine göre ana gayrimenkuldeki arsa payı oranını ve arsa hissesini hesaplayın.",
+    categoryId: 'gayrimenkul',
+    status: 'active',
+    keywords: ["arsa payı hesaplama","kentsel dönüşüm arsa payı","daire arsa payı oranı","kat mülkiyeti arsa payı"]
+  },
+  {
+    id: 'konut-kredisi-pesinat-masraf-hesaplama',
+    slug: 'konut-kredisi-pesinat-masraf-hesaplama',
+    title: "Konut Kredisi Peşinat ve Masraf Hesaplama",
+    description: "Ev alırken gereken asgari peşinat, tapu harcı, döner sermaye, ekspertiz, ipotek tesisi ve emlak komisyonu dahil toplam nakit ihtiyacını hesaplayın.",
+    categoryId: 'gayrimenkul',
+    status: 'active',
+    keywords: ["konut kredisi peşinat hesaplama","ev alım masrafları","konut kredisi ekspertiz ipotek","tapu masrafı ve peşinat"]
+  },
+  {
+    id: 'arac-otv-hesaplama',
+    slug: 'arac-otv-hesaplama',
+    title: "Sıfır Araç ÖTV ve KDV Hesaplama",
+    description: "Motor hacmi ve vergisiz çıplak fiyata göre güncel ÖTV matrah dilimleri ve %20 KDV dahil sıfır kilometre otomobil toplam maliyetini hesaplayın.",
+    categoryId: 'araba',
+    status: 'active',
+    keywords: ["araç ötv hesaplama","sıfır araba ötv","ötv matrah dilimleri","araba vergisi","otomobil ötv kdv"]
+  },
+  {
+    id: 'arac-noter-devir-ucreti-hesaplama',
+    slug: 'arac-noter-devir-ucreti-hesaplama',
+    title: "2. El Araç Noter Satış ve Devir Ücreti Hesaplama",
+    description: "İkinci el araç alım satımında güncel noter devir tescil harcı, plaka yenileme bedeli ve toplam noter masrafını hesaplayın.",
+    categoryId: 'araba',
+    status: 'active',
+    keywords: ["araç noter ücreti","2. el araç devir ücreti","noter plaka basım","araç satış masrafı 2026"]
+  },
+  {
+    id: 'arac-muayene-gecikme-ucreti-hesaplama',
+    slug: 'arac-muayene-gecikme-ucreti-hesaplama',
+    title: "Araç Muayene Gecikme Cezası Hesaplama",
+    description: "Muayenesi geciken araçlar için yasal %5 aylık gecikme zammı eklenerek güncel TÜVTÜRK periyodik muayene ücretini hesaplayın.",
+    categoryId: 'araba',
+    status: 'active',
+    keywords: ["araç muayene gecikme cezası","tüvtürk gecikme faizi","muayene gecikme ücreti","araç muayene cezası"]
+  },
+  {
+    id: 'arac-deger-kaybi-hesaplama',
+    slug: 'arac-deger-kaybi-hesaplama',
+    title: "Trafik Kazası Araç Değer Kaybı Hesaplama",
+    description: "Sigortacılık prensiplerine göre aracın kaza öncesi rayiç değeri, kilometresi, hasar boyutu ve kusur oranına göre tahmini değer kaybı tazminatını hesaplayın.",
+    categoryId: 'araba',
+    status: 'active',
+    keywords: ["araç değer kaybı hesaplama","kaza değer kaybı","sigorta değer kaybı tazminatı","araç tramer değer kaybı"]
+  },
+  {
+    id: 'engelli-otv-muafiyet-hesaplama',
+    slug: 'engelli-otv-muafiyet-hesaplama',
+    title: "Engelli ÖTV Muafiyetli Araç Hesaplama",
+    description: "%90 üzeri rapor veya ortopedik engelli ÖTV muafiyet üst limiti kapsamında sıfır araç alımındaki vergisiz indirimli fiyatı hesaplayın.",
+    categoryId: 'araba',
+    status: 'active',
+    keywords: ["engelli ötv muafiyeti","ötv siz araç hesaplama","yüzde 90 engelli araç","ötv muafiyet üst limiti"]
+  },
+  {
+    id: 'kasko-trafik-basamak-hesaplama',
+    slug: 'kasko-trafik-basamak-hesaplama',
+    title: "Kasko ve Trafik Sigortası Hasarsızlık Basamağı Hesaplama",
+    description: "0. basamaktan 8. basamağa kadar hasarsızlık kademesi indirim ve sürprim oranlarını kolayca öğrenin.",
+    categoryId: 'araba',
+    status: 'active',
+    keywords: ["hasarsızlık kademesi","trafik sigortası basamak","kasko hasarsızlık indirimi","sigorta prim basamağı"]
+  },
+  {
+    id: 'bedelli-bedelsiz-sermaye-artirimi-hesaplama',
+    slug: 'bedelli-bedelsiz-sermaye-artirimi-hesaplama',
+    title: "Bedelli / Bedelsiz Sermaye Artırımı Hesaplama",
+    description: "BIST hisse bölünmelerinde bedelli veya bedelsiz sermaye artırımı sonrası yeni hisse teorik fiyatını, rüçhan hakkı maliyetini ve hisse adedini hesaplayın.",
+    categoryId: 'yatirim',
+    status: 'active',
+    keywords: ["bedelli sermaye artırımı","bedelsiz sermaye artırımı","rüçhan hakkı hesaplama","bist hisse bölünme","yeni hisse fiyatı"]
+  },
+  {
+    id: 'borsa-komisyon-hesaplama',
+    slug: 'borsa-komisyon-hesaplama',
+    title: "Borsa Aracı Kurum Komisyonu Hesaplama",
+    description: "Hisse senedi alım satım hacminiz üzerinden binde/on binde komisyon oranını ve %5 BSMV kesintisi sonrası net getirinizi hesaplayın.",
+    categoryId: 'yatirim',
+    status: 'active',
+    keywords: ["borsa komisyonu hesaplama","hisse alım satım komisyonu","bist aracı kurum komisyonu","bsmv kesintisi"]
+  },
+  {
+    id: 'halka-arz-lot-hesaplama',
+    slug: 'halka-arz-lot-hesaplama',
+    title: "Halka Arz Tahmini Lot ve Dağıtım Hesaplama",
+    description: "Halka arz edilecek toplam lot adedi, dağıtım yöntemi ve tahmini katılımcı sayısına göre kişi başına düşebilecek payı ve nakit tutarını hesaplayın.",
+    categoryId: 'yatirim',
+    status: 'active',
+    keywords: ["halka arz lot hesaplama","kişi başı düşecek lot","eşit dağıtım halka arz","halka arz tahmini pay"]
+  },
+  {
+    id: 'eurobond-getiri-hesaplama',
+    slug: 'eurobond-getiri-hesaplama',
+    title: "Eurobond Getiri ve Vergi Hesaplama",
+    description: "Döviz cinsi devlet tahvili kupon ödemeleri, getiri oranı (yield) ve yıllık gelir vergisi beyanname sınırına göre net döviz getirisini hesaplayın.",
+    categoryId: 'yatirim',
+    status: 'active',
+    keywords: ["eurobond getiri hesaplama","eurobond kupon getirisi","döviz tahvil getirisi","eurobond vergi hesaplama"]
+  },
+  {
+    id: 'repo-gunluk-getiri-hesaplama',
+    slug: 'repo-gunluk-getiri-hesaplama',
+    title: "Repo ve Ters Repo Günlük Getiri Hesaplama",
+    description: "Gecelik veya vadeli repo işlemlerinde yıllık faiz oranı ve stopaj kesintisi sonrası net faiz kazancını hesaplayın.",
+    categoryId: 'yatirim',
+    status: 'active',
+    keywords: ["repo getiri hesaplama","gecelik repo faizi","günlük borsa repo","repo stopaj hesaplama"]
+  },
+  {
+    id: 'kurumlar-vergisi-hesaplama',
+    slug: 'kurumlar-vergisi-hesaplama',
+    title: "Kurumlar Vergisi Hesaplama",
+    description: "Sermaye şirketlerinin ticari kârı, KKEG ve yasal istisnalar düşüldükten sonraki kurumlar vergisi matrahı ve net vergisini hesaplayın.",
+    categoryId: 'muhasebe',
+    status: 'active',
+    keywords: ["kurumlar vergisi hesaplama","şirket kâr vergisi","kurumlar vergisi oranı","matrah ve vergi"]
+  },
+  {
+    id: 'gecici-vergi-hesaplama',
+    slug: 'gecici-vergi-hesaplama',
+    title: "Geçici Vergi Hesaplama",
+    description: "3 aylık dönemlerde gelir ve kurumlar vergisi mükellefleri için kümülatif kazanç üzerinden önceki dönem mahsuplarıyla ödenecek geçici vergiyi hesaplayın.",
+    categoryId: 'muhasebe',
+    status: 'active',
+    keywords: ["geçici vergi hesaplama","3 aylık geçici vergi","peşin vergi","kurumlar geçici vergi"]
+  },
+  {
+    id: 'vergi-gecikme-zammi-hesaplama',
+    slug: 'vergi-gecikme-zammi-hesaplama',
+    title: "Vergi Gecikme Zammı ve Faizi Hesaplama",
+    description: "6183 sayılı Kanun kapsamında vadesinde ödenmeyen kamu borçları için resmi aylık gecikme zammı oranıyla toplam borcu hesaplayın.",
+    categoryId: 'muhasebe',
+    status: 'active',
+    keywords: ["vergi gecikme zammı","gecikme faizi hesaplama","vergi dairesi faiz","6183 gecikme zammı"]
+  },
+  {
+    id: 'veraset-intikal-vergisi-hesaplama',
+    slug: 'veraset-intikal-vergisi-hesaplama',
+    title: "Veraset ve İntikal Vergisi Hesaplama",
+    description: "Miras veya ivazsız intikallerde yasal istisna hadleri düşüldükten sonra artan oranlı vergi tarifesine göre intikal vergisini hesaplayın.",
+    categoryId: 'muhasebe',
+    status: 'active',
+    keywords: ["veraset intikal vergisi","miras vergisi hesaplama","veraset istisna tutarı","miras intikal tarifesi"]
+  },
+  {
+    id: 'binek-arac-gider-kisitlamasi-hesaplama',
+    slug: 'binek-arac-gider-kisitlamasi-hesaplama',
+    title: "Binek Araç Gider Kısıtlaması Hesaplama",
+    description: "Şirketlerin kiraladığı veya satın aldığı binek araçlarda gider yazılabilecek ve KKEG sayılacak tavan tutarları güncel yasal sınırlarla hesaplayın.",
+    categoryId: 'muhasebe',
+    status: 'active',
+    keywords: ["binek araç gider kısıtlaması","şirket aracı kira kısıtlaması","araç amortisman kısıtlaması","kanege"]
+  },
+  {
+    id: 'gorsel-format-donusturucu',
+    slug: 'gorsel-format-donusturucu',
+    title: "Görsel Format Dönüştürücü (PNG / JPG / WebP)",
+    description: "Görsellerinizi sunucuya yüklemeden tarayıcınızda PNG, JPG ve WebP formatları arasında anında dönüştürün ve indirin.",
+    categoryId: 'gorsel',
+    status: 'active',
+    keywords: ["görsel format dönüştürücü","webp jpg dönüştürücü","png to jpg","resim format çevirme","image format converter"]
+  },
+  {
+    id: 'gorsel-sikistirici',
+    slug: 'gorsel-sikistirici',
+    title: "Görsel Boyutu Küçültme ve Sıkıştırıcı",
+    description: "Resimlerinizin kalitesini ve çözünürlüğünü optimize ederek dosya boyutunu (KB/MB) tarayıcınızda güvenle küçültün.",
+    categoryId: 'gorsel',
+    status: 'active',
+    keywords: ["görsel sıkıştırma","resim boyutu küçültme","fotoğraf sıkıştırıcı","compress image","kb küçültme"]
+  },
+  {
+    id: 'favicon-olusturucu',
+    slug: 'favicon-olusturucu',
+    title: "Favicon Oluşturucu",
+    description: "Yüklediğiniz logodan web siteniz için 16x16, 32x32, 48x48 ve Apple Touch Icon boyutlarında favicon setleri oluşturup indirin.",
+    categoryId: 'gorsel',
+    status: 'active',
+    keywords: ["favicon oluşturucu","favicon generator","site ikonu yapma","favicon ico png","web ikonu"]
+  },
+  {
+    id: 'gorsel-kirpici',
+    slug: 'gorsel-kirpici',
+    title: "Görsel ve Fotoğraf Kırpıcı",
+    description: "1:1 kare, 16:9, 4:3 gibi sabit oranlarda veya serbest olarak fotoğraflarınızı tarayıcınızda kırpıp yüksek kalitede kaydedin.",
+    categoryId: 'gorsel',
+    status: 'active',
+    keywords: ["görsel kırpma","fotoğraf kırpıcı","resim kesme aracı","crop image","en boy kırpma"]
+  },
+  {
+    id: 'css-border-radius-olusturucu',
+    slug: 'css-border-radius-olusturucu',
+    title: "CSS Border Radius Oluşturucu",
+    description: "Köşe yuvarlama değerlerini görsel olarak ayarlayın ve 8 köşeli gelişmiş border-radius CSS kodunu tek tıkla kopyalayın.",
+    categoryId: 'tasarim',
+    status: 'active',
+    keywords: ["css border radius","köşe yuvarlama css","border radius generator","css şekil oluşturucu"]
+  },
+  {
+    id: 'css-glassmorphism-olusturucu',
+    slug: 'css-glassmorphism-olusturucu',
+    title: "CSS Glassmorphism (Buzlu Cam) Oluşturucu",
+    description: "Bulanıklık, opaklık ve kenarlık ayarlarını canlı önizleyerek modern buzlu cam efekti CSS kodlarını üretin.",
+    categoryId: 'tasarim',
+    status: 'active',
+    keywords: ["css glassmorphism","cam efekti css","backdrop filter blur","glassmorphism generator"]
+  },
+  {
+    id: 'css-flexbox-olusturucu',
+    slug: 'css-flexbox-olusturucu',
+    title: "CSS Flexbox Düzen Oluşturucu",
+    description: "Flex direction, justify-content, align-items ve gap özelliklerini görsel olarak deneyin ve CSS kodunu kopyalayın.",
+    categoryId: 'tasarim',
+    status: 'active',
+    keywords: ["css flexbox","flexbox generator","justify content css","align items","flex düzeni"]
+  },
+  {
+    id: 'altin-oran-hesaplama',
+    slug: 'altin-oran-hesaplama',
+    title: "Altın Oran (Phi - 1.618) Hesaplayıcı",
+    description: "Tasarım, mimari ve ölçüleriniz için altın oran (1.618033) bölümlerini, küçük ve büyük parçaları anında hesaplayın.",
+    categoryId: 'tasarim',
+    status: 'active',
+    keywords: ["altın oran hesaplama","golden ratio","1.618 oranı","tasarım altın oran","phi oranı"]
+  },
+  {
+    id: 'gebelik-haftasi-hesaplama',
+    slug: 'gebelik-haftasi-hesaplama',
+    title: "Gebelik Haftası ve Trimester Hesaplama",
+    description: "Son adet tarihinize göre şu anki hamilelik haftanızı, gününüzü, trimester döneminizi ve bebeğinizin tahmini gelişimini hesaplayın.",
+    categoryId: 'saglik',
+    status: 'active',
+    keywords: ["gebelik haftası hesaplama","kaç haftalık hamileyim","gebelik ayı","trimester hesaplama","hamilelik takvimi"]
+  },
+  {
+    id: 'yumurtlama-gunu-hesaplama',
+    slug: 'yumurtlama-gunu-hesaplama',
+    title: "Yumurtlama Günü ve Doğurganlık Hesaplayıcı",
+    description: "Adet döngü uzunluğunuza göre bir sonraki ovülasyon (yumurtlama) gününüzü ve en yüksek doğurganlık pencerenizi hesaplayın.",
+    categoryId: 'saglik',
+    status: 'active',
+    keywords: ["yumurtlama günü hesaplama","ovülasyon hesaplayıcı","doğurganlık dönemi","hamile kalma günleri"]
+  },
+  {
+    id: 'adet-dongusu-hesaplama',
+    slug: 'adet-dongusu-hesaplama',
+    title: "Adet Döngüsü ve Regl Takvimi Hesaplayıcı",
+    description: "Son adet başlangıç tarihinize ve döngü sürenize göre gelecek 6 aya ait tahmini regl başlangıç ve bitiş tarihlerini planlayın.",
+    categoryId: 'saglik',
+    status: 'active',
+    keywords: ["adet döngüsü hesaplama","regl takvimi","sonraki adet tarihi","menstrüasyon hesaplama"]
+  },
+  {
+    id: 'sigara-birakma-tasarruf-hesaplayici',
+    slug: 'sigara-birakma-tasarruf-hesaplayici',
+    title: "Sigara Bırakma Tasarruf ve Sağlık Hesaplayıcı",
+    description: "Günde içilen paket sayısı ve paket fiyatına göre sigarayı bıraktığınızda haftalık, aylık, yıllık biriken paranızı ve sağlık kazanımlarınızı hesaplayın.",
+    categoryId: 'saglik',
+    status: 'active',
+    keywords: ["sigara tasarruf hesaplama","sigarayı bırakınca biriken para","yıllık sigara masrafı","sigara maliyeti"]
+  },
+  {
+    id: 'homa-ir-hesaplama',
+    slug: 'homa-ir-hesaplama',
+    title: "HOMA-IR İnsülin Direnci Hesaplama",
+    description: "Açlık kan şekeri (glukoz) ve açlık insülin değerlerinizi girerek HOMA-IR insülin direnci skorunuzu ve risk değerlendirmenizi hesaplayın.",
+    categoryId: 'saglik',
+    status: 'active',
+    keywords: ["homa ir hesaplama","insülin direnci hesaplama","açlık kan şekeri insülin","insülin direnci indeksi"]
+  },
+  {
+    id: 'obp-hesaplama',
+    slug: 'obp-hesaplama',
+    title: "OBP (Ortaöğretim Başarı Puanı) Hesaplama",
+    description: "Lise mezuniyet diploma notunuza göre YKS sınavında puanınıza eklenecek Ortaöğretim Başarı Puanı (OBP) ve ek puan katkısını hesaplayın.",
+    categoryId: 'egitim',
+    status: 'active',
+    keywords: ["obp hesaplama","ortaöğretim başarı puanı","lise diploma puanı obp","yks obp ekleme"]
+  },
+  {
+    id: 'yok-not-donusum-hesaplama',
+    slug: 'yok-not-donusum-hesaplama',
+    title: "YÖK 4'lük ve 100'lük Not Dönüşüm Hesaplama",
+    description: "Yükseköğretim Kurulu (YÖK) resmi 4'lük sistemden 100'lük sisteme karşılık gelen not dönüşümünü anında yapın.",
+    categoryId: 'egitim',
+    status: 'active',
+    keywords: ["yök not dönüşüm tablosu","4 lük 100 lük not çevirme","gano dönüşümü","yök 4 lük sistem"]
+  },
+  {
+    id: 'iokbs-bursluluk-puani-hesaplama',
+    slug: 'iokbs-bursluluk-puani-hesaplama',
+    title: "İOKBS Bursluluk Sınavı Puanı Hesaplama",
+    description: "MEB İlköğretim ve Ortaöğretim Kurumları Bursluluk Sınavı için doğru/yanlış sayılarınızla netlerinizi ve tahmini sınav puanınızı hesaplayın.",
+    categoryId: 'egitim',
+    status: 'active',
+    keywords: ["iokbs bursluluk puanı","bursluluk sınavı puan hesaplama","meb bursluluk net","iokbs taban puan"]
+  },
+  {
+    id: 'yks-net-hesaplama',
+    slug: 'yks-net-hesaplama',
+    title: "YKS (TYT - AYT) Net Hesaplama",
+    description: "TYT ve AYT derslerindeki doğru ve yanlış sayılarını girerek 4 yanlışın 1 doğruyu götürdüğü net puanlarınızı tek ekranda hesaplayın.",
+    categoryId: 'egitim',
+    status: 'active',
+    keywords: ["yks net hesaplama","tyt ayt net hesaplayıcı","4 yanlış 1 doğru","tyt neti"]
+  },
+  {
+    id: 'yasal-faiz-hesaplama',
+    slug: 'yasal-faiz-hesaplama',
+    title: "Yasal Faiz (Kanuni Faiz) Hesaplama",
+    description: "3095 sayılı Kanun çerçevesinde alacaklar için yasal faiz ve ticari temerrüt faizi oranlarıyla gün bazlı gecikme faizini hesaplayın.",
+    categoryId: 'ticaret',
+    status: 'active',
+    keywords: ["yasal faiz hesaplama","kanuni faiz","alacak faizi","3095 sayılı kanun yasal faiz"]
+  },
+  {
+    id: 'vekalet-ucreti-hesaplama',
+    slug: 'vekalet-ucreti-hesaplama',
+    title: "Avukatlık Asgari Ücret Tarifesi (AAÜT) Vekalet Ücreti Hesaplama",
+    description: "Dava konusu alacak tutarına göre Avukatlık Asgari Ücret Tarifesi (AAÜT) kademeli nisbi vekalet ücreti ve KDV dahil tutarı hesaplayın.",
+    categoryId: 'ticaret',
+    status: 'active',
+    keywords: ["avukatlık vekalet ücreti","aaut hesaplama","nisbi vekalet ücreti","karşı vekalet ücreti"]
+  },
+  {
+    id: 'icra-masrafi-hesaplama',
+    slug: 'icra-masrafi-hesaplama',
+    title: "İcra Masrafı ve Harç Hesaplama",
+    description: "İlamsız icra takiplerinde takip çıkışı tutarı üzerinden peşin harç, başvurma harcı, baro pulu ve tahsil harcını hesaplayın.",
+    categoryId: 'ticaret',
+    status: 'active',
+    keywords: ["icra masrafı hesaplama","icra harçları","peşin harç tahsil harcı","icra takip maliyeti"]
+  },
+  {
+    id: 'arabuluculuk-ucreti-hesaplama',
+    slug: 'arabuluculuk-ucreti-hesaplama',
+    title: "Arabuluculuk Ücreti Hesaplama",
+    description: "Arabuluculuk Asgari Ücret Tarifesi kademelerine göre konusu para olan hukuki uyuşmazlıklarda tarafların ödeyeceği arabulucu ücretini hesaplayın.",
+    categoryId: 'ticaret',
+    status: 'active',
+    keywords: ["arabuluculuk ücreti hesaplama","arabulucu asgari ücret tarifesi","ticari uyuşmazlık arabulucu","arabulucu payı"]
+  },
+  {
+    id: 'taksit-erteleme-farki-hesaplama',
+    slug: 'taksit-erteleme-farki-hesaplama',
+    title: "Taksit Erteleme / Öteleme Maliyeti Hesaplama",
+    description: "Kredi veya kredi kartı taksitlerini 1-3 ay ertelediğinizde bankanın uygulayacağı ek faiz, fon ve vergi maliyetini hesaplayın.",
+    categoryId: 'alisveris',
+    status: 'active',
+    keywords: ["taksit erteleme faizi","kredi taksit erteleme","ödeme öteleme farkı","erteleme maliyeti"]
+  },
+  {
+    id: 'bahsis-hesap-paylastirici',
+    slug: 'bahsis-hesap-paylastirici',
+    title: "Bahşiş ve Alman Usulü Hesap Paylaştırıcı",
+    description: "Restoran ve kafe adisyonlarında bahşiş yüzdesi ekleyerek kişi başına düşen adil ödeme tutarını anında hesaplayın.",
+    categoryId: 'alisveris',
+    status: 'active',
+    keywords: ["bahşiş hesaplama","hesap paylaştırıcı","alman usulü hesap","tip calculator","kişi başı hesap"]
+  },
+  {
+    id: 'yurtdisi-kart-alisveris-komisyonu',
+    slug: 'yurtdisi-kart-alisveris-komisyonu',
+    title: "Yurtdışı Kart Alışverişi ve Kur Komisyonu Hesaplayıcı",
+    description: "Yabancı para birimlerinde kredi kartıyla yapılan alışverişlerde banka döviz kuru farkı ve takas komisyonu sonrası TL maliyetini hesaplayın.",
+    categoryId: 'alisveris',
+    status: 'active',
+    keywords: ["yurtdışı kart harcaması komisyonu","döviz harcama komisyonu","banka kur farkı","yurtdışı pos komisyonu"]
+  },
+  {
+    id: 'ikinci-el-pazarlik-hesaplama',
+    slug: 'ikinci-el-pazarlik-hesaplama',
+    title: "İkinci El Pazarlık ve Teklif Hesaplayıcı",
+    description: "Sarı site ve ikinci el platformlarındaki ilanlarda hedef teklif veya pazarlık marjına göre karşı teklif tutarını hesaplayın.",
+    categoryId: 'alisveris',
+    status: 'active',
+    keywords: ["ikinci el pazarlık hesaplama","pazarlık payı","indirim oranı pazarlık","ikinci el teklif"]
+  },
+  {
+    id: 'zekat-hesaplama',
+    slug: 'zekat-hesaplama',
+    title: "Zekat Hesaplama (Nisap Miktarı Uyumlu)",
+    description: "Altın, nakit para, döviz, hisse ve ticari mallarınızdan borçlar düşüldükten sonra 80.18 gram altın nisap sınırına göre 1/40 (%2.5) zekat tutarınızı hesaplayın.",
+    categoryId: 'gunluk-hayat',
+    status: 'active',
+    keywords: ["zekat hesaplama","zekat nisap miktarı","yıllık zekat","altın para zekatı","diyanet zekat"]
+  },
+  {
+    id: 'sehirler-arasi-mesafe-hesaplama',
+    slug: 'sehirler-arasi-mesafe-hesaplama',
+    title: "Türkiye Şehirler Arası Mesafe ve Süre Hesaplayıcı",
+    description: "Türkiye'nin 81 ili arasında karayolu mesafesini, ortalama sürüş süresini ve tahmini yakıt tüketim masrafını hesaplayın.",
+    categoryId: 'gunluk-hayat',
+    status: 'active',
+    keywords: ["şehirler arası mesafe","iller arası km","yolculuk süresi hesaplama","mesafe hesaplayıcı"]
+  },
+  {
+    id: 'kahve-demleme-orani-hesaplama',
+    slug: 'kahve-demleme-orani-hesaplama',
+    title: "Kahve Demleme Oranı ve Su Hesaplayıcı",
+    description: "V60, Chemex, French Press, Aeropress ve filtre kahve demlemeleri için kahve çekirdeği ve su gramaj oranlarını hesaplayın.",
+    categoryId: 'gunluk-hayat',
+    status: 'active',
+    keywords: ["kahve demleme oranı","coffee ratio calculator","v60 kahve su oranı","french press gramajı","filtre kahve ölçüsü"]
+  },
+  {
+    id: 'gunes-dogus-batis-hesaplama',
+    slug: 'gunes-dogus-batis-hesaplama',
+    title: "Güneş Doğuş ve Batış Saati Hesaplayıcı",
+    description: "Seçilen şehir veya koordinata göre günün güneş doğuşu, güneş batışı, altın saat ve gündüz süresi vakitlerini hesaplayın.",
+    categoryId: 'gunluk-hayat',
+    status: 'active',
+    keywords: ["güneş doğuş batış saati","gün doğumu saatleri","alacakaranlık vakitleri","güneş ne zaman batıyor"]
+  },
+  {
+    id: 'csv-json-donusturucu',
+    slug: 'csv-json-donusturucu',
+    title: "CSV - JSON İki Yönlü Dönüştürücü",
+    description: "CSV tablolarınızı JSON formatına veya JSON veri dizilerini tablo formatlı CSV'ye tarayıcınızda anında dönüştürün.",
+    categoryId: 'yazilim',
+    status: 'active',
+    keywords: ["csv to json","json to csv","csv json dönüştürücü","csv dönüştürme","tabloyu json yapma"]
+  },
+  {
+    id: 'html-css-minifier',
+    slug: 'html-css-minifier',
+    title: "HTML ve CSS Minifier (Kod Küçültücü)",
+    description: "HTML ve CSS kodlarınızdaki gereksiz boşluk ve yorum satırlarını temizleyerek dosya boyutunu küçültün.",
+    categoryId: 'yazilim',
+    status: 'active',
+    keywords: ["html minifier","css minifier","kod küçültücü","html css sıkıştırma","minify code"]
+  },
+  {
+    id: 'curl-kod-cevirici',
+    slug: 'curl-kod-cevirici',
+    title: "cURL Komutunu Fetch, Python ve Axios'a Çevirici",
+    description: "Terminal cURL komutlarınızı JavaScript fetch, Python requests veya Axios kod parçacıklarına dönüştürün.",
+    categoryId: 'yazilim',
+    status: 'active',
+    keywords: ["curl converter","curl to fetch","curl to python requests","curl komutunu koda çevir","curl to axios"]
+  },
+  {
+    id: 'svg-optimize-edici',
+    slug: 'svg-optimize-edici',
+    title: "SVG Optimize Edici ve Temizleyici",
+    description: "SVG vektör kodlarınızdaki gereksiz etiketleri, boşlukları ve metadata satırlarını temizleyerek dosya boyutunu küçültün.",
+    categoryId: 'yazilim',
+    status: 'active',
+    keywords: ["svg optimize edici","svg temizleyici","svg minifier","svg boyut küçültme","svg optimizer"]
+  },
+  {
+    id: 'pdf-sayfa-numarala',
+    slug: 'pdf-sayfa-numarala',
+    title: "PDF Sayfa Numarası Ekleme",
+    description: "PDF belgelerinizin tüm sayfalarına tarayıcınızda alt bilgi veya üst bilgi olarak sayfa numaraları ekleyin.",
+    categoryId: 'pdf',
+    status: 'active',
+    keywords: ["pdf sayfa numaralama","pdf numaralandırıcı","pdf sayfa no ekleme","page numbering pdf"]
+  },
+  {
+    id: 'pdf-filigran-ekle',
+    slug: 'pdf-filigran-ekle',
+    title: "PDF Filigran (Watermark) Ekleme",
+    description: "PDF sayfalarının üzerine güvenli şeffaf metin filigranı (örneğin GİZLİ, ÖRNEK) ekleyerek belgelerinizi koruyun.",
+    categoryId: 'pdf',
+    status: 'active',
+    keywords: ["pdf filigran ekleme","pdf watermark","pdf üstüne yazı ekleme","pdf damga"]
+  },
+  {
+    id: 'pdf-sifrele-koru',
+    slug: 'pdf-sifrele-koru',
+    title: "PDF Şifreleme ve Koruma",
+    description: "PDF belgelerinize tarayıcınızda açılış parolası koyarak yetkisiz erişimlere karşı koruma altına alın.",
+    categoryId: 'pdf',
+    status: 'active',
+    keywords: ["pdf şifreleme","pdf koruma","pdf parola koyma","encrypt pdf","güvenli pdf"]
+  },
+  {
+    id: 'gunes-paneli-hesaplama',
+    slug: 'gunes-paneli-hesaplama',
+    title: "Güneş Paneli ve Solar İhtiyaç Hesaplayıcı",
+    description: "Aylık elektrik tüketiminiz ve bölgenizin güneşlenme süresine göre gereken solar panel gücünü ve tahmini tasarrufu hesaplayın.",
+    categoryId: 'ev-yasam',
+    status: 'active',
+    keywords: ["güneş paneli hesaplama","solar panel ihtiyacı","güneş enerjisi elektrik","çatı ges hesaplama"]
+  },
+  {
+    id: 'akvaryum-hacim-hesaplama',
+    slug: 'akvaryum-hacim-hesaplama',
+    title: "Akvaryum Su Hacmi ve Ağırlık Hesaplayıcı",
+    description: "Akvaryum boyutlarınıza (en, boy, yükseklik) göre brüt su hacmini (litre), kum hacmini ve toplam su ağırlığını hesaplayın.",
+    categoryId: 'ev-yasam',
+    status: 'active',
+    keywords: ["akvaryum hacim hesaplama","akvaryum kaç litre","akvaryum su hacmi","cam kalınlığı ve kum ağırlığı"]
+  },
+  {
+    id: 'kombi-tasarruf-hesaplama',
+    slug: 'kombi-tasarruf-hesaplama',
+    title: "Kombi ve Oda Termostatı Tasarruf Hesaplayıcı",
+    description: "Oda sıcaklığını 1°C düşürdüğünüzde veya modülasyonlu oda termostatı kullandığınızda doğalgaz faturanızdaki net tasarrufu hesaplayın.",
+    categoryId: 'ev-yasam',
+    status: 'active',
+    keywords: ["kombi tasarruf hesaplama","oda termostatı tasarrufu","doğalgaz faturası düşürme","kombi ayarı tasarruf"]
+  },
+  {
+    id: 'frekans-birimi-cevirici',
+    slug: 'frekans-birimi-cevirici',
+    title: "Frekans Birimi Dönüştürücü (Hz, kHz, MHz, GHz)",
+    description: "Hertz (Hz), Kilohertz (kHz), Megahertz (MHz), Gigahertz (GHz) ve RPM birimleri arasında anında dönüşüm yapın.",
+    categoryId: 'donusum',
+    status: 'active',
+    keywords: ["frekans birimi çevirici","hz khz mhz ghz","hertz dönüştürücü","frekans birimleri"]
+  },
+  {
+    id: 'tork-birimi-cevirici',
+    slug: 'tork-birimi-cevirici',
+    title: "Tork Birimi Dönüştürücü (Nm, ft-lb, kgf-m)",
+    description: "Newton metre (Nm), Foot-pound (ft-lb), Kilogram-kuvvet metre (kgf-m) ve In-lb tork değerleri arasında hassas dönüşüm yapın.",
+    categoryId: 'donusum',
+    status: 'active',
+    keywords: ["tork birimi çevirici","nm tork çevirme","newton metre ft-lb","tork dönüştürücü"]
+  },
+  {
+    id: 'e-tebligat-sure-hesaplama',
+    slug: 'e-tebligat-sure-hesaplama',
+    title: "E-Tebligat Süre ve Son Gün Hesaplama",
+    description: "UETS e-tebligatın posta kutusuna ulaştığı tarihi izleyen 5. gün tebliğ edilmiş sayılarak yasal itiraz ve dava açma son gününü hesaplayın.",
+    categoryId: 'zaman',
+    status: 'active',
+    keywords: ["e-tebligat süre hesaplama","uets 5 gün kuralı","tebligat okunma süresi","dava açma süresi e-tebligat"]
+  },
+  {
+    id: 'dogum-oncesi-izin-tarihi-hesaplama',
+    slug: 'dogum-oncesi-izin-tarihi-hesaplama',
+    title: "Doğum Öncesi Yasal Analık İzni Tarihi Hesaplama",
+    description: "Beklenen doğum tarihinize göre yasal 32. hafta analık iznine ayrılma tarihinizi ve 37. haftaya kadar çalışabilirlik takvimini hesaplayın.",
+    categoryId: 'zaman',
+    status: 'active',
+    keywords: ["doğum izni hesaplama","32. hafta doğum izni","analık izni başlama tarihi","doğum öncesi yasal izin"]
+  },
+  {
+    id: 'yinelenen-satirlari-temizle',
+    slug: 'yinelenen-satirlari-temizle',
+    title: "Yinelenen Satırları Temizleyici (Duplicate Line Remover)",
+    description: "Metin veya listelerinizdeki mükerrer (kopya) satırları temizleyin, benzersiz satırları koruyun ve alfabetik olarak sıralayın.",
+    categoryId: 'metin',
+    status: 'active',
+    keywords: ["yinelenen satırları temizleme","duplicate lines remove","tekil satır bulucu","mükerrer kayıt silme"]
+  },
+  {
+    id: 'butce-kurali-50-30-20-hesaplama',
+    slug: 'butce-kurali-50-30-20-hesaplama',
+    title: "50/30/20 Bütçe Kuralı Hesaplayıcı",
+    description: "Aylık net gelirinizi %50 zorunlu ihtiyaçlar, %30 kişisel istekler ve %20 birikim/borç ödeme kategorilerine göre dengeli dağıtın.",
+    categoryId: 'finans',
+    status: 'active',
+    keywords: ["50 30 20 bütçe kuralı","bütçe hesaplama","gelir dağılımı 50/30/20","ihtiyaç istek tasarruf bütçesi"]
+  },
 ];
 
 export function getActiveCategories(): Category[] {
