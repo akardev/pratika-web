@@ -225,6 +225,7 @@ const toolComponents: Record<string, ComponentType> = {
   'yillik-ucretli-izin-hakki-hesaplama': dynamic(() => import('@/components/tools/YillikUcretliIzinHakkiHesaplama'), { ssr: false }),
   'freelance-saatlik-ucret-hesaplayici': dynamic(() => import('@/components/tools/FreelanceSaatlikUcretHesaplayici'), { ssr: false }),
   'kira-amortisman-getiri-hesaplama': dynamic(() => import('@/components/tools/KiraAmortismanGetiriHesaplama'), { ssr: false }),
+  'arka-plan-silici': dynamic(() => import('@/components/tools/ArkaPlanSilici'), { ssr: false }),
 };
 
 type ToolRendererProps = {

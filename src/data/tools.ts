@@ -2364,6 +2364,24 @@ export const tools: Tool[] = [
     toolType: 'calculator',
     status: 'active',
     keywords: ["amortisman süresi hesaplama","kira çarpanı","konut amortisman yılı","kira getiri oranı","gayrimenkul yatırım getirisi"]
+  },
+  {
+    id: 'arka-plan-silici',
+    slug: 'arka-plan-silici',
+    title: 'Arka Plan Silici',
+    description: 'Görsellerinizin arka planını yapay zeka ile otomatik olarak kaldırın ve şeffaf PNG olarak indirin.',
+    categoryId: 'gorsel',
+    toolType: 'utility',
+    status: 'active',
+    keywords: [
+      'arka plan silme',
+      'arka plan kaldırma',
+      'fotoğraf arka planı silme',
+      'background remover',
+      'background removal',
+      'şeffaf png',
+      'png arka plan silme'
+    ]
   }
 ];
 
