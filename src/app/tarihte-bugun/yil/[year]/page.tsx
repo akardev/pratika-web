@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: HistoryYearPageProps): Promis
   const { year: yearStr } = await params;
   const yearNum = parseInt(yearStr, 10);
 
-  if (isNaN(yearNum) || yearNum < 1000 || yearNum > 2100) {
+  if (isNaN(yearNum)) {
     return {
       title: 'Yıl Keşfi',
       robots: { index: false, follow: false },
@@ -54,8 +54,13 @@ export default async function TarihteBugunYearPage({ params }: HistoryYearPagePr
   const { year: yearStr } = await params;
   const yearNum = parseInt(yearStr, 10);
 
-  if (isNaN(yearNum) || yearNum < 1000 || yearNum > 2100) {
+  if (isNaN(yearNum)) {
     notFound();
+  }
+  
+  const events = getEventsByYear(yearNum);
+  if (events.length === 0) {
+    notFound(); // 404 if year has no data, per user request "verisi olmayan yılı çıkarma"
   }
 
   return <HistoryDiscoveryPage mode="year" year={yearNum} />;

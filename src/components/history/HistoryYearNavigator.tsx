@@ -46,7 +46,7 @@ export default function HistoryYearNavigator({ year }: HistoryYearNavigatorProps
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const val = parseInt(searchYear.trim(), 10);
-    if (!isNaN(val) && val >= 1000 && val <= 2100) {
+    if (!isNaN(val)) {
       handleSelectYear(val);
     }
   };
@@ -144,8 +144,6 @@ export default function HistoryYearNavigator({ year }: HistoryYearNavigatorProps
             <form onSubmit={handleSearchSubmit} className="mt-3 flex gap-2">
               <input
                 type="number"
-                min="1000"
-                max="2100"
                 placeholder="Yıl (örn: 1923)"
                 value={searchYear}
                 onChange={(e) => setSearchYear(e.target.value)}
@@ -163,10 +161,10 @@ export default function HistoryYearNavigator({ year }: HistoryYearNavigatorProps
             {/* Quick Available Years */}
             <div className="mt-3.5 border-t border-border/60 pt-3">
               <span className="text-[11px] font-semibold text-muted-foreground">
-                Öne Çıkan Yıllar:
+                Arşivdeki Yıllar:
               </span>
               <div className="mt-2 grid grid-cols-4 gap-1.5 sm:grid-cols-5 max-h-48 overflow-y-auto">
-                {availableYears.map((item) => {
+                {[...availableYears].sort((a, b) => b.year - a.year).map((item) => {
                   const isCurrent = item.year === year;
                   return (
                     <button
@@ -193,9 +191,12 @@ export default function HistoryYearNavigator({ year }: HistoryYearNavigatorProps
       {/* Popular landmark year pills bar */}
       <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar">
         <span className="shrink-0 text-[11px] font-medium text-muted-foreground">
-          Önemli:
+          Son Yıllar:
         </span>
-        {availableYears.slice(0, 14).map((item) => (
+        {[...availableYears]
+          .sort((a, b) => b.year - a.year)
+          .slice(0, 14)
+          .map((item) => (
           <Link
             key={item.year}
             href={`/tarihte-bugun/yil/${item.year}`}
