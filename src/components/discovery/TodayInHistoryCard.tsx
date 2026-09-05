@@ -21,23 +21,25 @@ function getCardTopEvents(events: ReturnType<typeof getTodayInHistory>['events']
   if (!events || events.length === 0) return [];
 
   const selected: typeof events = [];
-  let totalLineScore = 0;
-  const maxLineScore = 6; // Kartın sabit yüksekliğini koruyacak satır sınırı
+  // Kartın min-h-[350px] sınırını aşmayacak kullanılabilir net dikey alan bütçesi (piksel)
+  const MAX_EVENTS_HEIGHT_PX = 205;
+  let accumulatedHeight = 0;
 
   for (const event of events) {
     const narrative = getHistoryEventNarrative(event);
-    const lineScore = narrative.length > 55 ? 2 : 1;
+    // 44 karakter ve altı tek satır (~22px), üstü 2 satır (~38px) render alanı kaplar
+    const isMultiLine = narrative.length > 44;
+    const itemHeight = isMultiLine ? 38 : 22;
+    const itemGap = selected.length > 0 ? 8 : 0;
+    const requiredHeight = itemHeight + itemGap;
 
-    // Satır kapasitesi aşıldığında kartın büyümesini önlemek için durdur
-    if (selected.length >= 2 && totalLineScore + lineScore > maxLineScore) {
-      break;
-    }
-    if (selected.length >= 5) {
+    // Minimum 2 olay gösterildikten sonra bütçe aşılıyorsa kartın büyümesini önlemek için durdur
+    if (selected.length >= 2 && accumulatedHeight + requiredHeight > MAX_EVENTS_HEIGHT_PX) {
       break;
     }
 
     selected.push(event);
-    totalLineScore += lineScore;
+    accumulatedHeight += requiredHeight;
   }
 
   return selected.length > 0 ? selected : events.slice(0, 2);
@@ -68,9 +70,9 @@ export default function TodayInHistoryCard({
       {/* Decorative ambient gradient */}
       <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-primary/10 blur-2xl transition-all group-hover:bg-primary/15" />
 
-      {/* Top Meta Bar */}
-      <div>
-        <div className="flex items-center justify-between gap-2">
+      {/* Top Meta Bar + Events */}
+      <div className="flex flex-1 flex-col overflow-hidden min-h-0">
+        <div className="flex items-center justify-between gap-2 shrink-0">
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
               <svg aria-hidden="true" className="h-3.5 w-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -83,13 +85,13 @@ export default function TodayInHistoryCard({
             </span>
           </div>
 
-          <span className="text-[11px] font-medium text-muted-foreground">
+          <span className="text-[11px] font-medium text-muted-foreground shrink-0">
             {todayInHistory.events.length} Olay
           </span>
         </div>
 
         {/* History Events List */}
-        <div className="mt-3.5 space-y-2.5">
+        <div className="mt-3.5 space-y-2 flex-1 min-h-0 overflow-hidden">
           {topEvents.map((event) => {
             const narrative = getHistoryEventNarrative(event);
             const yearBadge = event.year < 0 ? `MÖ ${Math.abs(event.year)}` : `${event.year}`;
@@ -109,7 +111,7 @@ export default function TodayInHistoryCard({
       </div>
 
       {/* Bottom Actions */}
-      <div className="mt-5 flex items-center justify-between gap-3 border-t border-border/50 pt-3">
+      <div className="mt-4 flex items-center justify-between gap-3 border-t border-border/50 pt-3 shrink-0">
         <span className="text-[11px] text-muted-foreground">
           Kapsamlı Tarih Arşivi
         </span>

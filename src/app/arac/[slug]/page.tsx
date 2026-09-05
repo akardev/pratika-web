@@ -61,14 +61,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ToolPage({ params }: Props) {
   const resolvedParams = await params;
 
-  // Legacy/duplicate tool slug redirect
-  if (resolvedParams.slug === 'sosyal-medya-gorsel-boyutlari') {
-    permanentRedirect('/arac/sosyal-medya-gorsel-boyutlandirici');
-  }
-
+  // Önce tools içinde bu slug'a sahip gerçek bir araç var mı kontrol et
   const tool = tools.find((t) => t.slug === resolvedParams.slug);
 
   if (!tool) {
+    // Gerçek tool yoksa legacy/invalid slug olarak redirect et
+    if (resolvedParams.slug === 'sosyal-medya-gorsel-boyutlari') {
+      permanentRedirect('/arac/sosyal-medya-gorsel-boyutlandirici');
+    }
     notFound();
   }
 
